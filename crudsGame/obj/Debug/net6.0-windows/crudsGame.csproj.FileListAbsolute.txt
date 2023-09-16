@@ -1,0 +1,164 @@
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.AssemblyReference.cache
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\obj\Debug\net6.0-windows\crudsGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\obj\Debug\net6.0-windows\crudsGame.AssemblyInfoInputs.cache
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\obj\Debug\net6.0-windows\crudsGame.AssemblyInfo.cs
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.CoreCompileInputs.cache
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\obj\Debug\net6.0-windows\crudsGame.Form1.resources
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.pruebas.resources
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.GenerateResource.cache
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\bin\Debug\net6.0-windows\crudsGame.exe
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\bin\Debug\net6.0-windows\crudsGame.deps.json
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\bin\Debug\net6.0-windows\crudsGame.runtimeconfig.json
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\bin\Debug\net6.0-windows\crudsGame.dll
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\bin\Debug\net6.0-windows\crudsGame.pdb
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\obj\Debug\net6.0-windows\crudsGame.dll
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\obj\Debug\net6.0-windows\refint\crudsGame.dll
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\obj\Debug\net6.0-windows\crudsGame.pdb
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\obj\Debug\net6.0-windows\crudsGame.genruntimeconfig.cache
+C:\Users\manita02\Desktop\crudsGame\crudsGame\crudsGame\obj\Debug\net6.0-windows\ref\crudsGame.dll
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.exe
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.deps.json
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.runtimeconfig.json
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.dll
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.pdb
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.AssemblyReference.cache
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.Form1.resources
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.pruebas.resources
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.GenerateResource.cache
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.AssemblyInfoInputs.cache
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.AssemblyInfo.cs
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.CoreCompileInputs.cache
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.dll
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\obj\Debug\net6.0-windows\refint\crudsGame.dll
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.pdb
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.genruntimeconfig.cache
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\obj\Debug\net6.0-windows\ref\crudsGame.dll
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.CRUDentity.resources
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.AssemblyReference.cache
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.Form1.resources
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.CRUDentity.resources
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.pruebas.resources
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.GenerateResource.cache
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.AssemblyInfoInputs.cache
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.AssemblyInfo.cs
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.CoreCompileInputs.cache
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.dll
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\obj\Debug\net6.0-windows\refint\crudsGame.dll
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.pdb
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.exe
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.deps.json
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.runtimeconfig.json
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.dll
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.pdb
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.genruntimeconfig.cache
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\obj\Debug\net6.0-windows\ref\crudsGame.dll
+C:\Users\manita02\Desktop\repoGame\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.Properties.Resources.resources
+C:\Users\ana\Desktop\crudGAME\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.Properties.Resources.resources
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.AssemblyReference.cache
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.Form1.resources
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.Properties.Resources.resources
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.CRUDentity.resources
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.pruebas.resources
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.GenerateResource.cache
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.AssemblyInfoInputs.cache
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.AssemblyInfo.cs
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.CoreCompileInputs.cache
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.dll
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\obj\Debug\net6.0-windows\refint\crudsGame.dll
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.pdb
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.exe
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.deps.json
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.runtimeconfig.json
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.dll
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.pdb
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.genruntimeconfig.cache
+C:\Users\manita02\Desktop\get set\criature_game\crudsGame\obj\Debug\net6.0-windows\ref\crudsGame.dll
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.exe
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.deps.json
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.runtimeconfig.json
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.dll
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.pdb
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.AssemblyReference.cache
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.Form1.resources
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.Properties.Resources.resources
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.AttackTest.resources
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.CRUDentity.resources
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.pruebas.resources
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.GenerateResource.cache
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.AssemblyInfoInputs.cache
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.AssemblyInfo.cs
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.CoreCompileInputs.cache
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.dll
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\refint\crudsGame.dll
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.pdb
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.genruntimeconfig.cache
+C:\Users\manita02\Desktop\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\ref\crudsGame.dll
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.exe
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.deps.json
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.runtimeconfig.json
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.dll
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.pdb
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.AssemblyReference.cache
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.Form1.resources
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.Properties.Resources.resources
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.AttackTest.resources
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.CRUDentity.resources
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.pruebas.resources
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.GenerateResource.cache
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.AssemblyInfoInputs.cache
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.AssemblyInfo.cs
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.CoreCompileInputs.cache
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.dll
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\refint\crudsGame.dll
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.pdb
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.genruntimeconfig.cache
+C:\Users\ana\Desktop\PRUEBA_ATTACK_CRIATURAS\get set animaless\criature_game\crudsGame\obj\Debug\net6.0-windows\ref\crudsGame.dll
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.exe
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.deps.json
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.runtimeconfig.json
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.dll
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.pdb
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.AssemblyReference.cache
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.Form1.resources
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.Properties.Resources.resources
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.AttackTest.resources
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.CRUDentity.resources
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.pruebas.resources
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.GenerateResource.cache
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.AssemblyInfoInputs.cache
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.AssemblyInfo.cs
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.CoreCompileInputs.cache
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.dll
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\refint\crudsGame.dll
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.pdb
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.genruntimeconfig.cache
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\ref\crudsGame.dll
+C:\Users\manita02\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.CRUDitem.resources
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.AssemblyReference.cache
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.Form1.resources
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.Properties.Resources.resources
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.AttackTest.resources
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.CRUDentity.resources
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.CRUDitem.resources
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.pruebas.resources
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.GenerateResource.cache
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.AssemblyInfoInputs.cache
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.AssemblyInfo.cs
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.CoreCompileInputs.cache
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.dll
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\refint\crudsGame.dll
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.pdb
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.exe
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.deps.json
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.runtimeconfig.json
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.dll
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\bin\Debug\net6.0-windows\crudsGame.pdb
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\crudsGame.genruntimeconfig.cache
+C:\Users\ana\Desktop\actualizado_animales\criature_game\crudsGame\obj\Debug\net6.0-windows\ref\crudsGame.dll
