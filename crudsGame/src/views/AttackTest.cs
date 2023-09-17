@@ -24,6 +24,7 @@ namespace crudsGame.src.views
     {
 
         List<Entity> entitiesListTest = new List<Entity>();
+        List<Food> fooodss = new List<Food>();
         MassiveItemCreator entityCtn;
         //entityCtn = MassiveItemCreator.getInstance();
 
@@ -35,16 +36,22 @@ namespace crudsGame.src.views
             entityCtn = MassiveItemCreator.getInstance();
             comboBox1.DataSource = entityCtn.CreateItemsMassively();
 
-            comboBox2.Items.Add(new Food(1, "carne", 123, new Carnivore()));
-            comboBox2.Items.Add(new Food(2, "manzana", 123, new Carnivore()));
-            comboBox2.Items.Add(new Food(3, "grillo", 123, new Omnivorous()));
+            Food f1 = new Food(1, "carne", 10, new Carnivore());
+            Food f2 = new Food(2, "manzana", 20, new Carnivore());
+            Food f3 = new Food(3, "grillo", 30, new SolarEnergy());
+            
+            fooodss.Add(f1);
+            fooodss.Add(f2);
+            fooodss.Add(f3);
+
+            LoadcBfOODS();
         }
 
         public void AddCreaturesToList()
         {
-            Entity e1 = new Entity(1, KingdomCreator.CreateAkingdom(1), "pipi98", DietCreator.CreateAdiet(1), EnvironmentCreator.CreateAenvironment(1), 100, 100, 100, 100, 40, 60, 1);
-            Entity e2 = new Entity(2, KingdomCreator.CreateAkingdom(2), "ladrillo78", DietCreator.CreateAdiet(2), EnvironmentCreator.CreateAenvironment(2), 100, 100, 100, 100, 50, 30, 0);
-            Entity e3 = new Entity(3, KingdomCreator.CreateAkingdom(3), "manguera99", DietCreator.CreateAdiet(3), EnvironmentCreator.CreateAenvironment(3), 100, 100, 100, 100, 60, 20, 0);
+            Entity e1 = new Entity(1, KingdomCreator.CreateAkingdom(1), "pipi98", DietCreator.CreateAdiet(4), EnvironmentCreator.CreateAenvironment(1),45, 88, 45, 56, 40, 60, 1);
+            Entity e2 = new Entity(2, KingdomCreator.CreateAkingdom(2), "ladrillo78", DietCreator.CreateAdiet(2), EnvironmentCreator.CreateAenvironment(2), 12, 23, 66, 100, 50, 30, 0);
+            Entity e3 = new Entity(3, KingdomCreator.CreateAkingdom(3), "manguera99", DietCreator.CreateAdiet(3), EnvironmentCreator.CreateAenvironment(3), 34, 55, 77, 100, 60, 20, 0);
 
 
             entitiesListTest.Add(e1);
@@ -52,7 +59,15 @@ namespace crudsGame.src.views
             entitiesListTest.Add(e2);
             entitiesListTest.Add(e3);
         }
+        public void LoadcBfOODS()
 
+        {
+            comboBox2.Items.Clear();
+            foreach (var mc in fooodss)
+            {
+                comboBox2.Items.Add(mc.ToString());
+            }
+        }
 
         public void LoadComboboxWithMainCreatures()
 
@@ -201,9 +216,25 @@ namespace crudsGame.src.views
             UpdateJ2Labels();
         }
 
+        public Food GetSelectedFoodFromCombobox()
+        {
+            foreach (var food in fooodss)
+            {
+                if (food.ToString() == comboBox2.Text)
+                {
+                    return food;
+                }
+            }
+            return null;
+        }
+
+
         private void btnComer_Click(object sender, EventArgs e)
         {
-            //GeneralController.GetSelectedMainCreatureFromCombobox().
+            //MessageBox.Show("dieta entidad: " + GetSelectedMainCreatureFromCombobox().diet);
+            //MessageBox.Show("dieta comida: " + GetSelectedFoodFromCombobox().diet);
+            GetSelectedMainCreatureFromCombobox().Eat(GetSelectedMainCreatureFromCombobox(), GetSelectedFoodFromCombobox());
+            UpdateProgressbar();
         }
 
 

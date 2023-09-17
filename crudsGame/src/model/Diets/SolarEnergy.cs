@@ -9,14 +9,17 @@ namespace crudsGame.src.model.Diets
 {
     internal class SolarEnergy : IDiet
     {
-        public bool CanEat(IEntity entity, IFood food)
+        public bool CanEat(Entity entity, Food food)
         {
-            /*
-            if (food.GetDiet() == entity.Diet)
+            //MessageBox.Show("dieta entidad: " + entity.diet);
+            //MessageBox.Show("dieta comida: " + food.diet);
+
+            if (entity.diet.ToString() == food.diet.ToString())
             {
+                //MessageBox.Show("entre");
                 return true;
             }
-            */
+            
             return false;
         }
 
@@ -24,5 +27,16 @@ namespace crudsGame.src.model.Diets
         {
             return "Solar Energy";
         }
+
+        /* lo metio en una controladora a este
+        public void Eat(Entity entity, Food food)
+        {
+            if (food.Diet.Contains(entity.Diet))
+            {
+                entity.CurrentEnergy += food.EnergyValue;
+            }
+            else throw new Exception($"no es compatible con la dieta. {food.Name} {food.Diet} != {entity.Name} {entity.Diet}");
+        }
+        */
     }
 }

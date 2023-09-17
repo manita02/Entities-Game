@@ -9,14 +9,12 @@ namespace crudsGame.src.model.Diets
 {
     internal class Herbivorous : IDiet
     {
-        public bool CanEat(IEntity entity, IFood food)
+        public bool CanEat(Entity entity, Food food)
         {
-            /*
-            if (food.GetDiet() == entity.Diet)
+            if (entity.diet.ToString() == food.diet.ToString())
             {
                 return true;
             }
-            */
             return false;
             
         }

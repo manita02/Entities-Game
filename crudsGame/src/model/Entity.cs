@@ -82,6 +82,20 @@ namespace crudsGame.src.model
                 
             }
         }
+        public IDiet diet
+        {
+            get
+            {
+                return Diet;
+            }
+
+            set
+            {
+
+                Diet = value;
+
+            }
+        }
         public int currentEnergy {
             get
             {
@@ -160,17 +174,20 @@ namespace crudsGame.src.model
         }
         */
 
-        /*
-        public void Eat(Entity entity,  food)
+        
+        public void Eat(Entity entity,  Food food)
         {
-            
             if (Diet.CanEat(entity,food) == true)
             {
-                food.Interact(entity, food.GetCalories());
+                food.Interact(entity);
+            }
+            else
+            {
+                MessageBox.Show("la entidad seleccionada no puede comer este alimento");
             }
             
         }
-        */
+        
 
 
         public string ShowMainCreature()
