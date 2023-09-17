@@ -8,21 +8,23 @@ using System.Xml.Linq;
 
 namespace crudsGame.src.model.Items
 {
-    public class Item
+    public class Item : IInteractuable
     {
         int Id { get; set; }
         string Name { get; set; }
-        int Valuee;
-        IInteractuable ItemStrategy;
+        //int Valuee;
+        IStrategyTypeOfItem ItemStrategy { get; set; }
 
-        public Item(int id, string name, int value)
+        public Item(int id, string name, IStrategyTypeOfItem itemStrategy)
         {
             Id = id;
             Name = name;
-            Valuee = value;
+            //Valuee = value;
+            ItemStrategy = itemStrategy;
 
         }
 
+        /*
         public int Value
         {
             set {
@@ -37,25 +39,37 @@ namespace crudsGame.src.model.Items
                 }
             get { return Valuee; }
         }
+        */
 
 
-        public void SetItemSrategy(IInteractuable itemStrategy)
+        public void SetItemSrategy(IStrategyTypeOfItem itemStrategy)
         {
             ItemStrategy = itemStrategy;
         }
 
-        public void ApplyInteraction(IEntity entity, int value)
+
+
+
+
+
+        /*
+        public void ApplyInteraction(IEntity entity)
         {
             this.ItemStrategy.Interact(entity ,value);
         }
+        */
 
         public override string ToString()
         {
             return Name;
         }
 
+        
 
-
+        public void Interact(Entity entity)
+        {
+            ItemStrategy.ApplyItem(entity);
+        }
     }
 
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using crudsGame.src.model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,8 @@ using System.Threading.Tasks;
 
 namespace crudsGame.src.interfaces
 {
-    public interface IFood
+    public interface IStrategyTypeOfItem
     {
-
-        int GetCalories();
-        //int FoodId();
-
-        IDiet GetDiet();
+        public void ApplyItem(Entity entity);
     }
-        
 }

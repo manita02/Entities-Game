@@ -1,6 +1,10 @@
-﻿using crudsGame.src.factoryMethod;
+﻿using crudsGame.src.controllers;
+using crudsGame.src.factoryMethod;
 using crudsGame.src.interfaces;
 using crudsGame.src.model;
+using crudsGame.src.model.Diets;
+using crudsGame.src.model.Items;
+using crudsGame.src.model.Items.Strategy;
 using crudsGame.src.model.Kingdoms;
 using System;
 using System.Collections.Generic;
@@ -19,23 +23,32 @@ namespace crudsGame.src.views
     public partial class AttackTest : Form
     {
 
-        List<IEntity> entitiesListTest = new List<IEntity>();
+        List<Entity> entitiesListTest = new List<Entity>();
+        MassiveItemCreator entityCtn;
+        //entityCtn = MassiveItemCreator.getInstance();
 
         public AttackTest()
         {
             InitializeComponent();
             AddCreaturesToList();
             LoadComboboxWithMainCreatures();
+            entityCtn = MassiveItemCreator.getInstance();
+            comboBox1.DataSource = entityCtn.CreateItemsMassively();
+
+            comboBox2.Items.Add(new Food(1, "carne", 123, new Carnivore()));
+            comboBox2.Items.Add(new Food(2, "manzana", 123, new Carnivore()));
+            comboBox2.Items.Add(new Food(3, "grillo", 123, new Omnivorous()));
         }
 
         public void AddCreaturesToList()
         {
-            IEntity e1 = new Entity(1, KingdomCreator.CreateAkingdom(1), "pipi98", DietCreator.CreateAdiet(1), EnvironmentCreator.CreateAenvironment(1), 100, 100, 100, 100, 40, 60, 1);
-            IEntity e2 = new Entity(2, KingdomCreator.CreateAkingdom(2), "ladrillo78", DietCreator.CreateAdiet(2), EnvironmentCreator.CreateAenvironment(2), 100, 100, 100, 100, 50, 30, 0);
-            IEntity e3 = new Entity(3, KingdomCreator.CreateAkingdom(3), "manguera99", DietCreator.CreateAdiet(3), EnvironmentCreator.CreateAenvironment(3), 100, 100, 100, 100, 60, 20, 0);
+            Entity e1 = new Entity(1, KingdomCreator.CreateAkingdom(1), "pipi98", DietCreator.CreateAdiet(1), EnvironmentCreator.CreateAenvironment(1), 100, 100, 100, 100, 40, 60, 1);
+            Entity e2 = new Entity(2, KingdomCreator.CreateAkingdom(2), "ladrillo78", DietCreator.CreateAdiet(2), EnvironmentCreator.CreateAenvironment(2), 100, 100, 100, 100, 50, 30, 0);
+            Entity e3 = new Entity(3, KingdomCreator.CreateAkingdom(3), "manguera99", DietCreator.CreateAdiet(3), EnvironmentCreator.CreateAenvironment(3), 100, 100, 100, 100, 60, 20, 0);
 
 
             entitiesListTest.Add(e1);
+            MessageBox.Show("energy: " + e1.currentEnergy);
             entitiesListTest.Add(e2);
             entitiesListTest.Add(e3);
         }
@@ -51,10 +64,12 @@ namespace crudsGame.src.views
             }
         }
 
-        public IEntity GetSelectedMainCreatureFromCombobox()
+        public Entity GetSelectedMainCreatureFromCombobox()
         {
             foreach (var mc in entitiesListTest)
             {
+                //MessageBox.Show("nombre en combo: " + cbMainCreature.Text);
+                
                 if (mc.ShowMainCreature() == cbMainCreature.Text)
                 {
                     return mc;
@@ -65,12 +80,16 @@ namespace crudsGame.src.views
 
         private void UpdateProgressbar()
         {
-            lbLifeJ1.Text = Convert.ToString(GetSelectedMainCreatureFromCombobox().CurrentLife) + "%";
-            pbCurrentLife.Value = GetSelectedMainCreatureFromCombobox().CurrentLife;
+            lbLifeJ1.Text = Convert.ToString(GetSelectedMainCreatureFromCombobox().currentLife) + "%";
+            pbCurrentLife.Value = GetSelectedMainCreatureFromCombobox().currentLife;
 
 
-            lbCurrentEnergyJ1.Text = Convert.ToString(GetSelectedMainCreatureFromCombobox().CurrentEnergy) + "%";
-            pbCurrentEnergy.Value = GetSelectedMainCreatureFromCombobox().CurrentEnergy;
+            lbCurrentEnergyJ1.Text = Convert.ToString(GetSelectedMainCreatureFromCombobox().currentEnergy) + "%";
+            pbCurrentEnergy.Value = GetSelectedMainCreatureFromCombobox().currentEnergy; //establecer propiedades
+
+            txtAttack.Text = GetSelectedMainCreatureFromCombobox().attackPoints.ToString();
+
+            txtDefense.Text = GetSelectedMainCreatureFromCombobox().defensePoints.ToString();
         }
 
         private void cbMainCreature_SelectedIndexChanged(object sender, EventArgs e)
@@ -102,7 +121,7 @@ namespace crudsGame.src.views
                     }
                 }
                 */
-                if (GetSelectedMainCreatureFromCombobox().Id != dc.Id)
+                if (GetSelectedMainCreatureFromCombobox().id != dc.id)
                 {
                     cbCreaturesThatWillBeAttacked.Items.Add(dc.ShowMainCreature());
                 }
@@ -113,7 +132,7 @@ namespace crudsGame.src.views
             }
         }
 
-        public IEntity GetSelectedToDefenseCreatureFromCombobox()
+        public Entity GetSelectedToDefenseCreatureFromCombobox()
         {
             foreach (var dc in entitiesListTest)
             {
@@ -126,9 +145,9 @@ namespace crudsGame.src.views
         }
         private void btnAttack_Click(object sender, EventArgs e)
         {
-            if (GetSelectedMainCreatureFromCombobox().CurrentEnergy > 0)
+            if (GetSelectedMainCreatureFromCombobox().currentEnergy > 0)
             {
-                if (GetSelectedToDefenseCreatureFromCombobox().CurrentLife > 0)
+                if (GetSelectedToDefenseCreatureFromCombobox().currentLife > 0)
                 {
                     List<int> numbers = new List<int>() { 1, 2, 3, 4, 5, 6 }; //dado
                     Random rnd = new Random();
@@ -141,22 +160,22 @@ namespace crudsGame.src.views
                     int random2 = numbers[randIndex];
                     MessageBox.Show("Jugador 2 ha tirado tambien el dado y saco: " + random2 + " esto se sumara a los puntos de defensa a la criatura a la que se le inflige daño..");
 
-                    GetSelectedToDefenseCreatureFromCombobox().CurrentLife = GetSelectedMainCreatureFromCombobox().Attack(GetSelectedToDefenseCreatureFromCombobox(), random1, random2);
+                    GetSelectedToDefenseCreatureFromCombobox().currentLife = GetSelectedMainCreatureFromCombobox().Attack(GetSelectedToDefenseCreatureFromCombobox(), random1, random2);
 
                     UpdateProgressbar();
 
-                    if (GetSelectedToDefenseCreatureFromCombobox().CurrentLife > 0)
+                    if (GetSelectedToDefenseCreatureFromCombobox().currentLife > 0)
                     {
-                        MessageBox.Show("La vida que le quedo a la criatura a la que se ataco es de: " + GetSelectedToDefenseCreatureFromCombobox().CurrentLife);
+                        MessageBox.Show("La vida que le quedo a la criatura a la que se ataco es de: " + GetSelectedToDefenseCreatureFromCombobox().currentLife);
                     }
                     else
                     {
-                        MessageBox.Show("La critura atacada '" + GetSelectedToDefenseCreatureFromCombobox().Name + "' ha fallecido...");
+                        MessageBox.Show("La critura atacada '" + GetSelectedToDefenseCreatureFromCombobox().name + "' ha fallecido...");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("La critura a la que se desea atacar ( '" + GetSelectedToDefenseCreatureFromCombobox().Name + "' ) ya falleció...");
+                    MessageBox.Show("La critura a la que se desea atacar ( '" + GetSelectedToDefenseCreatureFromCombobox().name + "' ) ya falleció...");
                 }
 
                 //Console.WriteLine(random);
@@ -173,13 +192,41 @@ namespace crudsGame.src.views
 
         private void UpdateJ2Labels()
         {
-            lbCurrentEnergyJ2.Text = "Current Energy of J2: " + GetSelectedToDefenseCreatureFromCombobox().CurrentEnergy.ToString();
-            lbCurrentLifeJ2.Text = "Current Life of J2: " + GetSelectedToDefenseCreatureFromCombobox().CurrentLife.ToString();
+            lbCurrentEnergyJ2.Text = "Current Energy of J2: " + GetSelectedToDefenseCreatureFromCombobox().currentEnergy.ToString();
+            lbCurrentLifeJ2.Text = "Current Life of J2: " + GetSelectedToDefenseCreatureFromCombobox().currentLife.ToString();
         }
 
         private void cbCriatureToDefense_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateJ2Labels();
+        }
+
+        private void btnComer_Click(object sender, EventArgs e)
+        {
+            //GeneralController.GetSelectedMainCreatureFromCombobox().
+        }
+
+
+        public Item GetSelectedItemFromCombobox()
+        {
+            foreach (var item in entityCtn.getLista())
+            {
+                if (item.ToString() == comboBox1.Text)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        private void btnInteract_Click(object sender, EventArgs e)
+        {
+            GetSelectedItemFromCombobox().Interact(GetSelectedMainCreatureFromCombobox());
+            UpdateProgressbar();
+            txtAttack.Text = GetSelectedMainCreatureFromCombobox().attackPoints.ToString();
+
+            txtDefense.Text = GetSelectedMainCreatureFromCombobox().defensePoints.ToString();
+
         }
 
         //queda emprolijar los metodos y ver en q clases ubicarlos

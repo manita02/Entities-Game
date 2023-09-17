@@ -8,7 +8,7 @@ namespace crudsGame.src.interfaces
 {
     public interface IDiet
     {
-        bool CanEat(IEntity entity, IFood food);//dudas
+        bool CanEat(IEntity entity, IFood food); //preguntar maurooo
         string ToString();
 
         

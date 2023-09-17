@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 
 namespace crudsGame.src.model.Items.Strategy
 {
-    internal class EnergyyItem : IInteractuable
+    internal class IncreasesDefensePoints : IStrategyTypeOfItem
     {
-        public void Interact(IEntity entity, int value)
+        Random random = new Random();
+        public void ApplyItem(Entity entity)
         {
-            entity.CurrentEnergy += value; //mostrar a mauro dudas
+            entity.defensePoints += random.Next(10, 50);
         }
 
         public override string ToString()
         {
-            return "Affects Energy";
+            return "Increases Defense Points";
         }
     }
 }

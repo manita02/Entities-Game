@@ -1,3 +1,4 @@
+using crudsGame.src.controllers;
 using crudsGame.src.model.Items.Strategy;
 
 namespace crudsGame
@@ -6,8 +7,23 @@ namespace crudsGame
     {
         public Form1()
         {
-            //InitializeComponent();
-            MassiveItemCreator.asd();
+            InitializeComponent();
+            MassiveItemCreator entityCtn;
+            entityCtn = MassiveItemCreator.getInstance();
+            
+        }
+        private ComboBox comboBox1;
+
+
+
+        private void InitializeComponent()
+        {
+            /*
+            entityCtn = MassiveItemCreator.getInstance();
+            comboBox1.DataSource = entityCtn.CreateItemsMassively();
+            */
+
+
         }
     }
 }

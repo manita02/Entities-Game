@@ -11,10 +11,12 @@ namespace crudsGame.src.model.Diets
     {
         public bool CanEat(IEntity entity, IFood food)
         {
+            /*
             if (food.GetDiet() == entity.Diet)
             {
                 return true;
             }
+            */
             return false;
         }
 

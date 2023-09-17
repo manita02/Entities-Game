@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 
 namespace crudsGame.src.model.Items.Strategy
 {
-    internal class AttackPointsItem : IInteractuable
+    internal class IncreasesAttackPoints : IStrategyTypeOfItem
     {
-        public void Interact(IEntity entity, int value)
+        Random random = new Random();
+        public void ApplyItem(Entity entity)
         {
-            entity.AttackPoints += value; //mostrar a mauro dudas
+            entity.attackPoints += random.Next(10, 50);
         }
 
         public override string ToString()
         {
-            return "Affects Attack Points";
+            return "Increases Attack Points";
         }
     }
 }

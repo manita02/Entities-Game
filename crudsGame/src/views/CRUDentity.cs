@@ -21,7 +21,7 @@ namespace crudsGame.src.views
         List<IKingdom> kingdomList = new List<IKingdom>();
         List<IEnvironment> environmentList = new List<IEnvironment>();
         List<IDiet> dietList = new List<IDiet>();
-        List<IEntity> entityList = new List<IEntity>();
+        List<Entity> entityList = new List<Entity>();
 
 
         EntityController entityCtn;
@@ -75,20 +75,22 @@ namespace crudsGame.src.views
             return null;
         }
 
-        private void CheckIfEntityExists(IEntity entity)
+        private void CheckIfEntityExists(Entity entity)
         {
+            /*
             if (entityList.Count > 0)
             {
                 for (int fila = 0; fila < dgvEntities.Rows.Count - 1; fila++)
                 {
 
-                    if (dgvEntities.Rows[fila].Cells[2].Value.ToString() == entity.Name)
+                    if (dgvEntities.Rows[fila].Cells[2].Value.ToString() == entity.name)
                     {
-                        MessageBox.Show("La criatura ' " + entity.Name + " ' ya existe!!!");
+                        MessageBox.Show("La criatura ' " + entity.name + " ' ya existe!!!");
                         exist = true;
                     }
                 }
             }
+            */
         }
 
         private bool CheckEmptyFields()
@@ -106,7 +108,7 @@ namespace crudsGame.src.views
             if (CheckEmptyFields() == false)
             {
 
-                IEntity entity = entityCtn.CreateEntity(entityList.Count(), GetSelectedKingdomFromCombobox(), txtName.Text, GetSelectedDietFromCombobox(), GetSelectedEnvironmentFromCombobox(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+                Entity entity = entityCtn.CreateEntity(entityList.Count(), GetSelectedKingdomFromCombobox(), txtName.Text, GetSelectedDietFromCombobox(), GetSelectedEnvironmentFromCombobox(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
 
                 CheckIfEntityExists(entity);
 
@@ -151,7 +153,7 @@ namespace crudsGame.src.views
             {
                 if (CheckEmptyFields() == false)
                 {
-                    IEntity entity = entityCtn.CreateEntity(Convert.ToInt16(txtId.Text), GetSelectedKingdomFromCombobox(), txtName.Text, GetSelectedDietFromCombobox(), GetSelectedEnvironmentFromCombobox(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+                    Entity entity = entityCtn.CreateEntity(Convert.ToInt16(txtId.Text), GetSelectedKingdomFromCombobox(), txtName.Text, GetSelectedDietFromCombobox(), GetSelectedEnvironmentFromCombobox(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
                     this.rows = entityCtn.UpdateAnEntity(rows, dgvEntities, entity);
                 }
 

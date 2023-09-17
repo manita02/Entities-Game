@@ -26,7 +26,7 @@ namespace crudsGame.src.controllers
             return Instance;
         }
 
-        public IEntity CreateEntity(int id, IKingdom kingdom, string name, IDiet diet, IEnvironment environment, int maxEnergy, int maxLife, int attack, int defense, int range)
+        public Entity CreateEntity(int id, IKingdom kingdom, string name, IDiet diet, IEnvironment environment, int maxEnergy, int maxLife, int attack, int defense, int range)
         {
 
             return new Entity(id, kingdom, name, diet, environment, maxEnergy, maxEnergy, maxLife, maxLife, attack, defense, range);
@@ -34,10 +34,11 @@ namespace crudsGame.src.controllers
         }
 
 
-        public void AddEntity(IEntity entity, List<IEntity> entityList, DataGridView dgvEntity)
+        public void AddEntity(Entity entity, List<Entity> entityList, DataGridView dgvEntity)
         {
             entityList.Add(entity); //se carga en la lista
             int x = dgvEntity.Rows.Add(); //se carga la tabla
+            /*
             dgvEntity.Rows[x].Cells[0].Value = entity.Id;
             dgvEntity.Rows[x].Cells[1].Value = entity.Kingdom;
             dgvEntity.Rows[x].Cells[2].Value = entity.Name;
@@ -50,11 +51,13 @@ namespace crudsGame.src.controllers
             dgvEntity.Rows[x].Cells[9].Value = entity.CurrentEnergy;
             dgvEntity.Rows[x].Cells[10].Value = entity.MaxLife;
             dgvEntity.Rows[x].Cells[11].Value = entity.CurrentLife;
+            */
 
         }
 
-        public int UpdateAnEntity(int rows, DataGridView dgvEntity, IEntity entity)
+        public int UpdateAnEntity(int rows, DataGridView dgvEntity, Entity entity)
         {
+            /*
             dgvEntity.Rows[rows].Cells[0].Value = entity.Id;
             dgvEntity.Rows[rows].Cells[1].Value = entity.Kingdom;
             dgvEntity.Rows[rows].Cells[2].Value = entity.Name;
@@ -67,12 +70,13 @@ namespace crudsGame.src.controllers
             dgvEntity.Rows[rows].Cells[9].Value = entity.CurrentEnergy;
             dgvEntity.Rows[rows].Cells[10].Value = entity.MaxLife;
             dgvEntity.Rows[rows].Cells[11].Value = entity.CurrentLife;
+            */
 
             return rows = 0; 
 
         }
 
-        public void DeleteAnEntity(List<IEntity> entityList, int r)
+        public void DeleteAnEntity(List<Entity> entityList, int r)
         {
             for (int i = 0; i < entityList.Count; i++)
             {

@@ -15,8 +15,8 @@ namespace crudsGame
             ApplicationConfiguration.Initialize();
             //Application.Run(new CRUDitem());
             //Application.Run(new CRUDentity());
-            //Application.Run(new AttackTest());
-            Application.Run(new Form1());
+            Application.Run(new AttackTest());
+            //Application.Run(new Form1());
 
         }
     }

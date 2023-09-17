@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace crudsGame.src.model
 {
-    internal class Food : IFood /*, IInteractuable*/
+    internal class Food : IInteractuable
     {
         int Id;
         string Name;
@@ -22,24 +22,41 @@ namespace crudsGame.src.model
             this.Diet = diet;
         }
 
+        /*
         public int GetCalories()
         {
-            throw new NotImplementedException();
+            return this.Calories;
         }
 
         public IDiet GetDiet()
         {
             return this.Diet;
         }
+        */
 
-        public void Interact(IEntity entity)
+        /*
+        public void Interact(IEntity entity, int value)
         {
-            /*
-            if (Diet.CanEat(entity,) == true)
+            entity.CurrentEnergy += value;
+
+            /* esto va en la clase entidad
+            if (Diet.CanEat(entity,this.Diet) == true)
             {
 
             }
-            */
+            
+            
+        }
+    */
+
+        public void Interact(Entity entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ToString()
+        {
+            return this.Name;
         }
     }
 }

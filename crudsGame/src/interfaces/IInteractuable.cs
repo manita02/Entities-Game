@@ -1,4 +1,5 @@
-﻿using crudsGame.src.model.Items;
+﻿using crudsGame.src.model;
+using crudsGame.src.model.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace crudsGame.src.interfaces
 
         //void Interact(IEntity entity); //puedo usar el metodo caneat y accedo a la energia con entity. ...
 
-        void Interact(IEntity entity, int value);
+        void Interact(Entity entity);
 
 
     }

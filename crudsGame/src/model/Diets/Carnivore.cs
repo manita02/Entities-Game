@@ -11,11 +11,14 @@ namespace crudsGame.src.model.Diets
     {
         public bool CanEat(IEntity entity, IFood food)
         {
+            /*
             if (food.GetDiet() == entity.Diet) //dudas
             {
                 return true;
             }
+            */
             return false;
+            
         }
 
         public override string ToString()
