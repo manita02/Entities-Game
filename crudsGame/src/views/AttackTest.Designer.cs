@@ -29,6 +29,16 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            txtId = new TextBox();
+            label9 = new Label();
+            txtKingdom = new TextBox();
+            txtEnvironment = new TextBox();
+            txtMaxEnergy = new TextBox();
+            txtMaxlLIFE = new TextBox();
+            label8 = new Label();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
             txtDefense = new TextBox();
             txtAttack = new TextBox();
             label4 = new Label();
@@ -39,23 +49,34 @@
             lbCurrentLifeJ2 = new Label();
             btnAttack = new Button();
             cbCreaturesThatWillBeAttacked = new ComboBox();
+            lbCurrentEnergyJ2 = new Label();
             pbCurrentLife = new ProgressBar();
             pbCurrentEnergy = new ProgressBar();
             label1 = new Label();
             label2 = new Label();
             lbLifeJ1 = new Label();
             lbCurrentEnergyJ1 = new Label();
-            lbCurrentEnergyJ2 = new Label();
             comboBox1 = new ComboBox();
             comboBox2 = new ComboBox();
             btnComer = new Button();
             btnInteract = new Button();
+            btnSleep = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(txtId);
+            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(txtKingdom);
+            groupBox1.Controls.Add(txtEnvironment);
+            groupBox1.Controls.Add(txtMaxEnergy);
+            groupBox1.Controls.Add(txtMaxlLIFE);
+            groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(label7);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(txtDefense);
             groupBox1.Controls.Add(txtAttack);
             groupBox1.Controls.Add(label4);
@@ -64,10 +85,90 @@
             groupBox1.Controls.Add(cbMainCreature);
             groupBox1.Location = new Point(24, 23);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(724, 155);
+            groupBox1.Size = new Size(780, 284);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Choose a CRIATURE";
+            // 
+            // txtId
+            // 
+            txtId.Location = new Point(647, 93);
+            txtId.Name = "txtId";
+            txtId.Size = new Size(100, 23);
+            txtId.TabIndex = 16;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(621, 97);
+            label9.Name = "label9";
+            label9.Size = new Size(20, 15);
+            label9.TabIndex = 15;
+            label9.Text = "id:";
+            // 
+            // txtKingdom
+            // 
+            txtKingdom.Location = new Point(463, 159);
+            txtKingdom.Name = "txtKingdom";
+            txtKingdom.Size = new Size(100, 23);
+            txtKingdom.TabIndex = 14;
+            // 
+            // txtEnvironment
+            // 
+            txtEnvironment.Location = new Point(467, 188);
+            txtEnvironment.Name = "txtEnvironment";
+            txtEnvironment.Size = new Size(100, 23);
+            txtEnvironment.TabIndex = 13;
+            // 
+            // txtMaxEnergy
+            // 
+            txtMaxEnergy.Location = new Point(467, 216);
+            txtMaxEnergy.Name = "txtMaxEnergy";
+            txtMaxEnergy.Size = new Size(100, 23);
+            txtMaxEnergy.TabIndex = 12;
+            // 
+            // txtMaxlLIFE
+            // 
+            txtMaxlLIFE.Location = new Point(467, 247);
+            txtMaxlLIFE.Name = "txtMaxlLIFE";
+            txtMaxlLIFE.Size = new Size(100, 23);
+            txtMaxlLIFE.TabIndex = 11;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(386, 247);
+            label8.Name = "label8";
+            label8.Size = new Size(49, 15);
+            label8.TabIndex = 10;
+            label8.Text = "max life";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(386, 219);
+            label7.Name = "label7";
+            label7.Size = new Size(69, 15);
+            label7.TabIndex = 9;
+            label7.Text = "max energy";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(386, 194);
+            label6.Name = "label6";
+            label6.Size = new Size(75, 15);
+            label6.TabIndex = 8;
+            label6.Text = "environment";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(386, 167);
+            label5.Name = "label5";
+            label5.Size = new Size(55, 15);
+            label5.TabIndex = 7;
+            label5.Text = "kingdom";
             // 
             // txtDefense
             // 
@@ -125,7 +226,8 @@
             groupBox2.Controls.Add(lbCurrentLifeJ2);
             groupBox2.Controls.Add(btnAttack);
             groupBox2.Controls.Add(cbCreaturesThatWillBeAttacked);
-            groupBox2.Location = new Point(24, 184);
+            groupBox2.Controls.Add(lbCurrentEnergyJ2);
+            groupBox2.Location = new Point(24, 323);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(596, 173);
             groupBox2.TabIndex = 1;
@@ -159,6 +261,15 @@
             cbCreaturesThatWillBeAttacked.Size = new Size(380, 23);
             cbCreaturesThatWillBeAttacked.TabIndex = 0;
             cbCreaturesThatWillBeAttacked.SelectedIndexChanged += cbCriatureToDefense_SelectedIndexChanged;
+            // 
+            // lbCurrentEnergyJ2
+            // 
+            lbCurrentEnergyJ2.AutoSize = true;
+            lbCurrentEnergyJ2.Location = new Point(426, 32);
+            lbCurrentEnergyJ2.Name = "lbCurrentEnergyJ2";
+            lbCurrentEnergyJ2.Size = new Size(58, 15);
+            lbCurrentEnergyJ2.TabIndex = 8;
+            lbCurrentEnergyJ2.Text = "Energy_J2";
             // 
             // pbCurrentLife
             // 
@@ -214,19 +325,10 @@
             lbCurrentEnergyJ1.TabIndex = 7;
             lbCurrentEnergyJ1.Text = "***";
             // 
-            // lbCurrentEnergyJ2
-            // 
-            lbCurrentEnergyJ2.AutoSize = true;
-            lbCurrentEnergyJ2.Location = new Point(467, 190);
-            lbCurrentEnergyJ2.Name = "lbCurrentEnergyJ2";
-            lbCurrentEnergyJ2.Size = new Size(58, 15);
-            lbCurrentEnergyJ2.TabIndex = 8;
-            lbCurrentEnergyJ2.Text = "Energy_J2";
-            // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(65, 363);
+            comboBox1.Location = new Point(65, 521);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(244, 23);
             comboBox1.TabIndex = 9;
@@ -234,14 +336,14 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(383, 363);
+            comboBox2.Location = new Point(383, 521);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(277, 23);
             comboBox2.TabIndex = 10;
             // 
             // btnComer
             // 
-            btnComer.Location = new Point(407, 409);
+            btnComer.Location = new Point(407, 567);
             btnComer.Name = "btnComer";
             btnComer.Size = new Size(75, 23);
             btnComer.TabIndex = 11;
@@ -251,7 +353,7 @@
             // 
             // btnInteract
             // 
-            btnInteract.Location = new Point(146, 401);
+            btnInteract.Location = new Point(146, 559);
             btnInteract.Name = "btnInteract";
             btnInteract.Size = new Size(75, 23);
             btnInteract.TabIndex = 12;
@@ -259,16 +361,26 @@
             btnInteract.UseVisualStyleBackColor = true;
             btnInteract.Click += btnInteract_Click;
             // 
+            // btnSleep
+            // 
+            btnSleep.Location = new Point(740, 514);
+            btnSleep.Name = "btnSleep";
+            btnSleep.Size = new Size(75, 23);
+            btnSleep.TabIndex = 13;
+            btnSleep.Text = "SLEEP";
+            btnSleep.UseVisualStyleBackColor = true;
+            btnSleep.Click += btnSleep_Click;
+            // 
             // AttackTest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1000, 600);
+            Controls.Add(btnSleep);
             Controls.Add(btnInteract);
             Controls.Add(btnComer);
             Controls.Add(comboBox2);
             Controls.Add(comboBox1);
-            Controls.Add(lbCurrentEnergyJ2);
             Controls.Add(lbCurrentEnergyJ1);
             Controls.Add(lbLifeJ1);
             Controls.Add(label2);
@@ -311,5 +423,16 @@
         private TextBox txtAttack;
         private Label label4;
         private Label label3;
+        private Label label5;
+        private TextBox txtKingdom;
+        private TextBox txtEnvironment;
+        private TextBox txtMaxEnergy;
+        private TextBox txtMaxlLIFE;
+        private Label label8;
+        private Label label7;
+        private Label label6;
+        private Label label9;
+        private TextBox txtId;
+        private Button btnSleep;
     }
 }

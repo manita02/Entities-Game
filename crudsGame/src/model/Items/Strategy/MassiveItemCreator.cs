@@ -55,6 +55,11 @@ namespace crudsGame.src.model.Items.Strategy
         public List<Item> CreateItemsMassively()
         {
             this.interactuables = LoadTypesOfItems();
+
+            Item item1 = new Item(index, "caca", GetRandomTypeOfItem(1)); //queda probar con 3 y 4
+            itemList.Add(item1);
+            index++;
+
             foreach (var name in PositiveNames)
             {
                 

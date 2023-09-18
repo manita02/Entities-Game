@@ -39,7 +39,7 @@ namespace crudsGame.src.views
             Food f1 = new Food(1, "carne", 10, new Carnivore());
             Food f2 = new Food(2, "manzana", 20, new Carnivore());
             Food f3 = new Food(3, "grillo", 30, new SolarEnergy());
-            
+
             fooodss.Add(f1);
             fooodss.Add(f2);
             fooodss.Add(f3);
@@ -49,9 +49,12 @@ namespace crudsGame.src.views
 
         public void AddCreaturesToList()
         {
-            Entity e1 = new Entity(1, KingdomCreator.CreateAkingdom(1), "pipi98", DietCreator.CreateAdiet(4), EnvironmentCreator.CreateAenvironment(1),45, 88, 45, 56, 40, 60, 1);
-            Entity e2 = new Entity(2, KingdomCreator.CreateAkingdom(2), "ladrillo78", DietCreator.CreateAdiet(2), EnvironmentCreator.CreateAenvironment(2), 12, 23, 66, 100, 50, 30, 0);
-            Entity e3 = new Entity(3, KingdomCreator.CreateAkingdom(3), "manguera99", DietCreator.CreateAdiet(3), EnvironmentCreator.CreateAenvironment(3), 34, 55, 77, 100, 60, 20, 0);
+
+            //int id, IKingdom kingdom, string name, IDiet diet, IEnvironment environment, int maxenergy, int currentenergy, int maxlife, int currentlife, int attackpoints, int defensepoints, int attackrange
+
+            Entity e1 = new Entity(1, KingdomCreator.CreateAkingdom(1), "po", DietCreator.CreateAdiet(4), EnvironmentCreator.CreateAenvironment(1), 100, 40, 100, 56, 40, 60, 1);
+            Entity e2 = new Entity(2, KingdomCreator.CreateAkingdom(2), "tigresa", DietCreator.CreateAdiet(2), EnvironmentCreator.CreateAenvironment(2), 100, 50, 100, 50, 50, 30, 0);
+            Entity e3 = new Entity(3, KingdomCreator.CreateAkingdom(3), "paladini", DietCreator.CreateAdiet(3), EnvironmentCreator.CreateAenvironment(3), 100, 30, 100, 10, 60, 20, 0);
 
 
             entitiesListTest.Add(e1);
@@ -84,7 +87,7 @@ namespace crudsGame.src.views
             foreach (var mc in entitiesListTest)
             {
                 //MessageBox.Show("nombre en combo: " + cbMainCreature.Text);
-                
+
                 if (mc.ShowMainCreature() == cbMainCreature.Text)
                 {
                     return mc;
@@ -105,6 +108,17 @@ namespace crudsGame.src.views
             txtAttack.Text = GetSelectedMainCreatureFromCombobox().attackPoints.ToString();
 
             txtDefense.Text = GetSelectedMainCreatureFromCombobox().defensePoints.ToString();
+
+            txtEnvironment.Text = GetSelectedMainCreatureFromCombobox().environment.ToString();
+
+            txtKingdom.Text = GetSelectedMainCreatureFromCombobox().kingdom.ToString();
+
+            txtMaxEnergy.Text = GetSelectedMainCreatureFromCombobox().maxEnergy.ToString();
+
+            txtMaxlLIFE.Text = GetSelectedMainCreatureFromCombobox().maxLife.ToString();
+
+            txtId.Text = GetSelectedMainCreatureFromCombobox().id.ToString();
+
         }
 
         private void cbMainCreature_SelectedIndexChanged(object sender, EventArgs e)
@@ -113,7 +127,7 @@ namespace crudsGame.src.views
 
             LoadComboboxWithCreaturesThatWillBeAttacked();
 
-            cbMainCreature.Enabled = false;
+            //cbMainCreature.Enabled = false;
         }
 
         public void LoadComboboxWithCreaturesThatWillBeAttacked()
@@ -258,6 +272,12 @@ namespace crudsGame.src.views
 
             txtDefense.Text = GetSelectedMainCreatureFromCombobox().defensePoints.ToString();
 
+        }
+
+        private void btnSleep_Click(object sender, EventArgs e)
+        {
+            GetSelectedMainCreatureFromCombobox().Sleep();
+            UpdateProgressbar();
         }
 
         //queda emprolijar los metodos y ver en q clases ubicarlos

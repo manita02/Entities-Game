@@ -12,15 +12,27 @@ namespace crudsGame.src.model.Items.Strategy
         Random random = new Random();
         public void ApplyItem(Entity entity)
         {
-            entity.currentEnergy += random.Next(10, 50);
+            if (entity.currentLife != entity.maxLife)
+            {
+                entity.currentEnergy -= 10;
+                entity.currentLife += random.Next(5, 15);
+                MessageBox.Show("The "+entity.name+ " creature has used a item that increased its life to "+ entity.currentLife);
+            }
+            else
+            {
+                MessageBox.Show("Su entidad tiene lo maximo que puede obtener en vida");
+            }
+
+            
+            //}
+            //catch(Exception e)
+            //{
+            //    MessageBox.Show(e.ToString());
+            //}
+            
         }
 
-        /*
-public void Interact(IEntity entity, int value)
-{
-   entity.CurrentEnergy += value; //mostrar a mauro dudas
-}
-*/
+       
 
         public override string ToString()
         {

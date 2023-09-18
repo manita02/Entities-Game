@@ -26,12 +26,14 @@ namespace crudsGame.src.controllers
             return Instance;
         }
 
+        /*
         public Entity CreateEntity(int id, IKingdom kingdom, string name, IDiet diet, IEnvironment environment, int maxEnergy, int maxLife, int attack, int defense, int range)
         {
 
             return new Entity(id, kingdom, name, diet, environment, maxEnergy, maxEnergy, maxLife, maxLife, attack, defense, range);
 
         }
+        */
 
 
         public void AddEntity(Entity entity, List<Entity> entityList, DataGridView dgvEntity)

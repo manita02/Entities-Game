@@ -3,6 +3,7 @@ using crudsGame.src.model.Kingdoms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,20 +40,35 @@ namespace crudsGame.src.model
             DefensePoints = defensepoints;
             AttackRange = attackrange;
         }
-        /*
-        string IEntity.Name { get => this.Name; set => this.Name = value ; }
-        IEnvironment IEntity.Environment { get => this.Environment; set => this.Environment = value ; }
-        IDiet IEntity.Diet { get => this.Diet; set => this.Diet = value; }
-        int IEntity.MaxEnergy { get => this.MaxEnergy; set => this.MaxEnergy = value; }
-        int IEntity.MaxLife { get => this.MaxLife; set => this.MaxLife = value; }
-        int IEntity.CurrentLife { get => this.CurrentLife; set => this.CurrentLife = value; }
-        int IEntity.AttackPoints { get => this.AttackPoints; set => this.AttackPoints = value; }
-        int IEntity.DefensePoints { get => this.DefensePoints; set => this.DefensePoints = value; }
-        int IEntity.AttackRange { get => this.AttackRange; set => this.AttackRange = value; }
-        int IEntity.Id { get => this.Id; set => this.Id = value; }
-        IKingdom IEntity.Kingdom { get => this.Kingdom; set => this.Kingdom = value; }
 
-        */
+        public int id
+        {
+            get
+            {
+                return Id;
+            }
+            set
+            {
+                Id = value;
+            }
+        }
+
+        public IEnvironment environment
+        {
+            get
+            {
+                return Environment;
+            }
+
+            set
+            {
+                if (value != null)
+                {
+                    Environment = value;
+                }
+                else throw new InvalidOperationException("You have to select a environment");
+            }
+        }
 
         public string name
         {
@@ -67,21 +83,29 @@ namespace crudsGame.src.model
                 {
                     Name = value;
                 }
+                else throw new NullReferenceException("The name cannot be empty!!");
             }
         }
-        public int id {
+
+        public IKingdom kingdom
+        {
             get
             {
-                return Id;
+                return Kingdom;
             }
 
             set
             {
-                
-                    Id = value;
-                
+                if (value != null)
+                {
+                    Kingdom = value;
+
+                }
+                else throw new InvalidOperationException("You have to select a kingdom");
             }
         }
+
+
         public IDiet diet
         {
             get
@@ -91,32 +115,70 @@ namespace crudsGame.src.model
 
             set
             {
-
-                Diet = value;
-
+                if (value != null)
+                {
+                    Diet = value;
+                }
+                else throw new InvalidOperationException("You have to select a diet");
             }
         }
-        public int currentEnergy {
+
+
+        public int currentEnergy
+        {
             get
             {
                 return CurrentEnergy;
             }
-
             set
             {
-                if (value < 100)
+                if (value < 0)
                 {
-                    CurrentEnergy = value;
+                    CurrentEnergy = 0;
+                    MessageBox.Show("The creature" + Name + " is very tired");
+                    throw new Exception("The creature "+ Name +" is very tired");
+                }
+                else if (value > MaxEnergy)
+                {
+                    CurrentEnergy = MaxEnergy;
                 }
                 else
                 {
-                    CurrentEnergy = 100;
+                    CurrentEnergy = value;
                 }
-
-                
-
             }
         }
+
+
+        public int maxEnergy
+        {
+            get
+            {
+                return MaxEnergy;
+            }
+
+            set
+            {
+                if (value > 0)
+                {
+                    //MessageBox.Show("ENTRE: " + this.CurrentEnergy);
+                    MaxEnergy = value;
+                }
+                else throw new InvalidOperationException("la energia maxima esta mal");
+            }
+        }
+
+        public int maxLife
+        {
+            get => MaxLife;
+            //get { return maxLife; }
+            set
+            {
+                if (value > 0) MaxLife = value;
+                else throw new InvalidOperationException("la vida siempre sera mayor a 0");
+            }
+        }
+
         public int attackPoints {
             get
             {
@@ -125,11 +187,17 @@ namespace crudsGame.src.model
 
             set
             {
-
-                AttackPoints = value;
-
+                if (value >= 10 && value <= 80)
+                {
+                    AttackPoints = value;
+                }
+                else
+                    AttackPoints = 80;
+                    throw new ArgumentOutOfRangeException(nameof(value), "The valid range for attack points is between 10 and 80.");
             }
         }
+
+
         public int defensePoints {
             get
             {
@@ -138,21 +206,57 @@ namespace crudsGame.src.model
 
             set
             {
-
-                DefensePoints = value;
+                if (value >= 10 && value <= 80)
+                {
+                    DefensePoints = value;
+                }
+                else
+                    DefensePoints = 80;
+                    throw new ArgumentOutOfRangeException(nameof(value), "The valid range for defense points is between 10 and 80.");
 
             }
         }
-        public int currentLife {
+        public int currentLife
+        {
             get
             {
                 return CurrentLife;
             }
+            set
+            {
+                if (value <= 0)
+                {
+                    CurrentLife = 0;
+                    
+                    MessageBox.Show("The creature "+ Name +" has died");
+                    throw new Exception("The creature " + Name + " has died");
+                    
+                }
+                else if (value > MaxLife)
+                {
+                    CurrentLife = MaxLife;
+                }
+                else
+                {
+                    CurrentLife = value;
+                }
+            }
+        }
+
+        public int attackRange
+        {
+            get
+            {
+                return AttackRange;
+            }
 
             set
             {
-
-                CurrentLife = value;
+                if (value >= 0 && value <= 1)
+                {
+                    AttackRange = value;
+                }
+                else throw new ArgumentOutOfRangeException(nameof(value), "Attack Range can be 0 (zero) or 1 (one)");
 
             }
         }
@@ -180,6 +284,7 @@ namespace crudsGame.src.model
             if (Diet.CanEat(entity,food) == true)
             {
                 food.Interact(entity);
+                //entity.currentEnergy -= 10;
             }
             else
             {
@@ -196,11 +301,12 @@ namespace crudsGame.src.model
             return this.Name;
         }
 
-        public int Sleep()
+        public void Sleep()
         {
-            throw new NotImplementedException();
+            this.currentEnergy += 50; //hay q llamr a los getters xq ya tienen hechas las validaciones
+            this.currentLife += this.maxLife; 
         }
 
-        
+        //lo q queda seria generar automaticamente las entidades con otro masssive  creator para probar y despues conectarlo a los crudss  
     }
 }

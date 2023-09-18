@@ -21,6 +21,50 @@ namespace crudsGame.src.model
             this.Calories = Calories;
             this.Diet = diet;
         }
+        public int id
+        {
+            get
+            {
+                return Id;
+            }
+            set
+            {
+                Id = value;
+            }
+        }
+
+        public string name
+        {
+            get
+            {
+                return Name;
+            }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    Name = value;
+                }
+                else throw new NullReferenceException("The name cannot be empty!!");
+            }
+        }
+
+        public int calories
+        {
+            get
+            {
+                return Calories;
+            }
+            set
+            {
+                if (value >= 10 && value <= 80)
+                {
+                    Calories = value;
+                }
+                else throw new ArgumentOutOfRangeException(nameof(value), "The valid range for calories is between 10 and 80.");
+            }
+        }
+
 
         public IDiet diet
         {
@@ -30,28 +74,27 @@ namespace crudsGame.src.model
             }
             set
             {
-                Diet = value;
+                if (value != null)
+                {
+                    Diet = value;
+                }
+                else throw new InvalidOperationException("You have to select a diet");
             }
-
         }
-
-        /*
-        public int GetCalories()
-        {
-            return this.Calories;
-        }
-
-        public IDiet GetDiet()
-        {
-            return this.Diet;
-        }
-        */
 
         
         public void Interact(Entity entity)
         {
-            entity.currentEnergy += this.Calories;
- 
+            if (entity.currentEnergy != entity.maxEnergy)
+            {
+                entity.currentEnergy -= 10;
+                entity.currentEnergy += this.Calories;
+                MessageBox.Show("The creature " + entity.name + " ate " + Name + " and recovered +(" + Calories + ") energy");
+            }
+            else
+            {
+                MessageBox.Show("The creature " + entity.name +" is full, he can't eat more!!");
+            }
         }
    
         public override string ToString()

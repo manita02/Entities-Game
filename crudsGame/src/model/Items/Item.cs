@@ -12,63 +12,89 @@ namespace crudsGame.src.model.Items
     {
         int Id { get; set; }
         string Name { get; set; }
-        //int Valuee;
         IStrategyTypeOfItem ItemStrategy { get; set; }
 
         public Item(int id, string name, IStrategyTypeOfItem itemStrategy)
         {
             Id = id;
             Name = name;
-            //Valuee = value;
             ItemStrategy = itemStrategy;
-
         }
 
-        /*
-        public int Value
+        public int id
         {
-            set {
-                if (value < 0 || value > 70)
+            get
+            {
+                return Id;
+            }
+            set
+            {
+                Id = value;
+            }
+        }
+
+        public string name
+        {
+            get
+            {
+                return Name;
+            }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentOutOfRangeException(nameof(value),
-                      "The valid range for item is between 0 and 70.");
+                    Name = value;
                 }
-                else {
-                    Valuee = value;
-                }
-                }
-            get { return Valuee; }
+                else throw new NullReferenceException("The name cannot be empty!!");
+            }
         }
-        */
 
-
-        public void SetItemSrategy(IStrategyTypeOfItem itemStrategy)
+        public IStrategyTypeOfItem itemStrategy
         {
-            ItemStrategy = itemStrategy;
+            get
+            {
+                return ItemStrategy;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    ItemStrategy = value;
+                }
+                else throw new InvalidOperationException("You have to select a type of item");
+            }
         }
 
-
-
-
-
-
-        /*
-        public void ApplyInteraction(IEntity entity)
-        {
-            this.ItemStrategy.Interact(entity ,value);
-        }
-        */
 
         public override string ToString()
         {
             return Name;
         }
 
-        
-
         public void Interact(Entity entity)
         {
-            ItemStrategy.ApplyItem(entity);
+            try {
+
+                ItemStrategy.ApplyItem(entity);
+                //entity.currentEnergy -= 10;
+
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
+            
+            /*
+
+            if (ItemStrategy.ApplyItem(entity) == true)
+            {
+                entity.currentEnergy -= 10;
+            }
+            */
+
+
+
         }
     }
 

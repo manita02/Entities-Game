@@ -108,13 +108,13 @@ namespace crudsGame.src.views
             if (CheckEmptyFields() == false)
             {
 
-                Entity entity = entityCtn.CreateEntity(entityList.Count(), GetSelectedKingdomFromCombobox(), txtName.Text, GetSelectedDietFromCombobox(), GetSelectedEnvironmentFromCombobox(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+                //Entity entity = entityCtn.CreateEntity(entityList.Count(), GetSelectedKingdomFromCombobox(), txtName.Text, GetSelectedDietFromCombobox(), GetSelectedEnvironmentFromCombobox(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
 
-                CheckIfEntityExists(entity);
+                //CheckIfEntityExists(entity);
 
                 if (exist == false)
                 {
-                    entityCtn.AddEntity(entity, entityList, dgvEntities);
+                    //entityCtn.AddEntity(entity, entityList, dgvEntities);
                 }
                 exist = false;
 
@@ -153,8 +153,8 @@ namespace crudsGame.src.views
             {
                 if (CheckEmptyFields() == false)
                 {
-                    Entity entity = entityCtn.CreateEntity(Convert.ToInt16(txtId.Text), GetSelectedKingdomFromCombobox(), txtName.Text, GetSelectedDietFromCombobox(), GetSelectedEnvironmentFromCombobox(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
-                    this.rows = entityCtn.UpdateAnEntity(rows, dgvEntities, entity);
+                    //Entity entity = entityCtn.CreateEntity(Convert.ToInt16(txtId.Text), GetSelectedKingdomFromCombobox(), txtName.Text, GetSelectedDietFromCombobox(), GetSelectedEnvironmentFromCombobox(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+                    //this.rows = entityCtn.UpdateAnEntity(rows, dgvEntities, entity);
                 }
 
             }
