@@ -23,18 +23,22 @@ namespace crudsGame.src.views
     public partial class AttackTest : Form
     {
 
-        List<Entity> entitiesListTest = new List<Entity>();
+        //List<Entity> entitiesListTest = new List<Entity>();
         List<Food> fooodss = new List<Food>();
         MassiveItemCreator entityCtn;
+        MassiveCreatorEntities massiveCreatorEntities;
         //entityCtn = MassiveItemCreator.getInstance();
 
         public AttackTest()
         {
             InitializeComponent();
-            AddCreaturesToList();
-            LoadComboboxWithMainCreatures();
+            //AddCreaturesToList();
+            //LoadComboboxWithMainCreatures();
             entityCtn = MassiveItemCreator.getInstance();
+            massiveCreatorEntities = MassiveCreatorEntities.getInstance();
             comboBox1.DataSource = entityCtn.CreateItemsMassively();
+            cbMainCreature.DataSource = massiveCreatorEntities.CreateEntitiesMassively();
+            cbMainCreature.SelectedIndex = 0;
 
             Food f1 = new Food(1, "carne", 10, new Carnivore());
             Food f2 = new Food(2, "manzana", 20, new Carnivore());
@@ -52,15 +56,16 @@ namespace crudsGame.src.views
 
             //int id, IKingdom kingdom, string name, IDiet diet, IEnvironment environment, int maxenergy, int currentenergy, int maxlife, int currentlife, int attackpoints, int defensepoints, int attackrange
 
-            Entity e1 = new Entity(1, KingdomCreator.CreateAkingdom(1), "po", DietCreator.CreateAdiet(4), EnvironmentCreator.CreateAenvironment(1), 100, 40, 100, 56, 40, 60, 1);
-            Entity e2 = new Entity(2, KingdomCreator.CreateAkingdom(2), "tigresa", DietCreator.CreateAdiet(2), EnvironmentCreator.CreateAenvironment(2), 100, 50, 100, 50, 50, 30, 0);
-            Entity e3 = new Entity(3, KingdomCreator.CreateAkingdom(3), "paladini", DietCreator.CreateAdiet(3), EnvironmentCreator.CreateAenvironment(3), 100, 30, 100, 10, 60, 20, 0);
+            Entity e1 = new Entity(1, KingdomCreator.CreateAkingdom(1), "po", DietCreator.CreateAdiet(4), EnvironmentCreator.CreateAenvironment(1), 100, 100, 40, 60, 1);
+            Entity e2 = new Entity(2, KingdomCreator.CreateAkingdom(2), "tigresa", DietCreator.CreateAdiet(2), EnvironmentCreator.CreateAenvironment(2), 100, 100, 50, 30, 0);
+            Entity e3 = new Entity(3, KingdomCreator.CreateAkingdom(3), "paladini", DietCreator.CreateAdiet(3), EnvironmentCreator.CreateAenvironment(3), 100, 100, 60, 20, 0);
 
-
+            /*
             entitiesListTest.Add(e1);
             MessageBox.Show("energy: " + e1.currentEnergy);
             entitiesListTest.Add(e2);
-            entitiesListTest.Add(e3);
+            entitiesListTest.Add(e3); 
+            */
         }
         public void LoadcBfOODS()
 
@@ -76,19 +81,19 @@ namespace crudsGame.src.views
 
         {
             cbMainCreature.Items.Clear();
-            foreach (var mc in entitiesListTest)
+            foreach (var mc in massiveCreatorEntities.GetEntitiesList())
             {
-                cbMainCreature.Items.Add(mc.ShowMainCreature());
+                cbMainCreature.Items.Add(mc.ToString());
             }
         }
 
         public Entity GetSelectedMainCreatureFromCombobox()
         {
-            foreach (var mc in entitiesListTest)
+            foreach (var mc in massiveCreatorEntities.GetEntitiesList())
             {
                 //MessageBox.Show("nombre en combo: " + cbMainCreature.Text);
 
-                if (mc.ShowMainCreature() == cbMainCreature.Text)
+                if (mc.ToString() == cbMainCreature.Text)
                 {
                     return mc;
                 }
@@ -98,6 +103,7 @@ namespace crudsGame.src.views
 
         private void UpdateProgressbar()
         {
+            //cbMainCreature.SelectedIndex = 0;
             lbLifeJ1.Text = Convert.ToString(GetSelectedMainCreatureFromCombobox().currentLife) + "%";
             pbCurrentLife.Value = GetSelectedMainCreatureFromCombobox().currentLife;
 
@@ -135,7 +141,7 @@ namespace crudsGame.src.views
             cbCreaturesThatWillBeAttacked.Items.Clear();
             int id = 0;
 
-            foreach (var dc in entitiesListTest)
+            foreach (var dc in massiveCreatorEntities.GetEntitiesList())
             {
                 /*
                 if(get_selected_MAINCREATURE_from_combobox().AttackRange > 0) //esta comparacion esta mal xq cualquier criatura puede estar en el mismo terreno o en uno limitrofe... la comparacion tendria que estar al momento de atacar
@@ -152,7 +158,7 @@ namespace crudsGame.src.views
                 */
                 if (GetSelectedMainCreatureFromCombobox().id != dc.id)
                 {
-                    cbCreaturesThatWillBeAttacked.Items.Add(dc.ShowMainCreature());
+                    cbCreaturesThatWillBeAttacked.Items.Add(dc.ToString());
                 }
                 else
                 {
@@ -163,9 +169,9 @@ namespace crudsGame.src.views
 
         public Entity GetSelectedToDefenseCreatureFromCombobox()
         {
-            foreach (var dc in entitiesListTest)
+            foreach (var dc in massiveCreatorEntities.GetEntitiesList())
             {
-                if (dc.ShowMainCreature() == cbCreaturesThatWillBeAttacked.Text)
+                if (dc.ToString() == cbCreaturesThatWillBeAttacked.Text)
                 {
                     return dc;
                 }

@@ -25,7 +25,7 @@ namespace crudsGame.src.model
         int DefensePoints;
         int AttackRange;
 
-        public Entity(int id, IKingdom kingdom, string name, IDiet diet, IEnvironment environment, int maxenergy, int currentenergy, int maxlife, int currentlife, int attackpoints, int defensepoints, int attackrange)
+        public Entity(int id, IKingdom kingdom, string name, IDiet diet, IEnvironment environment, int maxenergy, int maxlife, int attackpoints, int defensepoints, int attackrange)
         {
             Id = id;
             Kingdom = kingdom;
@@ -33,9 +33,9 @@ namespace crudsGame.src.model
             Diet = diet;
             Environment = environment;
             MaxEnergy = maxenergy;
-            CurrentEnergy = currentenergy;
+            CurrentEnergy = MaxEnergy;
             MaxLife = maxlife;
-            CurrentLife = currentlife;
+            CurrentLife = MaxLife;
             AttackPoints = attackpoints;
             DefensePoints = defensepoints;
             AttackRange = attackrange;
@@ -292,15 +292,19 @@ namespace crudsGame.src.model
             }
             
         }
-        
 
+        public override string ToString()
+        {
+            return this.Name;
+        }
 
+        /*
         public string ShowMainCreature()
         {
             //return this.Name + "/" +  this.Kingdom.ToString() + "/ atk: " + this.AttackPoints + "/ def: " + this.DefensePoints + "/ range: " + this.AttackRange;
             return this.Name;
         }
-
+        */
         public void Sleep()
         {
             this.currentEnergy += 50; //hay q llamr a los getters xq ya tienen hechas las validaciones
