@@ -39,16 +39,22 @@ namespace crudsGame.src.views
             comboBox1.DataSource = entityCtn.CreateItemsMassively();
             cbMainCreature.DataSource = massiveCreatorEntities.CreateEntitiesMassively();
             cbMainCreature.SelectedIndex = 0;
+            cbCreaturesThatWillBeAttacked.SelectedIndex = 0;
+            comboBox1.SelectedIndex = 0;
+            
 
             Food f1 = new Food(1, "carne", 10, new Carnivore());
             Food f2 = new Food(2, "manzana", 20, new Carnivore());
             Food f3 = new Food(3, "grillo", 30, new SolarEnergy());
+
+            
 
             fooodss.Add(f1);
             fooodss.Add(f2);
             fooodss.Add(f3);
 
             LoadcBfOODS();
+            comboBox2.SelectedIndex = 0;
         }
 
         public void AddCreaturesToList()
@@ -103,7 +109,7 @@ namespace crudsGame.src.views
 
         private void UpdateProgressbar()
         {
-            //cbMainCreature.SelectedIndex = 0;
+            
             lbLifeJ1.Text = Convert.ToString(GetSelectedMainCreatureFromCombobox().currentLife) + "%";
             pbCurrentLife.Value = GetSelectedMainCreatureFromCombobox().currentLife;
 
@@ -124,6 +130,8 @@ namespace crudsGame.src.views
             txtMaxlLIFE.Text = GetSelectedMainCreatureFromCombobox().maxLife.ToString();
 
             txtId.Text = GetSelectedMainCreatureFromCombobox().id.ToString();
+
+            txtDiet.Text = GetSelectedMainCreatureFromCombobox().diet.ToString();
 
         }
 
@@ -180,48 +188,12 @@ namespace crudsGame.src.views
         }
         private void btnAttack_Click(object sender, EventArgs e)
         {
-            if (GetSelectedMainCreatureFromCombobox().currentEnergy > 0)
-            {
-                if (GetSelectedToDefenseCreatureFromCombobox().currentLife > 0)
-                {
-                    List<int> numbers = new List<int>() { 1, 2, 3, 4, 5, 6 }; //dado
-                    Random rnd = new Random();
-                    int randIndex = rnd.Next(numbers.Count);
-                    int random1 = numbers[randIndex];
-                    MessageBox.Show("Jugador 1 ha sacado: " + random1 + " esto se sumara a los puntos de ataque de la criatura atacante..");
-
-                    Random rnd2 = new Random();
-                    randIndex = rnd2.Next(numbers.Count);
-                    int random2 = numbers[randIndex];
-                    MessageBox.Show("Jugador 2 ha tirado tambien el dado y saco: " + random2 + " esto se sumara a los puntos de defensa a la criatura a la que se le inflige daño..");
-
-                    GetSelectedToDefenseCreatureFromCombobox().currentLife = GetSelectedMainCreatureFromCombobox().Attack(GetSelectedToDefenseCreatureFromCombobox(), random1, random2);
-
-                    UpdateProgressbar();
-
-                    if (GetSelectedToDefenseCreatureFromCombobox().currentLife > 0)
-                    {
-                        MessageBox.Show("La vida que le quedo a la criatura a la que se ataco es de: " + GetSelectedToDefenseCreatureFromCombobox().currentLife);
-                    }
-                    else
-                    {
-                        MessageBox.Show("La critura atacada '" + GetSelectedToDefenseCreatureFromCombobox().name + "' ha fallecido...");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("La critura a la que se desea atacar ( '" + GetSelectedToDefenseCreatureFromCombobox().name + "' ) ya falleció...");
-                }
-
-                //Console.WriteLine(random);
-            }
-            else
-            {
-                MessageBox.Show("Esta critura esta cansada y no tiene suficiente energía, por lo tanto no podra realizar el ataque");
-            }
+            
+            GetSelectedMainCreatureFromCombobox().BeingAttacked(GetSelectedMainCreatureFromCombobox().Attack(GetSelectedToDefenseCreatureFromCombobox()), GetSelectedToDefenseCreatureFromCombobox());
+            UpdateProgressbar();
             UpdateJ2Labels();
-
-
+            
+            
         }
 
 

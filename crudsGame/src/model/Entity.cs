@@ -179,7 +179,7 @@ namespace crudsGame.src.model
             }
         }
 
-        public int attackPoints {
+        public int attackPoints { //aca hay errores
             get
             {
                 return AttackPoints;
@@ -189,10 +189,12 @@ namespace crudsGame.src.model
             {
                 if (value >= 10 && value <= 80)
                 {
+                     
                     AttackPoints = value;
                 }
                 else
-                    AttackPoints = 80;
+                    
+                AttackPoints = 80;
                     throw new ArgumentOutOfRangeException(nameof(value), "The valid range for attack points is between 10 and 80.");
             }
         }
@@ -262,34 +264,74 @@ namespace crudsGame.src.model
         }
 
 
-        public int Attack(Entity entity, int valorDadoJ1, int valorDadoJ2)
+        public int Attack(Entity entity)
         {
-            this.CurrentEnergy -= 5;
-            return (entity.currentLife - (this.AttackPoints + valorDadoJ1) + entity.defensePoints + valorDadoJ2);
-             //chequear los valores de dado
-            //vida atacado = vida atacado - ( ( defAtacado + ResultadoDado ) - ( AtkAtacante + ResultadoDado ) )
+            try
+            {
+                
+                int DicePlayerOne = Dice.TrowDice();
+                int DicePlayerTwo = Dice.TrowDice();
+
+
+                MessageBox.Show("\t Player one ha lanzado el dado: +" + DicePlayerOne + "\n \t " + this.name + " ataca con (" + this.attackPoints + " + " + DicePlayerOne + ") a " + entity.name);
+                MessageBox.Show("\t Player two ha lanzado el dado: +" + DicePlayerTwo + "\n \t " + entity.name + " se defenderá con (" + entity.defensePoints + " + " + DicePlayerTwo);
+
+                this.currentEnergy -= 10;
+
+                return ((this.attackPoints + DicePlayerOne) - entity.defensePoints + DicePlayerTwo);
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.ToString());
+                return 0;
+            }
+            
         }
 
-        /*
-        public string mostrarParaDefenseCreature()
+        public void BeingAttacked(int atkPoints, Entity entity)
         {
-            return this.Name + "/" + this.Kingdom.ToString() + "/ atk: " + this.AttackPoints + "/ def: " + this.DefensePoints + "/ range: " + this.AttackRange + "/ C.Energy: " +this.CurrentEnergy+ "/ C.Life: "+this.CurrentLife;
+            try
+            {
+                if (atkPoints < 0)
+                {
+                    this.currentLife += atkPoints;
+                    MessageBox.Show("Ganó " + entity.name + "con sus puntos de defensa!!");
+                }
+                else
+                {
+                    entity.currentLife -= atkPoints;
+                    MessageBox.Show("Ganó " + this.name + "con sus puntos de ataque!!");
+                }
 
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+             
         }
-        */
 
-        
+
         public void Eat(Entity entity,  Food food)
         {
-            if (Diet.CanEat(entity,food) == true)
+            try
             {
-                food.Interact(entity);
-                //entity.currentEnergy -= 10;
+                if (Diet.CanEat(entity, food) == true)
+                {
+                    food.Interact(entity);
+                    //entity.currentEnergy -= 10;
+                }
+                else
+                {
+                    MessageBox.Show("la entidad seleccionada no puede comer este alimento");
+                }
+
             }
-            else
+            catch (Exception e)
             {
-                MessageBox.Show("la entidad seleccionada no puede comer este alimento");
+                Console.WriteLine(e.ToString());
             }
+            
             
         }
 
@@ -297,6 +339,8 @@ namespace crudsGame.src.model
         {
             return this.Name;
         }
+
+        
 
         /*
         public string ShowMainCreature()

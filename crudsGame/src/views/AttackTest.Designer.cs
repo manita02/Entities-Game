@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            txtDiet = new TextBox();
+            label10 = new Label();
             txtId = new TextBox();
             label9 = new Label();
             txtKingdom = new TextBox();
@@ -67,6 +69,8 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(txtDiet);
+            groupBox1.Controls.Add(label10);
             groupBox1.Controls.Add(txtId);
             groupBox1.Controls.Add(label9);
             groupBox1.Controls.Add(txtKingdom);
@@ -89,6 +93,22 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Choose a CRIATURE";
+            // 
+            // txtDiet
+            // 
+            txtDiet.Location = new Point(647, 123);
+            txtDiet.Name = "txtDiet";
+            txtDiet.Size = new Size(100, 23);
+            txtDiet.TabIndex = 18;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(613, 126);
+            label10.Name = "label10";
+            label10.Size = new Size(28, 15);
+            label10.TabIndex = 17;
+            label10.Text = "Diet";
             // 
             // txtId
             // 
@@ -434,5 +454,7 @@
         private Label label9;
         private TextBox txtId;
         private Button btnSleep;
+        private TextBox txtDiet;
+        private Label label10;
     }
 }

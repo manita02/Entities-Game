@@ -76,8 +76,9 @@ namespace crudsGame.src.model
         {
             this.DietList = GetDietList();
             this.EnvironmentList = GetEnvironmentList();
-            this.KingdomList = GetKingdomList(); 
-            
+            this.KingdomList = GetKingdomList();
+
+          
             foreach (var name in RandomNames)
             {
                 Entity entity = new Entity(index, KingdomList[random.Next(0, KingdomList.Count)], name, DietList[random.Next(0, DietList.Count)], EnvironmentList[random.Next(0, EnvironmentList.Count)], 100, 100, random.Next(10, 80), random.Next(10, 80), random.Next(0,1));

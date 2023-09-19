@@ -56,7 +56,7 @@ namespace crudsGame.src.model.Items.Strategy
         {
             this.interactuables = LoadTypesOfItems();
 
-            Item item1 = new Item(index, "caca", GetRandomTypeOfItem(1)); //queda probar con 3 y 4
+            Item item1 = new Item(index, "caca", GetRandomTypeOfItem(2)); //queda probar con 3 y 4
             itemList.Add(item1);
             index++;
 

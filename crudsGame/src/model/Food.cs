@@ -77,8 +77,11 @@ namespace crudsGame.src.model
                 if (value != null)
                 {
                     Diet = value;
+                    MessageBox.Show("estoy");
                 }
-                else throw new InvalidOperationException("You have to select a diet");
+                else
+                    MessageBox.Show("caca");
+                throw new InvalidOperationException("You have to select a diet");
             }
         }
 
