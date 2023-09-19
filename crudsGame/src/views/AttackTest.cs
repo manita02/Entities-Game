@@ -33,11 +33,13 @@ namespace crudsGame.src.views
         {
             InitializeComponent();
             //AddCreaturesToList();
-            //LoadComboboxWithMainCreatures();
+            
             entityCtn = MassiveItemCreator.getInstance();
             massiveCreatorEntities = MassiveCreatorEntities.getInstance();
+            LoadComboboxWithMainCreatures();
             comboBox1.DataSource = entityCtn.CreateItemsMassively();
-            cbMainCreature.DataSource = massiveCreatorEntities.CreateEntitiesMassively();
+            
+            //cbMainCreature.DataSource = massiveCreatorEntities.CreateEntitiesMassively();
             cbMainCreature.SelectedIndex = 0;
             cbCreaturesThatWillBeAttacked.SelectedIndex = 0;
             comboBox1.SelectedIndex = 0;
@@ -109,7 +111,8 @@ namespace crudsGame.src.views
 
         private void UpdateProgressbar()
         {
-            
+            btnAttack.Enabled = true;
+            cbCreaturesThatWillBeAttacked.Enabled = true;
             lbLifeJ1.Text = Convert.ToString(GetSelectedMainCreatureFromCombobox().currentLife) + "%";
             pbCurrentLife.Value = GetSelectedMainCreatureFromCombobox().currentLife;
 
@@ -164,14 +167,19 @@ namespace crudsGame.src.views
                     }
                 }
                 */
-                if (GetSelectedMainCreatureFromCombobox().id != dc.id)
-                {
-                    cbCreaturesThatWillBeAttacked.Items.Add(dc.ToString());
-                }
-                else
-                {
-                    cbCreaturesThatWillBeAttacked.Items.Remove(dc);
-                }
+                //if (GetSelectedMainCreatureFromCombobox() != null) //por si aparece el he is dead en combo
+                //{
+                    if (GetSelectedMainCreatureFromCombobox().id != dc.id)
+                    {
+                        cbCreaturesThatWillBeAttacked.Items.Add(dc.ToString());
+                    }
+                    else
+                    {
+                        cbCreaturesThatWillBeAttacked.Items.Remove(dc);
+                    }
+                //}
+
+                
             }
         }
 
@@ -188,12 +196,42 @@ namespace crudsGame.src.views
         }
         private void btnAttack_Click(object sender, EventArgs e)
         {
-            
-            GetSelectedMainCreatureFromCombobox().BeingAttacked(GetSelectedMainCreatureFromCombobox().Attack(GetSelectedToDefenseCreatureFromCombobox()), GetSelectedToDefenseCreatureFromCombobox());
-            UpdateProgressbar();
-            UpdateJ2Labels();
-            
-            
+            if(GetSelectedMainCreatureFromCombobox().currentLife <= 0)
+            {
+                massiveCreatorEntities.GetEntitiesList().Remove(GetSelectedMainCreatureFromCombobox());
+                //cbMainCreature.Items.Remove(GetSelectedMainCreatureFromCombobox());
+                //cbMainCreature.DataSource = massiveCreatorEntities.GetEntitiesList();
+                LoadComboboxWithMainCreatures();
+                //LoadComboboxWithCreaturesThatWillBeAttacked();
+                cbMainCreature.Text = "he is dead :(";
+                btnAttack.Enabled = false;
+                cbCreaturesThatWillBeAttacked.Enabled = false;
+                //MessageBox.Show("elimina main");
+
+
+            }
+            else
+            {
+                if(GetSelectedToDefenseCreatureFromCombobox().currentLife <= 0)
+                {
+                    massiveCreatorEntities.GetEntitiesList().Remove(GetSelectedToDefenseCreatureFromCombobox());
+                    //cbCreaturesThatWillBeAttacked.Items.Remove(GetSelectedMainCreatureFromCombobox());
+                    LoadComboboxWithCreaturesThatWillBeAttacked();
+                    LoadComboboxWithMainCreatures();
+
+                    cbCreaturesThatWillBeAttacked.Text = "he is dead :(";
+                    btnAttack.Enabled = false;
+                    
+                    //MessageBox.Show("elimina defensa");
+                }
+                else
+                {
+                    //MessageBox.Show("life de main: "+ GetSelectedMainCreatureFromCombobox().currentLife + ", life de atacado: "+GetSelectedToDefenseCreatureFromCombobox().currentLife);
+                    GetSelectedMainCreatureFromCombobox().BeingAttacked(GetSelectedMainCreatureFromCombobox().Attack(GetSelectedToDefenseCreatureFromCombobox()), GetSelectedToDefenseCreatureFromCombobox());
+                    UpdateProgressbar();
+                    UpdateJ2Labels();
+                }
+            }
         }
 
 
@@ -206,6 +244,7 @@ namespace crudsGame.src.views
         private void cbCriatureToDefense_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateJ2Labels();
+            btnAttack.Enabled = true;
         }
 
         public Food GetSelectedFoodFromCombobox()

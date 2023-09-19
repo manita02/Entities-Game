@@ -8,19 +8,19 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\ana\\.nuget\\packages\\": {}
+    "C:\\Users\\manita02\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ana\\Desktop\\probando_animales\\probandoAnimales\\crudsGame\\crudsGame.csproj",
+      "projectUniqueName": "C:\\Users\\manita02\\Desktop\\animalesREPOPRUEBAA\\probandoAnimales\\crudsGame\\crudsGame.csproj",
       "projectName": "crudsGame",
-      "projectPath": "C:\\Users\\ana\\Desktop\\probando_animales\\probandoAnimales\\crudsGame\\crudsGame.csproj",
-      "packagesPath": "C:\\Users\\ana\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ana\\Desktop\\probando_animales\\probandoAnimales\\crudsGame\\obj\\",
+      "projectPath": "C:\\Users\\manita02\\Desktop\\animalesREPOPRUEBAA\\probandoAnimales\\crudsGame\\crudsGame.csproj",
+      "packagesPath": "C:\\Users\\manita02\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\manita02\\Desktop\\animalesREPOPRUEBAA\\probandoAnimales\\crudsGame\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\manita02\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -268,7 +268,8 @@ namespace crudsGame.src.model
         {
             try
             {
-                
+                this.currentEnergy -= 10;
+
                 int DicePlayerOne = Dice.TrowDice();
                 int DicePlayerTwo = Dice.TrowDice();
 
@@ -276,7 +277,7 @@ namespace crudsGame.src.model
                 MessageBox.Show("\t Player one ha lanzado el dado: +" + DicePlayerOne + "\n \t " + this.name + " ataca con (" + this.attackPoints + " + " + DicePlayerOne + ") a " + entity.name);
                 MessageBox.Show("\t Player two ha lanzado el dado: +" + DicePlayerTwo + "\n \t " + entity.name + " se defenderá con (" + entity.defensePoints + " + " + DicePlayerTwo);
 
-                this.currentEnergy -= 10;
+                
 
                 return ((this.attackPoints + DicePlayerOne) - entity.defensePoints + DicePlayerTwo);
             }
@@ -292,17 +293,21 @@ namespace crudsGame.src.model
         {
             try
             {
-                if (atkPoints < 0)
-                {
-                    this.currentLife += atkPoints;
-                    MessageBox.Show("Ganó " + entity.name + "con sus puntos de defensa!!");
-                }
-                else
-                {
-                    entity.currentLife -= atkPoints;
-                    MessageBox.Show("Ganó " + this.name + "con sus puntos de ataque!!");
-                }
-
+               
+                        if (atkPoints < 0)
+                        {
+                            this.currentLife += atkPoints;
+                            MessageBox.Show("Ganó " + entity.name + "con sus puntos de defensa!!");
+                        }
+                        else
+                        {
+                            if(atkPoints > 0)
+                            {
+                                entity.currentLife -= atkPoints;
+                                MessageBox.Show("Ganó " + this.name + "con sus puntos de ataque!!");
+                            }
+                        }
+                   
             }
             catch(Exception e)
             {

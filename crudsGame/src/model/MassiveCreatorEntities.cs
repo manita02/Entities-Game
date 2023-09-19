@@ -36,6 +36,8 @@ namespace crudsGame.src.model
         List<IKingdom> KingdomList = new List<IKingdom>();
         List<IEnvironment> EnvironmentList = new List<IEnvironment>();
 
+        
+
         public List<IDiet> GetDietList()
         {
             DietList.Add(DietCreator.CreateAdiet(1));
@@ -68,6 +70,11 @@ namespace crudsGame.src.model
 
         public List<Entity> GetEntitiesList()
         {
+            if(this.EntitiesList.Count == 0)
+            {
+                MessageBox.Show("estoy");
+                return CreateEntitiesMassively();
+            }
             return this.EntitiesList;
         }
 
@@ -78,7 +85,10 @@ namespace crudsGame.src.model
             this.EnvironmentList = GetEnvironmentList();
             this.KingdomList = GetKingdomList();
 
-          
+            Entity item1 = new Entity (index, KingdomList[random.Next(0, KingdomList.Count)], "caga", DietList[random.Next(0, DietList.Count)], EnvironmentList[random.Next(0, EnvironmentList.Count)], 23, 20, 10, 5, random.Next(0, 1));
+            EntitiesList.Add(item1);
+            index++;
+
             foreach (var name in RandomNames)
             {
                 Entity entity = new Entity(index, KingdomList[random.Next(0, KingdomList.Count)], name, DietList[random.Next(0, DietList.Count)], EnvironmentList[random.Next(0, EnvironmentList.Count)], 100, 100, random.Next(10, 80), random.Next(10, 80), random.Next(0,1));
