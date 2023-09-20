@@ -14,8 +14,8 @@ namespace crudsGame
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             //Application.Run(new CRUDitem());
-            //Application.Run(new CRUDentity());
-            Application.Run(new AttackTest());
+            Application.Run(new CRUDentity());
+            //Application.Run(new AttackTest());
             //Application.Run(new Form1());
 
         }

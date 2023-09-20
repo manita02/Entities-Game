@@ -140,6 +140,7 @@ namespace crudsGame.src.controllers
         }
 
 
+        /*
         public static int LookForTheIndexOfTheComboboxOfKingdomsThatComesFromTheDatagrid(List<IKingdom> kingdomList,DataGridView dgvEntities)
         {
             foreach (var kin in kingdomList)
@@ -177,6 +178,7 @@ namespace crudsGame.src.controllers
             }
             return -1;
         }
+        */
 
 
 

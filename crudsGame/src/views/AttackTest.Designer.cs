@@ -58,7 +58,7 @@
             label2 = new Label();
             lbLifeJ1 = new Label();
             lbCurrentEnergyJ1 = new Label();
-            comboBox1 = new ComboBox();
+            cbItems = new ComboBox();
             cbFoods = new ComboBox();
             btnComer = new Button();
             btnInteract = new Button();
@@ -347,11 +347,11 @@
             // 
             // comboBox1
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(65, 521);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(244, 23);
-            comboBox1.TabIndex = 9;
+            cbItems.FormattingEnabled = true;
+            cbItems.Location = new Point(65, 521);
+            cbItems.Name = "comboBox1";
+            cbItems.Size = new Size(244, 23);
+            cbItems.TabIndex = 9;
             // 
             // cbFoods
             // 
@@ -400,7 +400,7 @@
             Controls.Add(btnInteract);
             Controls.Add(btnComer);
             Controls.Add(cbFoods);
-            Controls.Add(comboBox1);
+            Controls.Add(cbItems);
             Controls.Add(lbCurrentEnergyJ1);
             Controls.Add(lbLifeJ1);
             Controls.Add(label2);
@@ -435,7 +435,7 @@
         private Label lbCurrentEnergyJ1;
         private Label lbCurrentEnergyJ2;
         private Label lbCurrentLifeJ2;
-        private ComboBox comboBox1;
+        private ComboBox cbItems;
         private ComboBox cbFoods;
         private Button btnComer;
         private Button btnInteract;

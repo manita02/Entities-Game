@@ -78,7 +78,8 @@ namespace crudsGame.src.controllers
 
         }
 
-        public void DeleteAnEntity(List<Entity> entityList, int r)
+        /*
+        public void DeleteAnEntity(int r)
         {
             for (int i = 0; i < entityList.Count; i++)
             {
@@ -88,5 +89,6 @@ namespace crudsGame.src.controllers
                 }
             }
         }
+        */
     }
 }

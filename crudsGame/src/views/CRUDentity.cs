@@ -18,27 +18,23 @@ namespace crudsGame.src.views
 {
     public partial class CRUDentity : Form
     {
-        List<IKingdom> kingdomList = new List<IKingdom>();
-        List<IEnvironment> environmentList = new List<IEnvironment>();
-        List<IDiet> dietList = new List<IDiet>();
-        List<Entity> entityList = new List<Entity>();
-
-
-        EntityController entityCtn;
+        
+        MassiveCreatorEntities entityCtn;
         public CRUDentity()
         {
-            entityCtn = EntityController.getInstance();
+            entityCtn = MassiveCreatorEntities.getInstance();
             InitializeComponent();
+            cargandotablaporpiremavez();
             this.dgvEntities.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //creo q es para que las columnas se adapten al tamaño del dgv
-            GeneralController.cargarDietasEnCombo(dietList, cbDiet);
-            GeneralController.cargarReinosEnCombo(kingdomList, cbKingdom);
-            GeneralController.cargarAmbientesEnCombo(environmentList, cbEnvironment);
-
+            cbDiet.DataSource = entityCtn.GetDietList();
+            cbEnvironment.DataSource = entityCtn.GetEnvironmentList();
+            cbKingdom.DataSource = entityCtn.GetKingdomList();
         }
 
         bool exist = false;
         int rows = 0;
 
+        /*
         public IDiet GetSelectedDietFromCombobox()
         {
             foreach (var diet in dietList)
@@ -74,11 +70,12 @@ namespace crudsGame.src.views
             }
             return null;
         }
+        */
 
         private void CheckIfEntityExists(Entity entity)
         {
-            /*
-            if (entityList.Count > 0)
+            
+            if (entityCtn.GetEntitiesList().Count > 0)
             {
                 for (int fila = 0; fila < dgvEntities.Rows.Count - 1; fila++)
                 {
@@ -90,9 +87,10 @@ namespace crudsGame.src.views
                     }
                 }
             }
-            */
+            
         }
 
+        /* en teoriaaaa este debe funcionaar por las propiedadesss
         private bool CheckEmptyFields()
         {
             if (txtName.Text == "" || txtDefense.Text == "" || txtRange.Text == "" || txtAttack.Text == "" || txtMaxEnergy.Text == "" || txtCurrentEnergy.Text == "" || txtMaxLife.Text == "" || txtCurrentLife.Text == "")
@@ -102,29 +100,95 @@ namespace crudsGame.src.views
             }
             return false;
         }
+        */
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            if (CheckEmptyFields() == false)
-            {
+            //if (CheckEmptyFields() == false)
+            //{
 
-                //Entity entity = entityCtn.CreateEntity(entityList.Count(), GetSelectedKingdomFromCombobox(), txtName.Text, GetSelectedDietFromCombobox(), GetSelectedEnvironmentFromCombobox(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+                Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
 
-                //CheckIfEntityExists(entity);
+                CheckIfEntityExists(entity);
 
                 if (exist == false)
                 {
-                    //entityCtn.AddEntity(entity, entityList, dgvEntities);
+                    entityCtn.GetEntitiesList().Add(entity); //se carga en la lista
+                    //entityCtn.AddEntity(entity);
+                    crearentablalaentidad(dgvEntities.Rows.Add(),entity); //se carga en la tabla
                 }
                 exist = false;
 
-                txtId.Text = Convert.ToString(entityList.Count());
+                txtId.Text = Convert.ToString(entityCtn.GetEntitiesList().Count());
 
                 CleanFields();
-            }
+            //}
 
         }
 
+        private void cargandotablaporpiremavez()
+        {
+            foreach(var criature in entityCtn.GetEntitiesList())
+            {
+                crearentablalaentidad(dgvEntities.Rows.Add(), criature);
+            }
+        }
+
+
+        private void crearentablalaentidad(int x, Entity entity)
+        {
+            dgvEntities.Rows[x].Cells[0].Value = entity.id;
+            dgvEntities.Rows[x].Cells[1].Value = entity.kingdom;
+            dgvEntities.Rows[x].Cells[2].Value = entity.name;
+            dgvEntities.Rows[x].Cells[3].Value = entity.diet;
+            dgvEntities.Rows[x].Cells[4].Value = entity.environment;
+            dgvEntities.Rows[x].Cells[5].Value = entity.attackPoints;
+            dgvEntities.Rows[x].Cells[6].Value = entity.defensePoints;
+            dgvEntities.Rows[x].Cells[7].Value = entity.attackRange;
+            dgvEntities.Rows[x].Cells[8].Value = entity.maxEnergy;
+            dgvEntities.Rows[x].Cells[9].Value = entity.currentEnergy;
+            dgvEntities.Rows[x].Cells[10].Value = entity.maxLife;
+            dgvEntities.Rows[x].Cells[11].Value = entity.currentLife;  
+        }
+
+
+        public int GetIndexOfKingdomsComboThatComesFromTheDatagrid()
+        {
+            foreach (var kin in entityCtn.GetKingdomList())
+            {
+                if (kin.ToString() == dgvEntities.CurrentRow.Cells[1].Value.ToString())
+                {
+                    return entityCtn.GetKingdomList().IndexOf(kin);
+                }
+            }
+            return -1;
+        }
+
+
+        public int GetIndexOfDietComboThatComesFromTheDatagrid()
+        {
+            foreach (var diet in entityCtn.GetDietList())
+            {
+                if (diet.ToString() == dgvEntities.CurrentRow.Cells[3].Value.ToString())
+                {
+                    return entityCtn.GetDietList().IndexOf(diet);
+                }
+            }
+            return -1;
+        }
+
+
+        public int GetIndexOfEnvironmentsComboThatComesFromTheDatagrid()
+        {
+            foreach (var env in entityCtn.GetEnvironmentList())
+            {
+                if (env.ToString() == dgvEntities.CurrentRow.Cells[4].Value.ToString())
+                {
+                    return entityCtn.GetEnvironmentList().IndexOf(env);
+                }
+            }
+            return -1;
+        }
 
         private void dgvEntities_SelectionChanged(object sender, EventArgs e)
         {
@@ -132,10 +196,10 @@ namespace crudsGame.src.views
             {
                 this.rows = dgvEntities.SelectedRows[0].Index;
                 txtId.Text = dgvEntities.CurrentRow.Cells[0].Value.ToString();
-                cbKingdom.SelectedIndex = GeneralController.LookForTheIndexOfTheComboboxOfKingdomsThatComesFromTheDatagrid(kingdomList, dgvEntities);
+                cbKingdom.SelectedIndex = GetIndexOfKingdomsComboThatComesFromTheDatagrid();
                 txtName.Text = dgvEntities.CurrentRow.Cells[2].Value.ToString();
-                cbDiet.SelectedIndex = GeneralController.LookForTheIndexOfTheComboboxOfDietsThatComesFromTheDatagrid(dietList, dgvEntities);
-                cbEnvironment.SelectedIndex = GeneralController.LookForTheIndexOfTheComboboxOfEnvironmentsThatComesFromTheDatagrid(environmentList, dgvEntities);
+                cbDiet.SelectedIndex = GetIndexOfDietComboThatComesFromTheDatagrid();
+                cbEnvironment.SelectedIndex = GetIndexOfEnvironmentsComboThatComesFromTheDatagrid();
                 txtAttack.Text = dgvEntities.CurrentRow.Cells[5].Value.ToString();
                 txtDefense.Text = dgvEntities.CurrentRow.Cells[6].Value.ToString();
                 txtRange.Text = dgvEntities.CurrentRow.Cells[7].Value.ToString();
@@ -143,7 +207,6 @@ namespace crudsGame.src.views
                 txtCurrentEnergy.Text = dgvEntities.CurrentRow.Cells[9].Value.ToString();
                 txtMaxLife.Text = dgvEntities.CurrentRow.Cells[10].Value.ToString();
                 txtCurrentLife.Text = dgvEntities.CurrentRow.Cells[11].Value.ToString();
-
             }
         }
 
@@ -151,11 +214,14 @@ namespace crudsGame.src.views
         {
             if (dgvEntities.SelectedRows.Count > 0)
             {
-                if (CheckEmptyFields() == false)
-                {
-                    //Entity entity = entityCtn.CreateEntity(Convert.ToInt16(txtId.Text), GetSelectedKingdomFromCombobox(), txtName.Text, GetSelectedDietFromCombobox(), GetSelectedEnvironmentFromCombobox(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
-                    //this.rows = entityCtn.UpdateAnEntity(rows, dgvEntities, entity);
-                }
+                //if (CheckEmptyFields() == false)
+                //{
+                Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+                //Entity entity = entityCtn.CreateEntity(Convert.ToInt16(txtId.Text), GetSelectedKingdomFromCombobox(), txtName.Text, GetSelectedDietFromCombobox(), GetSelectedEnvironmentFromCombobox(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+                //this.rows = entityCtn.UpdateAnEntity(rows, dgvEntities, entity);
+                crearentablalaentidad(rows,entity);
+                this.rows = 0;
+                //}
 
             }
             else
@@ -163,7 +229,7 @@ namespace crudsGame.src.views
                 MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!");
             }
             CleanFields();
-            txtId.Text = Convert.ToString(entityList.Count());
+            txtId.Text = Convert.ToString(entityCtn.GetEntitiesList().Count());
 
 
 
@@ -175,10 +241,15 @@ namespace crudsGame.src.views
             {
                 if (dgvEntities.SelectedRows.Count > 0)
                 {
-                    int r = dgvEntities.SelectedRows.Count;
-                    entityCtn.DeleteAnEntity(entityList, r);
+                    //int r = dgvEntities.SelectedRows.Count;
+                    int r = dgvEntities.CurrentRow.Index;
+                    MessageBox.Show("index tabla seleccionado: " + r);
+                    
+                    //entityCtn.DeleteAnEntity(r);
+                    entityCtn.GetEntitiesList().RemoveAt(r);
                     dgvEntities.Rows.RemoveAt(r);
-                    txtId.Text = Convert.ToString(entityList.Count());
+                    txtId.Text = Convert.ToString(entityCtn.GetEntitiesList().Count()); //esto a metodo
+                    
                 }
                 else
                 {

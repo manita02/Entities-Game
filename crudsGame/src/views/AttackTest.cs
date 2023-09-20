@@ -37,12 +37,12 @@ namespace crudsGame.src.views
             entityCtn = MassiveItemCreator.getInstance();
             massiveCreatorEntities = MassiveCreatorEntities.getInstance();
             LoadComboboxWithCreaturesPlayerOne();
-            comboBox1.DataSource = entityCtn.CreateItemsMassively();
+            cbItems.DataSource = entityCtn.CreateItemsMassively();
 
 
             cbCreaturesPlayerOne.SelectedIndex = 0;
             cbCreaturesPlayerTwo.SelectedIndex = 0;
-            comboBox1.SelectedIndex = 0;
+            cbItems.SelectedIndex = 0;
 
 
             Food f1 = new Food(1, "carne", 10, new Carnivore());
@@ -60,13 +60,13 @@ namespace crudsGame.src.views
             cbFoods.SelectedIndex = 0;
         }
 
-        #region Load Comboboxs
+        #region Load Comboboxs //estoss puueden ir a una estatica porq los uso en varios lados
         public void LoadComboWithFoods()
         {
             cbFoods.Items.Clear();
             foreach (var food in foodsList)
             {
-                cbFoods.Items.Add(food.ToString());
+                cbFoods.Items.Add(food);
             }
         }
 
@@ -75,7 +75,7 @@ namespace crudsGame.src.views
             cbCreaturesPlayerOne.Items.Clear();
             foreach (var creatures in massiveCreatorEntities.GetEntitiesList())
             {
-                cbCreaturesPlayerOne.Items.Add(creatures.ToString());
+                cbCreaturesPlayerOne.Items.Add(creatures);
             }
         }
 
@@ -86,7 +86,7 @@ namespace crudsGame.src.views
             {
                 if (GetOnePlayerCreatureSelectedFromCombo().id != creature.id)
                 {
-                    cbCreaturesPlayerTwo.Items.Add(creature.ToString());
+                    cbCreaturesPlayerTwo.Items.Add(creature);
                 }
                 else
                 {
@@ -101,6 +101,9 @@ namespace crudsGame.src.views
         #region Get food, items, creatures from player one and two selected from the combobox
         public Entity GetOnePlayerCreatureSelectedFromCombo()
         {
+
+            return ((Entity)(cbCreaturesPlayerOne.SelectedItem));
+            /*
             foreach (var creature in massiveCreatorEntities.GetEntitiesList())
             {
                 //MessageBox.Show("nombre en combo: " + cbMainCreature.Text);
@@ -110,11 +113,15 @@ namespace crudsGame.src.views
                     return creature;
                 }
             }
+            
             return null;
+            */
         }
 
         public Entity GetTwoPlayerCreatureSelectedFromCombo()
         {
+            return ((Entity)(cbCreaturesPlayerTwo.SelectedItem));
+            /*
             foreach (var dc in massiveCreatorEntities.GetEntitiesList())
             {
                 if (dc.ToString() == cbCreaturesPlayerTwo.Text)
@@ -123,10 +130,13 @@ namespace crudsGame.src.views
                 }
             }
             return null;
+            */
         }
 
         public Food GetSelectedFoodFromCombobox()
         {
+            return ((Food)(cbFoods.SelectedItem));
+            /*
             foreach (var food in foodsList)
             {
                 if (food.ToString() == cbFoods.Text)
@@ -135,10 +145,13 @@ namespace crudsGame.src.views
                 }
             }
             return null;
+            */
         }
 
         public Item GetSelectedItemFromCombobox()
         {
+            return ((Item)(cbItems.SelectedItem));
+            /*
             foreach (var item in entityCtn.getLista())
             {
                 if (item.ToString() == comboBox1.Text)
@@ -147,6 +160,7 @@ namespace crudsGame.src.views
                 }
             }
             return null;
+            */
         }
 
         # endregion 
