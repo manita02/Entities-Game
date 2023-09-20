@@ -30,6 +30,8 @@
         {
             label1 = new Label();
             groupBox1 = new GroupBox();
+            cbKingdom = new ComboBox();
+            label4 = new Label();
             groupBox2 = new GroupBox();
             btnUpdate = new Button();
             btnDelete = new Button();
@@ -37,17 +39,12 @@
             dgvItems = new DataGridView();
             id = new DataGridViewTextBoxColumn();
             name = new DataGridViewTextBoxColumn();
-            posOrNeg = new DataGridViewCheckBoxColumn();
+            kingdom = new DataGridViewTextBoxColumn();
             type = new DataGridViewTextBoxColumn();
-            value = new DataGridViewTextBoxColumn();
-            txtValue = new TextBox();
             txtName = new TextBox();
             txtId = new TextBox();
             cbType = new ComboBox();
             label3 = new Label();
-            rdbNegative = new RadioButton();
-            rdbPositive = new RadioButton();
-            label5 = new Label();
             label2 = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -65,25 +62,41 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(cbKingdom);
+            groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(groupBox2);
             groupBox1.Controls.Add(btnCreate);
             groupBox1.Controls.Add(dgvItems);
-            groupBox1.Controls.Add(txtValue);
             groupBox1.Controls.Add(txtName);
             groupBox1.Controls.Add(txtId);
             groupBox1.Controls.Add(cbType);
             groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(rdbNegative);
-            groupBox1.Controls.Add(rdbPositive);
-            groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(703, 387);
+            groupBox1.Size = new Size(764, 426);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Create a Item";
+            // 
+            // cbKingdom
+            // 
+            cbKingdom.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbKingdom.FormattingEnabled = true;
+            cbKingdom.Location = new Point(85, 94);
+            cbKingdom.Name = "cbKingdom";
+            cbKingdom.Size = new Size(160, 23);
+            cbKingdom.TabIndex = 32;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(20, 97);
+            label4.Name = "label4";
+            label4.Size = new Size(59, 15);
+            label4.TabIndex = 31;
+            label4.Text = "Kingdom:";
             // 
             // groupBox2
             // 
@@ -118,7 +131,7 @@
             // 
             // btnCreate
             // 
-            btnCreate.Location = new Point(209, 166);
+            btnCreate.Location = new Point(118, 166);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(75, 23);
             btnCreate.TabIndex = 13;
@@ -129,12 +142,13 @@
             // dgvItems
             // 
             dgvItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvItems.Columns.AddRange(new DataGridViewColumn[] { id, name, posOrNeg, type, value });
-            dgvItems.Location = new Point(20, 208);
+            dgvItems.Columns.AddRange(new DataGridViewColumn[] { id, name, kingdom, type });
+            dgvItems.Location = new Point(6, 208);
             dgvItems.Name = "dgvItems";
             dgvItems.ReadOnly = true;
             dgvItems.RowTemplate.Height = 25;
-            dgvItems.Size = new Size(666, 163);
+            dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvItems.Size = new Size(752, 212);
             dgvItems.TabIndex = 12;
             dgvItems.SelectionChanged += dgvItems_SelectionChanged;
             // 
@@ -150,33 +164,17 @@
             name.Name = "name";
             name.ReadOnly = true;
             // 
-            // posOrNeg
+            // kingdom
             // 
-            posOrNeg.HeaderText = "Its Positive?";
-            posOrNeg.Name = "posOrNeg";
-            posOrNeg.ReadOnly = true;
-            posOrNeg.Resizable = DataGridViewTriState.True;
-            posOrNeg.SortMode = DataGridViewColumnSortMode.Automatic;
+            kingdom.HeaderText = "Kingdom";
+            kingdom.Name = "kingdom";
+            kingdom.ReadOnly = true;
             // 
             // type
             // 
             type.HeaderText = "Type";
             type.Name = "type";
             type.ReadOnly = true;
-            // 
-            // value
-            // 
-            value.HeaderText = "Value";
-            value.Name = "value";
-            value.ReadOnly = true;
-            // 
-            // txtValue
-            // 
-            txtValue.Location = new Point(84, 163);
-            txtValue.Name = "txtValue";
-            txtValue.Size = new Size(100, 23);
-            txtValue.TabIndex = 11;
-            txtValue.KeyPress += txtValue_KeyPress;
             // 
             // txtName
             // 
@@ -195,51 +193,21 @@
             // 
             // cbType
             // 
+            cbType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbType.FormattingEnabled = true;
-            cbType.Location = new Point(63, 134);
+            cbType.Location = new Point(85, 123);
             cbType.Name = "cbType";
-            cbType.Size = new Size(121, 23);
+            cbType.Size = new Size(160, 23);
             cbType.TabIndex = 8;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(20, 137);
+            label3.Location = new Point(20, 126);
             label3.Name = "label3";
             label3.Size = new Size(34, 15);
             label3.TabIndex = 7;
             label3.Text = "Type:";
-            // 
-            // rdbNegative
-            // 
-            rdbNegative.AutoSize = true;
-            rdbNegative.Location = new Point(20, 109);
-            rdbNegative.Name = "rdbNegative";
-            rdbNegative.Size = new Size(72, 19);
-            rdbNegative.TabIndex = 6;
-            rdbNegative.TabStop = true;
-            rdbNegative.Text = "Negative";
-            rdbNegative.UseVisualStyleBackColor = true;
-            // 
-            // rdbPositive
-            // 
-            rdbPositive.AutoSize = true;
-            rdbPositive.Location = new Point(20, 88);
-            rdbPositive.Name = "rdbPositive";
-            rdbPositive.Size = new Size(66, 19);
-            rdbPositive.TabIndex = 5;
-            rdbPositive.TabStop = true;
-            rdbPositive.Text = "Positive";
-            rdbPositive.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(20, 171);
-            label5.Name = "label5";
-            label5.Size = new Size(35, 15);
-            label5.TabIndex = 4;
-            label5.Text = "Value";
             // 
             // label2
             // 
@@ -271,22 +239,19 @@
         private GroupBox groupBox1;
         private ComboBox cbType;
         private Label label3;
-        private RadioButton rdbNegative;
-        private RadioButton rdbPositive;
-        private Label label5;
         private Label label2;
-        private TextBox txtValue;
         private TextBox txtName;
         private TextBox txtId;
         private DataGridView dgvItems;
         private Button btnCreate;
-        private DataGridViewTextBoxColumn id;
-        private DataGridViewTextBoxColumn name;
-        private DataGridViewCheckBoxColumn posOrNeg;
-        private DataGridViewTextBoxColumn type;
-        private DataGridViewTextBoxColumn value;
         private GroupBox groupBox2;
         private Button btnUpdate;
         private Button btnDelete;
+        private ComboBox cbKingdom;
+        private Label label4;
+        private DataGridViewTextBoxColumn id;
+        private DataGridViewTextBoxColumn name;
+        private DataGridViewTextBoxColumn kingdom;
+        private DataGridViewTextBoxColumn type;
     }
 }

@@ -19,7 +19,7 @@ namespace crudsGame.src.controllers
             return ItemCreator.CreateAitem(seleccionCombo, txtId, txtName, txtValue);
 
         }
-        */
+        
 
         
 
@@ -28,7 +28,7 @@ namespace crudsGame.src.controllers
             combobox.DropDownStyle = ComboBoxStyle.DropDownList;
 
         }
-
+        */
         public static void ValidateNumbers(KeyPressEventArgs e)
         {
             if ((e.KeyChar >= 32 && e.KeyChar <= 47) || e.KeyChar >= 58 && e.KeyChar <= 255)
@@ -39,7 +39,7 @@ namespace crudsGame.src.controllers
             }
         }
 
-
+        /*
         public static void cargarDietasEnCombo(List<IDiet> dietList, ComboBox cbDiet)
         {
             PreventEditingInCombobox(cbDiet);
@@ -101,7 +101,7 @@ namespace crudsGame.src.controllers
             itemList.Add(DietCreator.CreateAdiet(2));
             itemList.Add(DietCreator.CreateAdiet(3));
             dietList.Add(DietCreator.CreateAdiet(4));
-            */
+            
 
             foreach (var item in itemList)
             {
@@ -110,7 +110,7 @@ namespace crudsGame.src.controllers
 
             cbItem.SelectedIndex = 0;
         }
-
+        
         public static int LookForTheIndexOfTheComboboxOfItemsThatComesFromTheDatagrid(List<IInteractuable> itemList, DataGridView dgvItems)
         {
             switch (dgvItems.CurrentRow.Cells[3].Value.ToString())
@@ -124,7 +124,8 @@ namespace crudsGame.src.controllers
 
                 default: return -1;
             }
-            /*
+        
+            
             foreach (var item in itemList)
             {
                 
@@ -136,11 +137,11 @@ namespace crudsGame.src.controllers
                 }
             }
             return -1;
-            */
+            
         }
 
 
-        /*
+        
         public static int LookForTheIndexOfTheComboboxOfKingdomsThatComesFromTheDatagrid(List<IKingdom> kingdomList,DataGridView dgvEntities)
         {
             foreach (var kin in kingdomList)
@@ -178,7 +179,7 @@ namespace crudsGame.src.controllers
             }
             return -1;
         }
-        */
+        
 
 
 
@@ -186,7 +187,7 @@ namespace crudsGame.src.controllers
 
 
 
-        /*
+        
         public static void cargarCombobox(List<IDiet> dietList,ComboBox cbDiet, List<IKingdom> kingdomList, ComboBox cbKingdom, List<IEnvironment> environmentList, ComboBox cbEnvironment)
         {
             foreach (var diet in dietList)

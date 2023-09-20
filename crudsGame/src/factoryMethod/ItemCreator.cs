@@ -13,7 +13,7 @@ namespace crudsGame.src.factoryMethod
     public class ItemCreator
     {
         
-        public static IInteractuable CreateAitem(string seleccionDelCombo, int txtId, string txtName, int txtValue, bool type)
+        public static Item CreateAitem(string seleccionDelCombo, int txtId, string txtName, int txtValue, bool type)
         {
             switch (seleccionDelCombo)
             {

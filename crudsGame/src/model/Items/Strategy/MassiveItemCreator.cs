@@ -38,38 +38,37 @@ namespace crudsGame.src.model.Items.Strategy
         int index = 0;
 
 
-        public List<IKingdom> LoadKingdoms()
+        public List<IKingdom> GetKingdomList()
         {
-            kingdomsList.Add(KingdomCreator.CreateAkingdom(1));
-            kingdomsList.Add(KingdomCreator.CreateAkingdom(2));
-            kingdomsList.Add(KingdomCreator.CreateAkingdom(3));
-            kingdomsList.Add(KingdomCreator.CreateAkingdom(4));
+            if(kingdomsList.Count == 0)
+            {
+                kingdomsList.Add(KingdomCreator.CreateAkingdom(1));
+                kingdomsList.Add(KingdomCreator.CreateAkingdom(2));
+                kingdomsList.Add(KingdomCreator.CreateAkingdom(3));
+                kingdomsList.Add(KingdomCreator.CreateAkingdom(4));
+            }
+            
 
             return kingdomsList;
         }
 
-        public List<IStrategyTypeOfItem> LoadTypesOfItems()
+        public List<IStrategyTypeOfItem> GetStrategyItemsList()
         {
-            interactuables.Add(new EnergyyItem());
-            interactuables.Add(new LifeeItem());
-            interactuables.Add(new IncreasesAttackPoints());
-            interactuables.Add(new IncreasesDefensePoints());
-
+            if(interactuables.Count == 0)
+            {
+                interactuables.Add(new EnergyyItem());
+                interactuables.Add(new LifeeItem());
+                interactuables.Add(new IncreasesAttackPoints());
+                interactuables.Add(new IncreasesDefensePoints());
+            }
             return interactuables;
         }
 
-        
-        public IStrategyTypeOfItem GetRandomTypeOfItem(int randomIndex)
-        {
-            return interactuables[randomIndex];
-
-        }
-        
 
         public List<Item> CreateItemsMassively()
         {
-            this.interactuables = LoadTypesOfItems();
-            this.kingdomsList = LoadKingdoms();
+            this.interactuables = GetStrategyItemsList();
+            this.kingdomsList = GetKingdomList();
 
             /*
             Item item1 = new Item(index, "caca", GetRandomTypeOfItem(2)); //queda probar con 3 y 4
@@ -79,14 +78,10 @@ namespace crudsGame.src.model.Items.Strategy
 
             foreach (var name in PositiveNames)
             {
-                
-                Item item = new Item(index, name, GetRandomTypeOfItem(random.Next(0, interactuables.Count)), kingdomsList[random.Next(0, kingdomsList.Count)]);
+                Item item = new Item(index, name, interactuables[random.Next(0, interactuables.Count)], kingdomsList[random.Next(0, kingdomsList.Count)]);
                   
                 itemList.Add(item);
-                index++;
-
-                
-                   
+                index++;  
             }
 
             
@@ -104,17 +99,28 @@ namespace crudsGame.src.model.Items.Strategy
             */
 
           
-            MessageBox.Show("total lista: " + itemList.Count);
+            //MessageBox.Show("total lista: " + itemList.Count);
 
             return itemList;
 
         }
 
-        public List<Item> getLista()
+        public List<Item> GetItemList()
         {
+            if(itemList.Count == 0)
+            {
+                return CreateItemsMassively();
+            }
             return this.itemList;
         }
 
-        
+
+        public Item CreateItem(int id, string name, IStrategyTypeOfItem type, IKingdom kingdom)
+        {
+            return new Item (id, name, type, kingdom);
+
+        }
+
+
     }
 }

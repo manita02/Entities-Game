@@ -156,6 +156,7 @@
             // 
             // cbKingdom
             // 
+            cbKingdom.DropDownStyle = ComboBoxStyle.DropDownList;
             cbKingdom.FormattingEnabled = true;
             cbKingdom.Location = new Point(107, 58);
             cbKingdom.Name = "cbKingdom";
@@ -173,6 +174,7 @@
             // 
             // cbDiet
             // 
+            cbDiet.DropDownStyle = ComboBoxStyle.DropDownList;
             cbDiet.FormattingEnabled = true;
             cbDiet.Location = new Point(107, 136);
             cbDiet.Name = "cbDiet";
@@ -181,6 +183,7 @@
             // 
             // cbEnvironment
             // 
+            cbEnvironment.DropDownStyle = ComboBoxStyle.DropDownList;
             cbEnvironment.FormattingEnabled = true;
             cbEnvironment.Location = new Point(107, 176);
             cbEnvironment.Name = "cbEnvironment";
