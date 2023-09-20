@@ -80,33 +80,7 @@ namespace crudsGame.src.views
             txtId.Text = Convert.ToString(itemCtn.GetItemList().Count());
         }
 
-        private void btnCreate_Click(object sender, EventArgs e)
-        {
-            if (CheckEmptyFields() == false)
-            {
-                Item item = itemCtn.CreateItem(itemCtn.GetItemList().Count(), txtName.Text, (IStrategyTypeOfItem)(cbType.SelectedItem), (IKingdom)(cbKingdom.SelectedItem));
-                CheckIfItemExists(item);
-                if (exist == false)
-                {
-                    itemCtn.GetItemList().Add(item);
-                    LoadItemIntoDatagrid(dgvItems.Rows.Add(), item);
-                }
-                exist = false;
-
-                UpdateItemId();
-
-                CleanFields();
-            }
-        }
-
-        private void LoadItemIntoDatagrid(int x, Item item)
-        {
-            dgvItems.Rows[x].Cells[0].Value = item.id;
-            dgvItems.Rows[x].Cells[1].Value = item.name;
-            dgvItems.Rows[x].Cells[2].Value = item.kingdom;
-            dgvItems.Rows[x].Cells[3].Value = item.itemStrategy;
-        }
-
+        #region Get Kingdoms and Item Types that comes from the Datagrid
         public int GetIndexOfKingdomsComboThatComesFromTheDatagrid()
         {
             foreach (var kin in itemCtn.GetKingdomList())
@@ -131,6 +105,15 @@ namespace crudsGame.src.views
             return -1;
 
         }
+        #endregion
+
+        private void LoadItemIntoDatagrid(int x, Item item)
+        {
+            dgvItems.Rows[x].Cells[0].Value = item.id;
+            dgvItems.Rows[x].Cells[1].Value = item.name;
+            dgvItems.Rows[x].Cells[2].Value = item.kingdom;
+            dgvItems.Rows[x].Cells[3].Value = item.itemStrategy;
+        }
 
         private void dgvItems_SelectionChanged(object sender, EventArgs e)
         {
@@ -141,6 +124,26 @@ namespace crudsGame.src.views
                 txtName.Text = dgvItems.CurrentRow.Cells[1].Value.ToString();
                 cbType.SelectedIndex = GetIndexOfTheTypeItemsComboThatComesFromTheDatagrid();
                 cbKingdom.SelectedIndex = GetIndexOfKingdomsComboThatComesFromTheDatagrid();
+            }
+        }
+
+        #region Buttons Interactions
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            if (CheckEmptyFields() == false)
+            {
+                Item item = itemCtn.CreateItem(itemCtn.GetItemList().Count(), txtName.Text, (IStrategyTypeOfItem)(cbType.SelectedItem), (IKingdom)(cbKingdom.SelectedItem));
+                CheckIfItemExists(item);
+                if (exist == false)
+                {
+                    itemCtn.GetItemList().Add(item);
+                    LoadItemIntoDatagrid(dgvItems.Rows.Add(), item);
+                }
+                exist = false;
+
+                UpdateItemId();
+
+                CleanFields();
             }
         }
 
@@ -185,6 +188,7 @@ namespace crudsGame.src.views
                 MessageBox.Show("Debe existir mas de un item en la tabla para poder eliminar!!");
             }
         }
+        #endregion
 
         private void txtValue_KeyPress(object sender, KeyPressEventArgs e)
         {

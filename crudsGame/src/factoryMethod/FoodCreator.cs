@@ -1,4 +1,5 @@
 ﻿using crudsGame.src.interfaces;
+using crudsGame.src.model;
 using crudsGame.src.model.Diets;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace crudsGame.src.factoryMethod
 {
     public class FoodCreator
     {
-        public static IFood CreateAfood(string seleccionDelCombo)
+        public static Food CreateAfood(string seleccionDelCombo)
         {
             switch (seleccionDelCombo)
             {
