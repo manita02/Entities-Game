@@ -1,4 +1,5 @@
 ﻿using crudsGame.src.interfaces;
+using crudsGame.src.model.Items;
 using crudsGame.src.model.Kingdoms;
 using System;
 using System.Collections.Generic;
@@ -316,6 +317,18 @@ namespace crudsGame.src.model
              
         }
 
+
+        public void UsarItem(Entity entity, Item item)
+        {
+            if (Kingdom.CanInteract(entity, item) == true)
+            {
+                item.Interact(entity);
+            }
+            else
+            {
+                MessageBox.Show("la entidad seleccionada no puede usar este item");
+            }
+        }
 
         public void Eat(Entity entity,  Food food)
         {

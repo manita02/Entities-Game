@@ -14,11 +14,14 @@ namespace crudsGame.src.model.Items
         string Name { get; set; }
         IStrategyTypeOfItem ItemStrategy { get; set; }
 
-        public Item(int id, string name, IStrategyTypeOfItem itemStrategy)
+        IKingdom Kingdom;
+
+        public Item(int id, string name, IStrategyTypeOfItem itemStrategy, IKingdom kingdom)
         {
             Id = id;
             Name = name;
             ItemStrategy = itemStrategy;
+            Kingdom = kingdom;
         }
 
         public int id
@@ -65,16 +68,31 @@ namespace crudsGame.src.model.Items
             }
         }
 
+        public IKingdom kingdom
+        {
+            get
+            {
+                return Kingdom;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    Kingdom = value;
+                }
+                else throw new InvalidOperationException("You have to select a kingdom");
+            }
+        }
+
 
         public override string ToString()
         {
-            return Name;
+            return Name +"_"+ Kingdom;
         }
 
         public void Interact(Entity entity)
         {
             try {
-
                 ItemStrategy.ApplyItem(entity);
                 //entity.currentEnergy -= 10;
 

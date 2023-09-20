@@ -20,6 +20,9 @@ namespace crudsGame.src.controllers
 
         }
         */
+
+        
+
         public static void PreventEditingInCombobox(ComboBox combobox)
         {
             combobox.DropDownStyle = ComboBoxStyle.DropDownList;

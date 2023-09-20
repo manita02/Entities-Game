@@ -36,7 +36,7 @@
             txtKingdom = new TextBox();
             txtEnvironment = new TextBox();
             txtMaxEnergy = new TextBox();
-            txtMaxlLIFE = new TextBox();
+            txtMaxLife = new TextBox();
             label8 = new Label();
             label7 = new Label();
             label6 = new Label();
@@ -46,11 +46,11 @@
             label4 = new Label();
             label3 = new Label();
             btnImportant = new Button();
-            cbMainCreature = new ComboBox();
+            cbCreaturesPlayerOne = new ComboBox();
             groupBox2 = new GroupBox();
             lbCurrentLifeJ2 = new Label();
             btnAttack = new Button();
-            cbCreaturesThatWillBeAttacked = new ComboBox();
+            cbCreaturesPlayerTwo = new ComboBox();
             lbCurrentEnergyJ2 = new Label();
             pbCurrentLife = new ProgressBar();
             pbCurrentEnergy = new ProgressBar();
@@ -59,7 +59,7 @@
             lbLifeJ1 = new Label();
             lbCurrentEnergyJ1 = new Label();
             comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
+            cbFoods = new ComboBox();
             btnComer = new Button();
             btnInteract = new Button();
             btnSleep = new Button();
@@ -76,7 +76,7 @@
             groupBox1.Controls.Add(txtKingdom);
             groupBox1.Controls.Add(txtEnvironment);
             groupBox1.Controls.Add(txtMaxEnergy);
-            groupBox1.Controls.Add(txtMaxlLIFE);
+            groupBox1.Controls.Add(txtMaxLife);
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label6);
@@ -86,13 +86,13 @@
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(btnImportant);
-            groupBox1.Controls.Add(cbMainCreature);
+            groupBox1.Controls.Add(cbCreaturesPlayerOne);
             groupBox1.Location = new Point(24, 23);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(780, 284);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Choose a CRIATURE";
+            groupBox1.Text = "Choose a CRIATURE (Player One)";
             // 
             // txtDiet
             // 
@@ -147,12 +147,12 @@
             txtMaxEnergy.Size = new Size(100, 23);
             txtMaxEnergy.TabIndex = 12;
             // 
-            // txtMaxlLIFE
+            // txtMaxLife
             // 
-            txtMaxlLIFE.Location = new Point(467, 247);
-            txtMaxlLIFE.Name = "txtMaxlLIFE";
-            txtMaxlLIFE.Size = new Size(100, 23);
-            txtMaxlLIFE.TabIndex = 11;
+            txtMaxLife.Location = new Point(467, 247);
+            txtMaxLife.Name = "txtMaxLife";
+            txtMaxLife.Size = new Size(100, 23);
+            txtMaxLife.TabIndex = 11;
             // 
             // label8
             // 
@@ -232,27 +232,27 @@
             btnImportant.UseVisualStyleBackColor = true;
             btnImportant.Visible = false;
             // 
-            // cbMainCreature
+            // cbCreaturesPlayerOne
             // 
-            cbMainCreature.FormattingEnabled = true;
-            cbMainCreature.Location = new Point(6, 31);
-            cbMainCreature.Name = "cbMainCreature";
-            cbMainCreature.Size = new Size(309, 23);
-            cbMainCreature.TabIndex = 0;
-            cbMainCreature.SelectedIndexChanged += cbMainCreature_SelectedIndexChanged;
+            cbCreaturesPlayerOne.FormattingEnabled = true;
+            cbCreaturesPlayerOne.Location = new Point(6, 31);
+            cbCreaturesPlayerOne.Name = "cbCreaturesPlayerOne";
+            cbCreaturesPlayerOne.Size = new Size(309, 23);
+            cbCreaturesPlayerOne.TabIndex = 0;
+            cbCreaturesPlayerOne.SelectedIndexChanged += cbMainCreature_SelectedIndexChanged;
             // 
             // groupBox2
             // 
             groupBox2.Controls.Add(lbCurrentLifeJ2);
             groupBox2.Controls.Add(btnAttack);
-            groupBox2.Controls.Add(cbCreaturesThatWillBeAttacked);
+            groupBox2.Controls.Add(cbCreaturesPlayerTwo);
             groupBox2.Controls.Add(lbCurrentEnergyJ2);
             groupBox2.Location = new Point(24, 323);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(596, 173);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Select a creature to ATTACK";
+            groupBox2.Text = "Select a creature to ATTACK (Player Two)";
             // 
             // lbCurrentLifeJ2
             // 
@@ -273,14 +273,14 @@
             btnAttack.UseVisualStyleBackColor = true;
             btnAttack.Click += btnAttack_Click;
             // 
-            // cbCreaturesThatWillBeAttacked
+            // cbCreaturesPlayerTwo
             // 
-            cbCreaturesThatWillBeAttacked.FormattingEnabled = true;
-            cbCreaturesThatWillBeAttacked.Location = new Point(8, 43);
-            cbCreaturesThatWillBeAttacked.Name = "cbCreaturesThatWillBeAttacked";
-            cbCreaturesThatWillBeAttacked.Size = new Size(380, 23);
-            cbCreaturesThatWillBeAttacked.TabIndex = 0;
-            cbCreaturesThatWillBeAttacked.SelectedIndexChanged += cbCriatureToDefense_SelectedIndexChanged;
+            cbCreaturesPlayerTwo.FormattingEnabled = true;
+            cbCreaturesPlayerTwo.Location = new Point(8, 43);
+            cbCreaturesPlayerTwo.Name = "cbCreaturesPlayerTwo";
+            cbCreaturesPlayerTwo.Size = new Size(380, 23);
+            cbCreaturesPlayerTwo.TabIndex = 0;
+            cbCreaturesPlayerTwo.SelectedIndexChanged += cbCriatureToDefense_SelectedIndexChanged;
             // 
             // lbCurrentEnergyJ2
             // 
@@ -353,13 +353,13 @@
             comboBox1.Size = new Size(244, 23);
             comboBox1.TabIndex = 9;
             // 
-            // comboBox2
+            // cbFoods
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(383, 521);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(277, 23);
-            comboBox2.TabIndex = 10;
+            cbFoods.FormattingEnabled = true;
+            cbFoods.Location = new Point(383, 521);
+            cbFoods.Name = "cbFoods";
+            cbFoods.Size = new Size(277, 23);
+            cbFoods.TabIndex = 10;
             // 
             // btnComer
             // 
@@ -399,7 +399,7 @@
             Controls.Add(btnSleep);
             Controls.Add(btnInteract);
             Controls.Add(btnComer);
-            Controls.Add(comboBox2);
+            Controls.Add(cbFoods);
             Controls.Add(comboBox1);
             Controls.Add(lbCurrentEnergyJ1);
             Controls.Add(lbLifeJ1);
@@ -422,10 +422,10 @@
         #endregion
 
         private GroupBox groupBox1;
-        private ComboBox cbMainCreature;
+        private ComboBox cbCreaturesPlayerOne;
         private Button btnImportant;
         private GroupBox groupBox2;
-        private ComboBox cbCreaturesThatWillBeAttacked;
+        private ComboBox cbCreaturesPlayerTwo;
         private Button btnAttack;
         private ProgressBar pbCurrentLife;
         private ProgressBar pbCurrentEnergy;
@@ -436,7 +436,7 @@
         private Label lbCurrentEnergyJ2;
         private Label lbCurrentLifeJ2;
         private ComboBox comboBox1;
-        private ComboBox comboBox2;
+        private ComboBox cbFoods;
         private Button btnComer;
         private Button btnInteract;
         private TextBox txtDefense;
@@ -447,7 +447,7 @@
         private TextBox txtKingdom;
         private TextBox txtEnvironment;
         private TextBox txtMaxEnergy;
-        private TextBox txtMaxlLIFE;
+        private TextBox txtMaxLife;
         private Label label8;
         private Label label7;
         private Label label6;

@@ -23,251 +23,119 @@ namespace crudsGame.src.views
     public partial class AttackTest : Form
     {
 
-        //List<Entity> entitiesListTest = new List<Entity>();
-        List<Food> fooodss = new List<Food>();
+
+        List<Food> foodsList = new List<Food>();
         MassiveItemCreator entityCtn;
         MassiveCreatorEntities massiveCreatorEntities;
-        //entityCtn = MassiveItemCreator.getInstance();
+
 
         public AttackTest()
         {
             InitializeComponent();
-            //AddCreaturesToList();
-            
+
+
             entityCtn = MassiveItemCreator.getInstance();
             massiveCreatorEntities = MassiveCreatorEntities.getInstance();
-            LoadComboboxWithMainCreatures();
+            LoadComboboxWithCreaturesPlayerOne();
             comboBox1.DataSource = entityCtn.CreateItemsMassively();
-            
-            //cbMainCreature.DataSource = massiveCreatorEntities.CreateEntitiesMassively();
-            cbMainCreature.SelectedIndex = 0;
-            cbCreaturesThatWillBeAttacked.SelectedIndex = 0;
+
+
+            cbCreaturesPlayerOne.SelectedIndex = 0;
+            cbCreaturesPlayerTwo.SelectedIndex = 0;
             comboBox1.SelectedIndex = 0;
-            
+
 
             Food f1 = new Food(1, "carne", 10, new Carnivore());
             Food f2 = new Food(2, "manzana", 20, new Carnivore());
             Food f3 = new Food(3, "grillo", 30, new SolarEnergy());
 
-            
 
-            fooodss.Add(f1);
-            fooodss.Add(f2);
-            fooodss.Add(f3);
 
-            LoadcBfOODS();
-            comboBox2.SelectedIndex = 0;
+            foodsList.Add(f1);
+            foodsList.Add(f2);
+            foodsList.Add(f3);
+
+            LoadComboWithFoods();
+
+            cbFoods.SelectedIndex = 0;
         }
 
-        public void AddCreaturesToList()
+        #region Load Comboboxs
+        public void LoadComboWithFoods()
         {
-
-            //int id, IKingdom kingdom, string name, IDiet diet, IEnvironment environment, int maxenergy, int currentenergy, int maxlife, int currentlife, int attackpoints, int defensepoints, int attackrange
-
-            Entity e1 = new Entity(1, KingdomCreator.CreateAkingdom(1), "po", DietCreator.CreateAdiet(4), EnvironmentCreator.CreateAenvironment(1), 100, 100, 40, 60, 1);
-            Entity e2 = new Entity(2, KingdomCreator.CreateAkingdom(2), "tigresa", DietCreator.CreateAdiet(2), EnvironmentCreator.CreateAenvironment(2), 100, 100, 50, 30, 0);
-            Entity e3 = new Entity(3, KingdomCreator.CreateAkingdom(3), "paladini", DietCreator.CreateAdiet(3), EnvironmentCreator.CreateAenvironment(3), 100, 100, 60, 20, 0);
-
-            /*
-            entitiesListTest.Add(e1);
-            MessageBox.Show("energy: " + e1.currentEnergy);
-            entitiesListTest.Add(e2);
-            entitiesListTest.Add(e3); 
-            */
-        }
-        public void LoadcBfOODS()
-
-        {
-            comboBox2.Items.Clear();
-            foreach (var mc in fooodss)
+            cbFoods.Items.Clear();
+            foreach (var food in foodsList)
             {
-                comboBox2.Items.Add(mc.ToString());
+                cbFoods.Items.Add(food.ToString());
             }
         }
 
-        public void LoadComboboxWithMainCreatures()
-
+        public void LoadComboboxWithCreaturesPlayerOne()
         {
-            cbMainCreature.Items.Clear();
-            foreach (var mc in massiveCreatorEntities.GetEntitiesList())
+            cbCreaturesPlayerOne.Items.Clear();
+            foreach (var creatures in massiveCreatorEntities.GetEntitiesList())
             {
-                cbMainCreature.Items.Add(mc.ToString());
+                cbCreaturesPlayerOne.Items.Add(creatures.ToString());
             }
         }
 
-        public Entity GetSelectedMainCreatureFromCombobox()
+        public void LoadComboWithCreaturesPlayerTwo()
         {
-            foreach (var mc in massiveCreatorEntities.GetEntitiesList())
+            cbCreaturesPlayerTwo.Items.Clear();
+            foreach (var creature in massiveCreatorEntities.GetEntitiesList())
+            {
+                if (GetOnePlayerCreatureSelectedFromCombo().id != creature.id)
+                {
+                    cbCreaturesPlayerTwo.Items.Add(creature.ToString());
+                }
+                else
+                {
+                    cbCreaturesPlayerTwo.Items.Remove(creature);
+                }
+            }
+        }
+
+        #endregion
+
+
+        #region Get food, items, creatures from player one and two selected from the combobox
+        public Entity GetOnePlayerCreatureSelectedFromCombo()
+        {
+            foreach (var creature in massiveCreatorEntities.GetEntitiesList())
             {
                 //MessageBox.Show("nombre en combo: " + cbMainCreature.Text);
 
-                if (mc.ToString() == cbMainCreature.Text)
+                if (creature.ToString() == cbCreaturesPlayerOne.Text)
                 {
-                    return mc;
+                    return creature;
                 }
             }
             return null;
         }
 
-        private void UpdateProgressbar()
-        {
-            btnAttack.Enabled = true;
-            cbCreaturesThatWillBeAttacked.Enabled = true;
-            lbLifeJ1.Text = Convert.ToString(GetSelectedMainCreatureFromCombobox().currentLife) + "%";
-            pbCurrentLife.Value = GetSelectedMainCreatureFromCombobox().currentLife;
-
-
-            lbCurrentEnergyJ1.Text = Convert.ToString(GetSelectedMainCreatureFromCombobox().currentEnergy) + "%";
-            pbCurrentEnergy.Value = GetSelectedMainCreatureFromCombobox().currentEnergy; //establecer propiedades
-
-            txtAttack.Text = GetSelectedMainCreatureFromCombobox().attackPoints.ToString();
-
-            txtDefense.Text = GetSelectedMainCreatureFromCombobox().defensePoints.ToString();
-
-            txtEnvironment.Text = GetSelectedMainCreatureFromCombobox().environment.ToString();
-
-            txtKingdom.Text = GetSelectedMainCreatureFromCombobox().kingdom.ToString();
-
-            txtMaxEnergy.Text = GetSelectedMainCreatureFromCombobox().maxEnergy.ToString();
-
-            txtMaxlLIFE.Text = GetSelectedMainCreatureFromCombobox().maxLife.ToString();
-
-            txtId.Text = GetSelectedMainCreatureFromCombobox().id.ToString();
-
-            txtDiet.Text = GetSelectedMainCreatureFromCombobox().diet.ToString();
-
-        }
-
-        private void cbMainCreature_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdateProgressbar();
-
-            LoadComboboxWithCreaturesThatWillBeAttacked();
-
-            //cbMainCreature.Enabled = false;
-        }
-
-        public void LoadComboboxWithCreaturesThatWillBeAttacked()
-        {
-            cbCreaturesThatWillBeAttacked.Items.Clear();
-            int id = 0;
-
-            foreach (var dc in massiveCreatorEntities.GetEntitiesList())
-            {
-                /*
-                if(get_selected_MAINCREATURE_from_combobox().AttackRange > 0) //esta comparacion esta mal xq cualquier criatura puede estar en el mismo terreno o en uno limitrofe... la comparacion tendria que estar al momento de atacar
-                {
-                    cbCriatureToDefense.Items.Add(dc.mostrarParaMainCreature()); //esto fue.. hasta q no se tenga el terreno no hacer nada --> hay q subdividir la lista y poner algunos en posicion actual y otros en limitrofes
-                }
-                else
-                {
-                    if(dc.AttackRange == 0)
-                    {
-                        cbCriatureToDefense.Items.Add(dc.mostrarParaMainCreature());
-                    }
-                }
-                */
-                //if (GetSelectedMainCreatureFromCombobox() != null) //por si aparece el he is dead en combo
-                //{
-                    if (GetSelectedMainCreatureFromCombobox().id != dc.id)
-                    {
-                        cbCreaturesThatWillBeAttacked.Items.Add(dc.ToString());
-                    }
-                    else
-                    {
-                        cbCreaturesThatWillBeAttacked.Items.Remove(dc);
-                    }
-                //}
-
-                
-            }
-        }
-
-        public Entity GetSelectedToDefenseCreatureFromCombobox()
+        public Entity GetTwoPlayerCreatureSelectedFromCombo()
         {
             foreach (var dc in massiveCreatorEntities.GetEntitiesList())
             {
-                if (dc.ToString() == cbCreaturesThatWillBeAttacked.Text)
+                if (dc.ToString() == cbCreaturesPlayerTwo.Text)
                 {
                     return dc;
                 }
             }
             return null;
         }
-        private void btnAttack_Click(object sender, EventArgs e)
-        {
-            if(GetSelectedMainCreatureFromCombobox().currentLife <= 0)
-            {
-                massiveCreatorEntities.GetEntitiesList().Remove(GetSelectedMainCreatureFromCombobox());
-                //cbMainCreature.Items.Remove(GetSelectedMainCreatureFromCombobox());
-                //cbMainCreature.DataSource = massiveCreatorEntities.GetEntitiesList();
-                LoadComboboxWithMainCreatures();
-                //LoadComboboxWithCreaturesThatWillBeAttacked();
-                cbMainCreature.Text = "he is dead :(";
-                btnAttack.Enabled = false;
-                cbCreaturesThatWillBeAttacked.Enabled = false;
-                //MessageBox.Show("elimina main");
-
-
-            }
-            else
-            {
-                if(GetSelectedToDefenseCreatureFromCombobox().currentLife <= 0)
-                {
-                    massiveCreatorEntities.GetEntitiesList().Remove(GetSelectedToDefenseCreatureFromCombobox());
-                    //cbCreaturesThatWillBeAttacked.Items.Remove(GetSelectedMainCreatureFromCombobox());
-                    LoadComboboxWithCreaturesThatWillBeAttacked();
-                    LoadComboboxWithMainCreatures();
-
-                    cbCreaturesThatWillBeAttacked.Text = "he is dead :(";
-                    btnAttack.Enabled = false;
-                    
-                    //MessageBox.Show("elimina defensa");
-                }
-                else
-                {
-                    //MessageBox.Show("life de main: "+ GetSelectedMainCreatureFromCombobox().currentLife + ", life de atacado: "+GetSelectedToDefenseCreatureFromCombobox().currentLife);
-                    GetSelectedMainCreatureFromCombobox().BeingAttacked(GetSelectedMainCreatureFromCombobox().Attack(GetSelectedToDefenseCreatureFromCombobox()), GetSelectedToDefenseCreatureFromCombobox());
-                    UpdateProgressbar();
-                    UpdateJ2Labels();
-                }
-            }
-        }
-
-
-        private void UpdateJ2Labels()
-        {
-            lbCurrentEnergyJ2.Text = "Current Energy of J2: " + GetSelectedToDefenseCreatureFromCombobox().currentEnergy.ToString();
-            lbCurrentLifeJ2.Text = "Current Life of J2: " + GetSelectedToDefenseCreatureFromCombobox().currentLife.ToString();
-        }
-
-        private void cbCriatureToDefense_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdateJ2Labels();
-            btnAttack.Enabled = true;
-        }
 
         public Food GetSelectedFoodFromCombobox()
         {
-            foreach (var food in fooodss)
+            foreach (var food in foodsList)
             {
-                if (food.ToString() == comboBox2.Text)
+                if (food.ToString() == cbFoods.Text)
                 {
                     return food;
                 }
             }
             return null;
         }
-
-
-        private void btnComer_Click(object sender, EventArgs e)
-        {
-            //MessageBox.Show("dieta entidad: " + GetSelectedMainCreatureFromCombobox().diet);
-            //MessageBox.Show("dieta comida: " + GetSelectedFoodFromCombobox().diet);
-            GetSelectedMainCreatureFromCombobox().Eat(GetSelectedMainCreatureFromCombobox(), GetSelectedFoodFromCombobox());
-            UpdateProgressbar();
-        }
-
 
         public Item GetSelectedItemFromCombobox()
         {
@@ -281,22 +149,95 @@ namespace crudsGame.src.views
             return null;
         }
 
+        # endregion 
+
+        private void UpdateProgressbar()
+        {
+
+            lbLifeJ1.Text = Convert.ToString(GetOnePlayerCreatureSelectedFromCombo().currentLife) + "%";
+            pbCurrentLife.Value = GetOnePlayerCreatureSelectedFromCombo().currentLife;
+
+
+            lbCurrentEnergyJ1.Text = Convert.ToString(GetOnePlayerCreatureSelectedFromCombo().currentEnergy) + "%";
+            pbCurrentEnergy.Value = GetOnePlayerCreatureSelectedFromCombo().currentEnergy;
+
+        }
+
+        private void UpdateJ2Labels()
+        {
+            lbCurrentEnergyJ2.Text = "Current Energy of J2: " + GetTwoPlayerCreatureSelectedFromCombo().currentEnergy.ToString();
+            lbCurrentLifeJ2.Text = "Current Life of J2: " + GetTwoPlayerCreatureSelectedFromCombo().currentLife.ToString();
+        }
+
+        private void cbMainCreature_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnAttack.Enabled = true;
+            cbCreaturesPlayerTwo.Enabled = true;
+            UpdateProgressbar();
+            txtAttack.Text = GetOnePlayerCreatureSelectedFromCombo().attackPoints.ToString();
+            txtDefense.Text = GetOnePlayerCreatureSelectedFromCombo().defensePoints.ToString();
+            txtEnvironment.Text = GetOnePlayerCreatureSelectedFromCombo().environment.ToString();
+            txtKingdom.Text = GetOnePlayerCreatureSelectedFromCombo().kingdom.ToString();
+            txtMaxEnergy.Text = GetOnePlayerCreatureSelectedFromCombo().maxEnergy.ToString();
+            txtMaxLife.Text = GetOnePlayerCreatureSelectedFromCombo().maxLife.ToString();
+            txtId.Text = GetOnePlayerCreatureSelectedFromCombo().id.ToString();
+            txtDiet.Text = GetOnePlayerCreatureSelectedFromCombo().diet.ToString();
+            LoadComboWithCreaturesPlayerTwo();
+        }
+
+
+        private void btnAttack_Click(object sender, EventArgs e)
+        {
+            if (GetOnePlayerCreatureSelectedFromCombo().currentLife <= 0)
+            {
+                massiveCreatorEntities.GetEntitiesList().Remove(GetOnePlayerCreatureSelectedFromCombo());
+                LoadComboboxWithCreaturesPlayerOne();
+                cbCreaturesPlayerOne.Text = "he is dead :(";
+                btnAttack.Enabled = false;
+                cbCreaturesPlayerTwo.Enabled = false;
+            }
+            else
+            {
+                if (GetTwoPlayerCreatureSelectedFromCombo().currentLife <= 0)
+                {
+                    massiveCreatorEntities.GetEntitiesList().Remove(GetTwoPlayerCreatureSelectedFromCombo());
+                    LoadComboWithCreaturesPlayerTwo();
+                    LoadComboboxWithCreaturesPlayerOne();
+                    cbCreaturesPlayerTwo.Text = "he is dead :(";
+                    btnAttack.Enabled = false;
+                }
+                else
+                {
+                    GetOnePlayerCreatureSelectedFromCombo().BeingAttacked(GetOnePlayerCreatureSelectedFromCombo().Attack(GetTwoPlayerCreatureSelectedFromCombo()), GetTwoPlayerCreatureSelectedFromCombo());
+                    UpdateProgressbar();
+                    UpdateJ2Labels();
+                }
+            }
+        }
+
+        private void cbCriatureToDefense_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateJ2Labels();
+            btnAttack.Enabled = true;
+        }
+
+        private void btnComer_Click(object sender, EventArgs e)
+        {
+            GetOnePlayerCreatureSelectedFromCombo().Eat(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedFoodFromCombobox());
+            UpdateProgressbar();
+        }
+
         private void btnInteract_Click(object sender, EventArgs e)
         {
-            GetSelectedItemFromCombobox().Interact(GetSelectedMainCreatureFromCombobox());
+            GetOnePlayerCreatureSelectedFromCombo().UsarItem(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedItemFromCombobox());
+            //GetSelectedItemFromCombobox().Interact(GetOnePlayerCreatureSelectedFromCombo());
             UpdateProgressbar();
-            txtAttack.Text = GetSelectedMainCreatureFromCombobox().attackPoints.ToString();
-
-            txtDefense.Text = GetSelectedMainCreatureFromCombobox().defensePoints.ToString();
-
         }
 
         private void btnSleep_Click(object sender, EventArgs e)
         {
-            GetSelectedMainCreatureFromCombobox().Sleep();
+            GetOnePlayerCreatureSelectedFromCombo().Sleep();
             UpdateProgressbar();
         }
-
-        //queda emprolijar los metodos y ver en q clases ubicarlos
     }
 }

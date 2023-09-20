@@ -1,4 +1,6 @@
-﻿using System;
+﻿using crudsGame.src.model;
+using crudsGame.src.model.Items;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,6 @@ namespace crudsGame.src.interfaces
 {
     public interface IKingdom
     {
+        bool CanInteract(Entity entity, Item item);
     }
 }

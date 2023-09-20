@@ -1,4 +1,5 @@
 ﻿using crudsGame.src.controllers;
+using crudsGame.src.factoryMethod;
 using crudsGame.src.interfaces;
 using System;
 using System.Collections.Generic;
@@ -29,10 +30,23 @@ namespace crudsGame.src.model.Items.Strategy
         List<string> NegativeNames = new List<string> { "Pócima de Donosura", "Ácido de Troll", "Elixir de la Condenación", "Esencia del Caos", "Licor de Tzeentch" };
         List<Item> itemList = new List<Item>();
         List<IStrategyTypeOfItem> interactuables = new List<IStrategyTypeOfItem>();
+
+        List<IKingdom> kingdomsList = new List<IKingdom>();
+
+
         Random random = new Random();
         int index = 0;
 
 
+        public List<IKingdom> LoadKingdoms()
+        {
+            kingdomsList.Add(KingdomCreator.CreateAkingdom(1));
+            kingdomsList.Add(KingdomCreator.CreateAkingdom(2));
+            kingdomsList.Add(KingdomCreator.CreateAkingdom(3));
+            kingdomsList.Add(KingdomCreator.CreateAkingdom(4));
+
+            return kingdomsList;
+        }
 
         public List<IStrategyTypeOfItem> LoadTypesOfItems()
         {
@@ -55,15 +69,18 @@ namespace crudsGame.src.model.Items.Strategy
         public List<Item> CreateItemsMassively()
         {
             this.interactuables = LoadTypesOfItems();
+            this.kingdomsList = LoadKingdoms();
 
+            /*
             Item item1 = new Item(index, "caca", GetRandomTypeOfItem(2)); //queda probar con 3 y 4
             itemList.Add(item1);
             index++;
+            */
 
             foreach (var name in PositiveNames)
             {
                 
-                Item item = new Item(index, name, GetRandomTypeOfItem(random.Next(0, interactuables.Count)));
+                Item item = new Item(index, name, GetRandomTypeOfItem(random.Next(0, interactuables.Count)), kingdomsList[random.Next(0, kingdomsList.Count)]);
                   
                 itemList.Add(item);
                 index++;
