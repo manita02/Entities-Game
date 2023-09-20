@@ -34,44 +34,6 @@ namespace crudsGame.src.views
         bool exist = false;
         int rows = 0;
 
-        /*
-        public IDiet GetSelectedDietFromCombobox()
-        {
-            foreach (var diet in dietList)
-            {
-                if (diet.ToString() == cbDiet.Text)
-                {
-                    return diet;
-                }
-            }
-            return null;
-        }
-
-        public IEnvironment GetSelectedEnvironmentFromCombobox()
-        {
-            foreach (var env in environmentList)
-            {
-                if (env.ToString() == cbEnvironment.Text)
-                {
-                    return env;
-                }
-            }
-            return null;
-        }
-
-        public IKingdom GetSelectedKingdomFromCombobox()
-        {
-            foreach (var kin in kingdomList)
-            {
-                if (kin.ToString() == cbKingdom.Text)
-                {
-                    return kin;
-                }
-            }
-            return null;
-        }
-        */
-
         private void CheckIfEntityExists(Entity entity)
         {
             
@@ -90,7 +52,7 @@ namespace crudsGame.src.views
             
         }
 
-        /* en teoriaaaa este debe funcionaar por las propiedadesss
+        
         private bool CheckEmptyFields()
         {
             if (txtName.Text == "" || txtDefense.Text == "" || txtRange.Text == "" || txtAttack.Text == "" || txtMaxEnergy.Text == "" || txtCurrentEnergy.Text == "" || txtMaxLife.Text == "" || txtCurrentLife.Text == "")
@@ -100,12 +62,12 @@ namespace crudsGame.src.views
             }
             return false;
         }
-        */
+        
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            //if (CheckEmptyFields() == false)
-            //{
+            if (CheckEmptyFields() == false)
+            {
 
                 Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
 
@@ -114,7 +76,6 @@ namespace crudsGame.src.views
                 if (exist == false)
                 {
                     entityCtn.GetEntitiesList().Add(entity); //se carga en la lista
-                    //entityCtn.AddEntity(entity);
                     crearentablalaentidad(dgvEntities.Rows.Add(),entity); //se carga en la tabla
                 }
                 exist = false;
@@ -122,7 +83,7 @@ namespace crudsGame.src.views
                 txtId.Text = Convert.ToString(entityCtn.GetEntitiesList().Count());
 
                 CleanFields();
-            //}
+            }
 
         }
 
@@ -214,14 +175,14 @@ namespace crudsGame.src.views
         {
             if (dgvEntities.SelectedRows.Count > 0)
             {
-                //if (CheckEmptyFields() == false)
-                //{
+                if (CheckEmptyFields() == false)
+                {
                 Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
                 //Entity entity = entityCtn.CreateEntity(Convert.ToInt16(txtId.Text), GetSelectedKingdomFromCombobox(), txtName.Text, GetSelectedDietFromCombobox(), GetSelectedEnvironmentFromCombobox(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
                 //this.rows = entityCtn.UpdateAnEntity(rows, dgvEntities, entity);
                 crearentablalaentidad(rows,entity);
                 this.rows = 0;
-                //}
+                }
 
             }
             else
