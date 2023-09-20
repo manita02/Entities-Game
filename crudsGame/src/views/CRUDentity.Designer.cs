@@ -60,12 +60,8 @@
             btnCreate = new Button();
             txtMaxEnergy = new TextBox();
             label9 = new Label();
-            label10 = new Label();
             label11 = new Label();
-            label12 = new Label();
-            txtCurrentEnergy = new TextBox();
             txtMaxLife = new TextBox();
-            txtCurrentLife = new TextBox();
             btnUpdate = new Button();
             btnDelete = new Button();
             groupBox1 = new GroupBox();
@@ -226,6 +222,7 @@
             dgvEntities.Name = "dgvEntities";
             dgvEntities.ReadOnly = true;
             dgvEntities.RowTemplate.Height = 25;
+            dgvEntities.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvEntities.Size = new Size(1294, 281);
             dgvEntities.TabIndex = 16;
             dgvEntities.SelectionChanged += dgvEntities_SelectionChanged;
@@ -314,7 +311,6 @@
             // 
             // txtMaxEnergy
             // 
-            txtMaxEnergy.Enabled = false;
             txtMaxEnergy.Location = new Point(346, 16);
             txtMaxEnergy.Name = "txtMaxEnergy";
             txtMaxEnergy.PlaceholderText = "type a number...";
@@ -332,63 +328,24 @@
             label9.TabIndex = 19;
             label9.Text = "Max Energy:";
             // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(251, 58);
-            label10.Name = "label10";
-            label10.Size = new Size(89, 15);
-            label10.TabIndex = 20;
-            label10.Text = "Current Energy:";
-            // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(285, 96);
+            label11.Location = new Point(285, 61);
             label11.Name = "label11";
             label11.Size = new Size(55, 15);
             label11.TabIndex = 21;
             label11.Text = "Max Life:";
             // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(268, 136);
-            label12.Name = "label12";
-            label12.Size = new Size(72, 15);
-            label12.TabIndex = 22;
-            label12.Text = "Current Life:";
-            // 
-            // txtCurrentEnergy
-            // 
-            txtCurrentEnergy.Location = new Point(346, 55);
-            txtCurrentEnergy.Name = "txtCurrentEnergy";
-            txtCurrentEnergy.PlaceholderText = "type a number...";
-            txtCurrentEnergy.Size = new Size(100, 23);
-            txtCurrentEnergy.TabIndex = 23;
-            txtCurrentEnergy.Text = "100";
-            txtCurrentEnergy.KeyPress += txtCurrentEnergy_KeyPress;
-            // 
             // txtMaxLife
             // 
-            txtMaxLife.Enabled = false;
-            txtMaxLife.Location = new Point(346, 93);
+            txtMaxLife.Location = new Point(346, 58);
             txtMaxLife.Name = "txtMaxLife";
             txtMaxLife.PlaceholderText = "type a number...";
             txtMaxLife.Size = new Size(100, 23);
             txtMaxLife.TabIndex = 24;
             txtMaxLife.Text = "100";
             txtMaxLife.KeyPress += txtMaxLife_KeyPress;
-            // 
-            // txtCurrentLife
-            // 
-            txtCurrentLife.Location = new Point(346, 133);
-            txtCurrentLife.Name = "txtCurrentLife";
-            txtCurrentLife.PlaceholderText = "type a number...";
-            txtCurrentLife.Size = new Size(100, 23);
-            txtCurrentLife.TabIndex = 25;
-            txtCurrentLife.Text = "100";
-            txtCurrentLife.KeyPress += txtCurrentLife_KeyPress;
             // 
             // btnUpdate
             // 
@@ -418,17 +375,13 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(btnCreate);
-            groupBox1.Controls.Add(txtCurrentLife);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(txtMaxLife);
             groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(txtCurrentEnergy);
             groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(label12);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label11);
             groupBox1.Controls.Add(label8);
-            groupBox1.Controls.Add(label10);
             groupBox1.Controls.Add(txtId);
             groupBox1.Controls.Add(label9);
             groupBox1.Controls.Add(txtMaxEnergy);
@@ -517,12 +470,8 @@
         private DataGridViewTextBoxColumn currentLife;
         private TextBox txtMaxEnergy;
         private Label label9;
-        private Label label10;
         private Label label11;
-        private Label label12;
-        private TextBox txtCurrentEnergy;
         private TextBox txtMaxLife;
-        private TextBox txtCurrentLife;
         private Button btnUpdate;
         private Button btnDelete;
         private GroupBox groupBox1;

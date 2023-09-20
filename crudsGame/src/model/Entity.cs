@@ -255,10 +255,16 @@ namespace crudsGame.src.model
 
             set
             {
-                if (value >= 0 && value <= 1)
+                if (value == 0 || value == 1)
                 {
                     AttackRange = value;
                 }
+                if (value > 0)
+                {
+                    MessageBox.Show("El ataque solo puede ser 0 o 1");
+                    AttackRange = 1;
+                }
+                
                 else throw new ArgumentOutOfRangeException(nameof(value), "Attack Range can be 0 (zero) or 1 (one)");
 
             }
