@@ -222,6 +222,7 @@ namespace crudsGame.src.views
             {
                 MessageBox.Show("Debe existir mas de una entidad en la tabla para poder eliminar!!");
             }
+            UpdateEntityId();
         }
         #endregion
 

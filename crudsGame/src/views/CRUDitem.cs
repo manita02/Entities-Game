@@ -50,7 +50,7 @@ namespace crudsGame.src.views
                 for (int fila = 0; fila < dgvItems.Rows.Count - 1; fila++)
                 {
 
-                    if (dgvItems.Rows[fila].Cells[2].Value.ToString() == item.name)
+                    if (dgvItems.Rows[fila].Cells[1].Value.ToString() == item.name)
                     {
                         MessageBox.Show("El item ' " + item.name + " ' ya existe!!!");
                         exist = true;
@@ -187,6 +187,7 @@ namespace crudsGame.src.views
             {
                 MessageBox.Show("Debe existir mas de un item en la tabla para poder eliminar!!");
             }
+            UpdateItemId();
         }
         #endregion
 
