@@ -19,10 +19,10 @@ namespace crudsGame.src.views
     public partial class CRUDentity : Form
     {
 
-        MassiveCreatorEntities entityCtn;
+        EntityController entityCtn;
         public CRUDentity()
         {
-            entityCtn = MassiveCreatorEntities.getInstance();
+            entityCtn = EntityController.getInstance();
             InitializeComponent();
             LoadCreaturesbByDefault();
             this.dgvEntities.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //es para que las columnas se adapten al tamaño del dgv

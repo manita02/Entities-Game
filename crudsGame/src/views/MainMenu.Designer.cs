@@ -43,45 +43,46 @@
             menu1.Items.AddRange(new ToolStripItem[] { tESTINTERACTIONSToolStripMenuItem, cRUDsToolStripMenuItem });
             menu1.Location = new Point(0, 0);
             menu1.Name = "menu1";
-            menu1.Size = new Size(800, 24);
+            menu1.Size = new Size(800, 29);
             menu1.TabIndex = 0;
             menu1.Text = "menu";
             // 
             // tESTINTERACTIONSToolStripMenuItem
             // 
-            tESTINTERACTIONSToolStripMenuItem.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            tESTINTERACTIONSToolStripMenuItem.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             tESTINTERACTIONSToolStripMenuItem.ForeColor = SystemColors.Control;
             tESTINTERACTIONSToolStripMenuItem.Name = "tESTINTERACTIONSToolStripMenuItem";
-            tESTINTERACTIONSToolStripMenuItem.Size = new Size(126, 20);
+            tESTINTERACTIONSToolStripMenuItem.Size = new Size(177, 25);
             tESTINTERACTIONSToolStripMenuItem.Text = "TEST INTERACTIONS";
             tESTINTERACTIONSToolStripMenuItem.Click += tESTINTERACTIONSToolStripMenuItem_Click;
             // 
             // cRUDsToolStripMenuItem
             // 
             cRUDsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cRUDEntityToolStripMenuItem, cRUDItemToolStripMenuItem, cRUDFoodsToolStripMenuItem });
+            cRUDsToolStripMenuItem.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             cRUDsToolStripMenuItem.ForeColor = SystemColors.Control;
             cRUDsToolStripMenuItem.Name = "cRUDsToolStripMenuItem";
-            cRUDsToolStripMenuItem.Size = new Size(55, 20);
+            cRUDsToolStripMenuItem.Size = new Size(73, 25);
             cRUDsToolStripMenuItem.Text = "CRUDs";
             // 
             // cRUDEntityToolStripMenuItem
             // 
             cRUDEntityToolStripMenuItem.Name = "cRUDEntityToolStripMenuItem";
-            cRUDEntityToolStripMenuItem.Size = new Size(180, 22);
+            cRUDEntityToolStripMenuItem.Size = new Size(185, 26);
             cRUDEntityToolStripMenuItem.Text = "CRUD entities";
             cRUDEntityToolStripMenuItem.Click += cRUDEntityToolStripMenuItem_Click;
             // 
             // cRUDItemToolStripMenuItem
             // 
             cRUDItemToolStripMenuItem.Name = "cRUDItemToolStripMenuItem";
-            cRUDItemToolStripMenuItem.Size = new Size(180, 22);
+            cRUDItemToolStripMenuItem.Size = new Size(185, 26);
             cRUDItemToolStripMenuItem.Text = "CRUD items";
             cRUDItemToolStripMenuItem.Click += cRUDItemToolStripMenuItem_Click;
             // 
             // cRUDFoodsToolStripMenuItem
             // 
             cRUDFoodsToolStripMenuItem.Name = "cRUDFoodsToolStripMenuItem";
-            cRUDFoodsToolStripMenuItem.Size = new Size(180, 22);
+            cRUDFoodsToolStripMenuItem.Size = new Size(185, 26);
             cRUDFoodsToolStripMenuItem.Text = "CRUD foods";
             cRUDFoodsToolStripMenuItem.Click += cRUDFoodsToolStripMenuItem_Click;
             // 

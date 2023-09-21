@@ -3,7 +3,6 @@ using crudsGame.src.factoryMethod;
 using crudsGame.src.interfaces;
 using crudsGame.src.model;
 using crudsGame.src.model.Items;
-using crudsGame.src.model.Items.Strategy;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,10 +19,10 @@ namespace crudsGame.src.views
 {
     public partial class CRUDitem : Form
     {
-        MassiveItemCreator itemCtn;
+        ItemController itemCtn;
         public CRUDitem()
         {
-            itemCtn = MassiveItemCreator.getInstance();
+            itemCtn = ItemController.getInstance();
             InitializeComponent();
             LoadItemsByDefault();
             this.dgvItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

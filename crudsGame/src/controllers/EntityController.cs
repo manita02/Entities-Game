@@ -1,5 +1,6 @@
 ﻿using crudsGame.src.factoryMethod;
 using crudsGame.src.interfaces;
+using crudsGame.src.model;
 using crudsGame.src.model.Items.Strategy;
 using System;
 using System.Collections.Generic;
@@ -9,20 +10,20 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 
-namespace crudsGame.src.model
+namespace crudsGame.src.controllers
 {
-    internal class MassiveCreatorEntities
+    internal class EntityController
     {
-        private static MassiveCreatorEntities? Instance;
+        private static EntityController? Instance;
 
 
-        private MassiveCreatorEntities() { }
+        private EntityController() { }
 
-        public static MassiveCreatorEntities getInstance()
+        public static EntityController getInstance()
         {
             if (Instance == null)
             {
-                Instance = new MassiveCreatorEntities();
+                Instance = new EntityController();
             }
             return Instance;
         }
@@ -30,17 +31,17 @@ namespace crudsGame.src.model
 
         int index = 0;
         Random random = new Random();
-        List<string> RandomNames = new List<string> { "Akuma", "M. Bison", "Zangief", "Ryu", "Sagat", "Dhalsim", "Edmon Honda", "Dee Jay", "Birdie", "Thunder Hawk", "Remy", "Makoto", "Urien", "Necalli", "Ibuki", "Decapre"};
+        List<string> RandomNames = new List<string> { "Akuma", "M. Bison", "Zangief", "Ryu", "Sagat", "Dhalsim", "Edmon Honda", "Dee Jay", "Birdie", "Thunder Hawk", "Remy", "Makoto", "Urien", "Necalli", "Ibuki", "Decapre" };
         List<Entity> EntitiesList = new List<Entity>();
         List<IDiet> DietList = new List<IDiet>();
         List<IKingdom> KingdomList = new List<IKingdom>();
         List<IEnvironment> EnvironmentList = new List<IEnvironment>();
 
-        
+
 
         public List<IDiet> GetDietList()
         {
-            if (this.DietList.Count == 0)
+            if (DietList.Count == 0)
             {
                 DietList.Add(DietCreator.CreateAdiet(1));
                 DietList.Add(DietCreator.CreateAdiet(2));
@@ -52,7 +53,7 @@ namespace crudsGame.src.model
 
         public List<IKingdom> GetKingdomList()
         {
-            if (this.KingdomList.Count == 0)
+            if (KingdomList.Count == 0)
             {
                 KingdomList.Add(KingdomCreator.CreateAkingdom(1));
                 KingdomList.Add(KingdomCreator.CreateAkingdom(2));
@@ -64,7 +65,7 @@ namespace crudsGame.src.model
 
         public List<IEnvironment> GetEnvironmentList()
         {
-            if (this.EnvironmentList.Count == 0)
+            if (EnvironmentList.Count == 0)
             {
                 EnvironmentList.Add(EnvironmentCreator.CreateAenvironment(1));
                 EnvironmentList.Add(EnvironmentCreator.CreateAenvironment(2));
@@ -76,33 +77,33 @@ namespace crudsGame.src.model
 
         public List<Entity> GetEntitiesList()
         {
-            if(this.EntitiesList.Count == 0)
+            if (EntitiesList.Count == 0)
             {
                 //MessageBox.Show("estoy");
                 return CreateEntitiesMassively();
             }
-            return this.EntitiesList;
+            return EntitiesList;
         }
 
-        
+
 
 
         public List<Entity> CreateEntitiesMassively()
         {
-            this.DietList = GetDietList();
-            this.EnvironmentList = GetEnvironmentList();
-            this.KingdomList = GetKingdomList();
+            DietList = GetDietList();
+            EnvironmentList = GetEnvironmentList();
+            KingdomList = GetKingdomList();
 
-            Entity item1 = new Entity (index, KingdomList[random.Next(0, KingdomList.Count)], "caga", DietList[random.Next(0, DietList.Count)], EnvironmentList[random.Next(0, EnvironmentList.Count)], 23, 20, 10, 5, random.Next(0, 1));
+            Entity item1 = new Entity(index, KingdomList[random.Next(0, KingdomList.Count)], "caga", DietList[random.Next(0, DietList.Count)], EnvironmentList[random.Next(0, EnvironmentList.Count)], 23, 20, 10, 5, random.Next(0, 1));
             EntitiesList.Add(item1);
             index++;
 
             foreach (var name in RandomNames)
             {
-                Entity entity = new Entity(index, KingdomList[random.Next(0, KingdomList.Count)], name, DietList[random.Next(0, DietList.Count)], EnvironmentList[random.Next(0, EnvironmentList.Count)], 100, 100, random.Next(10, 80), random.Next(10, 80), random.Next(0,1));
+                Entity entity = new Entity(index, KingdomList[random.Next(0, KingdomList.Count)], name, DietList[random.Next(0, DietList.Count)], EnvironmentList[random.Next(0, EnvironmentList.Count)], 100, 100, random.Next(10, 80), random.Next(10, 80), random.Next(0, 1));
                 //MessageBox.Show("id: " + entity.id + " NAME: " + entity.name);
-                
-                
+
+
                 EntitiesList.Add(entity);
                 index++;
             }
@@ -112,7 +113,7 @@ namespace crudsGame.src.model
             return EntitiesList;
         }
 
-        
+
         public Entity CreateEntity(int id, IKingdom kingdom, string name, IDiet diet, IEnvironment environment, int maxEnergy, int maxLife, int attack, int defense, int range)
         {
 
@@ -136,8 +137,8 @@ namespace crudsGame.src.model
         public void AddEntity(Entity entity)
         {
             GetEntitiesList().Add(entity); //se carga en la lista
-            
-            
+
+
             /* va en la vistaa
             int x = dgvEntity.Rows.Add(); //se carga la tabla
             
@@ -158,7 +159,7 @@ namespace crudsGame.src.model
         }
 
 
-        
+
 
 
     }

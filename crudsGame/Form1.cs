@@ -1,5 +1,4 @@
 using crudsGame.src.controllers;
-using crudsGame.src.model.Items.Strategy;
 
 namespace crudsGame
 {
@@ -8,8 +7,8 @@ namespace crudsGame
         public Form1()
         {
             InitializeComponent();
-            MassiveItemCreator entityCtn;
-            entityCtn = MassiveItemCreator.getInstance();
+            ItemController entityCtn;
+            entityCtn = ItemController.getInstance();
             
         }
         private ComboBox comboBox1;

@@ -4,7 +4,6 @@ using crudsGame.src.interfaces;
 using crudsGame.src.model;
 using crudsGame.src.model.Diets;
 using crudsGame.src.model.Items;
-using crudsGame.src.model.Items.Strategy;
 using crudsGame.src.model.Kingdoms;
 using System;
 using System.Collections.Generic;
@@ -25,8 +24,8 @@ namespace crudsGame.src.views
 
 
         //List<Food> foodsList = new List<Food>();
-        MassiveItemCreator itemCtn;
-        MassiveCreatorEntities entityCtn;
+        ItemController itemCtn;
+        EntityController entityCtn;
         FoodController foodCtn;
 
 
@@ -35,8 +34,8 @@ namespace crudsGame.src.views
             InitializeComponent();
 
 
-            itemCtn = MassiveItemCreator.getInstance();
-            entityCtn = MassiveCreatorEntities.getInstance();
+            itemCtn = ItemController.getInstance();
+            entityCtn = EntityController.getInstance();
             foodCtn = FoodController.getInstance();
             LoadComboboxWithCreaturesPlayerOne();
             cbItems.DataSource = itemCtn.GetItemList();
