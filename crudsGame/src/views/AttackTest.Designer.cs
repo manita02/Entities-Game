@@ -234,6 +234,7 @@
             // 
             // cbCreaturesPlayerOne
             // 
+            cbCreaturesPlayerOne.DropDownStyle = ComboBoxStyle.DropDownList;
             cbCreaturesPlayerOne.FormattingEnabled = true;
             cbCreaturesPlayerOne.Location = new Point(6, 31);
             cbCreaturesPlayerOne.Name = "cbCreaturesPlayerOne";
@@ -275,6 +276,7 @@
             // 
             // cbCreaturesPlayerTwo
             // 
+            cbCreaturesPlayerTwo.DropDownStyle = ComboBoxStyle.DropDownList;
             cbCreaturesPlayerTwo.FormattingEnabled = true;
             cbCreaturesPlayerTwo.Location = new Point(8, 43);
             cbCreaturesPlayerTwo.Name = "cbCreaturesPlayerTwo";
@@ -345,16 +347,18 @@
             lbCurrentEnergyJ1.TabIndex = 7;
             lbCurrentEnergyJ1.Text = "***";
             // 
-            // comboBox1
+            // cbItems
             // 
+            cbItems.DropDownStyle = ComboBoxStyle.DropDownList;
             cbItems.FormattingEnabled = true;
             cbItems.Location = new Point(65, 521);
-            cbItems.Name = "comboBox1";
+            cbItems.Name = "cbItems";
             cbItems.Size = new Size(244, 23);
             cbItems.TabIndex = 9;
             // 
             // cbFoods
             // 
+            cbFoods.DropDownStyle = ComboBoxStyle.DropDownList;
             cbFoods.FormattingEnabled = true;
             cbFoods.Location = new Point(383, 521);
             cbFoods.Name = "cbFoods";

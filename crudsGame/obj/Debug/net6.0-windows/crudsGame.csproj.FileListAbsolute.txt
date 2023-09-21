@@ -206,3 +206,4 @@ C:\Users\ana\Desktop\probando_animales\probandoAnimales\crudsGame\bin\Debug\net6
 C:\Users\ana\Desktop\probando_animales\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.genruntimeconfig.cache
 C:\Users\ana\Desktop\probando_animales\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\ref\crudsGame.dll
 C:\Users\manita02\Desktop\animalesREPOPRUEBAA\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.CRUDfood.resources
+C:\Users\manita02\Desktop\animalesREPOPRUEBAA\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.MainMenu.resources

@@ -24,9 +24,10 @@ namespace crudsGame.src.views
     {
 
 
-        List<Food> foodsList = new List<Food>();
-        MassiveItemCreator entityCtn;
-        MassiveCreatorEntities massiveCreatorEntities;
+        //List<Food> foodsList = new List<Food>();
+        MassiveItemCreator itemCtn;
+        MassiveCreatorEntities entityCtn;
+        FoodController foodCtn;
 
 
         public AttackTest()
@@ -34,37 +35,42 @@ namespace crudsGame.src.views
             InitializeComponent();
 
 
-            entityCtn = MassiveItemCreator.getInstance();
-            massiveCreatorEntities = MassiveCreatorEntities.getInstance();
+            itemCtn = MassiveItemCreator.getInstance();
+            entityCtn = MassiveCreatorEntities.getInstance();
+            foodCtn = FoodController.getInstance();
             LoadComboboxWithCreaturesPlayerOne();
-            cbItems.DataSource = entityCtn.CreateItemsMassively();
+            cbItems.DataSource = itemCtn.GetItemList();
+            cbFoods.DataSource = foodCtn.GetFoodList();
+            //LoadComboWithFoods();
 
 
             cbCreaturesPlayerOne.SelectedIndex = 0;
             cbCreaturesPlayerTwo.SelectedIndex = 0;
             cbItems.SelectedIndex = 0;
 
-
+            /*
             Food f1 = new Food(1, "carne", 10, new Carnivore());
             Food f2 = new Food(2, "manzana", 20, new Carnivore());
             Food f3 = new Food(3, "grillo", 30, new SolarEnergy());
+            
 
 
 
             foodsList.Add(f1);
             foodsList.Add(f2);
             foodsList.Add(f3);
+            */
 
-            LoadComboWithFoods();
+
 
             cbFoods.SelectedIndex = 0;
         }
 
-        #region Load Comboboxs //estoss puueden ir a una estatica porq los uso en varios lados
+        #region Load Comboboxs 
         public void LoadComboWithFoods()
         {
             cbFoods.Items.Clear();
-            foreach (var food in foodsList)
+            foreach (var food in foodCtn.GetFoodList())
             {
                 cbFoods.Items.Add(food);
             }
@@ -73,7 +79,7 @@ namespace crudsGame.src.views
         public void LoadComboboxWithCreaturesPlayerOne()
         {
             cbCreaturesPlayerOne.Items.Clear();
-            foreach (var creatures in massiveCreatorEntities.GetEntitiesList())
+            foreach (var creatures in entityCtn.GetEntitiesList())
             {
                 cbCreaturesPlayerOne.Items.Add(creatures);
             }
@@ -82,7 +88,7 @@ namespace crudsGame.src.views
         public void LoadComboWithCreaturesPlayerTwo()
         {
             cbCreaturesPlayerTwo.Items.Clear();
-            foreach (var creature in massiveCreatorEntities.GetEntitiesList())
+            foreach (var creature in entityCtn.GetEntitiesList())
             {
                 if (GetOnePlayerCreatureSelectedFromCombo().id != creature.id)
                 {
@@ -204,7 +210,7 @@ namespace crudsGame.src.views
         {
             if (GetOnePlayerCreatureSelectedFromCombo().currentLife <= 0)
             {
-                massiveCreatorEntities.GetEntitiesList().Remove(GetOnePlayerCreatureSelectedFromCombo());
+                entityCtn.GetEntitiesList().Remove(GetOnePlayerCreatureSelectedFromCombo());
                 LoadComboboxWithCreaturesPlayerOne();
                 cbCreaturesPlayerOne.Text = "he is dead :(";
                 btnAttack.Enabled = false;
@@ -214,7 +220,7 @@ namespace crudsGame.src.views
             {
                 if (GetTwoPlayerCreatureSelectedFromCombo().currentLife <= 0)
                 {
-                    massiveCreatorEntities.GetEntitiesList().Remove(GetTwoPlayerCreatureSelectedFromCombo());
+                    entityCtn.GetEntitiesList().Remove(GetTwoPlayerCreatureSelectedFromCombo());
                     LoadComboWithCreaturesPlayerTwo();
                     LoadComboboxWithCreaturesPlayerOne();
                     cbCreaturesPlayerTwo.Text = "he is dead :(";
