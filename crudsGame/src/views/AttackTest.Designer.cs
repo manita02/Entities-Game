@@ -69,9 +69,20 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(lbCurrentEnergyJ1);
+            groupBox1.Controls.Add(btnSleep);
+            groupBox1.Controls.Add(lbLifeJ1);
+            groupBox1.Controls.Add(btnInteract);
+            groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(txtDiet);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(btnComer);
+            groupBox1.Controls.Add(pbCurrentEnergy);
+            groupBox1.Controls.Add(pbCurrentLife);
             groupBox1.Controls.Add(label10);
+            groupBox1.Controls.Add(cbFoods);
             groupBox1.Controls.Add(txtId);
+            groupBox1.Controls.Add(cbItems);
             groupBox1.Controls.Add(label9);
             groupBox1.Controls.Add(txtKingdom);
             groupBox1.Controls.Add(txtEnvironment);
@@ -89,14 +100,14 @@
             groupBox1.Controls.Add(cbCreaturesPlayerOne);
             groupBox1.Location = new Point(24, 23);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(780, 284);
+            groupBox1.Size = new Size(1135, 284);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Choose a CRIATURE (Player One)";
             // 
             // txtDiet
             // 
-            txtDiet.Location = new Point(647, 123);
+            txtDiet.Location = new Point(586, 123);
             txtDiet.Name = "txtDiet";
             txtDiet.Size = new Size(100, 23);
             txtDiet.TabIndex = 18;
@@ -104,7 +115,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(613, 126);
+            label10.Location = new Point(552, 126);
             label10.Name = "label10";
             label10.Size = new Size(28, 15);
             label10.TabIndex = 17;
@@ -112,7 +123,7 @@
             // 
             // txtId
             // 
-            txtId.Location = new Point(647, 93);
+            txtId.Location = new Point(586, 93);
             txtId.Name = "txtId";
             txtId.Size = new Size(100, 23);
             txtId.TabIndex = 16;
@@ -120,7 +131,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(621, 97);
+            label9.Location = new Point(560, 97);
             label9.Name = "label9";
             label9.Size = new Size(20, 15);
             label9.TabIndex = 15;
@@ -128,28 +139,28 @@
             // 
             // txtKingdom
             // 
-            txtKingdom.Location = new Point(463, 159);
+            txtKingdom.Location = new Point(402, 159);
             txtKingdom.Name = "txtKingdom";
             txtKingdom.Size = new Size(100, 23);
             txtKingdom.TabIndex = 14;
             // 
             // txtEnvironment
             // 
-            txtEnvironment.Location = new Point(467, 188);
+            txtEnvironment.Location = new Point(406, 188);
             txtEnvironment.Name = "txtEnvironment";
             txtEnvironment.Size = new Size(100, 23);
             txtEnvironment.TabIndex = 13;
             // 
             // txtMaxEnergy
             // 
-            txtMaxEnergy.Location = new Point(467, 216);
+            txtMaxEnergy.Location = new Point(406, 216);
             txtMaxEnergy.Name = "txtMaxEnergy";
             txtMaxEnergy.Size = new Size(100, 23);
             txtMaxEnergy.TabIndex = 12;
             // 
             // txtMaxLife
             // 
-            txtMaxLife.Location = new Point(467, 247);
+            txtMaxLife.Location = new Point(406, 247);
             txtMaxLife.Name = "txtMaxLife";
             txtMaxLife.Size = new Size(100, 23);
             txtMaxLife.TabIndex = 11;
@@ -157,7 +168,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(386, 247);
+            label8.Location = new Point(325, 247);
             label8.Name = "label8";
             label8.Size = new Size(49, 15);
             label8.TabIndex = 10;
@@ -166,7 +177,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(386, 219);
+            label7.Location = new Point(325, 219);
             label7.Name = "label7";
             label7.Size = new Size(69, 15);
             label7.TabIndex = 9;
@@ -175,7 +186,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(386, 194);
+            label6.Location = new Point(325, 194);
             label6.Name = "label6";
             label6.Size = new Size(75, 15);
             label6.TabIndex = 8;
@@ -184,7 +195,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(386, 167);
+            label5.Location = new Point(325, 167);
             label5.Name = "label5";
             label5.Size = new Size(55, 15);
             label5.TabIndex = 7;
@@ -192,14 +203,14 @@
             // 
             // txtDefense
             // 
-            txtDefense.Location = new Point(484, 123);
+            txtDefense.Location = new Point(423, 123);
             txtDefense.Name = "txtDefense";
             txtDefense.Size = new Size(100, 23);
             txtDefense.TabIndex = 6;
             // 
             // txtAttack
             // 
-            txtAttack.Location = new Point(487, 92);
+            txtAttack.Location = new Point(426, 92);
             txtAttack.Name = "txtAttack";
             txtAttack.Size = new Size(100, 23);
             txtAttack.TabIndex = 5;
@@ -207,7 +218,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(393, 123);
+            label4.Location = new Point(332, 123);
             label4.Name = "label4";
             label4.Size = new Size(85, 15);
             label4.TabIndex = 3;
@@ -216,7 +227,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(393, 93);
+            label3.Location = new Point(332, 93);
             label3.Name = "label3";
             label3.Size = new Size(77, 15);
             label3.TabIndex = 2;
@@ -248,7 +259,7 @@
             groupBox2.Controls.Add(btnAttack);
             groupBox2.Controls.Add(cbCreaturesPlayerTwo);
             groupBox2.Controls.Add(lbCurrentEnergyJ2);
-            groupBox2.Location = new Point(24, 323);
+            groupBox2.Location = new Point(284, 324);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(596, 173);
             groupBox2.TabIndex = 1;
@@ -297,7 +308,7 @@
             // 
             pbCurrentLife.BackColor = Color.Lime;
             pbCurrentLife.ForeColor = Color.DarkSeaGreen;
-            pbCurrentLife.Location = new Point(467, 38);
+            pbCurrentLife.Location = new Point(406, 15);
             pbCurrentLife.Name = "pbCurrentLife";
             pbCurrentLife.Size = new Size(229, 23);
             pbCurrentLife.TabIndex = 2;
@@ -306,7 +317,7 @@
             // 
             pbCurrentEnergy.BackColor = Color.Yellow;
             pbCurrentEnergy.ForeColor = Color.Gold;
-            pbCurrentEnergy.Location = new Point(467, 86);
+            pbCurrentEnergy.Location = new Point(406, 63);
             pbCurrentEnergy.Name = "pbCurrentEnergy";
             pbCurrentEnergy.Size = new Size(229, 23);
             pbCurrentEnergy.TabIndex = 3;
@@ -314,7 +325,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(410, 39);
+            label1.Location = new Point(349, 16);
             label1.Name = "label1";
             label1.Size = new Size(26, 15);
             label1.TabIndex = 4;
@@ -323,7 +334,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(410, 89);
+            label2.Location = new Point(349, 66);
             label2.Name = "label2";
             label2.Size = new Size(43, 15);
             label2.TabIndex = 5;
@@ -332,7 +343,7 @@
             // lbLifeJ1
             // 
             lbLifeJ1.AutoSize = true;
-            lbLifeJ1.Location = new Point(702, 39);
+            lbLifeJ1.Location = new Point(641, 16);
             lbLifeJ1.Name = "lbLifeJ1";
             lbLifeJ1.Size = new Size(22, 15);
             lbLifeJ1.TabIndex = 6;
@@ -341,7 +352,7 @@
             // lbCurrentEnergyJ1
             // 
             lbCurrentEnergyJ1.AutoSize = true;
-            lbCurrentEnergyJ1.Location = new Point(702, 89);
+            lbCurrentEnergyJ1.Location = new Point(641, 66);
             lbCurrentEnergyJ1.Name = "lbCurrentEnergyJ1";
             lbCurrentEnergyJ1.Size = new Size(22, 15);
             lbCurrentEnergyJ1.TabIndex = 7;
@@ -351,7 +362,7 @@
             // 
             cbItems.DropDownStyle = ComboBoxStyle.DropDownList;
             cbItems.FormattingEnabled = true;
-            cbItems.Location = new Point(65, 521);
+            cbItems.Location = new Point(741, 59);
             cbItems.Name = "cbItems";
             cbItems.Size = new Size(244, 23);
             cbItems.TabIndex = 9;
@@ -360,14 +371,14 @@
             // 
             cbFoods.DropDownStyle = ComboBoxStyle.DropDownList;
             cbFoods.FormattingEnabled = true;
-            cbFoods.Location = new Point(383, 521);
+            cbFoods.Location = new Point(741, 122);
             cbFoods.Name = "cbFoods";
             cbFoods.Size = new Size(277, 23);
             cbFoods.TabIndex = 10;
             // 
             // btnComer
             // 
-            btnComer.Location = new Point(407, 567);
+            btnComer.Location = new Point(1024, 122);
             btnComer.Name = "btnComer";
             btnComer.Size = new Size(75, 23);
             btnComer.TabIndex = 11;
@@ -377,7 +388,7 @@
             // 
             // btnInteract
             // 
-            btnInteract.Location = new Point(146, 559);
+            btnInteract.Location = new Point(1006, 58);
             btnInteract.Name = "btnInteract";
             btnInteract.Size = new Size(75, 23);
             btnInteract.TabIndex = 12;
@@ -387,7 +398,7 @@
             // 
             // btnSleep
             // 
-            btnSleep.Location = new Point(740, 514);
+            btnSleep.Location = new Point(910, 190);
             btnSleep.Name = "btnSleep";
             btnSleep.Size = new Size(75, 23);
             btnSleep.TabIndex = 13;
@@ -399,18 +410,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1000, 600);
-            Controls.Add(btnSleep);
-            Controls.Add(btnInteract);
-            Controls.Add(btnComer);
-            Controls.Add(cbFoods);
-            Controls.Add(cbItems);
-            Controls.Add(lbCurrentEnergyJ1);
-            Controls.Add(lbLifeJ1);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(pbCurrentEnergy);
-            Controls.Add(pbCurrentLife);
+            ClientSize = new Size(1171, 518);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "AttackTest";
@@ -420,7 +420,6 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

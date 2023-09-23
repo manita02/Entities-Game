@@ -189,7 +189,6 @@ C:\Users\ana\Desktop\probando_animales\probandoAnimales\crudsGame\obj\Debug\net6
 C:\Users\ana\Desktop\probando_animales\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.AttackTest.resources
 C:\Users\ana\Desktop\probando_animales\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.CRUDentity.resources
 C:\Users\ana\Desktop\probando_animales\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.CRUDitem.resources
-C:\Users\ana\Desktop\probando_animales\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.pruebas.resources
 C:\Users\ana\Desktop\probando_animales\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.GenerateResource.cache
 C:\Users\ana\Desktop\probando_animales\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\ana\Desktop\probando_animales\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.AssemblyInfoInputs.cache
@@ -207,3 +206,5 @@ C:\Users\ana\Desktop\probando_animales\probandoAnimales\crudsGame\obj\Debug\net6
 C:\Users\ana\Desktop\probando_animales\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\ref\crudsGame.dll
 C:\Users\manita02\Desktop\animalesREPOPRUEBAA\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.CRUDfood.resources
 C:\Users\manita02\Desktop\animalesREPOPRUEBAA\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.MainMenu.resources
+C:\Users\ana\Desktop\probando_animales\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.CRUDfood.resources
+C:\Users\ana\Desktop\probando_animales\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.MainMenu.resources
