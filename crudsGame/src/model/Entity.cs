@@ -188,6 +188,17 @@ namespace crudsGame.src.model
 
             set
             {
+                /*
+                if (value >= 80)
+                {
+                    AttackPoints = 80;
+                }
+                else
+                {
+                    AttackPoints = value;
+                }
+                */
+
                 if (value >= 10 && value <= 80)
                 {
                      

@@ -180,6 +180,11 @@ namespace crudsGame.src.views
             lbCurrentEnergyJ1.Text = Convert.ToString(GetOnePlayerCreatureSelectedFromCombo().currentEnergy) + "%";
             pbCurrentEnergy.Value = GetOnePlayerCreatureSelectedFromCombo().currentEnergy;
 
+            txtAttack.Text = GetOnePlayerCreatureSelectedFromCombo().attackPoints.ToString();
+            
+            txtDefense.Text = GetOnePlayerCreatureSelectedFromCombo().defensePoints.ToString();
+            
+
         }
 
         private void UpdateJ2Labels()

@@ -2,6 +2,7 @@
 using crudsGame.src.interfaces;
 using crudsGame.src.model.Items;
 using crudsGame.src.model.Items.Strategy;
+using crudsGame.src.model.Items.Strategy.Negatives;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace crudsGame.src.controllers
             return Instance;
         }
 
-        List<string> PositiveNames = new List<string> { "Saliva Divina", "Furia de Preyton", "Poción de Bravura", "Poción de Fortaleza", "Néctar Calmante de Esmeralda" };
+        List<string> PositiveNames = new List<string> { "Saliva Divina", "Furia de Preyton", "Poción de Bravura", "Poción de Fortaleza", "Néctar Calmante de Esmeralda", "Pócima de Donosura", "Ácido de Troll", "Elixir de la Condenación", "Esencia del Caos", "Licor de Tzeentch" };
         List<string> NegativeNames = new List<string> { "Pócima de Donosura", "Ácido de Troll", "Elixir de la Condenación", "Esencia del Caos", "Licor de Tzeentch" };
         List<Item> itemList = new List<Item>();
         List<IStrategyTypeOfItem> interactuables = new List<IStrategyTypeOfItem>();
@@ -61,6 +62,10 @@ namespace crudsGame.src.controllers
                 interactuables.Add(new LifeeItem());
                 interactuables.Add(new IncreasesAttackPoints());
                 interactuables.Add(new IncreasesDefensePoints());
+                interactuables.Add(new LosesEnergy());
+                interactuables.Add(new LosesLife());
+                interactuables.Add(new LosesAttackPoints());
+                interactuables.Add(new LosesDefensePoints());
             }
             return interactuables;
         }
@@ -79,9 +84,19 @@ namespace crudsGame.src.controllers
 
             foreach (var name in PositiveNames)
             {
-                Item item = new Item(index, name, interactuables[random.Next(0, interactuables.Count)], kingdomsList[random.Next(0, kingdomsList.Count)]);
+                if (index <= 4)
+                {
+                    Item item = new Item(index, name, interactuables[random.Next(0, 4)], kingdomsList[random.Next(0, kingdomsList.Count)]);
+                    itemList.Add(item);
+                }
+                else
+                {
+                    Item item = new Item(index, name, interactuables[random.Next(4, interactuables.Count)], kingdomsList[random.Next(0, kingdomsList.Count)]);
+                    itemList.Add(item);
+                }
+                
 
-                itemList.Add(item);
+                
                 index++;
             }
 
