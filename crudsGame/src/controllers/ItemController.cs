@@ -76,11 +76,11 @@ namespace crudsGame.src.controllers
             interactuables = GetStrategyItemsList();
             kingdomsList = GetKingdomList();
 
-            /*
-            Item item1 = new Item(index, "caca", GetRandomTypeOfItem(2)); //queda probar con 3 y 4
+            
+            Item item1 = new Item(index, "probandoo", new LosesAttackPoints(), KingdomCreator.CreateAkingdom(2)); 
             itemList.Add(item1);
             index++;
-            */
+            
 
             foreach (var name in PositiveNames)
             {

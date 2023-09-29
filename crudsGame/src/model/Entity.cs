@@ -183,12 +183,20 @@ namespace crudsGame.src.model
         public int attackPoints { //aca hay errores
             get
             {
-                return AttackPoints;
+                if(AttackPoints <= 0)
+                {
+                    //MessageBox.Show("Esta entidad hay perdido todos sus puntos de ataque :(");
+                    return 0;
+                }
+                else
+                {
+                    return AttackPoints;
+                }  
             }
 
             set
             {
-                /*
+                
                 if (value >= 80)
                 {
                     AttackPoints = 80;
@@ -197,8 +205,9 @@ namespace crudsGame.src.model
                 {
                     AttackPoints = value;
                 }
-                */
+                
 
+                /*
                 if (value >= 10 && value <= 80)
                 {
                      
@@ -208,6 +217,7 @@ namespace crudsGame.src.model
                     
                 AttackPoints = 80;
                     throw new ArgumentOutOfRangeException(nameof(value), "The valid range for attack points is between 10 and 80.");
+                */
             }
         }
 

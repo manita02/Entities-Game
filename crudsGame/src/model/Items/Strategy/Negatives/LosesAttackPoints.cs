@@ -12,9 +12,10 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
         Random random = new Random();
         public void ApplyItem(Entity entity)
         {
+            //MessageBox.Show("ataque: " + entity.attackPoints);
             if (entity.attackPoints != 0)
             {
-                MessageBox.Show("ataque: " + entity.attackPoints);
+                
                 entity.currentEnergy -= 10;
                 MessageBox.Show("The " + entity.name + " creature used an item that made him lose attack points!!");
                 entity.attackPoints -= random.Next(5, 15);

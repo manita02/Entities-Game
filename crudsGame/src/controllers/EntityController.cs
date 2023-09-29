@@ -94,7 +94,7 @@ namespace crudsGame.src.controllers
             EnvironmentList = GetEnvironmentList();
             KingdomList = GetKingdomList();
 
-            Entity item1 = new Entity(index, KingdomList[random.Next(0, KingdomList.Count)], "caga", DietList[random.Next(0, DietList.Count)], EnvironmentList[random.Next(0, EnvironmentList.Count)], 23, 20, 10, 5, random.Next(0, 1));
+            Entity item1 = new Entity(index, KingdomList[1], "caga", DietList[random.Next(0, DietList.Count)], EnvironmentList[random.Next(0, EnvironmentList.Count)], 23, 20, 10, 5, random.Next(0, 1));
             EntitiesList.Add(item1);
             index++;
 
