@@ -65,6 +65,7 @@
             btnUpdate = new Button();
             btnDelete = new Button();
             groupBox1 = new GroupBox();
+            checkLbEnvironments = new CheckedListBox();
             groupBox2 = new GroupBox();
             picCreature = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgvEntities).BeginInit();
@@ -374,6 +375,7 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.Transparent;
+            groupBox1.Controls.Add(checkLbEnvironments);
             groupBox1.Controls.Add(groupBox2);
             groupBox1.Controls.Add(picCreature);
             groupBox1.Controls.Add(label1);
@@ -405,6 +407,15 @@
             groupBox1.TabIndex = 28;
             groupBox1.TabStop = false;
             groupBox1.Text = "> Create a creature";
+            // 
+            // checkLbEnvironments
+            // 
+            checkLbEnvironments.CheckOnClick = true;
+            checkLbEnvironments.FormattingEnabled = true;
+            checkLbEnvironments.Location = new Point(950, 27);
+            checkLbEnvironments.Name = "checkLbEnvironments";
+            checkLbEnvironments.Size = new Size(210, 130);
+            checkLbEnvironments.TabIndex = 30;
             // 
             // groupBox2
             // 
@@ -487,5 +498,6 @@
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private PictureBox picCreature;
+        private CheckedListBox checkLbEnvironments;
     }
 }

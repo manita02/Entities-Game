@@ -29,6 +29,7 @@ namespace crudsGame.src.views
             cbDiet.DataSource = entityCtn.GetDietList();
             cbEnvironment.DataSource = entityCtn.GetEnvironmentList();
             cbKingdom.DataSource = entityCtn.GetKingdomList();
+            checkLbEnvironments.DataSource = entityCtn.GetEnvironmentList();
         }
 
         bool exist = false;
