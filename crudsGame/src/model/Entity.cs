@@ -180,7 +180,7 @@ namespace crudsGame.src.model
             }
         }
 
-        public int attackPoints { //aca hay errores
+        public int attackPoints { 
             get
             {
                 if(AttackPoints <= 0)
@@ -390,7 +390,7 @@ namespace crudsGame.src.model
                 }
                 else
                 {
-                    MessageBox.Show("La entidad esta muertaaaaaaa en usar item");
+                    //MessageBox.Show("La entidad esta muertaaaaaaa en usar item");
                     return false;
                 }
                 

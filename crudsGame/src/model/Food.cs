@@ -77,10 +77,10 @@ namespace crudsGame.src.model
                 if (value != null)
                 {
                     Diet = value;
-                    MessageBox.Show("estoy");
+                    //MessageBox.Show("estoy");
                 }
                 else
-                    MessageBox.Show("caca");
+                    //MessageBox.Show("cac");
                 throw new InvalidOperationException("You have to select a diet");
             }
         }
@@ -98,7 +98,7 @@ namespace crudsGame.src.model
             else
             {
                 MessageBox.Show("The creature " + entity.name +" is full, he can't eat more!!");
-                return false;
+                return true;
             }
         }
    

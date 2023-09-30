@@ -14,7 +14,7 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
         {
             try
             {
-                MessageBox.Show(entity.currentLife.ToString());
+                //MessageBox.Show(entity.currentLife.ToString());
                 if (entity.currentLife != 0)
                 {
                     entity.currentEnergy -= 10;

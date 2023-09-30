@@ -182,9 +182,9 @@ namespace crudsGame.src.views
             pbCurrentEnergy.Value = GetOnePlayerCreatureSelectedFromCombo().currentEnergy;
 
             txtAttack.Text = GetOnePlayerCreatureSelectedFromCombo().attackPoints.ToString();
-            
+
             txtDefense.Text = GetOnePlayerCreatureSelectedFromCombo().defensePoints.ToString();
-            
+
 
         }
 
@@ -256,16 +256,16 @@ namespace crudsGame.src.views
 
         private void btnInteract_Click(object sender, EventArgs e)
         {
-            
-                if (GetOnePlayerCreatureSelectedFromCombo().UsarItem(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedItemFromCombobox()) == false)
-                {
-                    //MessageBox.Show("Su entidad ha perdido toda su vida por lo tanto murió...");
-                    entityCtn.GetEntitiesList().Remove(GetOnePlayerCreatureSelectedFromCombo());
-                    LoadComboboxWithCreaturesPlayerOne();
-                    cbCreaturesPlayerOne.SelectedIndex = 0;
-                    //cbCreaturesPlayerOne.Items.Remove(GetOnePlayerCreatureSelectedFromCombo());
-                }
-                UpdateProgressbar();
+
+            if (GetOnePlayerCreatureSelectedFromCombo().UsarItem(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedItemFromCombobox()) == false)
+            {
+                //MessageBox.Show("Su entidad ha perdido toda su vida por lo tanto murió...");
+                entityCtn.GetEntitiesList().Remove(GetOnePlayerCreatureSelectedFromCombo());
+                LoadComboboxWithCreaturesPlayerOne();
+                cbCreaturesPlayerOne.SelectedIndex = 0;
+                //cbCreaturesPlayerOne.Items.Remove(GetOnePlayerCreatureSelectedFromCombo());
+            }
+            UpdateProgressbar();
         }
 
         private void btnSleep_Click(object sender, EventArgs e)
