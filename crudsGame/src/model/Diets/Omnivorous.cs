@@ -11,7 +11,10 @@ namespace crudsGame.src.model.Diets
     {
         public bool CanEat(Entity entity, Food food)
         {
-            if (entity.diet.ToString() == food.diet.ToString())
+            //MessageBox.Show("dieta entidad: " + entity.diet.ToString());
+            //MessageBox.Show("comida dieta: " + food.diet.ToString());
+
+            if (entity.diet.ToString() == "Omnivorous" && ((food.diet.ToString() == "Carnivore") || (food.diet.ToString() == "Herbivorous")))
             {
                 return true;
             }

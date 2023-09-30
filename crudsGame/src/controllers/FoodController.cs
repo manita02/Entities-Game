@@ -27,7 +27,7 @@ namespace crudsGame.src.controllers
             return Instance;
         }
 
-        List<string> foodNames = new List<string> { "Lechuga", "Tomate", "Choclo", "Pepino", "Banana", "Manzana", "Durazno", "Pollo", "Vaca", "Cerdo", "Llama", "Cabrito", "Paloma", "Rata", "Comadreja", "Lentejas", "Caramelos", "Chocolates", "Cebada", "Centeno", "Piel de Jabalí", "Rayos De Sol", "Rayos Ultra Violetas", "Corriente Eléctrica", "Rayos Nube - Nube", "Rayos Intra-Nube"};
+        List<string> foodNames = new List<string> { "Lechuga", "Tomate", "Choclo", "Pepino", "Banana", "Manzana", "Durazno", "Pollo", "Vaca", "Cerdo", "Llama", "Cabrito", "Paloma", "Rata", "Rayos De Sol", "Rayos Ultra Violetas", "Corriente Eléctrica", "Rayos Nube - Nube", "Rayos Intra-Nube"};
         List<Food> foodList = new List<Food>();
         List<IDiet> dietList = new List<IDiet>();
 
@@ -40,7 +40,7 @@ namespace crudsGame.src.controllers
             {
                 dietList.Add(DietCreator.CreateAdiet(1));
                 dietList.Add(DietCreator.CreateAdiet(2));
-                dietList.Add(DietCreator.CreateAdiet(3));
+                //dietList.Add(DietCreator.CreateAdiet(3));
                 dietList.Add(DietCreator.CreateAdiet(4));
             }
             return dietList;
@@ -55,22 +55,18 @@ namespace crudsGame.src.controllers
             {
                 if(index <= 6)
                 {
-                    Food food = new Food(index, name, random.Next(1, 50), dietList[1]);
+                    Food food = new Food(index, name, random.Next(1, 50), dietList[1]);//herbiboro
                     foodList.Add(food);
                 }
                 if(index > 6 && index <= 13)
                 {
-                    Food food = new Food(index, name, random.Next(1, 50), dietList[0]);
+                    Food food = new Food(index, name, random.Next(1, 50), dietList[0]);//carnivoro
                     foodList.Add(food);
                 }
-                if(index > 13 && index <= 20)
+                
+                if(index > 13)
                 {
-                    Food food = new Food(index, name, random.Next(1, 50), dietList[2]);
-                    foodList.Add(food);
-                }
-                if(index > 20)
-                {
-                    Food food = new Food(index, name, random.Next(1, 50), dietList[3]);
+                    Food food = new Food(index, name, random.Next(1, 50), dietList[2]);//solar
                     foodList.Add(food);
                 }
 
