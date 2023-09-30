@@ -10,20 +10,30 @@ namespace crudsGame.src.model.Items.Strategy
     internal class EnergyyItem : IStrategyTypeOfItem
     {
         Random random = new Random();
-        public void ApplyItem(Entity entity)
+        public bool ApplyItem(Entity entity)
         {
+            try
+            {
+                if (entity.currentEnergy != entity.maxEnergy)
+                {
+                    //MessageBox.Show("estoy: "+ entity.currentEnergy);
+                    entity.currentEnergy += random.Next(10, 50) - 10;
+                    MessageBox.Show("The " + entity.name + " creature has used a item that increased its energy to " + entity.currentEnergy);
+                    return true;
+                }
+                else
+                {
+                    //MessageBox.Show("no estoy");
+                    MessageBox.Show("Su entidad tiene lo maximo que puede obtener en energia");
+                    return true;
+                }
+            }
+            catch
+            {
+                return true;
+            }
 
-            if (entity.currentEnergy != entity.maxEnergy)
-            {
-                //MessageBox.Show("estoy: "+ entity.currentEnergy);
-                entity.currentEnergy += random.Next(10, 50) - 10;
-                MessageBox.Show("The " + entity.name + " creature has used a item that increased its energy to " + entity.currentEnergy);
-            }
-            else
-            {
-                //MessageBox.Show("no estoy");
-                MessageBox.Show("Su entidad tiene lo maximo que puede obtener en energia");
-            }
+            
 
             
             

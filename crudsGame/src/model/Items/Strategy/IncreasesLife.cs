@@ -10,18 +10,31 @@ namespace crudsGame.src.model.Items.Strategy
     internal class LifeeItem : IStrategyTypeOfItem
     {
         Random random = new Random();
-        public void ApplyItem(Entity entity)
+        public bool ApplyItem(Entity entity)
         {
-            if (entity.currentLife != entity.maxLife)
+
+            try
             {
-                entity.currentEnergy -= 10;
-                entity.currentLife += random.Next(5, 15);
-                MessageBox.Show("The "+entity.name+ " creature has used a item that increased its life to "+ entity.currentLife);
+                if (entity.currentLife != entity.maxLife)
+                {
+                       entity.currentEnergy -= 10;
+                        entity.currentLife += random.Next(5, 15);
+                        MessageBox.Show("The " + entity.name + " creature has used a item that increased its life to " + entity.currentLife);
+                        return true;
+                    
+
+                }
+                else
+                {
+                    MessageBox.Show("Su entidad tiene lo maximo que puede obtener en vida");
+                    return true;
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("Su entidad tiene lo maximo que puede obtener en vida");
+                return true;
             }
+            
 
             
             //}

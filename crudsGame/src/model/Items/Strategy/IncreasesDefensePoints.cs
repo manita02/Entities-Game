@@ -10,27 +10,29 @@ namespace crudsGame.src.model.Items.Strategy
     internal class IncreasesDefensePoints : IStrategyTypeOfItem
     {
         Random random = new Random();
-        public void ApplyItem(Entity entity)
+        public bool ApplyItem(Entity entity)
         {
-            if (entity.defensePoints != 80)
+            try
             {
-                entity.currentEnergy -= 10;
-                MessageBox.Show("The " + entity.name + " creature has used a item that increased its defense points!!");
-                entity.defensePoints += random.Next(5, 15);    
+                if (entity.defensePoints != 80)
+                {
+                    entity.currentEnergy -= 10;
+                    MessageBox.Show("The " + entity.name + " creature has used a item that increased its defense points!!");
+                    entity.defensePoints += random.Next(5, 15);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Su entidad tiene lo maximo que puede obtener en puntos de defensa");
+                    return true;
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("Su entidad tiene lo maximo que puede obtener en puntos de defensa");
+                return true;
             }
-            //try
-            //{
             
-                
-            //}
-            //catch(Exception e)
-            //{
-            //    MessageBox.Show(e.ToString());
-            //}
+            
             
 
         }

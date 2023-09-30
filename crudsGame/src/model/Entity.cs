@@ -225,11 +225,27 @@ namespace crudsGame.src.model
         public int defensePoints {
             get
             {
-                return DefensePoints;
+                if (DefensePoints <= 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return DefensePoints;
+                }
             }
 
             set
             {
+                if (value >= 80)
+                {
+                    DefensePoints = 80;
+                }
+                else
+                {
+                    DefensePoints = value;
+                }
+                /*
                 if (value >= 10 && value <= 80)
                 {
                     DefensePoints = value;
@@ -237,6 +253,7 @@ namespace crudsGame.src.model
                 else
                     DefensePoints = 80;
                     throw new ArgumentOutOfRangeException(nameof(value), "The valid range for defense points is between 10 and 80.");
+                */
 
             }
         }
@@ -244,7 +261,14 @@ namespace crudsGame.src.model
         {
             get
             {
-                return CurrentLife;
+                if (CurrentLife <= 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return CurrentLife;
+                }
             }
             set
             {
@@ -317,43 +341,80 @@ namespace crudsGame.src.model
             
         }
 
-        public void BeingAttacked(int atkPoints, Entity entity)
+        public int BeingAttacked(int atkPoints, Entity entity)
         {
             try
             {
-               
                         if (atkPoints < 0)
                         {
-                            this.currentLife += atkPoints;
-                            MessageBox.Show("Ganó " + entity.name + "con sus puntos de defensa!!");
+                                this.CurrentLife += atkPoints; //como es la entidad atacante usamos los atributos y no el get set
+                                if (this.CurrentLife <= 0)
+                                {
+                                    MessageBox.Show("vida de atacante: " + this.CurrentLife);
+                                    return 1;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Ganó " + entity.name + "con sus puntos de defensa!!");
+                                    return 0;
+
+                                }
                         }
                         else
                         {
-                            if(atkPoints > 0)
+                            if (atkPoints > 0)
                             {
-                                entity.currentLife -= atkPoints;
+                                entity.currentLife -= atkPoints; //aca al ser al defensa usamos el get set para que valla a la exepcion cuando se muere
                                 MessageBox.Show("Ganó " + this.name + "con sus puntos de ataque!!");
+                                return 0;
                             }
                         }
-                   
+                        return 0;     
             }
             catch(Exception e)
             {
                 Console.WriteLine(e.ToString());
+                return 2;
             }
              
         }
 
 
-        public void UsarItem(Entity entity, Item item)
+        public bool UsarItem(Entity entity, Item item)
         {
             if (Kingdom.CanInteract(entity, item) == true)
             {
-                item.Interact(entity);
+                if (item.Interact(entity) == true)
+                {
+                    return true; 
+                }
+                else
+                {
+                    MessageBox.Show("La entidad esta muertaaaaaaa en usar item");
+                    return false;
+                }
+                
+                
+                /*
+                if (entity.currentLife <= 0)
+                {
+                    MessageBox.Show("su entidad murio");
+                    return false;
+                }
+                else
+                {
+                    item.Interact(entity);
+                    return true;
+                }
+                */
+
+
+                
             }
             else
             {
                 MessageBox.Show("la entidad seleccionada no puede usar este item");
+                return true;
             }
         }
 
@@ -379,6 +440,8 @@ namespace crudsGame.src.model
             
             
         }
+
+       
 
         public override string ToString()
         {

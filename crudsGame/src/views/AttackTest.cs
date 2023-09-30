@@ -98,6 +98,7 @@ namespace crudsGame.src.views
                     cbCreaturesPlayerTwo.Items.Remove(creature);
                 }
             }
+            cbCreaturesPlayerTwo.SelectedIndex = 0;
         }
 
         #endregion
@@ -212,31 +213,33 @@ namespace crudsGame.src.views
 
         private void btnAttack_Click(object sender, EventArgs e)
         {
-            if (GetOnePlayerCreatureSelectedFromCombo().currentLife <= 0)
+            int result = GetOnePlayerCreatureSelectedFromCombo().BeingAttacked(GetOnePlayerCreatureSelectedFromCombo().Attack(GetTwoPlayerCreatureSelectedFromCombo()), GetTwoPlayerCreatureSelectedFromCombo());
+            //MessageBox.Show("valor de result: " + result.ToString());
+            if (result == 1)
             {
+                MessageBox.Show(" " + GetOnePlayerCreatureSelectedFromCombo().name + " falleció!!");
                 entityCtn.GetEntitiesList().Remove(GetOnePlayerCreatureSelectedFromCombo());
                 LoadComboboxWithCreaturesPlayerOne();
-                cbCreaturesPlayerOne.Text = "he is dead :(";
-                btnAttack.Enabled = false;
-                cbCreaturesPlayerTwo.Enabled = false;
+                //cbCreaturesPlayerOne.Text = "he is dead :(";
+                //btnAttack.Enabled = false;
+                //cbCreaturesPlayerTwo.Enabled = false;
+                cbCreaturesPlayerOne.SelectedIndex = 0;
             }
             else
             {
-                if (GetTwoPlayerCreatureSelectedFromCombo().currentLife <= 0)
+                if (result == 2)
                 {
+                    //MessageBox.Show(" " + GetTwoPlayerCreatureSelectedFromCombo().name + " falleció!!");
                     entityCtn.GetEntitiesList().Remove(GetTwoPlayerCreatureSelectedFromCombo());
                     LoadComboWithCreaturesPlayerTwo();
                     LoadComboboxWithCreaturesPlayerOne();
-                    cbCreaturesPlayerTwo.Text = "he is dead :(";
-                    btnAttack.Enabled = false;
-                }
-                else
-                {
-                    GetOnePlayerCreatureSelectedFromCombo().BeingAttacked(GetOnePlayerCreatureSelectedFromCombo().Attack(GetTwoPlayerCreatureSelectedFromCombo()), GetTwoPlayerCreatureSelectedFromCombo());
-                    UpdateProgressbar();
-                    UpdateJ2Labels();
+                    //cbCreaturesPlayerTwo.Text = "he is dead :(";
+                    //btnAttack.Enabled = false;
+                    cbCreaturesPlayerOne.SelectedIndex = 0;
                 }
             }
+            UpdateProgressbar();
+            UpdateJ2Labels();
         }
 
         private void cbCriatureToDefense_SelectedIndexChanged(object sender, EventArgs e)
@@ -253,9 +256,16 @@ namespace crudsGame.src.views
 
         private void btnInteract_Click(object sender, EventArgs e)
         {
-            GetOnePlayerCreatureSelectedFromCombo().UsarItem(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedItemFromCombobox());
-            //GetSelectedItemFromCombobox().Interact(GetOnePlayerCreatureSelectedFromCombo());
-            UpdateProgressbar();
+            
+                if (GetOnePlayerCreatureSelectedFromCombo().UsarItem(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedItemFromCombobox()) == false)
+                {
+                    //MessageBox.Show("Su entidad ha perdido toda su vida por lo tanto murió...");
+                    entityCtn.GetEntitiesList().Remove(GetOnePlayerCreatureSelectedFromCombo());
+                    LoadComboboxWithCreaturesPlayerOne();
+                    cbCreaturesPlayerOne.SelectedIndex = 0;
+                    //cbCreaturesPlayerOne.Items.Remove(GetOnePlayerCreatureSelectedFromCombo());
+                }
+                UpdateProgressbar();
         }
 
         private void btnSleep_Click(object sender, EventArgs e)

@@ -90,16 +90,25 @@ namespace crudsGame.src.model.Items
             return Name +"_"+ Kingdom;
         }
 
-        public void Interact(Entity entity)
+        public bool Interact(Entity entity)
         {
             try {
-                ItemStrategy.ApplyItem(entity);
+                if (ItemStrategy.ApplyItem(entity) == true)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                //ItemStrategy.ApplyItem(entity);
                 //entity.currentEnergy -= 10;
 
             }
             catch(Exception e)
             {
                 Console.WriteLine(e.ToString());
+                return false;
             }
 
             

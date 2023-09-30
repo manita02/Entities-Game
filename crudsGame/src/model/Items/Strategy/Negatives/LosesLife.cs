@@ -10,18 +10,29 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
     internal class LosesLife:IStrategyTypeOfItem
     {
         Random random = new Random();
-        public void ApplyItem(Entity entity)
+        public bool ApplyItem(Entity entity)
         {
-            //if (entity.currentLife != 0)
-            //{
-                entity.currentEnergy -= 10;
-                entity.currentLife -= random.Next(5, 15);
-                MessageBox.Show("The " + entity.name + " creature used an item that made him lose life (-" + entity.currentLife);
-            //}
-            //else
-            //{
-                //MessageBox.Show("Su entidad tiene lo maximo que puede obtener en vida");
-            //}
+            try
+            {
+                MessageBox.Show(entity.currentLife.ToString());
+                if (entity.currentLife != 0)
+                {
+                    entity.currentEnergy -= 10;
+                    entity.currentLife -= random.Next(5, 30);
+                    MessageBox.Show("The " + entity.name + " creature used an item that made him lose life (-" + entity.currentLife);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Su entidad ha muerto");
+                    return false;
+                }
+            }
+            catch
+            {
+                return true;
+            }
+            
 
 
             //}
@@ -31,7 +42,6 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
             //}
 
         }
-
 
 
         public override string ToString()

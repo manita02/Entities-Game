@@ -10,18 +10,29 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
     internal class LosesDefensePoints:IStrategyTypeOfItem
     {
         Random random = new Random();
-        public void ApplyItem(Entity entity)
+        public bool ApplyItem(Entity entity)
         {
-            if (entity.defensePoints != 0)
+            try
             {
-                entity.currentEnergy -= 10;
-                MessageBox.Show("The " + entity.name + " creature used an item that made him lose defense points!!");
-                entity.defensePoints -= random.Next(5, 15);
+                if (entity.defensePoints != 0)
+                {
+                    entity.currentEnergy -= 10;
+                    MessageBox.Show("The " + entity.name + " creature used an item that made him lose defense points!!");
+                    entity.defensePoints -= random.Next(5, 15);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Su entidad perdió todos sus puntos de defensa");
+                    return true;
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("Su entidad perdió todos sus puntos de defensa");
+                return true;
+
             }
+            
         }
 
         public override string ToString()

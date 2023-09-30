@@ -10,20 +10,30 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
     internal class LosesAttackPoints:IStrategyTypeOfItem
     {
         Random random = new Random();
-        public void ApplyItem(Entity entity)
+        public bool ApplyItem(Entity entity)
         {
-            //MessageBox.Show("ataque: " + entity.attackPoints);
-            if (entity.attackPoints != 0)
+            try
             {
-                
-                entity.currentEnergy -= 10;
-                MessageBox.Show("The " + entity.name + " creature used an item that made him lose attack points!!");
-                entity.attackPoints -= random.Next(5, 15);
+                //MessageBox.Show("ataque: " + entity.attackPoints);
+                if (entity.attackPoints != 0)
+                {
+
+                    entity.currentEnergy -= 10;
+                    MessageBox.Show("The " + entity.name + " creature used an item that made him lose attack points!!");
+                    entity.attackPoints -= random.Next(5, 15);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Su entidad perdió todos sus puntos de ataque!!");
+                    return true;
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("Su entidad perdió todos sus puntos de ataque!!");
+                return true;
             }
+            
            
         }
 
