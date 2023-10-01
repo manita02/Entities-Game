@@ -18,6 +18,7 @@ namespace crudsGame.src.model
         string Name;
         IDiet Diet;
         IEnvironment Environment;
+        List<IEnvironment> EnvironmentsList = new List<IEnvironment>();
         int MaxEnergy;
         int CurrentEnergy;
         int MaxLife;
@@ -26,6 +27,27 @@ namespace crudsGame.src.model
         int DefensePoints;
         int AttackRange;
 
+
+        
+        public Entity(int id, IKingdom kingdom, string name, IDiet diet, List<IEnvironment> environments, int maxenergy, int maxlife, int attackpoints, int defensepoints, int attackrange)
+        {
+            Id = id;
+            Kingdom = kingdom;
+            Name = name;
+            Diet = diet;
+            EnvironmentsList = environments;
+            MaxEnergy = maxenergy;
+            CurrentEnergy = MaxEnergy;
+            MaxLife = maxlife;
+            CurrentLife = MaxLife;
+            AttackPoints = attackpoints;
+            DefensePoints = defensepoints;
+            AttackRange = attackrange;
+        }
+
+
+
+        /*
         public Entity(int id, IKingdom kingdom, string name, IDiet diet, IEnvironment environment, int maxenergy, int maxlife, int attackpoints, int defensepoints, int attackrange)
         {
             Id = id;
@@ -40,6 +62,19 @@ namespace crudsGame.src.model
             AttackPoints = attackpoints;
             DefensePoints = defensepoints;
             AttackRange = attackrange;
+        }
+        */
+
+        public List<IEnvironment> environmentList
+        {
+            get
+            {
+                return EnvironmentsList;
+            }
+            set
+            {
+                EnvironmentsList = value;
+            }
         }
 
         public int id
@@ -300,6 +335,7 @@ namespace crudsGame.src.model
 
             set
             {
+                /*
                 if (value == 0 || value == 1)
                 {
                     AttackRange = value;
@@ -309,8 +345,11 @@ namespace crudsGame.src.model
                     MessageBox.Show("El ataque solo puede ser 0 o 1");
                     AttackRange = 1;
                 }
-                
-                else throw new ArgumentOutOfRangeException(nameof(value), "Attack Range can be 0 (zero) or 1 (one)");
+                */
+
+                AttackRange = value;
+
+                //else throw new ArgumentOutOfRangeException(nameof(value), "Attack Range can be 0 (zero) or 1 (one)");
 
             }
         }

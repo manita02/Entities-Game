@@ -85,6 +85,30 @@ namespace crudsGame.src.controllers
             return EntitiesList;
         }
 
+        private List<IEnvironment> agarrandoAmbientes(int numeroAl)
+        {
+            List<IEnvironment> lista = new List<IEnvironment>();
+            if (numeroAl % 3 == 0)
+            {
+                lista.Add(EnvironmentList[random.Next(0, EnvironmentList.Count)]);
+            }
+            else
+            {
+                if (numeroAl % 2 == 0)
+                {
+                    lista.Add(EnvironmentList[0]);
+                    lista.Add(EnvironmentList[1]);
+                }
+                else
+                {
+                    lista.Add(EnvironmentList[0]);
+                    lista.Add(EnvironmentList[1]);
+                    lista.Add(EnvironmentList[2]);
+                }
+            }
+            return lista;
+        }
+
 
 
 
@@ -94,15 +118,20 @@ namespace crudsGame.src.controllers
             EnvironmentList = GetEnvironmentList();
             KingdomList = GetKingdomList();
 
-            Entity item1 = new Entity(index, KingdomList[1], "pruebass", DietList[random.Next(0, DietList.Count)], EnvironmentList[random.Next(0, EnvironmentList.Count)], 30, 30, 2, 3, random.Next(0, 1));
+            //Entity item1 = new Entity(index, KingdomList[1], "pruebass", DietList[random.Next(0, DietList.Count)], EnvironmentList[random.Next(0, EnvironmentList.Count)], 30, 30, 2, 3, random.Next(0, 1));
+            Entity item1 = new Entity(index, KingdomList[1], "pruebass", DietList[random.Next(0, DietList.Count)], agarrandoAmbientes(random.Next(0,100)), 30, 30, 2, 3, random.Next(0, 1));
             EntitiesList.Add(item1);
             index++;
 
             foreach (var name in RandomNames)
             {
-                Entity entity = new Entity(index, KingdomList[random.Next(0, KingdomList.Count)], name, DietList[random.Next(0, DietList.Count)], EnvironmentList[random.Next(0, EnvironmentList.Count)], 100, 100, random.Next(10, 80), random.Next(10, 80), random.Next(0, 1));
+                //Entity entity = new Entity(index, KingdomList[random.Next(0, KingdomList.Count)], name, DietList[random.Next(0, DietList.Count)], EnvironmentList[random.Next(0, EnvironmentList.Count)], 100, 100, random.Next(10, 80), random.Next(10, 80), random.Next(0, 1));
+                Entity entity = new Entity(index, KingdomList[random.Next(0, KingdomList.Count)], name, DietList[random.Next(0, DietList.Count)], agarrandoAmbientes(random.Next(0, 100)), 100, 100, random.Next(10, 80), random.Next(10, 80), random.Next(0, 1));
+
+
                 //MessageBox.Show("id: " + entity.id + " NAME: " + entity.name);
 
+                //MessageBox.Show("ambientes: " + entity.environmentList.Count); esto funca los esta cargando
 
                 EntitiesList.Add(entity);
                 index++;
@@ -113,13 +142,40 @@ namespace crudsGame.src.controllers
             return EntitiesList;
         }
 
-
+        /*
         public Entity CreateEntity(int id, IKingdom kingdom, string name, IDiet diet, IEnvironment environment, int maxEnergy, int maxLife, int attack, int defense, int range)
         {
 
             return new Entity(id, kingdom, name, diet, environment, maxEnergy, maxLife, attack, defense, range);
 
+        }*/
+
+        
+        public Entity CreateEntity(int id, IKingdom kingdom, string name, IDiet diet, List<IEnvironment> environments, int maxEnergy, int maxLife, int attack, int defense, int range)
+        {
+
+            return new Entity(id, kingdom, name, diet, environments, maxEnergy, maxLife, attack, defense, range);
+
         }
+
+
+        public Entity Update(Entity entity, int id, IKingdom kingdom, string name, IDiet diet, List<IEnvironment> environments, int maxEnergy, int maxLife, int attack, int defense, int range)
+        {
+            entity.id = id;
+            entity.kingdom = kingdom;
+            entity.name = name;
+            entity.diet = diet;
+            entity.environmentList = environments; 
+            entity.maxEnergy=maxEnergy;
+            entity.maxLife = maxLife;
+            entity.attackPoints = attack;
+            entity.defensePoints=defense;
+            entity.attackRange = range;
+
+            return entity;
+
+        }
+
 
         public void DeleteAnEntity(int r)//chequear este
         {
