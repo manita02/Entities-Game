@@ -2,6 +2,7 @@
 using crudsGame.src.factoryMethod;
 using crudsGame.src.interfaces;
 using crudsGame.src.model;
+using crudsGame.src.model.Diets;
 using crudsGame.src.model.Items;
 using System;
 using System.Collections.Generic;
@@ -193,6 +194,42 @@ namespace crudsGame.src.views
         private void txtValue_KeyPress(object sender, KeyPressEventArgs e)
         {
             GeneralController.ValidateNumbers(e);
+        }
+
+        private void cbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbType.Text == "Increases Energy")
+            {
+                picItem.Image = Properties.Resources.moreEnergy;
+            }
+            if (cbType.Text == "Increases Life")
+            {
+                picItem.Image = Properties.Resources.moreLife;
+            }
+            if (cbType.Text == "Increases Attack Points")
+            {
+                picItem.Image = Properties.Resources.moreAttack;
+            }
+            if (cbType.Text == "Increases Defense Points")
+            {
+                picItem.Image = Properties.Resources.moreDefense;
+            }
+            if (cbType.Text == "Loses Energy")
+            {
+                picItem.Image = Properties.Resources.loseEnergy;
+            }
+            if (cbType.Text == "Loses Life")
+            {
+                picItem.Image = Properties.Resources.loseLifee;
+            }
+            if (cbType.Text == "Loses Attack Points")
+            {
+                picItem.Image = Properties.Resources.loseAttack;
+            }
+            if (cbType.Text == "Loses Defense Points")
+            {
+                picItem.Image = Properties.Resources.loseDefense;
+            }
         }
     }
 }
