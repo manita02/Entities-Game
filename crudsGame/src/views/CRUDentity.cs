@@ -30,7 +30,7 @@ namespace crudsGame.src.views
             cbDiet.DataSource = entityCtn.GetDietList();
             cbEnvironment.DataSource = entityCtn.GetEnvironmentList();
             cbKingdom.DataSource = entityCtn.GetKingdomList();
-            checkLbEnvironments.DataSource = entityCtn.GetEnvironmentList();
+            clbEnvironments.DataSource = entityCtn.GetEnvironmentList();
         }
 
         bool exist = false;
@@ -138,7 +138,7 @@ namespace crudsGame.src.views
             dgvEntities.Rows[x].Cells[3].Value = entity.diet;
 
             deseleccionarcheckListbox();
-            buscarTildados(entity);
+            CheckEnvironmentsInListbox(entity);
 
             //dgvEntities.Rows[x].Cells[4].Value = entity.environment;
             dgvEntities.Rows[x].Cells[5].Value = entity.attackPoints;
@@ -153,9 +153,9 @@ namespace crudsGame.src.views
 
         private void deseleccionarcheckListbox()
         {
-            for(int i = 0; i < checkLbEnvironments.Items.Count; i++)
+            for(int i = 0; i < clbEnvironments.Items.Count; i++)
             {
-                checkLbEnvironments.SetItemChecked(i, false);
+                clbEnvironments.SetItemChecked(i, false);
             }
         }
 
@@ -170,7 +170,7 @@ namespace crudsGame.src.views
                 cbDiet.SelectedIndex = GetIndexOfDietComboThatComesFromTheDatagrid();
 
                 deseleccionarcheckListbox();
-                buscarTildados(buscarEntidad((int)(dgvEntities.CurrentRow.Cells[0].Value)));
+                CheckEnvironmentsInListbox(SearchEntityById((int)(dgvEntities.CurrentRow.Cells[0].Value)));
 
                 //cbEnvironment.SelectedIndex = GetIndexOfEnvironmentsComboThatComesFromTheDatagrid();
                 txtAttack.Text = dgvEntities.CurrentRow.Cells[5].Value.ToString();
@@ -182,84 +182,53 @@ namespace crudsGame.src.views
         }
 
 
-        private Entity buscarEntidad(int id)
+        private Entity SearchEntityById(int id)
         {
             foreach (var ent in entityCtn.GetEntitiesList())
             {
                 if (ent.id == id)
                 {
-                    //MessageBox.Show("id q coincide: " + ent.id);
-                    //MessageBox.Show("lista ambientes: " + ent.environmentList.Count);
                     return ent;
                 }
             }
-            //MessageBox.Show("el id por parametro: "+id);
             return null;
         }
 
-        private bool buscarEnListaDeAmbientesDeLaPropiaEntidad(Entity entity, IEnvironment environment)
+        private bool VerifyIfTheItemListboxEnvironmentIsInTheListOfEnvironmentsItself(Entity entity, IEnvironment checkedEnvironment)
         {
-            //MessageBox.Show("cantidad de ambientes propios: "+entity.environmentList.Count);
             for (int i = 0; i < entity.environmentList.Count; i++)
             {
-                //MessageBox.Show("ambiente q viene a comparativa del lsitb: " + environment.ToString());
-                //MessageBox.Show("lista ya cargada de la propia entidad: " + entity.environmentList[i].ToString());
-                if (environment == entity.environmentList[i])
+                if (checkedEnvironment == entity.environmentList[i])
                 {
-                    //MessageBox.Show("son iguales es verdadero");
                     return true;
                 }  
             }
             return false;
         }
 
-        private void buscarTildados(Entity entity) 
+        private void CheckEnvironmentsInListbox(Entity entity) 
         {
-            for (int i = 0; i < checkLbEnvironments.Items.Count; i++)
+            for (int i = 0; i < clbEnvironments.Items.Count; i++)
             {
-                /*
-                MessageBox.Show("entity en listbox: "+ checkLbEnvironments.Items[i].ToString()); //esto no funciona ver mañana q devuelve capaz en el q crea q si anda probar estos messagess
-                MessageBox.Show("entity en lista cargada: "+ entity.environmentList[i].ToString());
-                if ((IEnvironment)checkLbEnvironments.Items[i] == entity.environmentList[i])
+                if (VerifyIfTheItemListboxEnvironmentIsInTheListOfEnvironmentsItself(entity, (IEnvironment)clbEnvironments.Items[i])==true)
                 {
-                    checkLbEnvironments.SetItemChecked(i, true);
-                    //checkLbEnvironments.Items[i]
-                }
-                */
-                //MessageBox.Show("entity en listboxxxxxxxxxxxx: " + checkLbEnvironments.Items[i].ToString());
-                if (buscarEnListaDeAmbientesDeLaPropiaEntidad(entity, (IEnvironment)checkLbEnvironments.Items[i])==true)
-                {
-                    checkLbEnvironments.SetItemChecked(i, true);
+                    clbEnvironments.SetItemChecked(i, true);
                 }
             }
         }
 
-        private List<IEnvironment> chequearAmbientesTildadosEnListBox()
+        private List<IEnvironment> GetListOfCheckedEnvironments()
         {
-            List<IEnvironment> lista = new List<IEnvironment>();
-            for (int i = 0; i <= (checkLbEnvironments.Items.Count - 1); i++)
+            List<IEnvironment> list = new List<IEnvironment>();
+            for (int i = 0; i <= (clbEnvironments.Items.Count - 1); i++)
             {
-                
-                if (checkLbEnvironments.GetItemChecked(i))
+                if (clbEnvironments.GetItemChecked(i))
                 {
                     //MessageBox.Show("los chequedos son:: " + checkLbEnvironments.Items[i].ToString());
-                    lista.Add((IEnvironment)checkLbEnvironments.Items[i]);
+                    list.Add((IEnvironment)clbEnvironments.Items[i]);
                 }
             }
-            
-
-            /*
-            for (int x = 0; x < checkLbEnvironments.CheckedItems.Count; x++)
-            {
-                MessageBox.Show("los chequedos son:: " + checkLbEnvironments.Items[x].ToString()); 
-
-                lista.Add((IEnvironment)checkLbEnvironments.Items[x]);
-            }*/
-
-            //MessageBox.Show("cantidad total: " + lista.Count);
-            
-
-            return lista;
+            return list;
 
         }
 
@@ -270,7 +239,7 @@ namespace crudsGame.src.views
             if (CheckEmptyFields() == false)
             {
                 //Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
-                Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), chequearAmbientesTildadosEnListBox(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+                Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
                
                 CheckIfEntityExists(entity);
                 if (exist == false)
@@ -291,7 +260,7 @@ namespace crudsGame.src.views
             {
                 if (CheckEmptyFields() == false)
                 {
-                    Entity entity = entityCtn.Update(buscarEntidad((int)dgvEntities.CurrentRow.Cells[0].Value),Convert.ToInt32(txtId.Text), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), chequearAmbientesTildadosEnListBox(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+                    Entity entity = entityCtn.Update(SearchEntityById((int)dgvEntities.CurrentRow.Cells[0].Value),Convert.ToInt32(txtId.Text), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
 
 
                     //Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));

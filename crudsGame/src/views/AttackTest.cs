@@ -201,7 +201,7 @@ namespace crudsGame.src.views
             UpdateProgressbar();
             txtAttack.Text = GetOnePlayerCreatureSelectedFromCombo().attackPoints.ToString();
             txtDefense.Text = GetOnePlayerCreatureSelectedFromCombo().defensePoints.ToString();
-            txtEnvironment.Text = GetOnePlayerCreatureSelectedFromCombo().environment.ToString();
+            //txtEnvironment.Text = GetOnePlayerCreatureSelectedFromCombo().environment.ToString();
             txtKingdom.Text = GetOnePlayerCreatureSelectedFromCombo().kingdom.ToString();
             txtMaxEnergy.Text = GetOnePlayerCreatureSelectedFromCombo().maxEnergy.ToString();
             txtMaxLife.Text = GetOnePlayerCreatureSelectedFromCombo().maxLife.ToString();
