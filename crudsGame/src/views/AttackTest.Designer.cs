@@ -29,9 +29,20 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            lbCurrentEnergyJ1 = new Label();
+            btnSleep = new Button();
+            lbLifeJ1 = new Label();
+            btnInteract = new Button();
+            label2 = new Label();
             txtDiet = new TextBox();
+            label1 = new Label();
+            btnComer = new Button();
+            pbCurrentEnergy = new ProgressBar();
+            pbCurrentLife = new ProgressBar();
             label10 = new Label();
+            cbFoods = new ComboBox();
             txtId = new TextBox();
+            cbItems = new ComboBox();
             label9 = new Label();
             txtKingdom = new TextBox();
             txtEnvironment = new TextBox();
@@ -52,17 +63,6 @@
             btnAttack = new Button();
             cbCreaturesPlayerTwo = new ComboBox();
             lbCurrentEnergyJ2 = new Label();
-            pbCurrentLife = new ProgressBar();
-            pbCurrentEnergy = new ProgressBar();
-            label1 = new Label();
-            label2 = new Label();
-            lbLifeJ1 = new Label();
-            lbCurrentEnergyJ1 = new Label();
-            cbItems = new ComboBox();
-            cbFoods = new ComboBox();
-            btnComer = new Button();
-            btnInteract = new Button();
-            btnSleep = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -105,12 +105,96 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Choose a CRIATURE (Player One)";
             // 
+            // lbCurrentEnergyJ1
+            // 
+            lbCurrentEnergyJ1.AutoSize = true;
+            lbCurrentEnergyJ1.Location = new Point(641, 66);
+            lbCurrentEnergyJ1.Name = "lbCurrentEnergyJ1";
+            lbCurrentEnergyJ1.Size = new Size(22, 15);
+            lbCurrentEnergyJ1.TabIndex = 7;
+            lbCurrentEnergyJ1.Text = "***";
+            // 
+            // btnSleep
+            // 
+            btnSleep.Location = new Point(910, 190);
+            btnSleep.Name = "btnSleep";
+            btnSleep.Size = new Size(75, 23);
+            btnSleep.TabIndex = 13;
+            btnSleep.Text = "SLEEP";
+            btnSleep.UseVisualStyleBackColor = true;
+            btnSleep.Click += btnSleep_Click;
+            // 
+            // lbLifeJ1
+            // 
+            lbLifeJ1.AutoSize = true;
+            lbLifeJ1.Location = new Point(641, 16);
+            lbLifeJ1.Name = "lbLifeJ1";
+            lbLifeJ1.Size = new Size(22, 15);
+            lbLifeJ1.TabIndex = 6;
+            lbLifeJ1.Text = "***";
+            // 
+            // btnInteract
+            // 
+            btnInteract.Location = new Point(1006, 58);
+            btnInteract.Name = "btnInteract";
+            btnInteract.Size = new Size(75, 23);
+            btnInteract.TabIndex = 12;
+            btnInteract.Text = "interact";
+            btnInteract.UseVisualStyleBackColor = true;
+            btnInteract.Click += btnInteract_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(349, 66);
+            label2.Name = "label2";
+            label2.Size = new Size(43, 15);
+            label2.TabIndex = 5;
+            label2.Text = "Energy";
+            // 
             // txtDiet
             // 
             txtDiet.Location = new Point(586, 123);
             txtDiet.Name = "txtDiet";
             txtDiet.Size = new Size(100, 23);
             txtDiet.TabIndex = 18;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(349, 16);
+            label1.Name = "label1";
+            label1.Size = new Size(26, 15);
+            label1.TabIndex = 4;
+            label1.Text = "Life";
+            // 
+            // btnComer
+            // 
+            btnComer.Location = new Point(1024, 122);
+            btnComer.Name = "btnComer";
+            btnComer.Size = new Size(75, 23);
+            btnComer.TabIndex = 11;
+            btnComer.Text = "comer";
+            btnComer.UseVisualStyleBackColor = true;
+            btnComer.Click += btnComer_Click;
+            // 
+            // pbCurrentEnergy
+            // 
+            pbCurrentEnergy.BackColor = Color.Yellow;
+            pbCurrentEnergy.ForeColor = Color.Gold;
+            pbCurrentEnergy.Location = new Point(406, 63);
+            pbCurrentEnergy.Name = "pbCurrentEnergy";
+            pbCurrentEnergy.Size = new Size(229, 23);
+            pbCurrentEnergy.TabIndex = 3;
+            // 
+            // pbCurrentLife
+            // 
+            pbCurrentLife.BackColor = Color.Lime;
+            pbCurrentLife.ForeColor = Color.DarkSeaGreen;
+            pbCurrentLife.Location = new Point(406, 15);
+            pbCurrentLife.Name = "pbCurrentLife";
+            pbCurrentLife.Size = new Size(229, 23);
+            pbCurrentLife.TabIndex = 2;
             // 
             // label10
             // 
@@ -121,12 +205,30 @@
             label10.TabIndex = 17;
             label10.Text = "Diet";
             // 
+            // cbFoods
+            // 
+            cbFoods.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbFoods.FormattingEnabled = true;
+            cbFoods.Location = new Point(741, 122);
+            cbFoods.Name = "cbFoods";
+            cbFoods.Size = new Size(277, 23);
+            cbFoods.TabIndex = 10;
+            // 
             // txtId
             // 
             txtId.Location = new Point(586, 93);
             txtId.Name = "txtId";
             txtId.Size = new Size(100, 23);
             txtId.TabIndex = 16;
+            // 
+            // cbItems
+            // 
+            cbItems.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbItems.FormattingEnabled = true;
+            cbItems.Location = new Point(741, 59);
+            cbItems.Name = "cbItems";
+            cbItems.Size = new Size(244, 23);
+            cbItems.TabIndex = 9;
             // 
             // label9
             // 
@@ -304,112 +406,12 @@
             lbCurrentEnergyJ2.TabIndex = 8;
             lbCurrentEnergyJ2.Text = "Energy_J2";
             // 
-            // pbCurrentLife
-            // 
-            pbCurrentLife.BackColor = Color.Lime;
-            pbCurrentLife.ForeColor = Color.DarkSeaGreen;
-            pbCurrentLife.Location = new Point(406, 15);
-            pbCurrentLife.Name = "pbCurrentLife";
-            pbCurrentLife.Size = new Size(229, 23);
-            pbCurrentLife.TabIndex = 2;
-            // 
-            // pbCurrentEnergy
-            // 
-            pbCurrentEnergy.BackColor = Color.Yellow;
-            pbCurrentEnergy.ForeColor = Color.Gold;
-            pbCurrentEnergy.Location = new Point(406, 63);
-            pbCurrentEnergy.Name = "pbCurrentEnergy";
-            pbCurrentEnergy.Size = new Size(229, 23);
-            pbCurrentEnergy.TabIndex = 3;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(349, 16);
-            label1.Name = "label1";
-            label1.Size = new Size(26, 15);
-            label1.TabIndex = 4;
-            label1.Text = "Life";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(349, 66);
-            label2.Name = "label2";
-            label2.Size = new Size(43, 15);
-            label2.TabIndex = 5;
-            label2.Text = "Energy";
-            // 
-            // lbLifeJ1
-            // 
-            lbLifeJ1.AutoSize = true;
-            lbLifeJ1.Location = new Point(641, 16);
-            lbLifeJ1.Name = "lbLifeJ1";
-            lbLifeJ1.Size = new Size(22, 15);
-            lbLifeJ1.TabIndex = 6;
-            lbLifeJ1.Text = "***";
-            // 
-            // lbCurrentEnergyJ1
-            // 
-            lbCurrentEnergyJ1.AutoSize = true;
-            lbCurrentEnergyJ1.Location = new Point(641, 66);
-            lbCurrentEnergyJ1.Name = "lbCurrentEnergyJ1";
-            lbCurrentEnergyJ1.Size = new Size(22, 15);
-            lbCurrentEnergyJ1.TabIndex = 7;
-            lbCurrentEnergyJ1.Text = "***";
-            // 
-            // cbItems
-            // 
-            cbItems.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbItems.FormattingEnabled = true;
-            cbItems.Location = new Point(741, 59);
-            cbItems.Name = "cbItems";
-            cbItems.Size = new Size(244, 23);
-            cbItems.TabIndex = 9;
-            // 
-            // cbFoods
-            // 
-            cbFoods.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbFoods.FormattingEnabled = true;
-            cbFoods.Location = new Point(741, 122);
-            cbFoods.Name = "cbFoods";
-            cbFoods.Size = new Size(277, 23);
-            cbFoods.TabIndex = 10;
-            // 
-            // btnComer
-            // 
-            btnComer.Location = new Point(1024, 122);
-            btnComer.Name = "btnComer";
-            btnComer.Size = new Size(75, 23);
-            btnComer.TabIndex = 11;
-            btnComer.Text = "comer";
-            btnComer.UseVisualStyleBackColor = true;
-            btnComer.Click += btnComer_Click;
-            // 
-            // btnInteract
-            // 
-            btnInteract.Location = new Point(1006, 58);
-            btnInteract.Name = "btnInteract";
-            btnInteract.Size = new Size(75, 23);
-            btnInteract.TabIndex = 12;
-            btnInteract.Text = "interact";
-            btnInteract.UseVisualStyleBackColor = true;
-            btnInteract.Click += btnInteract_Click;
-            // 
-            // btnSleep
-            // 
-            btnSleep.Location = new Point(910, 190);
-            btnSleep.Name = "btnSleep";
-            btnSleep.Size = new Size(75, 23);
-            btnSleep.TabIndex = 13;
-            btnSleep.Text = "SLEEP";
-            btnSleep.UseVisualStyleBackColor = true;
-            btnSleep.Click += btnSleep_Click;
-            // 
             // AttackTest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.interactions;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1171, 518);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);

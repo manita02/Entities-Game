@@ -45,8 +45,10 @@
             btnUpdate = new Button();
             btnDelete = new Button();
             btnCreate = new Button();
+            picDiet = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgvFoods).BeginInit();
             groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picDiet).BeginInit();
             SuspendLayout();
             // 
             // cbDiet
@@ -57,13 +59,16 @@
             cbDiet.Name = "cbDiet";
             cbDiet.Size = new Size(160, 23);
             cbDiet.TabIndex = 38;
+            cbDiet.SelectedIndexChanged += cbDiet_SelectedIndexChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label4.Location = new Point(34, 102);
             label4.Name = "label4";
-            label4.Size = new Size(31, 15);
+            label4.Size = new Size(34, 15);
             label4.TabIndex = 37;
             label4.Text = "Diet:";
             // 
@@ -85,18 +90,22 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label2.Location = new Point(34, 71);
             label2.Name = "label2";
-            label2.Size = new Size(42, 15);
+            label2.Size = new Size(43, 15);
             label2.TabIndex = 34;
             label2.Text = "Name:";
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(34, 40);
             label1.Name = "label1";
-            label1.Size = new Size(20, 15);
+            label1.Size = new Size(21, 15);
             label1.TabIndex = 33;
             label1.Text = "Id:";
             // 
@@ -111,9 +120,11 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label3.Location = new Point(35, 133);
             label3.Name = "label3";
-            label3.Size = new Size(52, 15);
+            label3.Size = new Size(53, 15);
             label3.TabIndex = 39;
             label3.Text = "Calories:";
             // 
@@ -121,7 +132,7 @@
             // 
             dgvFoods.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvFoods.Columns.AddRange(new DataGridViewColumn[] { id, name, diet, calories });
-            dgvFoods.Location = new Point(12, 215);
+            dgvFoods.Location = new Point(12, 332);
             dgvFoods.Name = "dgvFoods";
             dgvFoods.ReadOnly = true;
             dgvFoods.RowTemplate.Height = 25;
@@ -156,9 +167,11 @@
             // 
             // groupBox2
             // 
+            groupBox2.BackColor = Color.Transparent;
             groupBox2.Controls.Add(btnUpdate);
             groupBox2.Controls.Add(btnDelete);
-            groupBox2.Location = new Point(518, 99);
+            groupBox2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBox2.Location = new Point(35, 215);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(217, 100);
             groupBox2.TabIndex = 42;
@@ -195,11 +208,23 @@
             btnCreate.UseVisualStyleBackColor = true;
             btnCreate.Click += btnCreate_Click;
             // 
+            // picDiet
+            // 
+            picDiet.Location = new Point(351, 40);
+            picDiet.Name = "picDiet";
+            picDiet.Size = new Size(381, 232);
+            picDiet.SizeMode = PictureBoxSizeMode.StretchImage;
+            picDiet.TabIndex = 44;
+            picDiet.TabStop = false;
+            // 
             // CRUDfood
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackgroundImage = Properties.Resources.foodBackgound;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(800, 556);
+            Controls.Add(picDiet);
             Controls.Add(btnCreate);
             Controls.Add(groupBox2);
             Controls.Add(dgvFoods);
@@ -215,6 +240,7 @@
             Text = "CRUDfood";
             ((System.ComponentModel.ISupportInitialize)dgvFoods).EndInit();
             groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picDiet).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -238,5 +264,6 @@
         private Button btnUpdate;
         private Button btnDelete;
         private Button btnCreate;
+        private PictureBox picDiet;
     }
 }

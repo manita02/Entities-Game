@@ -175,5 +175,21 @@ namespace crudsGame.src.views
         {
             GeneralController.ValidateNumbers(e);
         }
+
+        private void cbDiet_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbDiet.Text == "Carnivore")
+            {
+                picDiet.Image = Properties.Resources.carnivore;
+            }
+            if (cbDiet.Text == "Herbivorous")
+            {
+                picDiet.Image = Properties.Resources.herbivorous;
+            }
+            if (cbDiet.Text == "Solar Energy")
+            {
+                picDiet.Image = Properties.Resources.solar_energy;
+            }
+        }
     }
 }

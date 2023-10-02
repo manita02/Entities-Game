@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CRUDitem));
             label1 = new Label();
             groupBox1 = new GroupBox();
             picItem = new PictureBox();
@@ -38,16 +37,16 @@
             btnUpdate = new Button();
             btnDelete = new Button();
             btnCreate = new Button();
-            dgvItems = new DataGridView();
-            id = new DataGridViewTextBoxColumn();
-            name = new DataGridViewTextBoxColumn();
-            kingdom = new DataGridViewTextBoxColumn();
-            type = new DataGridViewTextBoxColumn();
             txtName = new TextBox();
             txtId = new TextBox();
             cbType = new ComboBox();
             label3 = new Label();
             label2 = new Label();
+            dgvItems = new DataGridView();
+            id = new DataGridViewTextBoxColumn();
+            name = new DataGridViewTextBoxColumn();
+            kingdom = new DataGridViewTextBoxColumn();
+            type = new DataGridViewTextBoxColumn();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picItem).BeginInit();
             groupBox2.SuspendLayout();
@@ -154,43 +153,6 @@
             btnCreate.UseVisualStyleBackColor = true;
             btnCreate.Click += btnCreate_Click;
             // 
-            // dgvItems
-            // 
-            dgvItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvItems.Columns.AddRange(new DataGridViewColumn[] { id, name, kingdom, type });
-            dgvItems.Location = new Point(12, 339);
-            dgvItems.Name = "dgvItems";
-            dgvItems.ReadOnly = true;
-            dgvItems.RowTemplate.Height = 25;
-            dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvItems.Size = new Size(688, 279);
-            dgvItems.TabIndex = 12;
-            dgvItems.SelectionChanged += dgvItems_SelectionChanged;
-            // 
-            // id
-            // 
-            id.HeaderText = "Id";
-            id.Name = "id";
-            id.ReadOnly = true;
-            // 
-            // name
-            // 
-            name.HeaderText = "Name";
-            name.Name = "name";
-            name.ReadOnly = true;
-            // 
-            // kingdom
-            // 
-            kingdom.HeaderText = "Kingdom";
-            kingdom.Name = "kingdom";
-            kingdom.ReadOnly = true;
-            // 
-            // type
-            // 
-            type.HeaderText = "Type";
-            type.Name = "type";
-            type.ReadOnly = true;
-            // 
             // txtName
             // 
             txtName.Location = new Point(84, 61);
@@ -234,11 +196,48 @@
             label2.TabIndex = 1;
             label2.Text = "Name:";
             // 
+            // dgvItems
+            // 
+            dgvItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvItems.Columns.AddRange(new DataGridViewColumn[] { id, name, kingdom, type });
+            dgvItems.Location = new Point(12, 339);
+            dgvItems.Name = "dgvItems";
+            dgvItems.ReadOnly = true;
+            dgvItems.RowTemplate.Height = 25;
+            dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvItems.Size = new Size(688, 279);
+            dgvItems.TabIndex = 12;
+            dgvItems.SelectionChanged += dgvItems_SelectionChanged;
+            // 
+            // id
+            // 
+            id.HeaderText = "Id";
+            id.Name = "id";
+            id.ReadOnly = true;
+            // 
+            // name
+            // 
+            name.HeaderText = "Name";
+            name.Name = "name";
+            name.ReadOnly = true;
+            // 
+            // kingdom
+            // 
+            kingdom.HeaderText = "Kingdom";
+            kingdom.Name = "kingdom";
+            kingdom.ReadOnly = true;
+            // 
+            // type
+            // 
+            type.HeaderText = "Type";
+            type.Name = "type";
+            type.ReadOnly = true;
+            // 
             // CRUDitem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImage = Properties.Resources.itemBackground;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(717, 630);
             Controls.Add(groupBox1);
