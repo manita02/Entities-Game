@@ -1,11 +1,39 @@
 {
   "version": 3,
   "targets": {
-    "net6.0-windows7.0": {}
+    "net6.0-windows7.0": {
+      "MaterialSkin.NET5/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0-windows7.0/MaterialSkin.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0-windows7.0/MaterialSkin.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "MaterialSkin.NET5/1.0.2": {
+      "sha512": "gsNBQF4dQJKilvw9nUIBomqMhRQ8cffNTaZGC37O/cZ53QrZAOh2sX+DI9NHyi6conkULY5/0dfaY4F9gOtLdg==",
+      "type": "package",
+      "path": "materialskin.net5/1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0-windows7.0/MaterialSkin.dll",
+        "materialskin.net5.1.0.2.nupkg.sha512",
+        "materialskin.net5.nuspec"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0-windows7.0": []
+    "net6.0-windows7.0": [
+      "MaterialSkin.NET5 >= 1.0.2"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\manita02\\.nuget\\packages\\": {}
@@ -45,6 +73,12 @@
     "frameworks": {
       "net6.0-windows7.0": {
         "targetAlias": "net6.0-windows",
+        "dependencies": {
+          "MaterialSkin.NET5": {
+            "target": "Package",
+            "version": "[1.0.2, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

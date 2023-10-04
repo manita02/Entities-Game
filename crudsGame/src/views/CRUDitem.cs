@@ -15,16 +15,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 using Item = crudsGame.src.model.Items.Item;
+using static crudsGame.src.views.MaterialUI;
+using MaterialSkin.Controls;
 
 namespace crudsGame.src.views
 {
-    public partial class CRUDitem : Form
+    public partial class CRUDitem : MaterialForm
     {
         ItemController itemCtn;
         public CRUDitem()
         {
             itemCtn = ItemController.getInstance();
             InitializeComponent();
+            LoadMaterial(this);
             LoadItemsByDefault();
             this.dgvItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             cbType.DataSource = itemCtn.GetStrategyItemsList();
@@ -127,70 +130,6 @@ namespace crudsGame.src.views
             }
         }
 
-        #region Buttons Interactions
-        private void btnCreate_Click(object sender, EventArgs e)
-        {
-            if (CheckEmptyFields() == false)
-            {
-                Item item = itemCtn.CreateItem(itemCtn.GetItemList().Count(), txtName.Text, (IStrategyTypeOfItem)(cbType.SelectedItem), (IKingdom)(cbKingdom.SelectedItem));
-                CheckIfItemExists(item);
-                if (exist == false)
-                {
-                    itemCtn.GetItemList().Add(item);
-                    LoadItemIntoDatagrid(dgvItems.Rows.Add(), item);
-                }
-                exist = false;
-
-                UpdateItemId();
-
-                CleanFields();
-            }
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            if (dgvItems.SelectedRows.Count > 0)
-            {
-                if (CheckEmptyFields() == false)
-                {
-                    Item item = itemCtn.CreateItem(itemCtn.GetItemList().Count(), txtName.Text, (IStrategyTypeOfItem)(cbType.SelectedItem), (IKingdom)(cbKingdom.SelectedItem));
-                    //this.rows = itemCtn.UpdateAnEntity(rows, dgvItems, item);
-                    LoadItemIntoDatagrid(rows, item);
-                    this.rows = 0;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!");
-            }
-            CleanFields();
-            UpdateItemId();
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (dgvItems.Rows.Count > 2)
-            {
-                if (dgvItems.SelectedRows.Count > 0)
-                {
-                    int r = dgvItems.CurrentRow.Index;
-                    itemCtn.GetItemList().RemoveAt(r);
-                    dgvItems.Rows.RemoveAt(r);
-                    UpdateItemId();
-                }
-                else
-                {
-                    MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe existir mas de un item en la tabla para poder eliminar!!");
-            }
-            UpdateItemId();
-        }
-        #endregion
-
         private void txtValue_KeyPress(object sender, KeyPressEventArgs e)
         {
             GeneralController.ValidateNumbers(e);
@@ -230,6 +169,82 @@ namespace crudsGame.src.views
             {
                 picItem.Image = Properties.Resources.loseDefense;
             }
+        }
+
+        private void dgvItems_SelectionChanged_1(object sender, EventArgs e)
+        {
+            if (dgvItems.SelectedRows.Count > 0)
+            {
+                this.rows = dgvItems.SelectedRows[0].Index;
+                txtId.Text = dgvItems.CurrentRow.Cells[0].Value.ToString();
+                txtName.Text = dgvItems.CurrentRow.Cells[1].Value.ToString();
+                cbType.SelectedIndex = GetIndexOfTheTypeItemsComboThatComesFromTheDatagrid();
+                cbKingdom.SelectedIndex = GetIndexOfKingdomsComboThatComesFromTheDatagrid();
+            }
+        }
+
+        private void btnCreatee_Click(object sender, EventArgs e)
+        {
+            if (CheckEmptyFields() == false)
+            {
+                Item item = itemCtn.CreateItem(itemCtn.GetItemList().Count(), txtName.Text, (IStrategyTypeOfItem)(cbType.SelectedItem), (IKingdom)(cbKingdom.SelectedItem));
+                CheckIfItemExists(item);
+                if (exist == false)
+                {
+                    itemCtn.GetItemList().Add(item);
+                    LoadItemIntoDatagrid(dgvItems.Rows.Add(), item);
+                }
+                exist = false;
+
+                UpdateItemId();
+
+                CleanFields();
+            }
+
+        }
+
+        private void btnUpdatee_Click(object sender, EventArgs e)
+        {
+            if (dgvItems.SelectedRows.Count > 0)
+            {
+                if (CheckEmptyFields() == false)
+                {
+                    Item item = itemCtn.CreateItem(itemCtn.GetItemList().Count(), txtName.Text, (IStrategyTypeOfItem)(cbType.SelectedItem), (IKingdom)(cbKingdom.SelectedItem));
+                    //this.rows = itemCtn.UpdateAnEntity(rows, dgvItems, item);
+                    LoadItemIntoDatagrid(rows, item);
+                    this.rows = 0;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!");
+            }
+            CleanFields();
+            UpdateItemId();
+        }
+
+        private void btnDeletee_Click(object sender, EventArgs e)
+        {
+            if (dgvItems.Rows.Count > 2)
+            {
+                if (dgvItems.SelectedRows.Count > 0)
+                {
+                    int r = dgvItems.CurrentRow.Index;
+                    itemCtn.GetItemList().RemoveAt(r);
+                    dgvItems.Rows.RemoveAt(r);
+                    UpdateItemId();
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe existir mas de un item en la tabla para poder eliminar!!");
+            }
+            UpdateItemId();
+
         }
     }
 }
