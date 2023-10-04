@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             groupBox1 = new GroupBox();
             lbCurrentEnergyJ1 = new Label();
             btnSleep = new Button();
@@ -63,8 +64,20 @@
             btnAttack = new Button();
             cbCreaturesPlayerTwo = new ComboBox();
             lbCurrentEnergyJ2 = new Label();
+            groupBox3 = new GroupBox();
+            btnMap = new Button();
+            cbBorderingTerrainsOfCurrentTerrain = new ComboBox();
+            cbCurrentTerrain = new ComboBox();
+            label12 = new Label();
+            label11 = new Label();
+            bindingTerrains = new BindingSource(components);
+            bindingBonderingTerrains = new BindingSource(components);
+            listBox1 = new ListBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)bindingTerrains).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingBonderingTerrains).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -361,7 +374,7 @@
             groupBox2.Controls.Add(btnAttack);
             groupBox2.Controls.Add(cbCreaturesPlayerTwo);
             groupBox2.Controls.Add(lbCurrentEnergyJ2);
-            groupBox2.Location = new Point(284, 324);
+            groupBox2.Location = new Point(24, 333);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(596, 173);
             groupBox2.TabIndex = 1;
@@ -406,13 +419,83 @@
             lbCurrentEnergyJ2.TabIndex = 8;
             lbCurrentEnergyJ2.Text = "Energy_J2";
             // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(btnMap);
+            groupBox3.Controls.Add(cbBorderingTerrainsOfCurrentTerrain);
+            groupBox3.Controls.Add(cbCurrentTerrain);
+            groupBox3.Controls.Add(label12);
+            groupBox3.Controls.Add(label11);
+            groupBox3.Location = new Point(634, 333);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(525, 192);
+            groupBox3.TabIndex = 2;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "SELECT A TERRAIN";
+            // 
+            // btnMap
+            // 
+            btnMap.Location = new Point(386, 89);
+            btnMap.Name = "btnMap";
+            btnMap.Size = new Size(133, 23);
+            btnMap.TabIndex = 4;
+            btnMap.Text = "CREATE MAP";
+            btnMap.UseVisualStyleBackColor = true;
+            btnMap.Click += btnMap_Click;
+            // 
+            // cbBorderingTerrainsOfCurrentTerrain
+            // 
+            cbBorderingTerrainsOfCurrentTerrain.FormattingEnabled = true;
+            cbBorderingTerrainsOfCurrentTerrain.Location = new Point(123, 144);
+            cbBorderingTerrainsOfCurrentTerrain.Name = "cbBorderingTerrainsOfCurrentTerrain";
+            cbBorderingTerrainsOfCurrentTerrain.Size = new Size(231, 23);
+            cbBorderingTerrainsOfCurrentTerrain.TabIndex = 3;
+            // 
+            // cbCurrentTerrain
+            // 
+            cbCurrentTerrain.FormattingEnabled = true;
+            cbCurrentTerrain.Location = new Point(108, 25);
+            cbCurrentTerrain.Name = "cbCurrentTerrain";
+            cbCurrentTerrain.Size = new Size(231, 23);
+            cbCurrentTerrain.TabIndex = 2;
+            cbCurrentTerrain.SelectedIndexChanged += cbCurrentTerrain_SelectedIndexChanged;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(14, 126);
+            label12.Name = "label12";
+            label12.Size = new Size(244, 15);
+            label12.TabIndex = 1;
+            label12.Text = "Terrenos Limitrofes del Terreno Seleccionado:";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(14, 29);
+            label11.Name = "label11";
+            label11.Size = new Size(88, 15);
+            label11.TabIndex = 0;
+            label11.Text = "Select a Terrain:";
+            // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(637, 535);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(457, 169);
+            listBox1.TabIndex = 3;
+            // 
             // AttackTest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.interactions;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1171, 518);
+            ClientSize = new Size(1206, 718);
+            Controls.Add(listBox1);
+            Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "AttackTest";
@@ -421,6 +504,10 @@
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)bindingTerrains).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingBonderingTerrains).EndInit();
             ResumeLayout(false);
         }
 
@@ -461,5 +548,14 @@
         private Button btnSleep;
         private TextBox txtDiet;
         private Label label10;
+        private GroupBox groupBox3;
+        private Label label12;
+        private Label label11;
+        private ComboBox cbBorderingTerrainsOfCurrentTerrain;
+        private ComboBox cbCurrentTerrain;
+        private Button btnMap;
+        private BindingSource bindingTerrains;
+        private BindingSource bindingBonderingTerrains;
+        private ListBox listBox1;
     }
 }

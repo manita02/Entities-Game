@@ -5,6 +5,8 @@ using crudsGame.src.model;
 using crudsGame.src.model.Diets;
 using crudsGame.src.model.Items;
 using crudsGame.src.model.Kingdoms;
+using crudsGame.src.model.Terrains;
+using crudsGame.src.model.Terrains.Map;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace crudsGame.src.views
 {
@@ -27,6 +30,8 @@ namespace crudsGame.src.views
         ItemController itemCtn;
         EntityController entityCtn;
         FoodController foodCtn;
+        MapController mapCtn = MapController.GetInstance();
+        TerrainController terrainCtn = TerrainController.GetInstance();
 
 
         public AttackTest()
@@ -40,6 +45,7 @@ namespace crudsGame.src.views
             LoadComboboxWithCreaturesPlayerOne();
             cbItems.DataSource = itemCtn.GetItemList();
             cbFoods.DataSource = foodCtn.GetFoodList();
+
             //LoadComboWithFoods();
 
 
@@ -47,12 +53,13 @@ namespace crudsGame.src.views
             cbCreaturesPlayerTwo.SelectedIndex = 0;
             cbItems.SelectedIndex = 0;
 
+            RefreshMap();
             /*
             Food f1 = new Food(1, "carne", 10, new Carnivore());
             Food f2 = new Food(2, "manzana", 20, new Carnivore());
             Food f3 = new Food(3, "grillo", 30, new SolarEnergy());
             
-
+            
 
 
             foodsList.Add(f1);
@@ -272,6 +279,37 @@ namespace crudsGame.src.views
         {
             GetOnePlayerCreatureSelectedFromCombo().Sleep();
             UpdateProgressbar();
+        }
+
+        private void RefreshMap()
+        {
+            bindingTerrains.DataSource = terrainCtn.GetTerrainList(); //cheq estooooooooooooo
+            bindingTerrains.ResetBindings(false);
+            cbCurrentTerrain.DataSource = bindingTerrains;
+        }
+
+        private void btnMap_Click(object sender, EventArgs e)
+        {
+            mapCtn.GenerateMap();
+            cbCurrentTerrain.DataSource = terrainCtn.GetTerrainList();
+            //RefreshMap();
+            btnMap.Enabled = false;
+        }
+
+        private void cbCurrentTerrain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //cbBorderingTerrainsOfCurrentTerrain.Items.Clear();
+            if (cbCurrentTerrain.SelectedItem is Terrain terrain)
+            {
+                //cbBorderingTerrainsOfCurrentTerrain.DataSource = terrainCtn.GetBorderingTerrainsList(terrain);
+
+                bindingBonderingTerrains.DataSource = terrainCtn.GetBorderingTerrainsList(terrain);
+                bindingBonderingTerrains.ResetBindings(false);
+                cbBorderingTerrainsOfCurrentTerrain.DataSource = bindingBonderingTerrains;
+                listBox1.DataSource = bindingBonderingTerrains;
+
+
+            }
         }
     }
 }
