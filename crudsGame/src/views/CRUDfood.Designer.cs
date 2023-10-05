@@ -29,25 +29,24 @@
         private void InitializeComponent()
         {
             cbDiet = new ComboBox();
-            label4 = new Label();
-            txtName = new TextBox();
-            txtId = new TextBox();
-            label2 = new Label();
-            label1 = new Label();
-            txtCalories = new TextBox();
-            label3 = new Label();
             dgvFoods = new DataGridView();
             id = new DataGridViewTextBoxColumn();
             name = new DataGridViewTextBoxColumn();
             diet = new DataGridViewTextBoxColumn();
             calories = new DataGridViewTextBoxColumn();
-            groupBox2 = new GroupBox();
-            btnUpdate = new Button();
-            btnDelete = new Button();
-            btnCreate = new Button();
             picDiet = new PictureBox();
+            materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            btnDeletee = new MaterialSkin.Controls.MaterialRaisedButton();
+            btnUpdatee = new MaterialSkin.Controls.MaterialRaisedButton();
+            btnCreatee = new MaterialSkin.Controls.MaterialRaisedButton();
+            materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
+            txtName = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            txtId = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            txtCalories = new MaterialSkin.Controls.MaterialSingleLineTextField();
             ((System.ComponentModel.ISupportInitialize)dgvFoods).BeginInit();
-            groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picDiet).BeginInit();
             SuspendLayout();
             // 
@@ -55,89 +54,28 @@
             // 
             cbDiet.DropDownStyle = ComboBoxStyle.DropDownList;
             cbDiet.FormattingEnabled = true;
-            cbDiet.Location = new Point(99, 99);
+            cbDiet.Location = new Point(145, 212);
+            cbDiet.Margin = new Padding(4);
             cbDiet.Name = "cbDiet";
-            cbDiet.Size = new Size(160, 23);
+            cbDiet.Size = new Size(205, 26);
             cbDiet.TabIndex = 38;
             cbDiet.SelectedIndexChanged += cbDiet_SelectedIndexChanged;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(34, 102);
-            label4.Name = "label4";
-            label4.Size = new Size(34, 15);
-            label4.TabIndex = 37;
-            label4.Text = "Diet:";
-            // 
-            // txtName
-            // 
-            txtName.Location = new Point(98, 66);
-            txtName.Name = "txtName";
-            txtName.Size = new Size(100, 23);
-            txtName.TabIndex = 36;
-            // 
-            // txtId
-            // 
-            txtId.Enabled = false;
-            txtId.Location = new Point(98, 35);
-            txtId.Name = "txtId";
-            txtId.Size = new Size(100, 23);
-            txtId.TabIndex = 35;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(34, 71);
-            label2.Name = "label2";
-            label2.Size = new Size(43, 15);
-            label2.TabIndex = 34;
-            label2.Text = "Name:";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(34, 40);
-            label1.Name = "label1";
-            label1.Size = new Size(21, 15);
-            label1.TabIndex = 33;
-            label1.Text = "Id:";
-            // 
-            // txtCalories
-            // 
-            txtCalories.Location = new Point(99, 128);
-            txtCalories.Name = "txtCalories";
-            txtCalories.Size = new Size(100, 23);
-            txtCalories.TabIndex = 40;
-            txtCalories.KeyPress += txtCalories_KeyPress;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(35, 133);
-            label3.Name = "label3";
-            label3.Size = new Size(53, 15);
-            label3.TabIndex = 39;
-            label3.Text = "Calories:";
-            // 
             // dgvFoods
             // 
+            dgvFoods.AllowUserToAddRows = false;
+            dgvFoods.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvFoods.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvFoods.Columns.AddRange(new DataGridViewColumn[] { id, name, diet, calories });
-            dgvFoods.Location = new Point(12, 332);
+            dgvFoods.Location = new Point(0, 398);
+            dgvFoods.Margin = new Padding(4);
             dgvFoods.Name = "dgvFoods";
             dgvFoods.ReadOnly = true;
+            dgvFoods.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvFoods.RowHeadersVisible = false;
             dgvFoods.RowTemplate.Height = 25;
             dgvFoods.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvFoods.Size = new Size(752, 212);
+            dgvFoods.Size = new Size(871, 266);
             dgvFoods.TabIndex = 41;
             dgvFoods.SelectionChanged += dgvFoods_SelectionChanged;
             // 
@@ -165,81 +103,212 @@
             calories.Name = "calories";
             calories.ReadOnly = true;
             // 
-            // groupBox2
-            // 
-            groupBox2.BackColor = Color.Transparent;
-            groupBox2.Controls.Add(btnUpdate);
-            groupBox2.Controls.Add(btnDelete);
-            groupBox2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox2.Location = new Point(35, 215);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(217, 100);
-            groupBox2.TabIndex = 42;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "> Select a row to...";
-            // 
-            // btnUpdate
-            // 
-            btnUpdate.Location = new Point(25, 50);
-            btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(75, 23);
-            btnUpdate.TabIndex = 26;
-            btnUpdate.Text = "UPDATE";
-            btnUpdate.UseVisualStyleBackColor = true;
-            btnUpdate.Click += btnUpdate_Click;
-            // 
-            // btnDelete
-            // 
-            btnDelete.Location = new Point(117, 50);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(75, 23);
-            btnDelete.TabIndex = 27;
-            btnDelete.Text = "DELETE";
-            btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += btnDelete_Click;
-            // 
-            // btnCreate
-            // 
-            btnCreate.Location = new Point(147, 167);
-            btnCreate.Name = "btnCreate";
-            btnCreate.Size = new Size(75, 23);
-            btnCreate.TabIndex = 43;
-            btnCreate.Text = "CREATE";
-            btnCreate.UseVisualStyleBackColor = true;
-            btnCreate.Click += btnCreate_Click;
-            // 
             // picDiet
             // 
-            picDiet.Location = new Point(351, 40);
+            picDiet.Location = new Point(445, 78);
+            picDiet.Margin = new Padding(4);
             picDiet.Name = "picDiet";
-            picDiet.Size = new Size(381, 232);
+            picDiet.Size = new Size(446, 303);
             picDiet.SizeMode = PictureBoxSizeMode.StretchImage;
             picDiet.TabIndex = 44;
             picDiet.TabStop = false;
             // 
+            // materialLabel4
+            // 
+            materialLabel4.AutoSize = true;
+            materialLabel4.Depth = 0;
+            materialLabel4.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            materialLabel4.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialLabel4.Location = new Point(48, 252);
+            materialLabel4.Margin = new Padding(5, 0, 5, 0);
+            materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel4.Name = "materialLabel4";
+            materialLabel4.Size = new Size(69, 19);
+            materialLabel4.TabIndex = 48;
+            materialLabel4.Text = "Calories:";
+            // 
+            // materialLabel3
+            // 
+            materialLabel3.AutoSize = true;
+            materialLabel3.Depth = 0;
+            materialLabel3.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            materialLabel3.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialLabel3.Location = new Point(80, 212);
+            materialLabel3.Margin = new Padding(5, 0, 5, 0);
+            materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel3.Name = "materialLabel3";
+            materialLabel3.Size = new Size(40, 19);
+            materialLabel3.TabIndex = 47;
+            materialLabel3.Text = "Diet:";
+            // 
+            // materialLabel2
+            // 
+            materialLabel2.AutoSize = true;
+            materialLabel2.Depth = 0;
+            materialLabel2.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            materialLabel2.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialLabel2.Location = new Point(67, 173);
+            materialLabel2.Margin = new Padding(5, 0, 5, 0);
+            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel2.Name = "materialLabel2";
+            materialLabel2.Size = new Size(53, 19);
+            materialLabel2.TabIndex = 46;
+            materialLabel2.Text = "Name:";
+            // 
+            // materialLabel1
+            // 
+            materialLabel1.AutoSize = true;
+            materialLabel1.Depth = 0;
+            materialLabel1.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            materialLabel1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialLabel1.Location = new Point(99, 135);
+            materialLabel1.Margin = new Padding(5, 0, 5, 0);
+            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel1.Name = "materialLabel1";
+            materialLabel1.Size = new Size(25, 19);
+            materialLabel1.TabIndex = 45;
+            materialLabel1.Text = "Id:";
+            // 
+            // btnDeletee
+            // 
+            btnDeletee.AutoSize = true;
+            btnDeletee.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnDeletee.Depth = 0;
+            btnDeletee.Icon = null;
+            btnDeletee.Location = new Point(880, 476);
+            btnDeletee.Margin = new Padding(4);
+            btnDeletee.MouseState = MaterialSkin.MouseState.HOVER;
+            btnDeletee.Name = "btnDeletee";
+            btnDeletee.Primary = true;
+            btnDeletee.Size = new Size(69, 36);
+            btnDeletee.TabIndex = 52;
+            btnDeletee.Text = "DELETE";
+            btnDeletee.UseVisualStyleBackColor = true;
+            btnDeletee.Click += btnDeletee_Click;
+            // 
+            // btnUpdatee
+            // 
+            btnUpdatee.AutoSize = true;
+            btnUpdatee.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnUpdatee.Depth = 0;
+            btnUpdatee.Icon = null;
+            btnUpdatee.Location = new Point(878, 418);
+            btnUpdatee.Margin = new Padding(4);
+            btnUpdatee.MouseState = MaterialSkin.MouseState.HOVER;
+            btnUpdatee.Name = "btnUpdatee";
+            btnUpdatee.Primary = true;
+            btnUpdatee.Size = new Size(73, 36);
+            btnUpdatee.TabIndex = 51;
+            btnUpdatee.Text = "UPDATE";
+            btnUpdatee.UseVisualStyleBackColor = true;
+            btnUpdatee.Click += btnUpdatee_Click;
+            // 
+            // btnCreatee
+            // 
+            btnCreatee.AutoSize = true;
+            btnCreatee.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCreatee.Depth = 0;
+            btnCreatee.Icon = null;
+            btnCreatee.Location = new Point(144, 295);
+            btnCreatee.Margin = new Padding(4);
+            btnCreatee.MouseState = MaterialSkin.MouseState.HOVER;
+            btnCreatee.Name = "btnCreatee";
+            btnCreatee.Primary = true;
+            btnCreatee.Size = new Size(71, 36);
+            btnCreatee.TabIndex = 50;
+            btnCreatee.Text = "CREATE";
+            btnCreatee.UseVisualStyleBackColor = true;
+            btnCreatee.Click += btnCreatee_Click;
+            // 
+            // materialDivider1
+            // 
+            materialDivider1.BackColor = Color.FromArgb(31, 0, 0, 0);
+            materialDivider1.Depth = 0;
+            materialDivider1.Location = new Point(870, 398);
+            materialDivider1.Margin = new Padding(5);
+            materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialDivider1.Name = "materialDivider1";
+            materialDivider1.Size = new Size(92, 143);
+            materialDivider1.TabIndex = 49;
+            materialDivider1.Text = "materialDivider1";
+            // 
+            // txtName
+            // 
+            txtName.Depth = 0;
+            txtName.Hint = "";
+            txtName.Location = new Point(145, 173);
+            txtName.MaxLength = 32767;
+            txtName.MouseState = MaterialSkin.MouseState.HOVER;
+            txtName.Name = "txtName";
+            txtName.PasswordChar = '\0';
+            txtName.SelectedText = "";
+            txtName.SelectionLength = 0;
+            txtName.SelectionStart = 0;
+            txtName.Size = new Size(206, 23);
+            txtName.TabIndex = 54;
+            txtName.TabStop = false;
+            txtName.UseSystemPasswordChar = false;
+            // 
+            // txtId
+            // 
+            txtId.Depth = 0;
+            txtId.Enabled = false;
+            txtId.Hint = "";
+            txtId.Location = new Point(144, 131);
+            txtId.MaxLength = 32767;
+            txtId.MouseState = MaterialSkin.MouseState.HOVER;
+            txtId.Name = "txtId";
+            txtId.PasswordChar = '\0';
+            txtId.SelectedText = "";
+            txtId.SelectionLength = 0;
+            txtId.SelectionStart = 0;
+            txtId.Size = new Size(205, 23);
+            txtId.TabIndex = 53;
+            txtId.TabStop = false;
+            txtId.UseSystemPasswordChar = false;
+            // 
+            // txtCalories
+            // 
+            txtCalories.Depth = 0;
+            txtCalories.Hint = "";
+            txtCalories.Location = new Point(145, 252);
+            txtCalories.MaxLength = 32767;
+            txtCalories.MouseState = MaterialSkin.MouseState.HOVER;
+            txtCalories.Name = "txtCalories";
+            txtCalories.PasswordChar = '\0';
+            txtCalories.SelectedText = "";
+            txtCalories.SelectionLength = 0;
+            txtCalories.SelectionStart = 0;
+            txtCalories.Size = new Size(206, 23);
+            txtCalories.TabIndex = 55;
+            txtCalories.TabStop = false;
+            txtCalories.UseSystemPasswordChar = false;
+            // 
             // CRUDfood
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(9F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.foodBackgound;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(800, 556);
-            Controls.Add(picDiet);
-            Controls.Add(btnCreate);
-            Controls.Add(groupBox2);
-            Controls.Add(dgvFoods);
+            ClientSize = new Size(963, 667);
             Controls.Add(txtCalories);
-            Controls.Add(label3);
-            Controls.Add(cbDiet);
-            Controls.Add(label4);
             Controls.Add(txtName);
             Controls.Add(txtId);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(btnDeletee);
+            Controls.Add(btnUpdatee);
+            Controls.Add(btnCreatee);
+            Controls.Add(materialDivider1);
+            Controls.Add(materialLabel4);
+            Controls.Add(materialLabel3);
+            Controls.Add(materialLabel2);
+            Controls.Add(materialLabel1);
+            Controls.Add(picDiet);
+            Controls.Add(dgvFoods);
+            Controls.Add(cbDiet);
+            Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            Margin = new Padding(4);
             Name = "CRUDfood";
             Text = "CRUDfood";
             ((System.ComponentModel.ISupportInitialize)dgvFoods).EndInit();
-            groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picDiet).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -248,22 +317,22 @@
         #endregion
 
         private ComboBox cbDiet;
-        private Label label4;
-        private TextBox txtName;
-        private TextBox txtId;
-        private Label label2;
-        private Label label1;
-        private TextBox txtCalories;
-        private Label label3;
         private DataGridView dgvFoods;
         private DataGridViewTextBoxColumn id;
         private DataGridViewTextBoxColumn name;
         private DataGridViewTextBoxColumn diet;
         private DataGridViewTextBoxColumn calories;
-        private GroupBox groupBox2;
-        private Button btnUpdate;
-        private Button btnDelete;
-        private Button btnCreate;
         private PictureBox picDiet;
+        private MaterialSkin.Controls.MaterialLabel materialLabel4;
+        private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialRaisedButton btnDeletee;
+        private MaterialSkin.Controls.MaterialRaisedButton btnUpdatee;
+        private MaterialSkin.Controls.MaterialRaisedButton btnCreatee;
+        private MaterialSkin.Controls.MaterialDivider materialDivider1;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtName;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtId;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtCalories;
     }
 }

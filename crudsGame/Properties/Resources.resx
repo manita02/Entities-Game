@@ -133,23 +133,17 @@
   <data name="moreDefense" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\moreDefense.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="foodBackgound" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\foodBackgound.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="moreEnergy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\moreEnergy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="carnivore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\carnivore.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="interactions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\interactions.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="backMain" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\backMain.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="moreAttack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\moreAttack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="moreLife" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\moreLife.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="itemBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\itemBackground.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="animalia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\animalia.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,8 +160,8 @@
   <data name="herbivorous" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\herbivorous.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="moreAttack" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\moreAttack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="backMain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\backMain.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="solar_energy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\solar_energy.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,7 +169,7 @@
   <data name="loseEnergy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\loseEnergy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="interactions" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\interactions.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="carnivore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\carnivore.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

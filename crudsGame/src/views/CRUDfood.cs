@@ -12,16 +12,19 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static crudsGame.src.views.MaterialUI;
+using MaterialSkin.Controls;
 
 namespace crudsGame.src.views
 {
-    public partial class CRUDfood : Form
+    public partial class CRUDfood : MaterialForm
     {
         FoodController foodCtn;
         public CRUDfood()
         {
             foodCtn = FoodController.getInstance();
             InitializeComponent();
+            LoadMaterial(this);
             LoadFoodsByDefault();
             this.dgvFoods.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             cbDiet.DataSource = foodCtn.GetDietList();
@@ -110,7 +113,28 @@ namespace crudsGame.src.views
             }
         }
 
-        private void btnCreate_Click(object sender, EventArgs e)
+        private void txtCalories_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            GeneralController.ValidateNumbers(e);
+        }
+
+        private void cbDiet_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbDiet.Text == "Carnivore")
+            {
+                picDiet.Image = Properties.Resources.carnivore;
+            }
+            if (cbDiet.Text == "Herbivorous")
+            {
+                picDiet.Image = Properties.Resources.herbivorous;
+            }
+            if (cbDiet.Text == "Solar Energy")
+            {
+                picDiet.Image = Properties.Resources.solar_energy;
+            }
+        }
+
+        private void btnCreatee_Click(object sender, EventArgs e)
         {
             if (CheckEmptyFields() == false)
             {
@@ -127,9 +151,10 @@ namespace crudsGame.src.views
 
 
             }
+
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void btnUpdatee_Click(object sender, EventArgs e)
         {
             if (dgvFoods.SelectedRows.Count > 0)
             {
@@ -146,9 +171,10 @@ namespace crudsGame.src.views
             }
             CleanFields();
             UpdateFoodId();
+
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnDeletee_Click(object sender, EventArgs e)
         {
             if (dgvFoods.Rows.Count > 2)
             {
@@ -169,27 +195,7 @@ namespace crudsGame.src.views
                 MessageBox.Show("Debe existir mas de un comida en la tabla para poder eliminar!!");
             }
             UpdateFoodId();
-        }
 
-        private void txtCalories_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            GeneralController.ValidateNumbers(e);
-        }
-
-        private void cbDiet_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbDiet.Text == "Carnivore")
-            {
-                picDiet.Image = Properties.Resources.carnivore;
-            }
-            if (cbDiet.Text == "Herbivorous")
-            {
-                picDiet.Image = Properties.Resources.herbivorous;
-            }
-            if (cbDiet.Text == "Solar Energy")
-            {
-                picDiet.Image = Properties.Resources.solar_energy;
-            }
         }
     }
 }

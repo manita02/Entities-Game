@@ -14,10 +14,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static crudsGame.src.views.MaterialUI;
+using MaterialSkin.Controls;
 
 namespace crudsGame.src.views
 {
-    public partial class CRUDentity : Form
+    public partial class CRUDentity : MaterialForm
     {
 
         EntityController entityCtn;
@@ -25,10 +27,11 @@ namespace crudsGame.src.views
         {
             entityCtn = EntityController.getInstance();
             InitializeComponent();
+            LoadMaterial(this);
             LoadCreaturesbByDefault();
             this.dgvEntities.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //es para que las columnas se adapten al tamaño del dgv
             cbDiet.DataSource = entityCtn.GetDietList();
-            cbEnvironment.DataSource = entityCtn.GetEnvironmentList();
+            //cbEnvironment.DataSource = entityCtn.GetEnvironmentList();
             cbKingdom.DataSource = entityCtn.GetKingdomList();
             clbEnvironments.DataSource = entityCtn.GetEnvironmentList();
         }
@@ -108,7 +111,7 @@ namespace crudsGame.src.views
             txtAttack.Text = "";
             txtDefense.Text = "";
             cbKingdom.SelectedIndex = 0;
-            cbEnvironment.SelectedIndex = 0;
+            //cbEnvironment.SelectedIndex = 0;
             cbDiet.SelectedIndex = 0;
         }
 
@@ -131,7 +134,7 @@ namespace crudsGame.src.views
 
         private void LoadCreatureIntoDatagrid(int x, Entity entity)
         {
-            
+
             dgvEntities.Rows[x].Cells[0].Value = entity.id;
             dgvEntities.Rows[x].Cells[1].Value = entity.kingdom;
             dgvEntities.Rows[x].Cells[2].Value = entity.name;
@@ -153,7 +156,7 @@ namespace crudsGame.src.views
 
         private void deseleccionarcheckListbox()
         {
-            for(int i = 0; i < clbEnvironments.Items.Count; i++)
+            for (int i = 0; i < clbEnvironments.Items.Count; i++)
             {
                 clbEnvironments.SetItemChecked(i, false);
             }
@@ -201,16 +204,16 @@ namespace crudsGame.src.views
                 if (checkedEnvironment == entity.environmentList[i])
                 {
                     return true;
-                }  
+                }
             }
             return false;
         }
 
-        private void CheckEnvironmentsInListbox(Entity entity) 
+        private void CheckEnvironmentsInListbox(Entity entity)
         {
             for (int i = 0; i < clbEnvironments.Items.Count; i++)
             {
-                if (VerifyIfTheItemListboxEnvironmentIsInTheListOfEnvironmentsItself(entity, (IEnvironment)clbEnvironments.Items[i])==true)
+                if (VerifyIfTheItemListboxEnvironmentIsInTheListOfEnvironmentsItself(entity, (IEnvironment)clbEnvironments.Items[i]) == true)
                 {
                     clbEnvironments.SetItemChecked(i, true);
                 }
@@ -232,112 +235,7 @@ namespace crudsGame.src.views
 
         }
 
-       
-        #region button interactions
-        private void btnCreate_Click(object sender, EventArgs e)
-        {
-            if (CheckEmptyFields() == false)
-            {
-                //Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
-                Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
-               
-                CheckIfEntityExists(entity);
-                if (exist == false)
-                {
-                    entityCtn.GetEntitiesList().Add(entity); //se carga en la lista
-                    LoadCreatureIntoDatagrid(dgvEntities.Rows.Add(), entity); //se carga en la tabla
-                }
-                exist = false;
-                UpdateEntityId();
-                CleanFields();
-            }
-        }
 
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            if (dgvEntities.SelectedRows.Count > 0)
-            {
-                if (CheckEmptyFields() == false)
-                {
-                    Entity entity = entityCtn.Update(SearchEntityById((int)dgvEntities.CurrentRow.Cells[0].Value),Convert.ToInt32(txtId.Text), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
-
-
-                    //Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
-
-                    //this.rows = entityCtn.UpdateAnEntity(rows, dgvEntities, entity);
-                    LoadCreatureIntoDatagrid(rows, entity);
-                    this.rows = 0;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!");
-            }
-            CleanFields();
-            UpdateEntityId();
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (dgvEntities.Rows.Count > 2)
-            {
-                if (dgvEntities.SelectedRows.Count > 0)
-                {
-                    //int r = dgvEntities.SelectedRows.Count;
-                    int r = dgvEntities.CurrentRow.Index;
-                    //entityCtn.DeleteAnEntity(r);
-                    entityCtn.GetEntitiesList().RemoveAt(r);
-                    dgvEntities.Rows.RemoveAt(r);
-                    UpdateEntityId();
-                }
-                else
-                {
-                    MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe existir mas de una entidad en la tabla para poder eliminar!!");
-            }
-            UpdateEntityId();
-        }
-        #endregion
-
-        private void txtAttack_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            GeneralController.ValidateNumbers(e);
-        }
-
-        private void txtDefense_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            GeneralController.ValidateNumbers(e);
-        }
-
-        private void txtRange_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            GeneralController.ValidateNumbers(e);
-        }
-
-        private void txtMaxEnergy_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            GeneralController.ValidateNumbers(e);
-        }
-
-        private void txtCurrentEnergy_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            GeneralController.ValidateNumbers(e);
-        }
-
-        private void txtMaxLife_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            GeneralController.ValidateNumbers(e);
-        }
-
-        private void txtCurrentLife_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            GeneralController.ValidateNumbers(e);
-        }
 
         private void cbKingdom_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -361,6 +259,81 @@ namespace crudsGame.src.views
                 //BackColor = Color.Peru;
                 picCreature.Image = Properties.Resources.robot;
             }
+        }
+
+        private void txtAttack_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            GeneralController.ValidateNumbers(e);
+        }
+
+        private void btnCreatee_Click(object sender, EventArgs e)
+        {
+            if (CheckEmptyFields() == false)
+            {
+                //Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+                Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+
+                CheckIfEntityExists(entity);
+                if (exist == false)
+                {
+                    entityCtn.GetEntitiesList().Add(entity); //se carga en la lista
+                    LoadCreatureIntoDatagrid(dgvEntities.Rows.Add(), entity); //se carga en la tabla
+                }
+                exist = false;
+                UpdateEntityId();
+                CleanFields();
+            }
+        }
+
+        private void btnUpdatee_Click(object sender, EventArgs e)
+        {
+            if (dgvEntities.SelectedRows.Count > 0)
+            {
+                if (CheckEmptyFields() == false)
+                {
+                    Entity entity = entityCtn.Update(SearchEntityById((int)dgvEntities.CurrentRow.Cells[0].Value), Convert.ToInt32(txtId.Text), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+
+
+                    //Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+
+                    //this.rows = entityCtn.UpdateAnEntity(rows, dgvEntities, entity);
+                    LoadCreatureIntoDatagrid(rows, entity);
+                    this.rows = 0;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!");
+            }
+            CleanFields();
+            UpdateEntityId();
+
+        }
+
+        private void btnDeletee_Click(object sender, EventArgs e)
+        {
+            if (dgvEntities.Rows.Count > 2)
+            {
+                if (dgvEntities.SelectedRows.Count > 0)
+                {
+                    //int r = dgvEntities.SelectedRows.Count;
+                    int r = dgvEntities.CurrentRow.Index;
+                    //entityCtn.DeleteAnEntity(r);
+                    entityCtn.GetEntitiesList().RemoveAt(r);
+                    dgvEntities.Rows.RemoveAt(r);
+                    UpdateEntityId();
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe existir mas de una entidad en la tabla para poder eliminar!!");
+            }
+            UpdateEntityId();
+
         }
     }
 }
