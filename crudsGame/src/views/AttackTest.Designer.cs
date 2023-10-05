@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttackTest));
             groupBox1 = new GroupBox();
             lbCurrentEnergyJ1 = new Label();
             btnSleep = new Button();
@@ -498,7 +499,9 @@
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AttackTest";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "AttackTest";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

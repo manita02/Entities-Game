@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CRUDfood));
             cbDiet = new ComboBox();
             dgvFoods = new DataGridView();
             id = new DataGridViewTextBoxColumn();
@@ -305,8 +306,10 @@
             Controls.Add(dgvFoods);
             Controls.Add(cbDiet);
             Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "CRUDfood";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CRUDfood";
             ((System.ComponentModel.ISupportInitialize)dgvFoods).EndInit();
             ((System.ComponentModel.ISupportInitialize)picDiet).EndInit();

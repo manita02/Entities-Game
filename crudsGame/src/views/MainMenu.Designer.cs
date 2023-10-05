@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             materialContextMenuStrip1 = new MaterialSkin.Controls.MaterialContextMenuStrip();
             asdasdToolStripMenuItem = new ToolStripMenuItem();
             menu1 = new MenuStrip();
@@ -36,6 +37,7 @@
             cRUDEntityToolStripMenuItem = new ToolStripMenuItem();
             cRUDItemToolStripMenuItem = new ToolStripMenuItem();
             cRUDFoodsToolStripMenuItem = new ToolStripMenuItem();
+            btnExit = new MaterialSkin.Controls.MaterialRaisedButton();
             materialContextMenuStrip1.SuspendLayout();
             menu1.SuspendLayout();
             SuspendLayout();
@@ -105,6 +107,22 @@
             cRUDFoodsToolStripMenuItem.Text = "CRUD foods";
             cRUDFoodsToolStripMenuItem.Click += cRUDFoodsToolStripMenuItem_Click_1;
             // 
+            // btnExit
+            // 
+            btnExit.AutoSize = true;
+            btnExit.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnExit.Depth = 0;
+            btnExit.Icon = null;
+            btnExit.Location = new Point(12, 576);
+            btnExit.MouseState = MaterialSkin.MouseState.HOVER;
+            btnExit.Name = "btnExit";
+            btnExit.Primary = true;
+            btnExit.Size = new Size(50, 36);
+            btnExit.TabIndex = 2;
+            btnExit.Text = "EXIT";
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click_1;
+            // 
             // MainMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -113,9 +131,12 @@
             BackgroundImage = Properties.Resources.mainLogo;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1111, 624);
+            Controls.Add(btnExit);
             Controls.Add(menu1);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainMenu";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "MainMenu";
             materialContextMenuStrip1.ResumeLayout(false);
             menu1.ResumeLayout(false);
@@ -133,5 +154,6 @@
         private ToolStripMenuItem cRUDEntityToolStripMenuItem;
         private ToolStripMenuItem cRUDItemToolStripMenuItem;
         private ToolStripMenuItem cRUDFoodsToolStripMenuItem;
+        private MaterialSkin.Controls.MaterialRaisedButton btnExit;
     }
 }
