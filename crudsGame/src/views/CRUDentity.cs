@@ -271,8 +271,8 @@ namespace crudsGame.src.views
         {
             try
             {
-                if (CheckEmptyFields() == false)
-                {
+                //if (CheckEmptyFields() == false)
+                //{
                     //Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
                     Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
 
@@ -288,18 +288,14 @@ namespace crudsGame.src.views
                     exist = false;
                     UpdateEntityId();
                     CleanFields();
-                    btnUpdatee.Visible = true;
-                    btnDeletee.Visible = true;
-                    //dgvEntities.Enabled = true;
-                }
+                   
+                //}
 
             }
             catch (Exception ex)
             {
                 new MessageBoxDarkMode(ex.Message, "Error", "Ok", Resources.error, true);
-                btnUpdatee.Visible = false;
-                btnDeletee.Visible = false;
-                //dgvEntities.Enabled = false;
+                
             }  
         }
 
@@ -309,8 +305,8 @@ namespace crudsGame.src.views
             {
                 if (dgvEntities.SelectedRows.Count > 0)
                 {
-                    if (CheckEmptyFields() == false)
-                    {
+                    //if (CheckEmptyFields() == false)
+                    //{
                         Entity entity = entityCtn.Update(SearchEntityById((int)dgvEntities.CurrentRow.Cells[0].Value), Convert.ToInt32(txtId.Text), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
 
 
@@ -319,7 +315,10 @@ namespace crudsGame.src.views
                         //this.rows = entityCtn.UpdateAnEntity(rows, dgvEntities, entity);
                         LoadCreatureIntoDatagrid(rows, entity);
                         this.rows = 0;
-                    }
+                        btnCreatee.Visible = true;
+                        btnDeletee.Visible = true;
+                        dgvEntities.Enabled = true;
+                    //}
                 }
                 else
                 {
@@ -331,7 +330,10 @@ namespace crudsGame.src.views
             }
             catch (Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message, "Error", "Ok", Resources.error, true);   
+                new MessageBoxDarkMode(ex.Message, "Error", "Ok", Resources.error, true);
+                btnCreatee.Visible = false;
+                btnDeletee.Visible = false;
+                dgvEntities.Enabled = false;
             }
             
 

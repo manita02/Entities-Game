@@ -29,11 +29,11 @@ namespace crudsGame.src.model
 
 
         
-        public Entity(int id, IKingdom kingdom, string name, IDiet diet, List<IEnvironment> environments, int maxenergy, int maxlife, int attackpoints, int defensepoints, int attackrange)
+        public Entity(int id, IKingdom kingdomm, string namee, IDiet diet, List<IEnvironment> environments, int maxenergy, int maxlife, int attackpoints, int defensepoints, int attackrange)
         {
             Id = id;
-            Kingdom = kingdom; //aca hay q usar las propiedadesss
-            Name = name;
+            kingdom = kingdomm; //aca hay q usar las propiedadesss, el metodo que hay q modificar siempre es el set
+            name = namee;
             Diet = diet;
             environmentList = environments;
             MaxEnergy = maxenergy;
@@ -72,16 +72,16 @@ namespace crudsGame.src.model
             get
             {
                 
-                    if (EnvironmentsList.Count() != 0) //|| EnvironmentsList!=null)//nova el null
-                    {
+                    //if (EnvironmentsList.Count() != 0) //|| EnvironmentsList!=null)//nova el null
+                    //{
                         return EnvironmentsList;
 
-                    }
-                    else
-                    {
-                        throw new Exception("Debe seleccionar por lo menos un environment para la criatura " + Name);
+                    //}
+                    //else
+                    //{
+                        //throw new Exception("Debe seleccionar por lo menos un environment para la criatura " + Name);
 
-                    }        
+                    //}        
             }
             set
             {
@@ -109,6 +109,7 @@ namespace crudsGame.src.model
             }
         }
 
+        /*
         public IEnvironment environment
         {
             get
@@ -125,12 +126,23 @@ namespace crudsGame.src.model
                 else throw new InvalidOperationException("You have to select a environment");
             }
         }
+        */
 
         public string name
         {
             get
             {
-                return Name;
+                  
+                //if (!string.IsNullOrEmpty(Name))
+                //{
+                    return Name;
+                //}
+                //else
+                //{
+                    //throw new Exception("Debe asignarle un nombre a esta entidad!!");
+                //}
+                
+                
             }
 
             set
@@ -139,7 +151,7 @@ namespace crudsGame.src.model
                 {
                     Name = value;
                 }
-                else throw new NullReferenceException("The name cannot be empty!!");
+                else throw new Exception("The name cannot be empty!!");
             }
         }
 
