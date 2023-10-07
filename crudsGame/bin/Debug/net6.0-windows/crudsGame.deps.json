@@ -8,10 +8,19 @@
     ".NETCoreApp,Version=v6.0": {
       "crudsGame/1.0.0": {
         "dependencies": {
+          "AWSSDK.Core": "3.7.203",
           "MaterialSkin.NET5": "1.0.2"
         },
         "runtime": {
           "crudsGame.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.7.203": {
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.203.0"
+          }
         }
       },
       "MaterialSkin.NET5/1.0.2": {
@@ -29,6 +38,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AWSSDK.Core/3.7.203": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eaBpKKMxrFfUXOtesGX7scIumznqWaGE/cCpq97ur2aJphytpLFb+tFg972WOjz6cAlrdz0Uie3Enxrgv4Wghw==",
+      "path": "awssdk.core/3.7.203",
+      "hashPath": "awssdk.core.3.7.203.nupkg.sha512"
     },
     "MaterialSkin.NET5/1.0.2": {
       "type": "package",

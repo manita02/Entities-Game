@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 
 namespace crudsGame.src.controllers
@@ -161,18 +162,32 @@ namespace crudsGame.src.controllers
 
         public Entity Update(Entity entity, int id, IKingdom kingdom, string name, IDiet diet, List<IEnvironment> environments, int maxEnergy, int maxLife, int attack, int defense, int range)
         {
-            entity.id = id;
-            entity.kingdom = kingdom;
-            entity.name = name;
-            entity.diet = diet;
-            entity.environmentList = environments; 
-            entity.maxEnergy=maxEnergy;
-            entity.maxLife = maxLife;
-            entity.attackPoints = attack;
-            entity.defensePoints=defense;
-            entity.attackRange = range;
+            //try
+            //{
+                //MessageBox.Show("holaa");
+                entity.id = id;
+                entity.kingdom = kingdom;
+                entity.name = name;
+                entity.diet = diet;
+                entity.environmentList = environments;
+                entity.maxEnergy = maxEnergy;
+                entity.maxLife = maxLife;
+                entity.attackPoints = attack;
+                entity.defensePoints = defense;
+                entity.attackRange = range;
 
-            return entity;
+                return entity;
+
+            //}
+            //catch(Exception e)
+            //{
+                //MessageBox.Show("Debe seleccionar por lo menos un ambiente para la criatura " + entity.name);
+                //MessageBox.Show(e.ToString());
+                //MessageBox.Show("holaa");
+                //MessageBox.Show(e.Message);
+                //return null;
+            //}
+            
 
         }
 

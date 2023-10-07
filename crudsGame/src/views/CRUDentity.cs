@@ -16,6 +16,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static crudsGame.src.views.MaterialUI;
 using MaterialSkin.Controls;
+using crudsGame.Properties;
 
 namespace crudsGame.src.views
 {
@@ -164,24 +165,24 @@ namespace crudsGame.src.views
 
         private void dgvEntities_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvEntities.SelectedRows.Count > 0)
-            {
-                this.rows = dgvEntities.SelectedRows[0].Index;
-                txtId.Text = dgvEntities.CurrentRow.Cells[0].Value.ToString();
-                cbKingdom.SelectedIndex = GetIndexOfKingdomsComboThatComesFromTheDatagrid();
-                txtName.Text = dgvEntities.CurrentRow.Cells[2].Value.ToString();
-                cbDiet.SelectedIndex = GetIndexOfDietComboThatComesFromTheDatagrid();
+                if (dgvEntities.SelectedRows.Count > 0)
+                {
+                    this.rows = dgvEntities.SelectedRows[0].Index;
+                    txtId.Text = dgvEntities.CurrentRow.Cells[0].Value.ToString();
+                    cbKingdom.SelectedIndex = GetIndexOfKingdomsComboThatComesFromTheDatagrid();
+                    txtName.Text = dgvEntities.CurrentRow.Cells[2].Value.ToString();
+                    cbDiet.SelectedIndex = GetIndexOfDietComboThatComesFromTheDatagrid();
 
-                deseleccionarcheckListbox();
-                CheckEnvironmentsInListbox(SearchEntityById((int)(dgvEntities.CurrentRow.Cells[0].Value)));
+                    deseleccionarcheckListbox();
+                    CheckEnvironmentsInListbox(SearchEntityById((int)(dgvEntities.CurrentRow.Cells[0].Value)));
 
-                //cbEnvironment.SelectedIndex = GetIndexOfEnvironmentsComboThatComesFromTheDatagrid();
-                txtAttack.Text = dgvEntities.CurrentRow.Cells[5].Value.ToString();
-                txtDefense.Text = dgvEntities.CurrentRow.Cells[6].Value.ToString();
-                txtRange.Text = dgvEntities.CurrentRow.Cells[7].Value.ToString();
-                txtMaxEnergy.Text = dgvEntities.CurrentRow.Cells[8].Value.ToString();
-                txtMaxLife.Text = dgvEntities.CurrentRow.Cells[10].Value.ToString();
-            }
+                    //cbEnvironment.SelectedIndex = GetIndexOfEnvironmentsComboThatComesFromTheDatagrid();
+                    txtAttack.Text = dgvEntities.CurrentRow.Cells[5].Value.ToString();
+                    txtDefense.Text = dgvEntities.CurrentRow.Cells[6].Value.ToString();
+                    txtRange.Text = dgvEntities.CurrentRow.Cells[7].Value.ToString();
+                    txtMaxEnergy.Text = dgvEntities.CurrentRow.Cells[8].Value.ToString();
+                    txtMaxLife.Text = dgvEntities.CurrentRow.Cells[10].Value.ToString();
+                }
         }
 
 
@@ -268,45 +269,71 @@ namespace crudsGame.src.views
 
         private void btnCreatee_Click(object sender, EventArgs e)
         {
-            if (CheckEmptyFields() == false)
+            try
             {
-                //Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
-                Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
-
-                CheckIfEntityExists(entity);
-                if (exist == false)
+                if (CheckEmptyFields() == false)
                 {
-                    entityCtn.GetEntitiesList().Add(entity); //se carga en la lista
-                    LoadCreatureIntoDatagrid(dgvEntities.Rows.Add(), entity); //se carga en la tabla
+                    //Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+                    Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+
+                    CheckIfEntityExists(entity);
+                    MessageBox.Show("chequeo si esxiste..");
+                    if (exist == false)
+                    {
+                        entityCtn.GetEntitiesList().Add(entity); //se carga en la lista
+                        MessageBox.Show("lo agrego a la lista");
+                        LoadCreatureIntoDatagrid(dgvEntities.Rows.Add(), entity); //se carga en la tabla
+                        MessageBox.Show("lo agrego a la tabla");
+                    }
+                    exist = false;
+                    UpdateEntityId();
+                    CleanFields();
+                    btnUpdatee.Visible = true;
+                    btnDeletee.Visible = true;
+                    //dgvEntities.Enabled = true;
                 }
-                exist = false;
-                UpdateEntityId();
-                CleanFields();
+
             }
+            catch (Exception ex)
+            {
+                new MessageBoxDarkMode(ex.Message, "Error", "Ok", Resources.error, true);
+                btnUpdatee.Visible = false;
+                btnDeletee.Visible = false;
+                //dgvEntities.Enabled = false;
+            }  
         }
 
         private void btnUpdatee_Click(object sender, EventArgs e)
         {
-            if (dgvEntities.SelectedRows.Count > 0)
+            try
             {
-                if (CheckEmptyFields() == false)
+                if (dgvEntities.SelectedRows.Count > 0)
                 {
-                    Entity entity = entityCtn.Update(SearchEntityById((int)dgvEntities.CurrentRow.Cells[0].Value), Convert.ToInt32(txtId.Text), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+                    if (CheckEmptyFields() == false)
+                    {
+                        Entity entity = entityCtn.Update(SearchEntityById((int)dgvEntities.CurrentRow.Cells[0].Value), Convert.ToInt32(txtId.Text), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
 
 
-                    //Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+                        //Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
 
-                    //this.rows = entityCtn.UpdateAnEntity(rows, dgvEntities, entity);
-                    LoadCreatureIntoDatagrid(rows, entity);
-                    this.rows = 0;
+                        //this.rows = entityCtn.UpdateAnEntity(rows, dgvEntities, entity);
+                        LoadCreatureIntoDatagrid(rows, entity);
+                        this.rows = 0;
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!");
+                }
+                CleanFields();
+                UpdateEntityId();
+
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!");
+                new MessageBoxDarkMode(ex.Message, "Error", "Ok", Resources.error, true);   
             }
-            CleanFields();
-            UpdateEntityId();
+            
 
         }
 

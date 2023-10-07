@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "gzW8PraqDEXpHUdfn84nKqN4SL60Ko9668f4xTaLXxmQ27XP3eGQ8tAmahoh5Ds+Nb6Tf0QMZQUya3+QOVUuEA==",
+  "dgSpecHash": "vNZaCwSIVPSnesd6k91TUuLmUUbHsRsnPMwJWUzVAxaT9ghJZ0snwkAJTpc5pXtYY8y+yF4BK+3dhXrc5CIOFw==",
   "success": true,
   "projectFilePath": "C:\\Users\\manita02\\Desktop\\animalesREPOPRUEBAA\\probandoAnimales\\crudsGame\\crudsGame.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\manita02\\.nuget\\packages\\awssdk.core\\3.7.203\\awssdk.core.3.7.203.nupkg.sha512",
     "C:\\Users\\manita02\\.nuget\\packages\\materialskin.net5\\1.0.2\\materialskin.net5.1.0.2.nupkg.sha512"
   ],
   "logs": []

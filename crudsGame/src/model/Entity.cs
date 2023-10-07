@@ -32,10 +32,10 @@ namespace crudsGame.src.model
         public Entity(int id, IKingdom kingdom, string name, IDiet diet, List<IEnvironment> environments, int maxenergy, int maxlife, int attackpoints, int defensepoints, int attackrange)
         {
             Id = id;
-            Kingdom = kingdom;
+            Kingdom = kingdom; //aca hay q usar las propiedadesss
             Name = name;
             Diet = diet;
-            EnvironmentsList = environments;
+            environmentList = environments;
             MaxEnergy = maxenergy;
             CurrentEnergy = MaxEnergy;
             MaxLife = maxlife;
@@ -65,15 +65,35 @@ namespace crudsGame.src.model
         }
         */
 
+        #region Properties
+
         public List<IEnvironment> environmentList
         {
             get
             {
-                return EnvironmentsList;
+                
+                    if (EnvironmentsList.Count() != 0) //|| EnvironmentsList!=null)//nova el null
+                    {
+                        return EnvironmentsList;
+
+                    }
+                    else
+                    {
+                        throw new Exception("Debe seleccionar por lo menos un environment para la criatura " + Name);
+
+                    }        
             }
             set
             {
-                EnvironmentsList = value;
+                if (value.Count() != 0)
+                {
+                    EnvironmentsList = value;
+
+                }
+                else
+                {
+                    throw new Exception("Tiene que seleccionar como mínimo un ambiente para la criatura " + Name);
+                } 
             }
         }
 
@@ -353,7 +373,7 @@ namespace crudsGame.src.model
 
             }
         }
-
+        #endregion
 
         public int Attack(Entity entity)
         {

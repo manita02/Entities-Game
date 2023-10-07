@@ -210,3 +210,5 @@ C:\Users\ana\Desktop\probando_animales\probandoAnimales\crudsGame\obj\Debug\net6
 C:\Users\ana\Desktop\probando_animales\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.MainMenu.resources
 C:\Users\manita02\Desktop\animalesREPOPRUEBAA\probandoAnimales\crudsGame\bin\Debug\net6.0-windows\MaterialSkin.dll
 C:\Users\manita02\Desktop\animalesREPOPRUEBAA\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.CopyComplete
+C:\Users\manita02\Desktop\animalesREPOPRUEBAA\probandoAnimales\crudsGame\bin\Debug\net6.0-windows\AWSSDK.Core.dll
+C:\Users\manita02\Desktop\animalesREPOPRUEBAA\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.MessageBoxDarkMode.resources
