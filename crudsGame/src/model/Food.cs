@@ -1,4 +1,6 @@
-﻿using crudsGame.src.interfaces;
+﻿using crudsGame.Properties;
+using crudsGame.src.interfaces;
+using crudsGame.src.views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,12 +94,13 @@ namespace crudsGame.src.model
             {
                 entity.currentEnergy -= 10;
                 entity.currentEnergy += this.Calories;
-                MessageBox.Show("The creature " + entity.name + " ate " + Name + " and recovered +(" + Calories + ") energy");
+                new MessageBoxDarkMode("The creature " + entity.name + " ate " + Name + " and recovered + (" + Calories + ") energy", "ATENCIÓN", "Ok", Resources.check, true);
+                
                 return true;
             }
             else
             {
-                MessageBox.Show("The creature " + entity.name +" is full, he can't eat more!!");
+                new MessageBoxDarkMode("The creature " + entity.name + " is full, he can't eat more!!", "ALERTA", "Ok", Resources.warning, true);
                 return true;
             }
         }

@@ -1,4 +1,5 @@
-﻿using crudsGame.src.controllers;
+﻿using crudsGame.Properties;
+using crudsGame.src.controllers;
 using crudsGame.src.factoryMethod;
 using crudsGame.src.interfaces;
 using crudsGame.src.model;
@@ -257,22 +258,40 @@ namespace crudsGame.src.views
 
         private void btnComer_Click(object sender, EventArgs e)
         {
-            GetOnePlayerCreatureSelectedFromCombo().Eat(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedFoodFromCombobox());
-            UpdateProgressbar();
+            try
+            {
+                GetOnePlayerCreatureSelectedFromCombo().Eat(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedFoodFromCombobox());
+                UpdateProgressbar();
+            }
+            catch (Exception ex)
+            {
+                new MessageBoxDarkMode(ex.Message + " por eso no puede comer", "ALERTA", "Ok", Resources.warning, true);
+            }
+            
         }
 
         private void btnInteract_Click(object sender, EventArgs e)
         {
-
-            if (GetOnePlayerCreatureSelectedFromCombo().UsarItem(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedItemFromCombobox()) == false)
+            //GetOnePlayerCreatureSelectedFromCombo().currentEnergy = 0;
+            try
             {
-                //MessageBox.Show("Su entidad ha perdido toda su vida por lo tanto murió...");
-                entityCtn.GetEntitiesList().Remove(GetOnePlayerCreatureSelectedFromCombo());
-                LoadComboboxWithCreaturesPlayerOne();
-                cbCreaturesPlayerOne.SelectedIndex = 0;
-                //cbCreaturesPlayerOne.Items.Remove(GetOnePlayerCreatureSelectedFromCombo());
+                if (GetOnePlayerCreatureSelectedFromCombo().UsarItem(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedItemFromCombobox()) == false)
+                {
+                    //MessageBox.Show("Su entidad ha perdido toda su vida por lo tanto murió...");
+                    entityCtn.GetEntitiesList().Remove(GetOnePlayerCreatureSelectedFromCombo());
+                    LoadComboboxWithCreaturesPlayerOne();
+                    cbCreaturesPlayerOne.SelectedIndex = 0;
+                    //cbCreaturesPlayerOne.Items.Remove(GetOnePlayerCreatureSelectedFromCombo());
+                }
+                UpdateProgressbar();
+
             }
-            UpdateProgressbar();
+            catch (Exception ex)
+            {
+                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+            }
+            
+            
         }
 
         private void btnSleep_Click(object sender, EventArgs e)

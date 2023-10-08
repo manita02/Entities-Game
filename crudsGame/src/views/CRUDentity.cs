@@ -267,6 +267,18 @@ namespace crudsGame.src.views
             GeneralController.ValidateNumbers(e);
         }
 
+        private int GetValorTextBoxParaConvertirEnEntero(MaterialSingleLineTextField txt)
+        {
+            if (txt.Text != "")
+            {
+                return Convert.ToInt16(txt.Text);
+            }
+            else
+            {
+                throw new Exception("El campo " + txt.Name + " NO puede estar vacío!!");
+            }
+        }
+
         private void btnCreatee_Click(object sender, EventArgs e)
         {
             try
@@ -274,16 +286,16 @@ namespace crudsGame.src.views
                 //if (CheckEmptyFields() == false)
                 //{
                     //Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
-                    Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+                    Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), GetValorTextBoxParaConvertirEnEntero(txtMaxEnergy), GetValorTextBoxParaConvertirEnEntero(txtMaxLife), GetValorTextBoxParaConvertirEnEntero(txtAttack), GetValorTextBoxParaConvertirEnEntero(txtDefense), GetValorTextBoxParaConvertirEnEntero(txtRange));
 
                     CheckIfEntityExists(entity);
-                    MessageBox.Show("chequeo si esxiste..");
+                    //MessageBox.Show("chequeo si esxiste..");
                     if (exist == false)
                     {
                         entityCtn.GetEntitiesList().Add(entity); //se carga en la lista
-                        MessageBox.Show("lo agrego a la lista");
+                        //MessageBox.Show("lo agrego a la lista");
                         LoadCreatureIntoDatagrid(dgvEntities.Rows.Add(), entity); //se carga en la tabla
-                        MessageBox.Show("lo agrego a la tabla");
+                        //MessageBox.Show("lo agrego a la tabla");
                     }
                     exist = false;
                     UpdateEntityId();
@@ -307,7 +319,7 @@ namespace crudsGame.src.views
                 {
                     //if (CheckEmptyFields() == false)
                     //{
-                        Entity entity = entityCtn.Update(SearchEntityById((int)dgvEntities.CurrentRow.Cells[0].Value), Convert.ToInt32(txtId.Text), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
+                        Entity entity = entityCtn.Update(SearchEntityById((int)dgvEntities.CurrentRow.Cells[0].Value), Convert.ToInt32(txtId.Text), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), GetValorTextBoxParaConvertirEnEntero(txtMaxEnergy), GetValorTextBoxParaConvertirEnEntero(txtMaxLife), GetValorTextBoxParaConvertirEnEntero(txtAttack), GetValorTextBoxParaConvertirEnEntero(txtDefense), GetValorTextBoxParaConvertirEnEntero(txtRange));
 
 
                         //Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));

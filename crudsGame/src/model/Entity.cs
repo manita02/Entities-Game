@@ -1,7 +1,9 @@
 ﻿using crudsGame.src.interfaces;
 using crudsGame.src.model.Items;
 using crudsGame.src.model.Kingdoms;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -29,16 +31,16 @@ namespace crudsGame.src.model
 
 
         
-        public Entity(int id, IKingdom kingdomm, string namee, IDiet diet, List<IEnvironment> environments, int maxenergy, int maxlife, int attackpoints, int defensepoints, int attackrange)
+        public Entity(int id, IKingdom kingdomm, string namee, IDiet diet, List<IEnvironment> environments, int maxenergy, int maxlifee, int attackpoints, int defensepoints, int attackrange)
         {
             Id = id;
             kingdom = kingdomm; //aca hay q usar las propiedadesss, el metodo que hay q modificar siempre es el set
             name = namee;
             Diet = diet;
             environmentList = environments;
-            MaxEnergy = maxenergy;
+            maxEnergy = maxenergy;
             CurrentEnergy = MaxEnergy;
-            MaxLife = maxlife;
+            maxLife = maxlifee;
             CurrentLife = MaxLife;
             AttackPoints = attackpoints;
             DefensePoints = defensepoints;
@@ -203,7 +205,7 @@ namespace crudsGame.src.model
                 if (value < 0)
                 {
                     CurrentEnergy = 0;
-                    MessageBox.Show("The creature" + Name + " is very tired");
+                    //MessageBox.Show("The creature" + Name + " is very tired");
                     throw new Exception("The creature "+ Name +" is very tired");
                 }
                 else if (value > MaxEnergy)
@@ -229,21 +231,31 @@ namespace crudsGame.src.model
             {
                 if (value > 0)
                 {
-                    //MessageBox.Show("ENTRE: " + this.CurrentEnergy);
                     MaxEnergy = value;
                 }
-                else throw new InvalidOperationException("la energia maxima esta mal");
+                else
+                {
+                    throw new Exception("La energía máxima debe ser mayor a cero!!");
+                }       
             }
         }
 
         public int maxLife
         {
-            get => MaxLife;
-            //get { return maxLife; }
+            get
+            {
+                return MaxLife;
+            }
             set
             {
-                if (value > 0) MaxLife = value;
-                else throw new InvalidOperationException("la vida siempre sera mayor a 0");
+                if (value > 0)
+                {
+                    MaxLife = value;
+                }
+                else
+                {
+                    throw new Exception("La vida máxima debe ser mayor a cero!!");
+                } 
             }
         }
 
@@ -464,8 +476,8 @@ namespace crudsGame.src.model
                     //MessageBox.Show("La entidad esta muertaaaaaaa en usar item");
                     return false;
                 }
-                
-                
+
+
                 /*
                 if (entity.currentLife <= 0)
                 {
@@ -484,15 +496,16 @@ namespace crudsGame.src.model
             }
             else
             {
-                MessageBox.Show("la entidad seleccionada no puede usar este item");
+                throw new Exception("La entidad seleccionada ( "+entity.name+" ) no puede usar este item ya que no coinciden sus reinos!!");
+                //MessageBox.Show("la entidad seleccionada no puede usar este item");
                 return true;
             }
         }
 
         public void Eat(Entity entity,  Food food)
         {
-            try
-            {
+            //try
+            //{
                 if (Diet.CanEat(entity, food) == true)
                 {
                     food.Interact(entity);
@@ -500,14 +513,15 @@ namespace crudsGame.src.model
                 }
                 else
                 {
-                    MessageBox.Show("la entidad seleccionada no puede comer este alimento");
+                    throw new Exception("La dieta ( "+entity.diet+" ) de la entidad seleccionada ( "+entity.name+" ) no coincide con el alimento a ingerir");
+                    //MessageBox.Show("la entidad seleccionada no puede comer este alimento");
                 }
 
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
+            //}
+            //catch (Exception e)
+            //{
+                //Console.WriteLine(e.ToString());
+            //}
             
             
         }
