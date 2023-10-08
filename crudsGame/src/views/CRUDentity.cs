@@ -267,26 +267,7 @@ namespace crudsGame.src.views
             GeneralController.ValidateNumbers(e);
         }
 
-        private int GetValorTextBoxParaConvertirEnEntero(MaterialSingleLineTextField txt)
-        {
-            if (txt.Text != "")
-            {
-                if(Convert.ToInt16(txt.Text) != 0)
-                {
-                    return Convert.ToInt16(txt.Text);
-                }
-                else
-                {
-                    throw new Exception("No puede ingresar el número cero en el campo " + txt.Name +" !!");
-                }
-                
-            }
-            else
-            {
-                throw new Exception("El campo " + txt.Name + " NO puede estar vacío!!");
-            }
-        }
-
+        
         private void btnCreatee_Click(object sender, EventArgs e)
         {
             try
@@ -294,7 +275,7 @@ namespace crudsGame.src.views
                 //if (CheckEmptyFields() == false)
                 //{
                     //Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
-                    Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), GetValorTextBoxParaConvertirEnEntero(txtMaxEnergy), GetValorTextBoxParaConvertirEnEntero(txtMaxLife), GetValorTextBoxParaConvertirEnEntero(txtAttack), GetValorTextBoxParaConvertirEnEntero(txtDefense), Convert.ToInt16(txtRange.Text));
+                    Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), GeneralController.CheckThatTheFieldIsNotNull(txtMaxEnergy), GeneralController.CheckThatTheFieldIsNotNull(txtMaxLife), GeneralController.CheckThatTheFieldIsNotNull(txtAttack), GeneralController.CheckThatTheFieldIsNotNull(txtDefense), Convert.ToInt16(txtRange.Text));
 
                     CheckIfEntityExists(entity);
                     //MessageBox.Show("chequeo si esxiste..");
@@ -327,7 +308,7 @@ namespace crudsGame.src.views
                 {
                     //if (CheckEmptyFields() == false)
                     //{
-                        Entity entity = entityCtn.Update(SearchEntityById((int)dgvEntities.CurrentRow.Cells[0].Value), Convert.ToInt32(txtId.Text), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), GetValorTextBoxParaConvertirEnEntero(txtMaxEnergy), GetValorTextBoxParaConvertirEnEntero(txtMaxLife), GetValorTextBoxParaConvertirEnEntero(txtAttack), GetValorTextBoxParaConvertirEnEntero(txtDefense), Convert.ToInt16(txtRange.Text));
+                        Entity entity = entityCtn.Update(SearchEntityById((int)dgvEntities.CurrentRow.Cells[0].Value), Convert.ToInt32(txtId.Text), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), GeneralController.CheckThatTheFieldIsNotNull(txtMaxEnergy), GeneralController.CheckThatTheFieldIsNotNull(txtMaxLife), GeneralController.CheckThatTheFieldIsNotNull(txtAttack), GeneralController.CheckThatTheFieldIsNotNull(txtDefense), Convert.ToInt16(txtRange.Text));
 
 
                         //Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
@@ -350,7 +331,7 @@ namespace crudsGame.src.views
             }
             catch (Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message +" por esto no se editrá la entidad", "Error", "Ok", Resources.error, true);
+                new MessageBoxDarkMode(ex.Message +" por esto no se editará la entidad", "Error", "Ok", Resources.error, true);
                 btnCreatee.Visible = false;
                 btnDeletee.Visible = false;
                 dgvEntities.Enabled = false;

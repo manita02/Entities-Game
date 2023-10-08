@@ -16,12 +16,12 @@ namespace crudsGame.src.model
         int Calories;
         IDiet Diet;
 
-        public Food(int id, string name, int Calories, IDiet diet)
+        public Food(int id, string namee, int Calories, IDiet diet)
         {
             Id = id;
-            Name = name;
-            this.Calories = Calories;
-            this.Diet = diet;
+            name = namee;
+            calories = Calories;
+            Diet = diet;
         }
         public int id
         {
@@ -47,7 +47,7 @@ namespace crudsGame.src.model
                 {
                     Name = value;
                 }
-                else throw new NullReferenceException("The name cannot be empty!!");
+                else throw new Exception("The name cannot be empty!!");
             }
         }
 
@@ -59,11 +59,11 @@ namespace crudsGame.src.model
             }
             set
             {
-                if (value >= 10 && value <= 80)
+                if (value > 0)
                 {
                     Calories = value;
                 }
-                else throw new ArgumentOutOfRangeException(nameof(value), "The valid range for calories is between 10 and 80.");
+                else throw new Exception("Las calorías deben ser mayores a cero");
             }
         }
 

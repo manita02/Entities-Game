@@ -284,6 +284,7 @@
             txtCalories.TabIndex = 55;
             txtCalories.TabStop = false;
             txtCalories.UseSystemPasswordChar = false;
+            txtCalories.KeyPress += txtCalories_KeyPress;
             // 
             // CRUDfood
             // 

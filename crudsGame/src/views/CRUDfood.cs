@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static crudsGame.src.views.MaterialUI;
 using MaterialSkin.Controls;
+using crudsGame.Properties;
 
 namespace crudsGame.src.views
 {
@@ -68,16 +69,6 @@ namespace crudsGame.src.views
 
         }
 
-        private bool CheckEmptyFields()
-        {
-            if (txtName.Text == "" || txtCalories.Text == "")
-            {
-                MessageBox.Show("Los campos no pueden estar vacíos!!!");
-                return true;
-            }
-            return false;
-        }
-
         private void CleanFields()
         {
             txtName.Text = "";
@@ -113,10 +104,6 @@ namespace crudsGame.src.views
             }
         }
 
-        private void txtCalories_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            GeneralController.ValidateNumbers(e);
-        }
 
         private void cbDiet_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -136,9 +123,9 @@ namespace crudsGame.src.views
 
         private void btnCreatee_Click(object sender, EventArgs e)
         {
-            if (CheckEmptyFields() == false)
+            try
             {
-                Food food = foodCtn.CreateFood(foodCtn.GetFoodList().Count(), txtName.Text, Convert.ToInt32(txtCalories.Text), (IDiet)(cbDiet.SelectedItem));
+                Food food = foodCtn.CreateFood(foodCtn.GetFoodList().Count(), txtName.Text, GeneralController.CheckThatTheFieldIsNotNull(txtCalories), (IDiet)(cbDiet.SelectedItem));
                 CheckIfFoodExists(food);
                 if (exist == false)
                 {
@@ -149,28 +136,50 @@ namespace crudsGame.src.views
 
                 UpdateFoodId();
 
-
             }
+            catch (Exception ex)
+            {
+                new MessageBoxDarkMode(ex.Message + " por esto no se creará la comida", "Error", "Ok", Resources.error, true);
+            }
+
+
+
+
+
 
         }
 
         private void btnUpdatee_Click(object sender, EventArgs e)
         {
-            if (dgvFoods.SelectedRows.Count > 0)
+            try
             {
-                if (CheckEmptyFields() == false)
+                if (dgvFoods.SelectedRows.Count > 0)
                 {
-                    Food food = foodCtn.CreateFood(foodCtn.GetFoodList().Count(), txtName.Text, Convert.ToInt32(txtCalories.Text), (IDiet)(cbDiet.SelectedItem));
+
+                    Food food = foodCtn.CreateFood(foodCtn.GetFoodList().Count(), txtName.Text, GeneralController.CheckThatTheFieldIsNotNull(txtCalories), (IDiet)(cbDiet.SelectedItem));
                     LoadFoodIntoDatagrid(rows, food);
                     this.rows = 0;
+
                 }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar una fila de la tabla para editar una comida!!");
+                }
+                CleanFields();
+                UpdateFoodId();
+                btnCreatee.Visible = true;
+                btnDeletee.Visible = true;
+                dgvFoods.Enabled = true;
+
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Debe seleccionar una fila de la tabla para editar una comida!!");
+                new MessageBoxDarkMode(ex.Message + " por esto no se editará la comida", "Error", "Ok", Resources.error, true);
+                btnCreatee.Visible = false;
+                btnDeletee.Visible = false;
+                dgvFoods.Enabled = false;
             }
-            CleanFields();
-            UpdateFoodId();
+
 
         }
 
@@ -196,6 +205,11 @@ namespace crudsGame.src.views
             }
             UpdateFoodId();
 
+        }
+
+        private void txtCalories_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            GeneralController.ValidateNumbers(e);
         }
     }
 }
