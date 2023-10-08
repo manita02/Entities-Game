@@ -275,24 +275,40 @@ namespace crudsGame.src.views
             //GetOnePlayerCreatureSelectedFromCombo().currentEnergy = 0;
             //try
             //{
-                if (GetOnePlayerCreatureSelectedFromCombo().UsarItem(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedItemFromCombobox()) == false)
+            
+                if (GetOnePlayerCreatureSelectedFromCombo().currentLife <= 0)
                 {
-                    //MessageBox.Show("Su entidad ha perdido toda su vida por lo tanto murió...");
+                    MessageBox.Show("Su entidad ha perdido toda su vida por lo tanto murió...");
                     entityCtn.GetEntitiesList().Remove(GetOnePlayerCreatureSelectedFromCombo());
                     LoadComboboxWithCreaturesPlayerOne();
                     cbCreaturesPlayerOne.SelectedIndex = 0;
-                    //cbCreaturesPlayerOne.Items.Remove(GetOnePlayerCreatureSelectedFromCombo());
                 }
-                UpdateProgressbar();
+                else
+                {
+                    GetOnePlayerCreatureSelectedFromCombo().UsarItem(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedItemFromCombobox());
+                }
+            UpdateProgressbar();
+
+            /*
+            if (GetOnePlayerCreatureSelectedFromCombo().UsarItem(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedItemFromCombobox()) == false)
+            {
+                //MessageBox.Show("Su entidad ha perdido toda su vida por lo tanto murió...");
+                entityCtn.GetEntitiesList().Remove(GetOnePlayerCreatureSelectedFromCombo());
+                LoadComboboxWithCreaturesPlayerOne();
+                cbCreaturesPlayerOne.SelectedIndex = 0;
+                //cbCreaturesPlayerOne.Items.Remove(GetOnePlayerCreatureSelectedFromCombo());
+            }
+            UpdateProgressbar();
+            */
 
             //}
             //catch (Exception ex)
             //{
-                //new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
-                //UpdateProgressbar();
+            //new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+            //UpdateProgressbar();
             //}
-            
-            
+
+
         }
 
         private void btnSleep_Click(object sender, EventArgs e)

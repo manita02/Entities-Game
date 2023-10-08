@@ -12,7 +12,7 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
     internal class LosesEnergy:IStrategyTypeOfItem
     {
         Random random = new Random();
-        public bool ApplyItem(Entity entity)
+        public void ApplyItem(Entity entity)
         {
             try
             {
@@ -20,8 +20,9 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
                 //{
                 //MessageBox.Show("estoy: "+ entity.currentEnergy);
                 entity.currentEnergy -= random.Next(10, 50) - 5;
-                MessageBox.Show("The " + entity.name + " creature used an item that made him lose energy (-" + entity.currentEnergy);
-                return true;
+                new MessageBoxDarkMode("The " + entity.name + " creature used an item that made him lose energy (-" + entity.currentEnergy, "ATENCIÓN", "Ok", Resources.neg, true);
+                
+                //return true;
                 //}
                 //else
                 //{
@@ -32,7 +33,7 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
             catch(Exception ex)
             {
                 new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
-                return true;
+                //return true;
             }
             
         }

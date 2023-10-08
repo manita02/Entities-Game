@@ -12,7 +12,7 @@ namespace crudsGame.src.model.Items.Strategy
     internal class EnergyyItem : IStrategyTypeOfItem
     {
         Random random = new Random();
-        public bool ApplyItem(Entity entity)
+        public void ApplyItem(Entity entity)
         {
             try
             {
@@ -22,7 +22,7 @@ namespace crudsGame.src.model.Items.Strategy
                     entity.currentEnergy += random.Next(10, 50) - 10;
                     new MessageBoxDarkMode("The " + entity.name + " creature has used a item that increased its energy to " + entity.currentEnergy, "ATENCIÓN", "Ok", Resources.check, true);
                     
-                    return true;
+                    //return true;
                 //}
                 //else
                 //{
@@ -33,8 +33,8 @@ namespace crudsGame.src.model.Items.Strategy
             }
             catch (Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message + ", no podrá utilizar este item", "ALERTA", "Ok", Resources.warning, true);
-                return true;
+                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+                //return true;
             }
 
 

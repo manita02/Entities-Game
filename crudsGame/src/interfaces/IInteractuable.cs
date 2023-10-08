@@ -18,7 +18,7 @@ namespace crudsGame.src.interfaces
 
         //void Interact(IEntity entity); //puedo usar el metodo caneat y accedo a la energia con entity. ...
 
-        bool Interact(Entity entity);
+        void Interact(Entity entity);
 
 
     }

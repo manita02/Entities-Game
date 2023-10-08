@@ -213,7 +213,7 @@ namespace crudsGame.src.model
                 else if (value >= MaxEnergy)
                 {
                     CurrentEnergy = MaxEnergy;
-                    throw new Exception("La entidad "+this.Name+" tiene lo máximo que puede obtener en energía ( "+this.MaxEnergy+" )");
+                    throw new Exception("La entidad "+this.Name+" ha obtenido lo máximo que puede obtener en energía ( "+this.MaxEnergy+" )");
 
                 }
                 else
@@ -420,9 +420,10 @@ namespace crudsGame.src.model
                     throw new Exception("The creature " + Name + " has died");
                     
                 }
-                else if (value > MaxLife)
+                else if (value >= MaxLife)
                 {
                     CurrentLife = MaxLife;
+                    throw new Exception("La entidad " + this.Name + " ha obtenido lo máximo que puede obtener en vida ( " + this.MaxEnergy + " )");
                 }
                 else
                 {
@@ -525,19 +526,20 @@ namespace crudsGame.src.model
         }
 
 
-        public bool UsarItem(Entity entity, Item item)
+        public void UsarItem(Entity entity, Item item)
         {
             if (Kingdom.CanInteract(entity, item) == true)
             {
-                if (item.Interact(entity) == true)
-                {
-                    return true; 
-                }
-                else
-                {
+                item.Interact(entity); 
+                //if (item.Interact(entity) == true)
+                //{
+                    //return true; 
+                //}
+                //else
+                //{
                     //MessageBox.Show("La entidad esta muertaaaaaaa en usar item");
-                    return false;
-                }
+                    //return false;
+                //}
 
 
                 /*
@@ -561,7 +563,7 @@ namespace crudsGame.src.model
                 new MessageBoxDarkMode("La entidad seleccionada ( "+entity.name+" ) no puede usar este item ya que no coinciden sus reinos!!", "ALERTA", "Ok", Resources.warning, true);
                 
                 //MessageBox.Show("la entidad seleccionada no puede usar este item");
-                return true;
+                //return true;
             }
         }
 

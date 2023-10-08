@@ -90,9 +90,10 @@ namespace crudsGame.src.model.Items
             return Name +"_"+ Kingdom;
         }
 
-        public bool Interact(Entity entity)
+        public void Interact(Entity entity)
         {
             //try {
+            /*
                 if (ItemStrategy.ApplyItem(entity) == true)
                 {
                     return true;
@@ -100,8 +101,8 @@ namespace crudsGame.src.model.Items
                 else
                 {
                     return false;
-                }
-                //ItemStrategy.ApplyItem(entity);
+                }*/
+                ItemStrategy.ApplyItem(entity);
                 //entity.currentEnergy -= 10;
 
             //}

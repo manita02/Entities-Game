@@ -15,7 +15,7 @@ namespace crudsGame.src.model.Items.Strategy
     internal class IncreasesAttackPoints : IStrategyTypeOfItem
     {
         Random random = new Random();
-        public bool ApplyItem(Entity entity)
+        public void ApplyItem(Entity entity)
         {
             try
             {
@@ -25,7 +25,7 @@ namespace crudsGame.src.model.Items.Strategy
                     new MessageBoxDarkMode("The " + entity.name + " creature has used a item that increased its attack points!!", "ATENCIÓN", "Ok", Resources.check, true);
                 
                     entity.attackPoints += random.Next(5, 15);
-                    return true;
+                    //return true;
                 //}
                 //else
                 //{
@@ -36,7 +36,7 @@ namespace crudsGame.src.model.Items.Strategy
             catch(Exception ex)
             {
                 new MessageBoxDarkMode(ex.Message + ", no podrá utilizar este item", "ALERTA", "Ok", Resources.warning, true);
-                return true;
+                //return true;
             }
                 
             
