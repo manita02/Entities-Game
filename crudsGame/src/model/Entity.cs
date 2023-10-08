@@ -42,7 +42,7 @@ namespace crudsGame.src.model
             CurrentEnergy = MaxEnergy;
             maxLife = maxlifee;
             CurrentLife = MaxLife;
-            AttackPoints = attackpoints;
+            attackPoints = attackpoints;
             DefensePoints = defensepoints;
             AttackRange = attackrange;
         }
@@ -259,6 +259,52 @@ namespace crudsGame.src.model
             }
         }
 
+
+
+
+
+        public int attackPoints
+        {
+            get
+            { 
+                return AttackPoints;
+            }
+
+            set
+            {
+                
+                if (value > 0)
+                {
+                    AttackPoints = value;
+                }
+                else
+                {
+                    AttackPoints = 0;
+                    throw new Exception("Puntos de ataque igual a cero significa que La entidad " + this.Name + " NO tiene más puntos para atacar!!");
+
+                }
+                
+
+           
+                /*
+                if (value >= 10 && value <= 80)
+                {
+                     
+                    AttackPoints = value;
+                }
+                else
+                    
+                AttackPoints = 80;
+                    throw new ArgumentOutOfRangeException(nameof(value), "The valid range for attack points is between 10 and 80.");
+                */
+            }
+        }
+
+
+
+
+
+        /*
         public int attackPoints { 
             get
             {
@@ -296,9 +342,10 @@ namespace crudsGame.src.model
                     
                 AttackPoints = 80;
                     throw new ArgumentOutOfRangeException(nameof(value), "The valid range for attack points is between 10 and 80.");
-                */
+                
             }
         }
+        */
 
 
         public int defensePoints {

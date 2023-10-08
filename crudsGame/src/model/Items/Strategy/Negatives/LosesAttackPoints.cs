@@ -1,4 +1,6 @@
-﻿using crudsGame.src.interfaces;
+﻿using crudsGame.Properties;
+using crudsGame.src.interfaces;
+using crudsGame.src.views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,27 +14,39 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
         Random random = new Random();
         public bool ApplyItem(Entity entity)
         {
+            //try
+            //{
+            //MessageBox.Show("ataque: " + entity.attackPoints);
+            //if (entity.attackPoints != 0)
+            //{
             try
             {
-                //MessageBox.Show("ataque: " + entity.attackPoints);
-                if (entity.attackPoints != 0)
-                {
+                entity.attackPoints -= random.Next(5, 15);
+                entity.currentEnergy -= 10;
+                new MessageBoxDarkMode("The " + entity.name + " creature used an item that made him lose attack points!!", "ATENCIÓN", "Ok", Resources.info, true);
 
-                    entity.currentEnergy -= 10;
-                    MessageBox.Show("The " + entity.name + " creature used an item that made him lose attack points!!");
-                    entity.attackPoints -= random.Next(5, 15);
-                    return true;
-                }
-                else
-                {
-                    MessageBox.Show("Su entidad perdió todos sus puntos de ataque!!");
-                    return true;
-                }
+                return true;
+
             }
-            catch
+            catch(Exception ex)
             {
+                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
                 return true;
             }
+                    
+             //}
+             //else
+             //{
+                //throw new Exception("La entidad " + entity.name + " ha perdido todos sus puntos de ataque!!");
+               
+                //MessageBox.Show("Su entidad perdió todos sus puntos de ataque!!");
+                //return true;
+             //}
+            //}
+            //catch
+            //{
+                //return true;
+            //}
             
            
         }

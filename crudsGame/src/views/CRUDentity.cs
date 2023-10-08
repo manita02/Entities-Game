@@ -306,7 +306,7 @@ namespace crudsGame.src.views
             }
             catch (Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message, "Error", "Ok", Resources.error, true);
+                new MessageBoxDarkMode(ex.Message +" por esto no se creará la entidad", "Error", "Ok", Resources.error, true);
                 
             }  
         }
@@ -342,7 +342,7 @@ namespace crudsGame.src.views
             }
             catch (Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message, "Error", "Ok", Resources.error, true);
+                new MessageBoxDarkMode(ex.Message +" por esto no se editrá la entidad", "Error", "Ok", Resources.error, true);
                 btnCreatee.Visible = false;
                 btnDeletee.Visible = false;
                 dgvEntities.Enabled = false;

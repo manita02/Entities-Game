@@ -273,8 +273,8 @@ namespace crudsGame.src.views
         private void btnInteract_Click(object sender, EventArgs e)
         {
             //GetOnePlayerCreatureSelectedFromCombo().currentEnergy = 0;
-            try
-            {
+            //try
+            //{
                 if (GetOnePlayerCreatureSelectedFromCombo().UsarItem(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedItemFromCombobox()) == false)
                 {
                     //MessageBox.Show("Su entidad ha perdido toda su vida por lo tanto murió...");
@@ -285,11 +285,12 @@ namespace crudsGame.src.views
                 }
                 UpdateProgressbar();
 
-            }
-            catch (Exception ex)
-            {
-                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+                //new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+                //UpdateProgressbar();
+            //}
             
             
         }

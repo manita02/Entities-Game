@@ -92,7 +92,7 @@ namespace crudsGame.src.model.Items
 
         public bool Interact(Entity entity)
         {
-            try {
+            //try {
                 if (ItemStrategy.ApplyItem(entity) == true)
                 {
                     return true;
@@ -104,12 +104,12 @@ namespace crudsGame.src.model.Items
                 //ItemStrategy.ApplyItem(entity);
                 //entity.currentEnergy -= 10;
 
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.ToString());
-                return false;
-            }
+            //}
+            //catch(Exception e)
+            //{
+                //Console.WriteLine(e.ToString());
+                //return false;
+            //}
 
             
             /*

@@ -77,7 +77,7 @@ namespace crudsGame.src.controllers
             kingdomsList = GetKingdomList();
 
             
-            Item item1 = new Item(index, "probandoo", new LosesLife(), KingdomCreator.CreateAkingdom(2)); 
+            Item item1 = new Item(index, "probandoo", new LosesAttackPoints(), KingdomCreator.CreateAkingdom(2)); 
             itemList.Add(item1);
             index++;
             
