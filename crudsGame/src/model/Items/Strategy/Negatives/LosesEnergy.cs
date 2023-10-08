@@ -1,4 +1,6 @@
-﻿using crudsGame.src.interfaces;
+﻿using crudsGame.Properties;
+using crudsGame.src.interfaces;
+using crudsGame.src.views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,8 +29,9 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
                 //MessageBox.Show("Su entidad tiene lo maximo que puede obtener en energia");
                 //}
             }
-            catch
+            catch(Exception ex)
             {
+                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
                 return true;
             }
             

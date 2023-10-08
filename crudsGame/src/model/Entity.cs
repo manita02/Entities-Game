@@ -1,6 +1,8 @@
-﻿using crudsGame.src.interfaces;
+﻿using crudsGame.Properties;
+using crudsGame.src.interfaces;
 using crudsGame.src.model.Items;
 using crudsGame.src.model.Kingdoms;
+using crudsGame.src.views;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections;
@@ -43,8 +45,8 @@ namespace crudsGame.src.model
             maxLife = maxlifee;
             CurrentLife = MaxLife;
             attackPoints = attackpoints;
-            DefensePoints = defensepoints;
-            AttackRange = attackrange;
+            defensePoints = defensepoints;
+            attackRange = attackrange;
         }
 
 
@@ -280,25 +282,34 @@ namespace crudsGame.src.model
                 else
                 {
                     AttackPoints = 0;
-                    throw new Exception("Puntos de ataque igual a cero significa que La entidad " + this.Name + " NO tiene más puntos para atacar!!");
+                    throw new Exception("La entidad " + this.Name + " ha perdido todos sus puntos de ataque debido a que ha utilizado un item!!");
 
                 }
-                
-
-           
-                /*
-                if (value >= 10 && value <= 80)
-                {
-                     
-                    AttackPoints = value;
-                }
-                else
-                    
-                AttackPoints = 80;
-                    throw new ArgumentOutOfRangeException(nameof(value), "The valid range for attack points is between 10 and 80.");
-                */
             }
         }
+
+        
+        public int defensePoints {
+            get
+            { 
+               return DefensePoints; 
+            }
+
+            set
+            {
+                if (value > 0)
+                {
+                    DefensePoints = value;
+                }
+                else
+                {
+                    DefensePoints = 0;
+                    throw new Exception("La entidad " + this.Name + " ha perdido todos sus puntos de defensa debido a que ha utilizado un item!!");
+
+                }
+            }
+        }
+        
 
 
 
@@ -347,7 +358,7 @@ namespace crudsGame.src.model
         }
         */
 
-
+        /*
         public int defensePoints {
             get
             {
@@ -379,22 +390,23 @@ namespace crudsGame.src.model
                 else
                     DefensePoints = 80;
                     throw new ArgumentOutOfRangeException(nameof(value), "The valid range for defense points is between 10 and 80.");
-                */
+                
 
             }
         }
+        */
         public int currentLife
         {
             get
             {
-                if (CurrentLife <= 0)
-                {
-                    return 0;
-                }
-                else
-                {
+                //if (CurrentLife <= 0)
+                //{
+                    //return 0;
+                //}
+                //else
+                //{
                     return CurrentLife;
-                }
+                //}
             }
             set
             {
@@ -402,7 +414,7 @@ namespace crudsGame.src.model
                 {
                     CurrentLife = 0;
                     
-                    MessageBox.Show("The creature "+ Name +" has died");
+                    //MessageBox.Show("The creature "+ Name +" has died");
                     throw new Exception("The creature " + Name + " has died");
                     
                 }
@@ -426,19 +438,20 @@ namespace crudsGame.src.model
 
             set
             {
-                /*
-                if (value == 0 || value == 1)
+                
+                if (value >= 0 && value <= 1)
                 {
                     AttackRange = value;
                 }
-                if (value > 0)
+                else
                 {
-                    MessageBox.Show("El ataque solo puede ser 0 o 1");
-                    AttackRange = 1;
+                    throw new Exception("El rango de ataque solo puede ser 0 o 1");
+                    //MessageBox.Show("El ataque solo puede ser 0 o 1");
+                    //AttackRange = 1;
                 }
-                */
+                
 
-                AttackRange = value;
+                
 
                 //else throw new ArgumentOutOfRangeException(nameof(value), "Attack Range can be 0 (zero) or 1 (one)");
 
@@ -543,7 +556,8 @@ namespace crudsGame.src.model
             }
             else
             {
-                throw new Exception("La entidad seleccionada ( "+entity.name+" ) no puede usar este item ya que no coinciden sus reinos!!");
+                new MessageBoxDarkMode("La entidad seleccionada ( "+entity.name+" ) no puede usar este item ya que no coinciden sus reinos!!", "ALERTA", "Ok", Resources.warning, true);
+                
                 //MessageBox.Show("la entidad seleccionada no puede usar este item");
                 return true;
             }

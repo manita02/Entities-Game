@@ -1,4 +1,6 @@
-﻿using crudsGame.src.interfaces;
+﻿using crudsGame.Properties;
+using crudsGame.src.interfaces;
+using crudsGame.src.views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,21 +17,23 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
             try
             {
                 //MessageBox.Show(entity.currentLife.ToString());
-                if (entity.currentLife != 0)
-                {
-                    entity.currentEnergy -= 10;
+                //if (entity.currentLife != 0)
+                //{
+                    
                     entity.currentLife -= random.Next(5, 30);
+                    entity.currentEnergy -= 10;
                     MessageBox.Show("The " + entity.name + " creature used an item that made him lose life (-" + entity.currentLife);
                     return true;
-                }
-                else
-                {
-                    MessageBox.Show("Su entidad ha muerto");
-                    return false;
-                }
+                //}
+                //else
+                //{
+                    //MessageBox.Show("Su entidad ha muerto");
+                    //return false;
+                //}
             }
-            catch
+            catch (Exception ex)
             {
+                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
                 return true;
             }
             

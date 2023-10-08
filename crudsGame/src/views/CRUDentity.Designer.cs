@@ -452,7 +452,7 @@
             txtRange.TabIndex = 63;
             txtRange.TabStop = false;
             txtRange.UseSystemPasswordChar = false;
-            txtRange.KeyPress += txtAttack_KeyPress_1;
+            //txtRange.KeyPress += txtAttack_KeyPress_1;hay q hacer otro para este xq si puede ser 0
             // 
             // txtMaxEnergy
             // 

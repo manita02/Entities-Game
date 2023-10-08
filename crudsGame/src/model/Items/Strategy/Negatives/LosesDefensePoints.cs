@@ -1,9 +1,13 @@
-﻿using crudsGame.src.interfaces;
+﻿using crudsGame.Properties;
+using crudsGame.src.interfaces;
+using crudsGame.src.views;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace crudsGame.src.model.Items.Strategy.Negatives
 {
@@ -14,25 +18,17 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
         {
             try
             {
-                if (entity.defensePoints != 0)
-                {
-                    entity.currentEnergy -= 10;
-                    MessageBox.Show("The " + entity.name + " creature used an item that made him lose defense points!!");
-                    entity.defensePoints -= random.Next(5, 15);
-                    return true;
-                }
-                else
-                {
-                    MessageBox.Show("Su entidad perdió todos sus puntos de defensa");
-                    return true;
-                }
-            }
-            catch
-            {
+                entity.defensePoints -= random.Next(5, 15);
+                entity.currentEnergy -= 10;
+                new MessageBoxDarkMode("The " + entity.name + " creature used an item that made him lose defense points!!", "ATENCIÓN", "Ok", Resources.info, true);
                 return true;
 
             }
-            
+            catch (Exception ex)
+            {
+                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+                return true;
+            }
         }
 
         public override string ToString()

@@ -1,6 +1,8 @@
-﻿using crudsGame.src.factoryMethod;
+﻿using crudsGame.Properties;
+using crudsGame.src.factoryMethod;
 using crudsGame.src.interfaces;
 using crudsGame.src.model.Items;
+using crudsGame.src.views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +35,18 @@ namespace crudsGame.src.controllers
         {
             if ((e.KeyChar >= 32 && e.KeyChar <= 47) || e.KeyChar >= 58 && e.KeyChar <= 255)
             {
-                MessageBox.Show("Only numbers can be entered", "ALERT!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                new MessageBoxDarkMode("Only numbers can be entered", "ALERT", "Ok", Resources.warning, true);
                 e.Handled = true;
                 return;
+            }
+            else
+            {
+                if(e.KeyChar == 48)
+                {
+                    new MessageBoxDarkMode("No puede ingresar el valor cero en este campo", "ALERT", "Ok", Resources.warning, true);
+                    e.Handled = true;
+                    return;
+                }
             }
         }
 
