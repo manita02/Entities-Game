@@ -17,6 +17,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 using Item = crudsGame.src.model.Items.Item;
 using static crudsGame.src.views.MaterialUI;
 using MaterialSkin.Controls;
+using crudsGame.Properties;
 
 namespace crudsGame.src.views
 {
@@ -63,16 +64,7 @@ namespace crudsGame.src.views
 
         }
 
-        private bool CheckEmptyFields()
-        {
-            if (txtName.Text == "")
-            {
-                MessageBox.Show("El campo nombre NO puede esar vacío!!!");
-                return true;
-            }
-            return false;
-        }
-
+       
         private void CleanFields()
         {
             txtName.Text = "";
@@ -185,7 +177,7 @@ namespace crudsGame.src.views
 
         private void btnCreatee_Click(object sender, EventArgs e)
         {
-            if (CheckEmptyFields() == false)
+            try
             {
                 Item item = itemCtn.CreateItem(itemCtn.GetItemList().Count(), txtName.Text, (IStrategyTypeOfItem)(cbType.SelectedItem), (IKingdom)(cbKingdom.SelectedItem));
                 CheckIfItemExists(item);
@@ -200,27 +192,47 @@ namespace crudsGame.src.views
 
                 CleanFields();
             }
+            catch(Exception ex)
+            {
+                new MessageBoxDarkMode(ex.Message + " por esto no se creará el item", "Error", "Ok", Resources.error, true);
+            }
+                
+            
 
         }
 
         private void btnUpdatee_Click(object sender, EventArgs e)
         {
-            if (dgvItems.SelectedRows.Count > 0)
+            try
             {
-                if (CheckEmptyFields() == false)
+                if (dgvItems.SelectedRows.Count > 0)
                 {
+
                     Item item = itemCtn.CreateItem(itemCtn.GetItemList().Count(), txtName.Text, (IStrategyTypeOfItem)(cbType.SelectedItem), (IKingdom)(cbKingdom.SelectedItem));
                     //this.rows = itemCtn.UpdateAnEntity(rows, dgvItems, item);
                     LoadItemIntoDatagrid(rows, item);
                     this.rows = 0;
+                    btnCreatee.Visible = true;
+                    btnDeletee.Visible = true;
+                    dgvItems.Enabled = true;
+
                 }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!");
+                }
+                CleanFields();
+                UpdateItemId();
+
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!");
+                new MessageBoxDarkMode(ex.Message + " por esto no se editará el item", "Error", "Ok", Resources.error, true);
+                btnCreatee.Visible = false;
+                btnDeletee.Visible = false;
+                dgvItems.Enabled = false;
             }
-            CleanFields();
-            UpdateItemId();
+           
         }
 
         private void btnDeletee_Click(object sender, EventArgs e)

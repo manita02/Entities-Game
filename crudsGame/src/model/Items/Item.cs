@@ -16,10 +16,10 @@ namespace crudsGame.src.model.Items
 
         IKingdom Kingdom;
 
-        public Item(int id, string name, IStrategyTypeOfItem itemStrategy, IKingdom kingdom)
+        public Item(int id, string namee, IStrategyTypeOfItem itemStrategy, IKingdom kingdom)
         {
             Id = id;
-            Name = name;
+            name = namee;
             ItemStrategy = itemStrategy;
             Kingdom = kingdom;
         }
@@ -48,7 +48,7 @@ namespace crudsGame.src.model.Items
                 {
                     Name = value;
                 }
-                else throw new NullReferenceException("The name cannot be empty!!");
+                else throw new Exception("The name cannot be empty!!");
             }
         }
 
@@ -64,7 +64,7 @@ namespace crudsGame.src.model.Items
                 {
                     ItemStrategy = value;
                 }
-                else throw new InvalidOperationException("You have to select a type of item");
+                else throw new Exception("You have to select a type of item");
             }
         }
 
@@ -80,7 +80,7 @@ namespace crudsGame.src.model.Items
                 {
                     Kingdom = value;
                 }
-                else throw new InvalidOperationException("You have to select a kingdom");
+                else throw new Exception("You have to select a kingdom");
             }
         }
 
