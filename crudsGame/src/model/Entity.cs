@@ -210,9 +210,11 @@ namespace crudsGame.src.model
                     //MessageBox.Show("The creature" + Name + " is very tired");
                     throw new Exception("The creature "+ Name +" is very tired");
                 }
-                else if (value > MaxEnergy)
+                else if (value >= MaxEnergy)
                 {
                     CurrentEnergy = MaxEnergy;
+                    throw new Exception("La entidad "+this.Name+" tiene lo máximo que puede obtener en energía ( "+this.MaxEnergy+" )");
+
                 }
                 else
                 {

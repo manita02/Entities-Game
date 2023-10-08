@@ -39,6 +39,7 @@ namespace crudsGame.src.controllers
                 e.Handled = true;
                 return;
             }
+            /*
             else
             {
                 if(e.KeyChar == 48)
@@ -48,6 +49,7 @@ namespace crudsGame.src.controllers
                     return;
                 }
             }
+            */
         }
 
         /*

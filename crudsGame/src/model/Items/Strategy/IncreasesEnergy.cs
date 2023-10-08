@@ -1,4 +1,6 @@
-﻿using crudsGame.src.interfaces;
+﻿using crudsGame.Properties;
+using crudsGame.src.interfaces;
+using crudsGame.src.views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,32 +16,34 @@ namespace crudsGame.src.model.Items.Strategy
         {
             try
             {
-                if (entity.currentEnergy != entity.maxEnergy)
-                {
+                //if (entity.currentEnergy != entity.maxEnergy)
+                //{
                     //MessageBox.Show("estoy: "+ entity.currentEnergy);
                     entity.currentEnergy += random.Next(10, 50) - 10;
-                    MessageBox.Show("The " + entity.name + " creature has used a item that increased its energy to " + entity.currentEnergy);
+                    new MessageBoxDarkMode("The " + entity.name + " creature has used a item that increased its energy to " + entity.currentEnergy, "ATENCIÓN", "Ok", Resources.check, true);
+                    
                     return true;
-                }
-                else
-                {
+                //}
+                //else
+                //{
                     //MessageBox.Show("no estoy");
-                    MessageBox.Show("Su entidad tiene lo maximo que puede obtener en energia");
-                    return true;
-                }
+                    //MessageBox.Show("Su entidad tiene lo maximo que puede obtener en energia");
+                    //return true;
+                //}
             }
-            catch
+            catch (Exception ex)
             {
+                new MessageBoxDarkMode(ex.Message + ", no podrá utilizar este item", "ALERTA", "Ok", Resources.warning, true);
                 return true;
             }
 
-            
 
-            
-            
-            
 
-            
+
+
+
+
+
             /*
             try {
                 MessageBox.Show("estoy por hacer el incremento");
