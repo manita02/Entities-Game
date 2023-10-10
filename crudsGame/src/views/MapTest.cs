@@ -43,10 +43,10 @@ namespace crudsGame.src.views
                 hex18
             });
 
-            int i= 0;
+            int i = 0;
             foreach (var hexagon in hexagonsList)
             {
-                MessageBox.Show("nombre: "+hexagon.Name+", index: "+i);
+                MessageBox.Show("nombre: " + hexagon.Name + ", index: " + i);
                 i++;
             }
             /*hexagons = this.Controls
@@ -63,6 +63,7 @@ namespace crudsGame.src.views
             int index = hexagonsList.IndexOf(clickedHexagon);
             MessageBox.Show("indice hxagono clikeado: " + index);
             cbCurrentTerrain.SelectedIndex = index;
+            //MessageBox.Show("index en combo currentTerrain: " + cbCurrentTerrain.SelectedIndex);
             ChangeColorOfSelectedHexagonAndTheirBorderingHexagons(mapController.GetTerrains((Map)cbMaps.SelectedItem)[index]);
         }
 
@@ -77,11 +78,11 @@ namespace crudsGame.src.views
         private void ChangeColorOfSelectedHexagonAndTheirBorderingHexagons(Terrain terrain)
         {
             ResetHexagonBorderColor();
-            hexagonsList[terrain.Id].BorderColor = Color.HotPink;
+            hexagonsList[terrain.Id].BorderColor = Color.Yellow;
             MessageBox.Show("terreno que debe coindir: " + terrain.ToString());
             for (int i = 0; i < terrain.BorderingTerrainsList.Count(); i++)
             {
-                hexagonsList[terrain.BorderingTerrainsList[i].Id].BorderColor = Color.Red;
+                hexagonsList[terrain.BorderingTerrainsList[i].Id].BorderColor = Color.DarkOrange;
             }
         }
 
@@ -121,6 +122,11 @@ namespace crudsGame.src.views
             {
                 hexagonsList[i].BackColor = terrainsList[i].TerrainType.getColor();
             }
+        }
+
+        private void cbCurrentTerrain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listBox1.DataSource = mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
         }
 
 

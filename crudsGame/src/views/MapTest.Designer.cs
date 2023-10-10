@@ -240,6 +240,7 @@
             cbCurrentTerrain.Name = "cbCurrentTerrain";
             cbCurrentTerrain.Size = new Size(183, 23);
             cbCurrentTerrain.TabIndex = 21;
+            cbCurrentTerrain.SelectedIndexChanged += cbCurrentTerrain_SelectedIndexChanged;
             // 
             // cbMaps
             // 

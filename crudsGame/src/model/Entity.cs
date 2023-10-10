@@ -569,6 +569,9 @@ namespace crudsGame.src.model
 
         public void Eat(Entity entity,  Food food)
         {
+            //if (Diet.CanEat(food) == true){
+
+            //}
             //try
             //{
                 if (Diet.CanEat(entity, food) == true)

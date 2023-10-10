@@ -9,7 +9,7 @@ namespace crudsGame.src.model.Terrains
 {
     internal class Land:ITerrain
     {
-        private Color color = Color.Green;
+        private Color color = Color.LimeGreen;
         public Color getColor()
         {
             return color;

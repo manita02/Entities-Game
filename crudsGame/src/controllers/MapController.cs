@@ -53,12 +53,14 @@ namespace crudsGame.src.controllers
 
         public List<Terrain> GetTerrains(Map map)
         {
+            /*
             int i = 0;
             foreach (var hexagon in map.TerrainsList)
             {
                 MessageBox.Show("nombre: " + hexagon.ToString());
                 i++;
             }
+            */
             return map.TerrainsList;
         }
 
