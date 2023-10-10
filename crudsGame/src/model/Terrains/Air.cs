@@ -9,6 +9,12 @@ namespace crudsGame.src.model.Terrains
 {
     internal class Air:ITerrain
     {
+        private Color color = Color.Red;
+        public Color getColor()
+        {
+            return color;
+        }
+
         public override string ToString()
         {
             return "Air";

@@ -16,7 +16,13 @@
     <Compile Update="src\views\CRUDitem.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="src\views\HexagonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="src\views\MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="src\views\MapTest.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="src\views\MessageBoxDarkMode.cs">

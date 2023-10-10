@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MessageBoxDarkMode));
             panel2 = new Panel();
             btnCancel = new Button();
             btnConfirm = new Button();
@@ -110,6 +111,7 @@
             Controls.Add(panel2);
             Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             ForeColor = Color.White;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "MessageBoxDarkMode";
             Text = "MessageBoxDarkMode";

@@ -9,7 +9,7 @@ namespace crudsGame
             InitializeComponent();
             ItemController entityCtn;
             entityCtn = ItemController.getInstance();
-            
+
         }
         private ComboBox comboBox1;
 
@@ -17,12 +17,13 @@ namespace crudsGame
 
         private void InitializeComponent()
         {
-            /*
-            entityCtn = MassiveItemCreator.getInstance();
-            comboBox1.DataSource = entityCtn.CreateItemsMassively();
-            */
-
-
+            SuspendLayout();
+            // 
+            // Form1
+            // 
+            ClientSize = new Size(284, 261);
+            Name = "Form1";
+            ResumeLayout(false);
         }
     }
 }
