@@ -28,6 +28,7 @@ namespace crudsGame.src.views
             AddHexagonsToList();
             foreach (var hexagon in hexagonsList)
             {
+                //MessageBox.Show(hexagon.Name);
                 hexagon.Click += Hexagon_Click;
             }
         }
@@ -41,6 +42,13 @@ namespace crudsGame.src.views
                 hex12, hex13, hex14, hex15, hex16, hex17,
                 hex18
             });
+
+            int i= 0;
+            foreach (var hexagon in hexagonsList)
+            {
+                MessageBox.Show("nombre: "+hexagon.Name+", index: "+i);
+                i++;
+            }
             /*hexagons = this.Controls
             .OfType<HexagonControl>()
             .OrderBy(control => control.Name)
@@ -53,6 +61,7 @@ namespace crudsGame.src.views
             HexagonControl clickedHexagon = sender as HexagonControl;
 
             int index = hexagonsList.IndexOf(clickedHexagon);
+            MessageBox.Show("indice hxagono clikeado: " + index);
             cbCurrentTerrain.SelectedIndex = index;
             ChangeColorOfSelectedHexagonAndTheirBorderingHexagons(mapController.GetTerrains((Map)cbMaps.SelectedItem)[index]);
         }
@@ -69,6 +78,7 @@ namespace crudsGame.src.views
         {
             ResetHexagonBorderColor();
             hexagonsList[terrain.Id].BorderColor = Color.HotPink;
+            MessageBox.Show("terreno que debe coindir: " + terrain.ToString());
             for (int i = 0; i < terrain.BorderingTerrainsList.Count(); i++)
             {
                 hexagonsList[terrain.BorderingTerrainsList[i].Id].BorderColor = Color.Red;
@@ -83,11 +93,14 @@ namespace crudsGame.src.views
 
 
             cbCurrentTerrain.DataSource = mapController.GetTerrains((Map)cbMaps.SelectedItem);
+            listBox1.DataSource = mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
 
+            /*
             foreach (Terrain i in mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem))
             {
                 lbBorderingTerrains.Items.Add(i.ToString());
             }
+            */
             //lbBorderingTerrains.DataSource= mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
 
 

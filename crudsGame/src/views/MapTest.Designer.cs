@@ -51,6 +51,7 @@
             btnGenerateMap = new MaterialSkin.Controls.MaterialRaisedButton();
             cbCurrentTerrain = new ComboBox();
             cbMaps = new ComboBox();
+            listBox1 = new ListBox();
             SuspendLayout();
             // 
             // hex18
@@ -248,11 +249,21 @@
             cbMaps.Size = new Size(121, 23);
             cbMaps.TabIndex = 23;
             // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(954, 257);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(214, 199);
+            listBox1.TabIndex = 24;
+            // 
             // MapTest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1229, 708);
+            Controls.Add(listBox1);
             Controls.Add(cbMaps);
             Controls.Add(cbCurrentTerrain);
             Controls.Add(btnGenerateMap);
@@ -308,5 +319,6 @@
         private ComboBox cbCurrentTerrain;
         private MaterialSkin.Controls.MaterialListView lbBorderingTerrains;
         private ComboBox cbMaps;
+        private ListBox listBox1;
     }
 }

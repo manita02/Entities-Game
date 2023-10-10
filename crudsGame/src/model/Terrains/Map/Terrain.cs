@@ -9,7 +9,7 @@ namespace crudsGame.src.model.Terrains.Map
 {
     internal class Terrain
     {
-        private static int lastId = 0;
+        private static int lastId = -1;//cheqqq
         private ITerrain terrainType;
         private List<Terrain> borderingTerrainsList = new List<Terrain>();
         //private List<IPositionable> positionables;
