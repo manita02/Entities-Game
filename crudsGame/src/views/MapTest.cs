@@ -46,7 +46,7 @@ namespace crudsGame.src.views
             int i = 0;
             foreach (var hexagon in hexagonsList)
             {
-                MessageBox.Show("nombre: " + hexagon.Name + ", index: " + i);
+                //MessageBox.Show("nombre: " + hexagon.Name + ", index: " + i);
                 i++;
             }
             /*hexagons = this.Controls
@@ -61,7 +61,7 @@ namespace crudsGame.src.views
             HexagonControl clickedHexagon = sender as HexagonControl;
 
             int index = hexagonsList.IndexOf(clickedHexagon);
-            MessageBox.Show("indice hxagono clikeado: " + index);
+            //MessageBox.Show("indice hxagono clikeado: " + index);
             cbCurrentTerrain.SelectedIndex = index;
             //MessageBox.Show("index en combo currentTerrain: " + cbCurrentTerrain.SelectedIndex);
             ChangeColorOfSelectedHexagonAndTheirBorderingHexagons(mapController.GetTerrains((Map)cbMaps.SelectedItem)[index]);
@@ -79,7 +79,7 @@ namespace crudsGame.src.views
         {
             ResetHexagonBorderColor();
             hexagonsList[terrain.Id].BorderColor = Color.Yellow;
-            MessageBox.Show("terreno que debe coindir: " + terrain.ToString());
+            //MessageBox.Show("terreno que debe coindir: " + terrain.ToString());
             for (int i = 0; i < terrain.BorderingTerrainsList.Count(); i++)
             {
                 hexagonsList[terrain.BorderingTerrainsList[i].Id].BorderColor = Color.DarkOrange;
@@ -94,7 +94,7 @@ namespace crudsGame.src.views
 
 
             cbCurrentTerrain.DataSource = mapController.GetTerrains((Map)cbMaps.SelectedItem);
-            listBox1.DataSource = mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
+            lbBonderingTerrains.DataSource = mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
 
             /*
             foreach (Terrain i in mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem))
@@ -126,10 +126,11 @@ namespace crudsGame.src.views
 
         private void cbCurrentTerrain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listBox1.DataSource = mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
+            lbBonderingTerrains.DataSource = mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
+            lbEntitiesOnAterrain.DataSource = ((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList;
         }
 
 
-        //queda ver el de generar map mepa q voy a tener q meter el id de mapa para hacerlo funcar como lista
+
     }
 }

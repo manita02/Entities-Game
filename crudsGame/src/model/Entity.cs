@@ -616,6 +616,11 @@ namespace crudsGame.src.model
             this.currentLife += this.maxLife; 
         }
 
+        public List<IEnvironment> HabitatsCompatible()
+        {
+            return environmentList;//me retorna los ambientesss
+        }
+
         //lo q queda seria generar automaticamente las entidades con otro masssive  creator para probar y despues conectarlo a los crudss  
     }
 }

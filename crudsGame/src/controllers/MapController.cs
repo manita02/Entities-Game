@@ -14,6 +14,7 @@ namespace crudsGame.src.controllers
 {
     internal class MapController
     {
+        private EntityController entityCtn = EntityController.getInstance();
         //private TerrainController terrainController = TerrainController.GetInstance();
         private static MapController instance;
         private readonly List<Map> maps = new List<Map>();
@@ -35,16 +36,13 @@ namespace crudsGame.src.controllers
 
         public void AddTerrain(ITerrain terrainType, Map map)
         {
-            
-                Terrain TerrainToAdd = new Terrain(terrainType);
-                //MessageBox.Show("terreno a añadir: " + TerrainToAdd.ToString());
-            
-                map.TerrainsList.Add(TerrainToAdd);
+            Terrain TerrainToAdd = new Terrain(terrainType);
+            //MessageBox.Show("terreno a añadir: " + TerrainToAdd.ToString());
 
-            
-            
-            
+            map.TerrainsList.Add(TerrainToAdd);
         }
+
+
 
         public void AddBorderingTerrain(Terrain terrainToModify, Terrain BorderingTerrainToAdd)
         {
@@ -53,14 +51,6 @@ namespace crudsGame.src.controllers
 
         public List<Terrain> GetTerrains(Map map)
         {
-            /*
-            int i = 0;
-            foreach (var hexagon in map.TerrainsList)
-            {
-                MessageBox.Show("nombre: " + hexagon.ToString());
-                i++;
-            }
-            */
             return map.TerrainsList;
         }
 
@@ -74,18 +64,7 @@ namespace crudsGame.src.controllers
             return terrain.BorderingTerrainsList;
         }
 
-        /*
-        public List<IPositionable> getPositionbalesInAllLands()
-        {
-            List<IPositionable> allPositionables = new List<IPositionable>();
-            foreach (Land land in Lands)
-            {
-                allPositionables.AddRange(land.Positionables);
-            }
-            return allPositionables;
-        }
-        */
-
+       
         public List<ITerrain> TerrainsTypesList()
         {
             
@@ -95,17 +74,6 @@ namespace crudsGame.src.controllers
 
 
             return terrainTypesList;
-            
-
-            /*
-            List<ITerrain> terrainTypesList = new List<ITerrain>();
-            foreach (Type type in Assembly.GetExecutingAssembly().GetTypes()
-                .Where(t => t.GetInterfaces().Contains(typeof(ITerrain))))
-            {
-                terrainTypesList.Add((ITerrain)Activator.CreateInstance(type));
-            }
-            return terrainTypesList;
-            */
             
         }
 
@@ -141,31 +109,119 @@ namespace crudsGame.src.controllers
             }
             maps.Add(map);
             setBorderingTerrains(map); //una vez q salio de for setea de forma general a todos los terrenos creados sus limitrofes
-            //SetPositionsOfPositionableObjects(map); 
+            setEntidadesEnMapa(map);
+            
+            
         }
-        /*
-        public Map GetMap()
-        {
-            return map;
-        }*/
+        
 
-
-        /*
-        public void SetPositions()
+        public bool buscarsilaentidadyaseagregoalmapaenalgunterreno(IPositionable positionable,Map map)
         {
-            Random random = new Random();
-            foreach (IPositionable positionable in positionables)
+            foreach (Terrain terr in map.TerrainsList)
             {
-                int randomLand = random.Next(0, terrainController.getLands().Count);
-                positionable.Position(terrainController.getLands()[randomLand]);
+                if (terr.EntitiesList.Contains(positionable))
+                {
+                    return true;
+                }
+                
             }
+            return false;
+        }
+
+
+
+        public void setEntidadesEnMapa(Map map)
+        {
+            List<Entity> newList = entityCtn.GetEntitiesList();
+            Random random = new Random();
+            foreach (Terrain terr in map.TerrainsList)
+            {
+
+                List<int> availableIndexes = Enumerable.Range(0, newList.Count).ToList();
+
+
+                //foreach (int e in availableIndexes)
+                //{
+                    //MessageBox.Show("EntitiesListIndexes: " + e);
+                //}
+
+
+                int i = 0;
+                while(i<2) //dos entidades por terreno
+                {
+                    if (availableIndexes.Count > 0)
+                    {
+                        Entity randomEntityOne = newList[random.Next(availableIndexes.Count)];
+
+                        if (buscarsilaentidadyaseagregoalmapaenalgunterreno(randomEntityOne, map) == false)
+                        {
+                            terr.EntitiesList.Add(randomEntityOne);
+                            //MessageBox.Show("en terreno: " + terr.Id + " agrega la uno: " + randomEntityOne)
+
+                            // Elimina el índice de la entidad ya agregado a un terreno
+                            availableIndexes.Remove(newList.IndexOf(randomEntityOne));
+                            i++;
+                            MessageBox.Show("valor de i despues de agregar: " + i + " en terreno: " + terr.Id);
+                        }
+                    }
+                    
+                }
+            }  
+        }
+
+        /*
+        public void setPosicionablesssEnt(Map map) //funca a medias
+        {
+            List<Entity> newList = new List<Entity>();
+            Random random = new Random();
+            foreach (Terrain terr in map.TerrainsList)
+            {
+                
+                    Entity randomEntityOne = entityCtn.GetEntitiesList()[random.Next(entityCtn.GetEntitiesList().Count)];
+
+                    Entity randomEntityTwo = entityCtn.GetEntitiesList()[random.Next(entityCtn.GetEntitiesList().Count)];
+
+
+
+                    if (buscarsilaentidadyaseagregoalmapaenalgunterreno(randomEntityOne, map) == false)
+                    {
+                        terr.EntitiesList.Add(randomEntityOne);
+                        //MessageBox.Show("en terreno: " + terr.Id + " agrega la uno: " + randomEntityOne);
+                        
+                        if (buscarsilaentidadyaseagregoalmapaenalgunterreno(randomEntityTwo, map) == false)
+                        {
+                            terr.EntitiesList.Add(randomEntityTwo);
+                            //MessageBox.Show("en terreno: " + terr.Id + " agrega_dos: " + randomEntityTwo);
+                            
+                        }
+                    }
+                //MessageBox.Show("cantidadPos: " + terr.PositionablesList.Count);
+
+                //hay q busar la manera de que si devuelve true se vuelva a buscar otra entidad nueva random
+
+
+                
+
+
+
+
+
+
+              
+
+                /*
+                foreach (var i in terr.PositionablesList)
+                {
+                    MessageBox.Show("terreno: " + terr.Id + " esta: " + terr.PositionablesList.Count);
+                }
+                
+
+
+
+            }
+            
         }
         */
-
-        public void SetPosition(IPositionable positionable)
-        {
-
-        }
 
         public void setBorderingTerrains(Map map)
         {
