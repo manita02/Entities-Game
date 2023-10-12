@@ -47,5 +47,11 @@ namespace crudsGame.src.views
         {
             this.Close();
         }
+
+        private void mAPTESTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = new MapTest();
+            frm.ShowDialog();
+        }
     }
 }

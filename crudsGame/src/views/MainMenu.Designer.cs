@@ -38,6 +38,7 @@
             cRUDItemToolStripMenuItem = new ToolStripMenuItem();
             cRUDFoodsToolStripMenuItem = new ToolStripMenuItem();
             btnExit = new MaterialSkin.Controls.MaterialRaisedButton();
+            mAPTESTToolStripMenuItem = new ToolStripMenuItem();
             materialContextMenuStrip1.SuspendLayout();
             menu1.SuspendLayout();
             SuspendLayout();
@@ -60,7 +61,7 @@
             // menu1
             // 
             menu1.BackColor = Color.Black;
-            menu1.Items.AddRange(new ToolStripItem[] { tESTINTERACTIONSToolStripMenuItem, cRUDsToolStripMenuItem });
+            menu1.Items.AddRange(new ToolStripItem[] { tESTINTERACTIONSToolStripMenuItem, cRUDsToolStripMenuItem, mAPTESTToolStripMenuItem });
             menu1.Location = new Point(0, 0);
             menu1.Name = "menu1";
             menu1.Size = new Size(1111, 29);
@@ -123,6 +124,15 @@
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += btnExit_Click_1;
             // 
+            // mAPTESTToolStripMenuItem
+            // 
+            mAPTESTToolStripMenuItem.Font = new Font("MV Boli", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            mAPTESTToolStripMenuItem.ForeColor = SystemColors.Control;
+            mAPTESTToolStripMenuItem.Name = "mAPTESTToolStripMenuItem";
+            mAPTESTToolStripMenuItem.Size = new Size(107, 25);
+            mAPTESTToolStripMenuItem.Text = "MAP TEST";
+            mAPTESTToolStripMenuItem.Click += mAPTESTToolStripMenuItem_Click;
+            // 
             // MainMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -155,5 +165,6 @@
         private ToolStripMenuItem cRUDItemToolStripMenuItem;
         private ToolStripMenuItem cRUDFoodsToolStripMenuItem;
         private MaterialSkin.Controls.MaterialRaisedButton btnExit;
+        private ToolStripMenuItem mAPTESTToolStripMenuItem;
     }
 }

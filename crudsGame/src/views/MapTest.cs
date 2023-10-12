@@ -14,6 +14,7 @@ using crudsGame.Properties;
 using crudsGame.src.controllers;
 using crudsGame.src.model.Terrains.Map;
 using crudsGame.src.model.Terrains;
+using crudsGame.src.model;
 
 namespace crudsGame.src.views
 {
@@ -128,9 +129,24 @@ namespace crudsGame.src.views
         {
             lbBonderingTerrains.DataSource = mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
             lbEntitiesOnAterrain.DataSource = ((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList;
+
         }
 
+        private void lbEnvironmentsOfAnEntity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
 
-
+        private void lbEntitiesOnAterrain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            /*
+            MessageBox.Show("NOMBRE DE ENTIDAD SELECCIONADA: " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name);
+            foreach (var s in ((Entity)lbEntitiesOnAterrain.SelectedItem).environmentList)
+            {
+                MessageBox.Show("ambiente: " + s.ToString());
+            }
+            */
+            lbEnvironmentsOfAnEntity.DataSource = ((Entity)lbEntitiesOnAterrain.SelectedItem).environmentList;//funciona
+        }
     }
 }

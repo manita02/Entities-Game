@@ -53,6 +53,7 @@
             cbMaps = new ComboBox();
             lbBonderingTerrains = new ListBox();
             lbEntitiesOnAterrain = new ListBox();
+            lbEnvironmentsOfAnEntity = new ListBox();
             SuspendLayout();
             // 
             // hex18
@@ -268,12 +269,24 @@
             lbEntitiesOnAterrain.Name = "lbEntitiesOnAterrain";
             lbEntitiesOnAterrain.Size = new Size(208, 199);
             lbEntitiesOnAterrain.TabIndex = 25;
+            lbEntitiesOnAterrain.SelectedIndexChanged += lbEntitiesOnAterrain_SelectedIndexChanged;
+            // 
+            // lbEnvironmentsOfAnEntity
+            // 
+            lbEnvironmentsOfAnEntity.FormattingEnabled = true;
+            lbEnvironmentsOfAnEntity.ItemHeight = 15;
+            lbEnvironmentsOfAnEntity.Location = new Point(995, 138);
+            lbEnvironmentsOfAnEntity.Name = "lbEnvironmentsOfAnEntity";
+            lbEnvironmentsOfAnEntity.Size = new Size(165, 139);
+            lbEnvironmentsOfAnEntity.TabIndex = 26;
+            lbEnvironmentsOfAnEntity.SelectedIndexChanged += lbEnvironmentsOfAnEntity_SelectedIndexChanged;
             // 
             // MapTest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1229, 708);
+            Controls.Add(lbEnvironmentsOfAnEntity);
             Controls.Add(lbEntitiesOnAterrain);
             Controls.Add(lbBonderingTerrains);
             Controls.Add(cbMaps);
@@ -333,5 +346,6 @@
         private ComboBox cbMaps;
         private ListBox lbBonderingTerrains;
         private ListBox lbEntitiesOnAterrain;
+        private ListBox lbEnvironmentsOfAnEntity;
     }
 }

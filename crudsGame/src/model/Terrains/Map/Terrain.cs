@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace crudsGame.src.model.Terrains.Map
 {
-    internal class Terrain
+    public class Terrain
     {
         private static int lastId = -1;//cheqqq
         private ITerrain terrainType;

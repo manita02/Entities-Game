@@ -621,6 +621,43 @@ namespace crudsGame.src.model
             return environmentList;//me retorna los ambientesss
         }
 
-        //lo q queda seria generar automaticamente las entidades con otro masssive  creator para probar y despues conectarlo a los crudss  
+        public bool MoveThrough(ITerrain terrain)
+        {
+            //try
+            //{
+                foreach (IEnvironment env in environmentList)
+                {
+                    //MessageBox.Show("la entidad: " + name + " tiene ambiente UN TIPO DE AMBIENTE: " + env.ToString());
+                    /*
+                    if (env.GetType() == env.CanMoveThrough(terrain).GetType())
+                    {
+                        MessageBox.Show("env type: " + env.GetType().ToString() + " _terrain type: " + env.CanMoveThrough(terrain).GetType());
+                        return true;
+                    }
+                    */
+                    
+                    if (env.CanMoveThrough(terrain) == true)
+                    {
+                        //MessageBox.Show("la entidad: " + name + " se puede mover en: " + terrain.ToString());
+                        return true;
+                    }
+                    else
+                    {
+                        //MessageBox.Show("la entidad: " + name + " NO se puede mover en: " + terrain.ToString());
+                    }
+                    
+
+
+                }
+                return false;
+
+            //}
+            //catch(Exception e)
+            //{
+                //Console.WriteLine(e.Message);
+                //return false;
+            //}
+            
+        }
     }
 }

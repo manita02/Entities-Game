@@ -21,7 +21,8 @@ namespace crudsGame.src.controllers
         private readonly List<Land> Lands = new List<Land>();
         private readonly List<IPositionable> positionables = new List<IPositionable>();
         
-        
+
+
         private MapController() { }
         public static MapController GetInstance()
         {
@@ -32,7 +33,7 @@ namespace crudsGame.src.controllers
             return instance;
         }
 
-       
+
 
         public void AddTerrain(ITerrain terrainType, Map map)
         {
@@ -64,17 +65,17 @@ namespace crudsGame.src.controllers
             return terrain.BorderingTerrainsList;
         }
 
-       
+
         public List<ITerrain> TerrainsTypesList()
         {
-            
+
             List<ITerrain> terrainTypesList = new List<ITerrain>();
             terrainTypesList.Add(new Land());
             terrainTypesList.Add(new Water());
 
 
             return terrainTypesList;
-            
+
         }
 
         /*anterioooooooooooor con controladora de terrenossss
@@ -110,25 +111,91 @@ namespace crudsGame.src.controllers
             maps.Add(map);
             setBorderingTerrains(map); //una vez q salio de for setea de forma general a todos los terrenos creados sus limitrofes
             setEntidadesEnMapa(map);
-            
-            
-        }
-        
 
-        public bool buscarsilaentidadyaseagregoalmapaenalgunterreno(IPositionable positionable,Map map)
+
+        }
+
+
+        public bool buscarsilaentidadyaseagregoalmapaenalgunterreno(Entity entidadAbuscar, Map map)
         {
             foreach (Terrain terr in map.TerrainsList)
             {
-                if (terr.EntitiesList.Contains(positionable))
+                if (terr.EntitiesList.Contains(entidadAbuscar))
                 {
+                    //MessageBox.Show("la entidad: " + entidadAbuscar.name + " ya ha sido agregada en otro terreno");
                     return true;
                 }
-                
+
             }
+            //MessageBox.Show("la entidad: " + entidadAbuscar.name + " ESTA DISPONIBLE PARA SER AGREGADA!!");
             return false;
         }
 
 
+        
+        private Entity obtenerunaentidadrandomquecoindaconelterrenodondeseubicara(Terrain terrain,List<Entity>newList,List<int> availableIndexes)
+        {
+            int x = 0;
+            //Entity randomEntityOnee = null;
+            Random random = new Random();
+            //MessageBox.Show("ambiente por parametro: " + terrain.TerrainType.ToString());
+            while (x != 1)
+            {
+                x = 0;
+                int indexrandmom = random.Next(availableIndexes.Count);
+                Entity randomEntityOne = newList[indexrandmom];
+                //MessageBox.Show("trabajando con: " + randomEntityOne.name);
+                if (terrain.TerrainType is Water)
+                {
+                    
+
+                    foreach (IEnvironment env in randomEntityOne.environmentList)
+                    {
+                        //MessageBox.Show("ambiente necesito que sea aquatico: " + env.ToString());
+                        if (env is Aquatic || env is Aereal)
+                        {
+                            
+
+                                x++;
+                            //MessageBox.Show("La entidad" + randomEntityOne.name + "es aquatico_ valor de x: " + x);
+                            //MessageBox.Show("llegandooo");
+                            return randomEntityOne;
+                        }
+                    }
+
+
+                }
+
+                if (terrain.TerrainType is Land)
+                {
+
+
+                    foreach (IEnvironment env in randomEntityOne.environmentList)
+                    {
+                        //MessageBox.Show("ambiente necesito que sea terrestre: " + env.ToString());
+                        if (env is Terrestrial || env is Aereal)
+                        {
+                            
+                            x++;
+                            //MessageBox.Show("La entidad" + randomEntityOne.name + "es terrestre valor de x: " + x);
+                            //MessageBox.Show("llegandooo");
+                            return randomEntityOne;
+                        }
+                    }
+
+                    //el problema aca es q... si tengo terrenos en el mapa ponele de agua.. y ya ubique esas de agua en otros lados, y no me quedan mas de agua, cague porque no voy a poder ubicar mas :(
+                    //sino tengo que crear mas entidades que sean de agua y tierra y ahi me ahorro el problema
+
+
+                }
+
+            }
+            return null;
+            
+            
+            
+        }
+        
 
         public void setEntidadesEnMapa(Map map)
         {
@@ -142,32 +209,45 @@ namespace crudsGame.src.controllers
 
                 //foreach (int e in availableIndexes)
                 //{
-                    //MessageBox.Show("EntitiesListIndexes: " + e);
+                //MessageBox.Show("EntitiesListIndexes: " + e);
                 //}
 
 
                 int i = 0;
-                while(i<2) //dos entidades por terreno
+                while (i < 2) //dos entidades por terreno
                 {
                     if (availableIndexes.Count > 0)
                     {
-                        Entity randomEntityOne = newList[random.Next(availableIndexes.Count)];
 
-                        if (buscarsilaentidadyaseagregoalmapaenalgunterreno(randomEntityOne, map) == false)
-                        {
-                            terr.EntitiesList.Add(randomEntityOne);
-                            //MessageBox.Show("en terreno: " + terr.Id + " agrega la uno: " + randomEntityOne)
 
-                            // Elimina el índice de la entidad ya agregado a un terreno
-                            availableIndexes.Remove(newList.IndexOf(randomEntityOne));
-                            i++;
-                            MessageBox.Show("valor de i despues de agregar: " + i + " en terreno: " + terr.Id);
-                        }
+                        Entity randomEntityOne=obtenerunaentidadrandomquecoindaconelterrenodondeseubicara(terr, newList, availableIndexes);
+                        //Entity randomEntityOne = newList[random.Next(availableIndexes.Count)];
+
+                        //MessageBox.Show("entidad obtenida en metodo de seteo en terreno: " + randomEntityOne.name);
+                        //MessageBox.Show("tipo de terreno: " + terr.TerrainType.ToString());
+
+                        //if (randomEntityOne.MoveThrough(terr.TerrainType) == true)
+                        //{
+                            if (buscarsilaentidadyaseagregoalmapaenalgunterreno(randomEntityOne, map) == false)
+                            {
+                                terr.EntitiesList.Add(randomEntityOne);
+                                //MessageBox.Show("en terreno: " + terr.Id + " agrega la entidad: " + randomEntityOne.name);
+
+                                // Elimina el índice de la entidad ya agregada a un terreno
+                                availableIndexes.Remove(newList.IndexOf(randomEntityOne));
+                                i++;
+                                //MessageBox.Show("valor de i despues de agregar: " + i + " en terreno: " + terr.Id);
+                            }
+                        //}
+
                     }
-                    
+
                 }
-            }  
+
+            }
         }
+    
+   
 
         /*
         public void setPosicionablesssEnt(Map map) //funca a medias

@@ -15,6 +15,11 @@ namespace crudsGame.src.model.Terrains
             return color;
         }
 
+        public bool CanMoveThrough(ITerrain terrain)
+        {
+            return terrain is Land;
+        }
+
         public override string ToString()
         {
             return "Land";
