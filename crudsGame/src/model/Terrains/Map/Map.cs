@@ -25,5 +25,10 @@ namespace crudsGame.src.model.Terrains.Map
             Id = lastId;
             TerrainsList = new List<Terrain>();
         }
+
+        public override string ToString()
+        {
+            return "Map_" + Id;
+        }
     }
 }

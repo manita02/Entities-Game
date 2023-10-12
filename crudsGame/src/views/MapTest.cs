@@ -134,7 +134,7 @@ namespace crudsGame.src.views
 
         private void lbEnvironmentsOfAnEntity_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void lbEntitiesOnAterrain_SelectedIndexChanged(object sender, EventArgs e)

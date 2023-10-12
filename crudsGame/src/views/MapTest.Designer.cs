@@ -54,6 +54,11 @@
             lbBonderingTerrains = new ListBox();
             lbEntitiesOnAterrain = new ListBox();
             lbEnvironmentsOfAnEntity = new ListBox();
+            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             SuspendLayout();
             // 
             // hex18
@@ -225,7 +230,7 @@
             btnGenerateMap.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnGenerateMap.Depth = 0;
             btnGenerateMap.Icon = null;
-            btnGenerateMap.Location = new Point(449, 85);
+            btnGenerateMap.Location = new Point(272, 92);
             btnGenerateMap.MouseState = MaterialSkin.MouseState.HOVER;
             btnGenerateMap.Name = "btnGenerateMap";
             btnGenerateMap.Primary = true;
@@ -238,16 +243,16 @@
             // cbCurrentTerrain
             // 
             cbCurrentTerrain.FormattingEnabled = true;
-            cbCurrentTerrain.Location = new Point(154, 115);
+            cbCurrentTerrain.Location = new Point(815, 164);
             cbCurrentTerrain.Name = "cbCurrentTerrain";
-            cbCurrentTerrain.Size = new Size(183, 23);
+            cbCurrentTerrain.Size = new Size(174, 23);
             cbCurrentTerrain.TabIndex = 21;
             cbCurrentTerrain.SelectedIndexChanged += cbCurrentTerrain_SelectedIndexChanged;
             // 
             // cbMaps
             // 
             cbMaps.FormattingEnabled = true;
-            cbMaps.Location = new Point(726, 89);
+            cbMaps.Location = new Point(756, 100);
             cbMaps.Name = "cbMaps";
             cbMaps.Size = new Size(121, 23);
             cbMaps.TabIndex = 23;
@@ -256,18 +261,18 @@
             // 
             lbBonderingTerrains.FormattingEnabled = true;
             lbBonderingTerrains.ItemHeight = 15;
-            lbBonderingTerrains.Location = new Point(711, 177);
+            lbBonderingTerrains.Location = new Point(842, 243);
             lbBonderingTerrains.Name = "lbBonderingTerrains";
-            lbBonderingTerrains.Size = new Size(214, 199);
+            lbBonderingTerrains.Size = new Size(183, 139);
             lbBonderingTerrains.TabIndex = 24;
             // 
             // lbEntitiesOnAterrain
             // 
             lbEntitiesOnAterrain.FormattingEnabled = true;
             lbEntitiesOnAterrain.ItemHeight = 15;
-            lbEntitiesOnAterrain.Location = new Point(952, 444);
+            lbEntitiesOnAterrain.Location = new Point(913, 405);
             lbEntitiesOnAterrain.Name = "lbEntitiesOnAterrain";
-            lbEntitiesOnAterrain.Size = new Size(208, 199);
+            lbEntitiesOnAterrain.Size = new Size(172, 79);
             lbEntitiesOnAterrain.TabIndex = 25;
             lbEntitiesOnAterrain.SelectedIndexChanged += lbEntitiesOnAterrain_SelectedIndexChanged;
             // 
@@ -275,17 +280,87 @@
             // 
             lbEnvironmentsOfAnEntity.FormattingEnabled = true;
             lbEnvironmentsOfAnEntity.ItemHeight = 15;
-            lbEnvironmentsOfAnEntity.Location = new Point(995, 138);
+            lbEnvironmentsOfAnEntity.Location = new Point(960, 507);
             lbEnvironmentsOfAnEntity.Name = "lbEnvironmentsOfAnEntity";
-            lbEnvironmentsOfAnEntity.Size = new Size(165, 139);
+            lbEnvironmentsOfAnEntity.Size = new Size(165, 94);
             lbEnvironmentsOfAnEntity.TabIndex = 26;
             lbEnvironmentsOfAnEntity.SelectedIndexChanged += lbEnvironmentsOfAnEntity_SelectedIndexChanged;
+            // 
+            // materialLabel1
+            // 
+            materialLabel1.AutoSize = true;
+            materialLabel1.Depth = 0;
+            materialLabel1.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            materialLabel1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialLabel1.Location = new Point(700, 168);
+            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel1.Name = "materialLabel1";
+            materialLabel1.Size = new Size(113, 19);
+            materialLabel1.TabIndex = 27;
+            materialLabel1.Text = "Current Terrian:";
+            // 
+            // materialLabel2
+            // 
+            materialLabel2.AutoSize = true;
+            materialLabel2.Depth = 0;
+            materialLabel2.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            materialLabel2.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialLabel2.Location = new Point(697, 243);
+            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel2.Name = "materialLabel2";
+            materialLabel2.Size = new Size(139, 19);
+            materialLabel2.TabIndex = 28;
+            materialLabel2.Text = "Bondering Terrains:";
+            // 
+            // materialLabel3
+            // 
+            materialLabel3.AutoSize = true;
+            materialLabel3.Depth = 0;
+            materialLabel3.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            materialLabel3.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialLabel3.Location = new Point(700, 405);
+            materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel3.Name = "materialLabel3";
+            materialLabel3.Size = new Size(207, 19);
+            materialLabel3.TabIndex = 29;
+            materialLabel3.Text = "Entities in this current terrain:";
+            // 
+            // materialLabel4
+            // 
+            materialLabel4.AutoSize = true;
+            materialLabel4.Depth = 0;
+            materialLabel4.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            materialLabel4.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialLabel4.Location = new Point(704, 507);
+            materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel4.Name = "materialLabel4";
+            materialLabel4.Size = new Size(250, 19);
+            materialLabel4.TabIndex = 30;
+            materialLabel4.Text = "Environments of the selected entity:";
+            // 
+            // materialLabel5
+            // 
+            materialLabel5.AutoSize = true;
+            materialLabel5.Depth = 0;
+            materialLabel5.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            materialLabel5.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialLabel5.Location = new Point(700, 100);
+            materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel5.Name = "materialLabel5";
+            materialLabel5.Size = new Size(50, 19);
+            materialLabel5.TabIndex = 31;
+            materialLabel5.Text = "Maps:";
             // 
             // MapTest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1229, 708);
+            Controls.Add(materialLabel5);
+            Controls.Add(materialLabel4);
+            Controls.Add(materialLabel3);
+            Controls.Add(materialLabel2);
+            Controls.Add(materialLabel1);
             Controls.Add(lbEnvironmentsOfAnEntity);
             Controls.Add(lbEntitiesOnAterrain);
             Controls.Add(lbBonderingTerrains);
@@ -347,5 +422,10 @@
         private ListBox lbBonderingTerrains;
         private ListBox lbEntitiesOnAterrain;
         private ListBox lbEnvironmentsOfAnEntity;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private MaterialSkin.Controls.MaterialLabel materialLabel4;
+        private MaterialSkin.Controls.MaterialLabel materialLabel5;
     }
 }
