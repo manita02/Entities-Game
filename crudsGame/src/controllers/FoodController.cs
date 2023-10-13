@@ -27,7 +27,7 @@ namespace crudsGame.src.controllers
             return Instance;
         }
 
-        List<string> foodNames = new List<string> { "Lechuga", "Tomate", "Choclo", "Pepino", "Banana", "Manzana", "Durazno", "Pollo", "Vaca", "Cerdo", "Llama", "Cabrito", "Paloma", "Rata", "Rayos De Sol", "Rayos Ultra Violetas", "Corriente Eléctrica", "Rayos Nube - Nube", "Rayos Intra-Nube"};
+        List<string> foodNames = new List<string> { "Lechuga", "Tomate", "Choclo", "Pepino", "Banana", "Manzana", "Durazno", "Mandarina", "Acelga", "Rabanito", "Zapallo", "Uva", "Pollo", "Vaca", "Cerdo", "Llama", "Cabrito", "Paloma", "Rata", "Serpiente", "Sapo", "Liebre", "Conejo", "Coatí", "Rayos De Sol", "Rayos Ultra Violetas", "Corriente Eléctrica", "Rayos Nube - Nube", "Rayos Intra-Nube", "Netbook eNova", "Iphone X", "Samsung Galaxy J7", "Intel core i5-11400",  "TV LED RCA",  "Microondas",  "Heladera", "PC Gamer", "Amplificador 50 Watts" };
         List<Food> foodList = new List<Food>();
         List<IDiet> dietList = new List<IDiet>();
 
@@ -53,18 +53,18 @@ namespace crudsGame.src.controllers
    
             foreach (var name in foodNames)
             {
-                if(index <= 6)
+                if(index <= 11)
                 {
                     Food food = new Food(index, name, random.Next(1, 50), dietList[1]);//herbiboro
                     foodList.Add(food);
                 }
-                if(index > 6 && index <= 13)
+                if(index > 11 && index <= 23)
                 {
                     Food food = new Food(index, name, random.Next(1, 50), dietList[0]);//carnivoro
                     foodList.Add(food);
                 }
                 
-                if(index > 13)
+                if(index > 23)
                 {
                     Food food = new Food(index, name, random.Next(1, 50), dietList[2]);//solar
                     foodList.Add(food);

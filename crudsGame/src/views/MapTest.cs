@@ -111,7 +111,9 @@ namespace crudsGame.src.views
 
             cbMaps.SelectedIndex = 0;
             PaintHexagons();
-            //btnGenerateMap.Enabled = false;
+            btnGenerateMap.Enabled = false;
+
+            //habria que hacer una validacion de que para generar un mapa debe haber mas de 36 entidades, comidas e items, ya que esta programado para que haya dos de cada una por terreno
 
         }
 
@@ -129,6 +131,7 @@ namespace crudsGame.src.views
         {
             lbBonderingTerrains.DataSource = mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
             lbEntitiesOnAterrain.DataSource = ((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList;
+            lbFoodsOnAterrain.DataSource = ((Terrain)cbCurrentTerrain.SelectedItem).FoodsList;
 
         }
 

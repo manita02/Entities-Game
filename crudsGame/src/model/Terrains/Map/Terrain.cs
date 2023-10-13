@@ -26,6 +26,8 @@ namespace crudsGame.src.model.Terrains.Map
         //internal List<IPositionable> PositionablesList { get => positionablesList; set => positionablesList = value; }
 
         internal List<Entity> EntitiesList { get => entitiesList; set => entitiesList = value; }
+        internal List<Food> FoodsList { get => foodList; set => foodList = value; }
+        internal List<Item> ItemsList { get => itemList; set => itemList = value; }
 
         //Ihabitat vendira a ser como ienvironmet q tengo yo es lo mismo
         //las comidas items y entidades deben implementar la iterfaz ipositionable y su metodo
@@ -55,6 +57,8 @@ namespace crudsGame.src.model.Terrains.Map
             //aca lsita de posicionables no va debe haber una lista de entidades otra de comidas y tora de items
 
             EntitiesList = new List<Entity>();
+            FoodsList = new List<Food>();
+            itemList = new List<Item>();
         }
         public Terrain() { }
         public override string ToString()

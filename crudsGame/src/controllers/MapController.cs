@@ -15,12 +15,14 @@ namespace crudsGame.src.controllers
     internal class MapController
     {
         private EntityController entityCtn = EntityController.getInstance();
+        private FoodController foodCtn = FoodController.getInstance();
+
         //private TerrainController terrainController = TerrainController.GetInstance();
         private static MapController instance;
         private readonly List<Map> maps = new List<Map>();
         private readonly List<Land> Lands = new List<Land>();
         private readonly List<IPositionable> positionables = new List<IPositionable>();
-        
+
 
 
         private MapController() { }
@@ -111,6 +113,7 @@ namespace crudsGame.src.controllers
             maps.Add(map);
             setBorderingTerrains(map); //una vez q salio de for setea de forma general a todos los terrenos creados sus limitrofes
             setEntidadesEnMapa(map);
+            setComidasEnMapa(map);
 
 
         }
@@ -132,31 +135,34 @@ namespace crudsGame.src.controllers
         }
 
 
-        
-        private Entity obtenerunaentidadrandomquecoindaconelterrenodondeseubicara(Terrain terrain,List<Entity>newList,List<int> availableIndexes)
+
+        private Entity obtenerunaentidadrandomquecoindaconelterrenodondeseubicara(Terrain terrain, List<Entity> newList, List<int> availableIndexes)
         {
             int x = 0;
             //Entity randomEntityOnee = null;
             Random random = new Random();
             //MessageBox.Show("ambiente por parametro: " + terrain.TerrainType.ToString());
+
+            //MessageBox.Show("valor de availbale indices: " + availableIndexes.Count);
             while (x != 1)
             {
                 x = 0;
                 int indexrandmom = random.Next(availableIndexes.Count);
+                //MessageBox.Show("index random: " + indexrandmom+ " _cantidad en la newList: "+newList.Count+" cantidad de indices disponibles: "+availableIndexes.Count);
                 Entity randomEntityOne = newList[indexrandmom];
                 //MessageBox.Show("trabajando con: " + randomEntityOne.name);
                 if (terrain.TerrainType is Water)
                 {
-                    
+
 
                     foreach (IEnvironment env in randomEntityOne.environmentList)
                     {
                         //MessageBox.Show("ambiente necesito que sea aquatico: " + env.ToString());
                         if (env is Aquatic || env is Aereal)
                         {
-                            
 
-                                x++;
+
+                            x++;
                             //MessageBox.Show("La entidad" + randomEntityOne.name + "es aquatico_ valor de x: " + x);
                             //MessageBox.Show("llegandooo");
                             return randomEntityOne;
@@ -175,7 +181,7 @@ namespace crudsGame.src.controllers
                         //MessageBox.Show("ambiente necesito que sea terrestre: " + env.ToString());
                         if (env is Terrestrial || env is Aereal)
                         {
-                            
+
                             x++;
                             //MessageBox.Show("La entidad" + randomEntityOne.name + "es terrestre valor de x: " + x);
                             //MessageBox.Show("llegandooo");
@@ -191,19 +197,20 @@ namespace crudsGame.src.controllers
 
             }
             return null;
-            
-            
-            
+
+
+
         }
-        
+
 
         public void setEntidadesEnMapa(Map map)
         {
             List<Entity> newList = entityCtn.GetEntitiesList();
+            //List<int> availableIndexes = Enumerable.Range(0, newList.Count).ToList();
             Random random = new Random();
             foreach (Terrain terr in map.TerrainsList)
             {
-
+                //MessageBox.Show("cantidad en newList: " + newList.Count);
                 List<int> availableIndexes = Enumerable.Range(0, newList.Count).ToList();
 
 
@@ -220,7 +227,7 @@ namespace crudsGame.src.controllers
                     {
 
 
-                        Entity randomEntityOne=obtenerunaentidadrandomquecoindaconelterrenodondeseubicara(terr, newList, availableIndexes);
+                        Entity randomEntityOne = obtenerunaentidadrandomquecoindaconelterrenodondeseubicara(terr, newList, availableIndexes);
                         //Entity randomEntityOne = newList[random.Next(availableIndexes.Count)];
 
                         //MessageBox.Show("entidad obtenida en metodo de seteo en terreno: " + randomEntityOne.name);
@@ -228,16 +235,19 @@ namespace crudsGame.src.controllers
 
                         //if (randomEntityOne.MoveThrough(terr.TerrainType) == true)
                         //{
-                            if (buscarsilaentidadyaseagregoalmapaenalgunterreno(randomEntityOne, map) == false)
-                            {
-                                terr.EntitiesList.Add(randomEntityOne);
-                                //MessageBox.Show("en terreno: " + terr.Id + " agrega la entidad: " + randomEntityOne.name);
+                        if (buscarsilaentidadyaseagregoalmapaenalgunterreno(randomEntityOne, map) == false)
+                        {
+                            terr.EntitiesList.Add(randomEntityOne);
+                            //MessageBox.Show("en terreno: " + terr.Id + " agrega la entidad: " + randomEntityOne.name);
 
-                                // Elimina el índice de la entidad ya agregada a un terreno
-                                availableIndexes.Remove(newList.IndexOf(randomEntityOne));
-                                i++;
-                                //MessageBox.Show("valor de i despues de agregar: " + i + " en terreno: " + terr.Id);
-                            }
+                            // Elimina el índice de la entidad ya agregada a un terreno
+                            availableIndexes.Remove(newList.IndexOf(randomEntityOne));
+
+                            //eliminar la entidad de la newList
+                            newList.RemoveAt(newList.IndexOf(randomEntityOne));
+                            i++;
+                            //MessageBox.Show("valor de i despues de agregar: " + i + " en terreno: " + terr.Id);
+                        }
                         //}
 
                     }
@@ -246,8 +256,8 @@ namespace crudsGame.src.controllers
 
             }
         }
-    
-   
+
+
 
         /*
         public void setPosicionablesssEnt(Map map) //funca a medias
@@ -303,11 +313,83 @@ namespace crudsGame.src.controllers
         }
         */
 
+
+
+        public bool buscarsilacomidayaseagregoalmapaenalgunterreno(Food comidaAbuscar, Map map)
+        {
+            foreach (Terrain terr in map.TerrainsList)
+            {
+                if (terr.FoodsList.Contains(comidaAbuscar))
+                {
+                    //MessageBox.Show("la entidad: " + entidadAbuscar.name + " ya ha sido agregada en otro terreno");
+                    return true;
+                }
+
+            }
+            //MessageBox.Show("la entidad: " + entidadAbuscar.name + " ESTA DISPONIBLE PARA SER AGREGADA!!");
+            return false;
+        }
+
+        public void setComidasEnMapa(Map map)
+        {
+            List<Food> newListFoods = foodCtn.GetFoodList();
+            Random random = new Random();
+            foreach (Terrain terr in map.TerrainsList)
+            {
+
+                List<int> availableIndexes = Enumerable.Range(0, newListFoods.Count).ToList();
+
+
+                //foreach (int e in availableIndexes)
+                //{
+                //MessageBox.Show("EntitiesListIndexes: " + e);
+                //}
+
+
+                int i = 0;
+                while (i < 2) //dos comidas por terreno
+                {
+                    if (availableIndexes.Count > 0)
+                    {
+
+
+                        //Entity randomFood = obtenerunaentidadrandomquecoindaconelterrenodondeseubicara(terr, newListFoods, availableIndexes);
+                        Food foodRandom = newListFoods[random.Next(availableIndexes.Count)];
+
+                        //MessageBox.Show("entidad obtenida en metodo de seteo en terreno: " + randomEntityOne.name);
+                        //MessageBox.Show("tipo de terreno: " + terr.TerrainType.ToString());
+
+                        //if (randomEntityOne.MoveThrough(terr.TerrainType) == true)
+                        //{
+                        if (buscarsilacomidayaseagregoalmapaenalgunterreno(foodRandom, map) == false)
+                        {
+                            terr.FoodsList.Add(foodRandom);
+                            //MessageBox.Show("en terreno: " + terr.Id + " agrega la entidad: " + randomEntityOne.name);
+
+                            // Elimina el índice de la entidad ya agregada a un terreno
+                            availableIndexes.Remove(newListFoods.IndexOf(foodRandom));
+
+                            //eliminar la comida de la nueavLista
+                            newListFoods.RemoveAt(newListFoods.IndexOf(foodRandom));
+                            i++;
+                            //MessageBox.Show("valor de i despues de agregar: " + i + " en terreno: " + terr.Id);
+                        }
+                        //}
+
+                    }
+
+                }
+
+            }
+        }
+
+
+
         public void setBorderingTerrains(Map map)
         {
             map.TerrainsList[0].BorderingTerrainsList = new List<Terrain> { map.TerrainsList[1], map.TerrainsList[5], map.TerrainsList[6] };
             map.TerrainsList[1].BorderingTerrainsList = new List<Terrain> { map.TerrainsList[0], map.TerrainsList[6], map.TerrainsList[7], map.TerrainsList[2] };
-            map.TerrainsList[2].BorderingTerrainsList = new List<Terrain> { map.TerrainsList[1], map.TerrainsList[7], map.TerrainsList [3] };
+            map.TerrainsList[2].BorderingTerrainsList = new List<Terrain> { map.TerrainsList[1], map.TerrainsList[7], map.TerrainsList[3] };
             map.TerrainsList[3].BorderingTerrainsList = new List<Terrain> { map.TerrainsList[2], map.TerrainsList[7], map.TerrainsList[8], map.TerrainsList[4] };
             map.TerrainsList[4].BorderingTerrainsList = new List<Terrain> { map.TerrainsList[3], map.TerrainsList[8], map.TerrainsList[9] };
             map.TerrainsList[5].BorderingTerrainsList = new List<Terrain> { map.TerrainsList[0], map.TerrainsList[6], map.TerrainsList[11], map.TerrainsList[10] };

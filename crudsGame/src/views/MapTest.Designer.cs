@@ -59,6 +59,8 @@
             materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
+            lbFoodsOnAterrain = new ListBox();
             SuspendLayout();
             // 
             // hex18
@@ -351,11 +353,35 @@
             materialLabel5.TabIndex = 31;
             materialLabel5.Text = "Maps:";
             // 
+            // materialLabel6
+            // 
+            materialLabel6.AutoSize = true;
+            materialLabel6.Depth = 0;
+            materialLabel6.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            materialLabel6.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialLabel6.Location = new Point(1044, 243);
+            materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel6.Name = "materialLabel6";
+            materialLabel6.Size = new Size(198, 19);
+            materialLabel6.TabIndex = 32;
+            materialLabel6.Text = "Foods in this current terrain:";
+            // 
+            // lbFoodsOnAterrain
+            // 
+            lbFoodsOnAterrain.FormattingEnabled = true;
+            lbFoodsOnAterrain.ItemHeight = 15;
+            lbFoodsOnAterrain.Location = new Point(1255, 247);
+            lbFoodsOnAterrain.Name = "lbFoodsOnAterrain";
+            lbFoodsOnAterrain.Size = new Size(156, 124);
+            lbFoodsOnAterrain.TabIndex = 33;
+            // 
             // MapTest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1229, 708);
+            ClientSize = new Size(1423, 708);
+            Controls.Add(lbFoodsOnAterrain);
+            Controls.Add(materialLabel6);
             Controls.Add(materialLabel5);
             Controls.Add(materialLabel4);
             Controls.Add(materialLabel3);
@@ -427,5 +453,7 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
         private MaterialSkin.Controls.MaterialLabel materialLabel5;
+        private MaterialSkin.Controls.MaterialLabel materialLabel6;
+        private ListBox lbFoodsOnAterrain;
     }
 }
