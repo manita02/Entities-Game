@@ -32,6 +32,10 @@ namespace crudsGame.src.views
                 //MessageBox.Show(hexagon.Name);
                 hexagon.Click += Hexagon_Click;
             }
+            for (int i = 0; i < hexagonsList.Count(); i++)
+            {
+                hexagonsList[i].HexagonText = $"{i}";
+            }
         }
 
         private void AddHexagonsToList()
@@ -133,8 +137,11 @@ namespace crudsGame.src.views
             lbEntitiesOnAterrain.DataSource = ((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList;
             lbFoodsOnAterrain.DataSource = ((Terrain)cbCurrentTerrain.SelectedItem).FoodsList;
             lbItemsOnAterrain.DataSource = ((Terrain)cbCurrentTerrain.SelectedItem).ItemsList;
+            ChangeColorOfSelectedHexagonAndTheirBorderingHexagons((Terrain)cbCurrentTerrain.SelectedItem);
 
         }
+
+        
 
         private void lbEnvironmentsOfAnEntity_SelectedIndexChanged(object sender, EventArgs e)
         {

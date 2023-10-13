@@ -15,6 +15,13 @@ namespace crudsGame.src.views
     {
         private Color borderColor = Color.Black;
         private int borderWidth = 10; // Ancho del borde en píxeles
+
+        public string HexagonText
+        {
+            get { return Text; }
+            set { Text = value; }
+        }
+
         public HexagonControl()
         {
             InitializeComponent();
@@ -70,6 +77,18 @@ namespace crudsGame.src.views
             {
                 e.Graphics.DrawPath(pen, path);
             }
+
+            // Dibuja el texto en el centro del hexágono
+            using (StringFormat format = new StringFormat())
+            {
+                format.Alignment = StringAlignment.Center;
+                format.LineAlignment = StringAlignment.Center;
+                using (SolidBrush textBrush = new SolidBrush(ForeColor))
+                {
+                    e.Graphics.DrawString(HexagonText, Font, textBrush, ClientRectangle, format);
+                }
+            }
+
 
             base.OnPaint(e);
         }
