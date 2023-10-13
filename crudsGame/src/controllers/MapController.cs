@@ -1,6 +1,7 @@
 ﻿using crudsGame.src.interfaces;
 using crudsGame.src.model;
 using crudsGame.src.model.Environments;
+using crudsGame.src.model.Items;
 using crudsGame.src.model.Terrains;
 using crudsGame.src.model.Terrains.Map;
 using System;
@@ -16,6 +17,8 @@ namespace crudsGame.src.controllers
     {
         private EntityController entityCtn = EntityController.getInstance();
         private FoodController foodCtn = FoodController.getInstance();
+        private ItemController itemCtn = ItemController.getInstance();
+
 
         //private TerrainController terrainController = TerrainController.GetInstance();
         private static MapController instance;
@@ -114,6 +117,7 @@ namespace crudsGame.src.controllers
             setBorderingTerrains(map); //una vez q salio de for setea de forma general a todos los terrenos creados sus limitrofes
             setEntidadesEnMapa(map);
             setComidasEnMapa(map);
+            setItemsEnMapa(map);
 
 
         }
@@ -148,7 +152,7 @@ namespace crudsGame.src.controllers
             {
                 x = 0;
                 int indexrandmom = random.Next(availableIndexes.Count);
-                //MessageBox.Show("index random: " + indexrandmom+ " _cantidad en la newList: "+newList.Count+" cantidad de indices disponibles: "+availableIndexes.Count);
+                MessageBox.Show("index random: " + indexrandmom+ " _cantidad en la newList: "+newList.Count+" cantidad de indices disponibles: "+availableIndexes.Count);
                 Entity randomEntityOne = newList[indexrandmom];
                 //MessageBox.Show("trabajando con: " + randomEntityOne.name);
                 if (terrain.TerrainType is Water)
@@ -371,6 +375,75 @@ namespace crudsGame.src.controllers
 
                             //eliminar la comida de la nueavLista
                             newListFoods.RemoveAt(newListFoods.IndexOf(foodRandom));
+                            i++;
+                            //MessageBox.Show("valor de i despues de agregar: " + i + " en terreno: " + terr.Id);
+                        }
+                        //}
+
+                    }
+
+                }
+
+            }
+        }
+
+
+        public bool buscarsielitemyaseagregoalmapaenalgunterreno(Item itemAbuscar, Map map)
+        {
+            foreach (Terrain terr in map.TerrainsList)
+            {
+                if (terr.ItemsList.Contains(itemAbuscar))
+                {
+                    //MessageBox.Show("la entidad: " + entidadAbuscar.name + " ya ha sido agregada en otro terreno");
+                    return true;
+                }
+
+            }
+            //MessageBox.Show("la entidad: " + entidadAbuscar.name + " ESTA DISPONIBLE PARA SER AGREGADA!!");
+            return false;
+        }
+
+        public void setItemsEnMapa(Map map)
+        {
+            List<Item> newListItems = itemCtn.GetItemList();
+            Random random = new Random();
+            foreach (Terrain terr in map.TerrainsList)
+            {
+
+                List<int> availableIndexes = Enumerable.Range(0, newListItems.Count).ToList();
+
+
+                //foreach (int e in availableIndexes)
+                //{
+                //MessageBox.Show("EntitiesListIndexes: " + e);
+                //}
+
+
+                int i = 0;
+                while (i < 2) //dos comidas por terreno
+                {
+                    if (availableIndexes.Count > 0)
+                    {
+
+
+                        //Entity randomFood = obtenerunaentidadrandomquecoindaconelterrenodondeseubicara(terr, newListFoods, availableIndexes);
+                        Item itemRandom = newListItems[random.Next(availableIndexes.Count)];
+
+                        //MessageBox.Show("entidad obtenida en metodo de seteo en terreno: " + randomEntityOne.name);
+                        //MessageBox.Show("tipo de terreno: " + terr.TerrainType.ToString());
+
+                        //if (randomEntityOne.MoveThrough(terr.TerrainType) == true)
+                        //{
+                        if (buscarsielitemyaseagregoalmapaenalgunterreno(itemRandom, map) == false)
+                        {
+                            terr.ItemsList.Add(itemRandom);
+                            //MessageBox.Show("en terreno: " + terr.Id + " agrega la entidad: " + randomEntityOne.name);
+
+                            // Elimina el índice de la entidad ya agregada a un terreno
+                            availableIndexes.Remove(newListItems.IndexOf(itemRandom));
+
+                            //eliminar la comida de la nueavLista
+                            newListItems.RemoveAt(newListItems.IndexOf(itemRandom));
                             i++;
                             //MessageBox.Show("valor de i despues de agregar: " + i + " en terreno: " + terr.Id);
                         }

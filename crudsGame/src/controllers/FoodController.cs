@@ -27,7 +27,7 @@ namespace crudsGame.src.controllers
             return Instance;
         }
 
-        List<string> foodNames = new List<string> { "Lechuga", "Tomate", "Choclo", "Pepino", "Banana", "Manzana", "Durazno", "Mandarina", "Acelga", "Rabanito", "Zapallo", "Uva", "Pollo", "Vaca", "Cerdo", "Llama", "Cabrito", "Paloma", "Rata", "Serpiente", "Sapo", "Liebre", "Conejo", "Coatí", "Rayos De Sol", "Rayos Ultra Violetas", "Corriente Eléctrica", "Rayos Nube - Nube", "Rayos Intra-Nube", "Netbook eNova", "Iphone X", "Samsung Galaxy J7", "Intel core i5-11400",  "TV LED RCA",  "Microondas",  "Heladera", "PC Gamer", "Amplificador 50 Watts" };
+        List<string> foodNames = new List<string> { "Lechuga", "Tomate", "Choclo", "Pepino", "Banana", "Manzana", "Durazno", "Mandarina", "Acelga", "Rabanito", "Zapallo", "Uva", "Pollo", "Vaca", "Cerdo", "Llama", "Cabrito", "Paloma", "Rata", "Serpiente", "Sapo", "Liebre", "Conejo", "Coatí", "Rayos De Sol", "Rayos Ultra Violetas", "Corriente Eléctrica", "Rayos Nube - Nube", "Rayos Intra-Nube", "Netbook eNova", "Iphone X", "Samsung Galaxy J7", "Intel core i5-11400",  "TV LED RCA",  "Microondas",  "Heladera", "PC Gamer", "Amplificador 50 Watts", "Guitarra Eléctrica", "Batería Eléctrica" };
         List<Food> foodList = new List<Food>();
         List<IDiet> dietList = new List<IDiet>();
 

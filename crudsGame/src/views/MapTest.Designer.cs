@@ -61,6 +61,8 @@
             materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             lbFoodsOnAterrain = new ListBox();
+            materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
+            lbItemsOnAterrain = new ListBox();
             SuspendLayout();
             // 
             // hex18
@@ -375,11 +377,35 @@
             lbFoodsOnAterrain.Size = new Size(156, 124);
             lbFoodsOnAterrain.TabIndex = 33;
             // 
+            // materialLabel7
+            // 
+            materialLabel7.AutoSize = true;
+            materialLabel7.Depth = 0;
+            materialLabel7.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            materialLabel7.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialLabel7.Location = new Point(1048, 116);
+            materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel7.Name = "materialLabel7";
+            materialLabel7.Size = new Size(194, 19);
+            materialLabel7.TabIndex = 34;
+            materialLabel7.Text = "Items in this current terrain:";
+            // 
+            // lbItemsOnAterrain
+            // 
+            lbItemsOnAterrain.FormattingEnabled = true;
+            lbItemsOnAterrain.ItemHeight = 15;
+            lbItemsOnAterrain.Location = new Point(1248, 116);
+            lbItemsOnAterrain.Name = "lbItemsOnAterrain";
+            lbItemsOnAterrain.Size = new Size(145, 94);
+            lbItemsOnAterrain.TabIndex = 35;
+            // 
             // MapTest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1423, 708);
+            Controls.Add(lbItemsOnAterrain);
+            Controls.Add(materialLabel7);
             Controls.Add(lbFoodsOnAterrain);
             Controls.Add(materialLabel6);
             Controls.Add(materialLabel5);
@@ -455,5 +481,7 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel5;
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         private ListBox lbFoodsOnAterrain;
+        private MaterialSkin.Controls.MaterialLabel materialLabel7;
+        private ListBox lbItemsOnAterrain;
     }
 }

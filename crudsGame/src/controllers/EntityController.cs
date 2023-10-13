@@ -32,7 +32,7 @@ namespace crudsGame.src.controllers
 
         int index = 0;
         Random random = new Random();
-        List<string> RandomNames = new List<string> { "Akuma", "M. Bison", "Zangief", "Ryu", "Sagat", "Dhalsim", "Edmon Honda", "Dee Jay", "Birdie", "Thunder Hawk", "Remy", "Makoto", "Urien", "Necalli", "Ibuki", "Decapre", "Ken", "Chun-Li", "Guile", "Blanka", "Vega", "Fei Long", "Cammy", "Rose", "Charlie Nash", "Dan", "Adon", "Guy", "Sakura", "Rolento", "Karin", "Juni", "Cody", "Maki", "Yun", "Sean", "Necro"};//37
+        List<string> RandomNames = new List<string> { "Akuma", "M. Bison", "Zangief", "Ryu", "Sagat", "Dhalsim", "Edmon Honda", "Dee Jay", "Birdie", "Thunder Hawk", "Remy", "Makoto", "Urien", "Necalli", "Ibuki", "Decapre", "Ken", "Chun-Li", "Guile", "Blanka", "Vega", "Fei Long", "Cammy", "Rose", "Charlie Nash", "Dan", "Adon", "Guy", "Sakura", "Rolento", "Karin", "Juni", "Cody", "Maki", "Yun", "Sean", "Necro", "Gen", "Meat"};//37
         List<Entity> EntitiesList = new List<Entity>();
         List<IDiet> DietList = new List<IDiet>();
         List<IKingdom> KingdomList = new List<IKingdom>();
