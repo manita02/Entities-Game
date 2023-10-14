@@ -141,7 +141,7 @@ namespace crudsGame.src.views
 
         }
 
-        
+
 
         private void lbEnvironmentsOfAnEntity_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -158,6 +158,27 @@ namespace crudsGame.src.views
             }
             */
             lbEnvironmentsOfAnEntity.DataSource = ((Entity)lbEntitiesOnAterrain.SelectedItem).environmentList;//funciona
+            lbId.Text = "Id = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).id;
+            lbName.Text = "Name = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name;
+            lbDiet.Text = "Diet = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).diet;
+
+            lbCurrentLife.Text = "Current Life = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).currentLife;
+            pbCurrentLife.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).currentLife;
+
+
+            lbCurrentEnergy.Text = "Current Energy = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).currentEnergy;
+            pbCurrentEnergy.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).currentEnergy;
+
+            lbAttack.Text = "Attack Points = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).attackPoints;
+            pbAttackPoints.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).attackPoints;
+
+            lbDefense.Text = "Defense Points = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).defensePoints;
+            pbDefensePoints.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).defensePoints;
+
+
+            lbRange.Text = "Attack Range = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).attackRange;
+
+
         }
     }
 }
