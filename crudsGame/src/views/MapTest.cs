@@ -15,6 +15,7 @@ using crudsGame.src.controllers;
 using crudsGame.src.model.Terrains.Map;
 using crudsGame.src.model.Terrains;
 using crudsGame.src.model;
+using crudsGame.src.model.Items;
 
 namespace crudsGame.src.views
 {
@@ -161,7 +162,22 @@ namespace crudsGame.src.views
             lbId.Text = "Id = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).id;
             lbName.Text = "Name = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name;
             lbDiet.Text = "Diet = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).diet;
+            lbRange.Text = "Attack Range = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).attackRange;
+            lbKingdom.Text = "Kingdom = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).kingdom;
 
+
+            UpdateProgressbars();
+
+
+
+
+
+
+
+        }
+
+        private void UpdateProgressbars()
+        {
             lbCurrentLife.Text = "Current Life = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).currentLife;
             pbCurrentLife.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).currentLife;
 
@@ -175,8 +191,35 @@ namespace crudsGame.src.views
             lbDefense.Text = "Defense Points = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).defensePoints;
             pbDefensePoints.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).defensePoints;
 
+        }
 
-            lbRange.Text = "Attack Range = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).attackRange;
+        private void btnEat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ((Entity)lbEntitiesOnAterrain.SelectedItem).Eat(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Food)lbFoodsOnAterrain.SelectedItem));
+                UpdateProgressbars();
+            }
+            catch (Exception ex)
+            {
+                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+                UpdateProgressbars();
+            }
+
+        }
+
+        private void btnUse_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ((Entity)lbEntitiesOnAterrain.SelectedItem).UsarItem(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Item)lbItemsOnAterrain.SelectedItem));
+                UpdateProgressbars();
+            }
+            catch (Exception ex)
+            {
+                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+                UpdateProgressbars();
+            }
 
 
         }
