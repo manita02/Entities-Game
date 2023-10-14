@@ -221,6 +221,7 @@ namespace crudsGame.src.views
 
         private void btnAttack_Click(object sender, EventArgs e)
         {
+            /*
             int result = GetOnePlayerCreatureSelectedFromCombo().BeingAttacked(GetOnePlayerCreatureSelectedFromCombo().Attack(GetTwoPlayerCreatureSelectedFromCombo()), GetTwoPlayerCreatureSelectedFromCombo());
             //MessageBox.Show("valor de result: " + result.ToString());
             if (result == 1)
@@ -247,7 +248,7 @@ namespace crudsGame.src.views
                 }
             }
             UpdateProgressbar();
-            UpdateJ2Labels();
+            UpdateJ2Labels()*/
         }
 
         private void cbCriatureToDefense_SelectedIndexChanged(object sender, EventArgs e)

@@ -462,66 +462,88 @@ namespace crudsGame.src.model
         }
         #endregion
 
-        public int Attack(Entity entity)
+        public int Attack(Entity entityPlayerTwo)
         {
-            try
-            {
+            //try
+            //{
                 this.currentEnergy -= 10;
 
                 int DicePlayerOne = Dice.TrowDice();
                 int DicePlayerTwo = Dice.TrowDice();
 
+                new MessageBoxDarkMode(" Player one ha lanzado el dado: +" + DicePlayerOne + "\n " + this.name + " ataca con (" + this.attackPoints + " + " + DicePlayerOne + ") a " + entityPlayerTwo.name, "ATENCIÓN", "Ok", Resources.moreAttack, true);
+                //MessageBox.Show(" Player one ha lanzado el dado: +" + DicePlayerOne + "\n " + this.name + " ataca con (" + this.attackPoints + " + " + DicePlayerOne + ") a " + entityPlayerTwo.name);
 
-                MessageBox.Show("\t Player one ha lanzado el dado: +" + DicePlayerOne + "\n \t " + this.name + " ataca con (" + this.attackPoints + " + " + DicePlayerOne + ") a " + entity.name);
-                MessageBox.Show("\t Player two ha lanzado el dado: +" + DicePlayerTwo + "\n \t " + entity.name + " se defenderá con (" + entity.defensePoints + " + " + DicePlayerTwo);
+                new MessageBoxDarkMode(" Player two ha lanzado el dado: +" + DicePlayerTwo + "\n " + entityPlayerTwo.name + " se defenderá con (" + entityPlayerTwo.defensePoints + " + " + DicePlayerTwo + ")", "ATENCIÓN", "Ok", Resources.moreDefense, true);
+                //MessageBox.Show(" Player two ha lanzado el dado: +" + DicePlayerTwo + "\n " + entityPlayerTwo.name + " se defenderá con (" + entityPlayerTwo.defensePoints + " + " + DicePlayerTwo +")");
 
-                
+                //MessageBox.Show("puntos de ataque entidad 1 = " + this.attackPoints + " valor dado = " + DicePlayerOne);
+                //MessageBox.Show("puntos de defensa entidad 2 = " + entityPlayerTwo.defensePoints + " valor dado = " + DicePlayerTwo);
 
-                return ((this.attackPoints + DicePlayerOne) - entity.defensePoints + DicePlayerTwo);
-            }
-            catch (Exception e)
-            {
-                Console.Write(e.ToString());
-                return 0;
-            }
+
+                //int ataque = this.attackPoints + DicePlayerOne;
+                //int defensa = entityPlayerTwo.defensePoints + DicePlayerTwo;
+                //MessageBox.Show("puntos de ataque mas dado 1 = " + ataque + " - PUNTOS DE DEFENSA MAS DADO 2 = " + defensa);
+
+                //int result = ataque - defensa;
+                new MessageBoxDarkMode("RESULADO FINAL DE ATAQUE: " + ((this.attackPoints + DicePlayerOne) - (entityPlayerTwo.defensePoints + DicePlayerTwo)), "ATENCIÓN", "Ok", Resources.info, true);
+                //MessageBox.Show("RESULADO FINAL DE ATAQUE: " + ((this.attackPoints + DicePlayerOne) - (entityPlayerTwo.defensePoints + DicePlayerTwo)));
+
+                return ((this.attackPoints + DicePlayerOne)-(entityPlayerTwo.defensePoints + DicePlayerTwo));
+            //return ((this.attackPoints + DicePlayerOne) - entityPlayerTwo.defensePoints + DicePlayerTwo);
+            //}
+            //catch (Exception e)
+            //{
+                //Console.Write(e.ToString());
+                //return 0;
+            //}
             
         }
 
-        public int BeingAttacked(int atkPoints, Entity entity)
+        public void BeingAttacked(int atkPoints, Entity entityPlayerTwo)
         {
-            try
-            {
-                        if (atkPoints < 0)
-                        {
-                                this.CurrentLife += atkPoints; //como es la entidad atacante usamos los atributos y no el get set
-                                if (this.CurrentLife <= 0)
-                                {
-                                    MessageBox.Show("vida de atacante: " + this.CurrentLife);
-                                    return 1;
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Ganó " + entity.name + "con sus puntos de defensa!!");
-                                    return 0;
+            //try
+            //{
+                  if (atkPoints < 0)
+                  {
+                        //MessageBox.Show("vida actual " + this.currentLife + " + " + atkPoints);
+                        this.currentLife += atkPoints; //como es la entidad atacante usamos los atributos y no el get set
 
-                                }
-                        }
+
+                /*if (this.CurrentLife <= 0)
+                    {
+                        MessageBox.Show("vida de atacante: " + this.CurrentLife);
+                        return 1;
+                    }
+                    else
+                    {
+
+                        return 0;
+
+                    }
+                    */
+                    new MessageBoxDarkMode("Ganó " + entityPlayerTwo.name + "con sus puntos de defensa!!", "ATENCIÓN", "Ok", Resources.moreDefense, true);
+                    //MessageBox.Show("Ganó " + entityPlayerTwo.name + "con sus puntos de defensa!!");
+                }
                         else
                         {
                             if (atkPoints > 0)
                             {
-                                entity.currentLife -= atkPoints; //aca al ser al defensa usamos el get set para que valla a la exepcion cuando se muere
-                                MessageBox.Show("Ganó " + this.name + "con sus puntos de ataque!!");
-                                return 0;
-                            }
+                                //MessageBox.Show("vida actual de la entidad q se defiende" + entityPlayerTwo.currentLife + " - " + atkPoints);
+                                entityPlayerTwo.currentLife -= atkPoints; //aca al ser al defensa usamos el get set para que valla a la exepcion cuando se muere
+
+                                new MessageBoxDarkMode("Ganó " + this.name + "con sus puntos de ataque!!", "ATENCIÓN", "Ok", Resources.moreAttack, true);
+                                //MessageBox.Show("Ganó " + this.name + "con sus puntos de ataque!!");
+                                //return 0;
+                }
                         }
-                        return 0;     
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.ToString());
-                return 2;
-            }
+                        //return 0;     
+            //}
+            //catch(Exception e)
+            //{
+                //Console.WriteLine(e.ToString());
+                //return 2;
+            //}
              
         }
 

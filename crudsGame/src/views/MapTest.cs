@@ -168,6 +168,9 @@ namespace crudsGame.src.views
 
             UpdateProgressbars();
 
+            cargarlistobentidadesposiblesdeataaque();
+
+
 
 
 
@@ -175,6 +178,43 @@ namespace crudsGame.src.views
 
 
         }
+
+
+        private void obtenerelementodelista(List<Entity> entities)
+        {
+            foreach (Entity e in entities)
+            {
+                lbEntitiesToAttack.Items.Add(e);
+            }
+        }
+
+        private void cargarlistobentidadesposiblesdeataaque()
+        {
+            lbEntitiesToAttack.Items.Clear();
+            if (((Entity)lbEntitiesOnAterrain.SelectedItem).attackRange == 1)
+            {
+
+                foreach (Terrain terr in ((Terrain)cbCurrentTerrain.SelectedItem).BorderingTerrainsList)//terrenos limitrofes del terreno actual
+                {
+                    obtenerelementodelista(terr.EntitiesList);
+                }
+
+                foreach (Entity entity in ((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList)//entidades en terreno actual
+                {
+                    lbEntitiesToAttack.Items.Add(entity);
+                }
+            }
+            else if (((Entity)lbEntitiesOnAterrain.SelectedItem).attackRange == 0)
+            {
+                foreach (Entity entity in ((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList)//entidades en terreno actual
+                {
+                    lbEntitiesToAttack.Items.Add(entity);
+                }
+            }
+
+            lbEntitiesToAttack.Items.Remove((Entity)lbEntitiesOnAterrain.SelectedItem);//elimina el seleccionado
+        }
+
 
         private void UpdateProgressbars()
         {
@@ -222,6 +262,20 @@ namespace crudsGame.src.views
             }
 
 
+        }
+
+        private void btnAttack_Click(object sender, EventArgs e)
+        {
+            try
+            { //chequear metodo atacar en entidad esta rarisimoo
+                ((Entity)lbEntitiesOnAterrain.SelectedItem).BeingAttacked(((Entity)lbEntitiesOnAterrain.SelectedItem).Attack(((Entity)lbEntitiesToAttack.SelectedItem)), ((Entity)lbEntitiesToAttack.SelectedItem));
+                UpdateProgressbars();
+            }
+            catch(Exception ex) 
+            {
+                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+                UpdateProgressbars();
+            }
         }
     }
 }

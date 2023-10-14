@@ -152,7 +152,7 @@ namespace crudsGame.src.controllers
             {
                 x = 0;
                 int indexrandmom = random.Next(availableIndexes.Count);
-                MessageBox.Show("index random: " + indexrandmom+ " _cantidad en la newList: "+newList.Count+" cantidad de indices disponibles: "+availableIndexes.Count);
+                //MessageBox.Show("index random: " + indexrandmom+ " _cantidad en la newList: "+newList.Count+" cantidad de indices disponibles: "+availableIndexes.Count);
                 Entity randomEntityOne = newList[indexrandmom];
                 //MessageBox.Show("trabajando con: " + randomEntityOne.name);
                 if (terrain.TerrainType is Water)

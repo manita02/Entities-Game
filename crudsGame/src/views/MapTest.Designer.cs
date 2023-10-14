@@ -80,6 +80,9 @@
             groupBox2 = new GroupBox();
             btnUse = new MaterialSkin.Controls.MaterialRaisedButton();
             btnEat = new MaterialSkin.Controls.MaterialRaisedButton();
+            lbEntitiesToAttack = new ListBox();
+            label2 = new Label();
+            btnAttack = new MaterialSkin.Controls.MaterialRaisedButton();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -665,11 +668,50 @@
             btnEat.UseVisualStyleBackColor = true;
             btnEat.Click += btnEat_Click;
             // 
+            // lbEntitiesToAttack
+            // 
+            lbEntitiesToAttack.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lbEntitiesToAttack.FormattingEnabled = true;
+            lbEntitiesToAttack.ItemHeight = 18;
+            lbEntitiesToAttack.Location = new Point(388, 395);
+            lbEntitiesToAttack.Name = "lbEntitiesToAttack";
+            lbEntitiesToAttack.Size = new Size(212, 148);
+            lbEntitiesToAttack.TabIndex = 38;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(388, 374);
+            label2.Name = "label2";
+            label2.Size = new Size(146, 18);
+            label2.TabIndex = 39;
+            label2.Text = "Entities To Attack:";
+            // 
+            // btnAttack
+            // 
+            btnAttack.AutoSize = true;
+            btnAttack.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnAttack.Depth = 0;
+            btnAttack.Icon = null;
+            btnAttack.Location = new Point(458, 549);
+            btnAttack.MouseState = MaterialSkin.MouseState.HOVER;
+            btnAttack.Name = "btnAttack";
+            btnAttack.Primary = true;
+            btnAttack.Size = new Size(74, 36);
+            btnAttack.TabIndex = 40;
+            btnAttack.Text = "ATTACK";
+            btnAttack.UseVisualStyleBackColor = true;
+            btnAttack.Click += btnAttack_Click;
+            // 
             // MapTest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1520, 708);
+            Controls.Add(btnAttack);
+            Controls.Add(label2);
+            Controls.Add(lbEntitiesToAttack);
             Controls.Add(groupBox2);
             Controls.Add(materialLabel5);
             Controls.Add(materialLabel2);
@@ -769,5 +811,8 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnUse;
         private MaterialSkin.Controls.MaterialRaisedButton btnEat;
         private Label lbKingdom;
+        private ListBox lbEntitiesToAttack;
+        private Label label2;
+        private MaterialSkin.Controls.MaterialRaisedButton btnAttack;
     }
 }
