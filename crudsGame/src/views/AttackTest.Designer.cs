@@ -492,7 +492,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.interactions;
+            //BackgroundImage = Properties.Resources.interactions;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1206, 718);
             Controls.Add(listBox1);

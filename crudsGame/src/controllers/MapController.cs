@@ -482,6 +482,21 @@ namespace crudsGame.src.controllers
         }
 
 
+        public void eliminarDelMapaUnaEntidadqMurio(Entity entity, Map map)//en entidad no va xq no lo voy a tener a mapa ahi
+        {
+            foreach (Terrain terr in map.TerrainsList)
+            {
+                MessageBox.Show("cantidad en lista antes de borrar: " + terr.EntitiesList.Count + "en terreno "+terr.Id);
+                if (terr.EntitiesList.Contains(entity))
+                {
+                    
+                    terr.EntitiesList.Remove(entity);//borra la entidad del terreno donde se encuentre
+                    MessageBox.Show("cantidad en lista DESPUES DE de borrar: " + terr.EntitiesList.Count + " la entidad "+entity.name);
+                }
+
+            }
+
+        }
         /* ver estooooooooooo posicionaaaaaaaabless
         public void SetPositionsOfPositionableObjects(Map map)
         {

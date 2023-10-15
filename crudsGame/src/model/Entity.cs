@@ -397,6 +397,11 @@ namespace crudsGame.src.model
             }
         }
         */
+
+        private Entity Die(Entity entity)
+        {
+            return entity;
+        }
         public int currentLife
         {
             get
@@ -417,6 +422,7 @@ namespace crudsGame.src.model
                     CurrentLife = 0;
                     
                     //MessageBox.Show("The creature "+ Name +" has died");
+                    
                     throw new Exception("The creature " + Name + " has died");
                     
                 }
@@ -500,29 +506,36 @@ namespace crudsGame.src.model
             
         }
 
-        public void BeingAttacked(int atkPoints, Entity entityPlayerTwo)
+        public int BeingAttacked(int atkPoints, Entity entityPlayerTwo)
         {
-            //try
-            //{
+            try
+            {
                   if (atkPoints < 0)
                   {
                         //MessageBox.Show("vida actual " + this.currentLife + " + " + atkPoints);
-                        this.currentLife += atkPoints; //como es la entidad atacante usamos los atributos y no el get set
+                        //this.currentLife += atkPoints; //como es la entidad atacante usamos los atributos y no el get set
+                        //return 0;
 
+                        this.CurrentLife += atkPoints; //como es la entidad atacante usamos los atributos y no el get set
+                        if (this.CurrentLife <= 0)
+                        {
+                            //MessageBox.Show("vida de atacante: " + this.CurrentLife);
+                            return 1;
+                        }
 
-                /*if (this.CurrentLife <= 0)
-                    {
-                        MessageBox.Show("vida de atacante: " + this.CurrentLife);
-                        return 1;
-                    }
-                    else
-                    {
+                    /*if (this.CurrentLife <= 0)
+                        {
+                            MessageBox.Show("vida de atacante: " + this.CurrentLife);
+                            return 1;
+                        }
+                        else
+                        {
 
-                        return 0;
+                            return 0;
 
-                    }
-                    */
-                    new MessageBoxDarkMode("Ganó " + entityPlayerTwo.name + "con sus puntos de defensa!!", "ATENCIÓN", "Ok", Resources.moreDefense, true);
+                        }
+                        */
+                    new MessageBoxDarkMode("Ganó " + entityPlayerTwo.name + " con sus puntos de defensa!!", "ATENCIÓN", "Ok", Resources.moreDefense, true);
                     //MessageBox.Show("Ganó " + entityPlayerTwo.name + "con sus puntos de defensa!!");
                 }
                         else
@@ -532,18 +545,19 @@ namespace crudsGame.src.model
                                 //MessageBox.Show("vida actual de la entidad q se defiende" + entityPlayerTwo.currentLife + " - " + atkPoints);
                                 entityPlayerTwo.currentLife -= atkPoints; //aca al ser al defensa usamos el get set para que valla a la exepcion cuando se muere
 
-                                new MessageBoxDarkMode("Ganó " + this.name + "con sus puntos de ataque!!", "ATENCIÓN", "Ok", Resources.moreAttack, true);
+                                new MessageBoxDarkMode("Ganó " + this.name + " con sus puntos de ataque!!", "ATENCIÓN", "Ok", Resources.moreAttack, true);
                                 //MessageBox.Show("Ganó " + this.name + "con sus puntos de ataque!!");
                                 //return 0;
-                }
+                                return 0;
+                            }
                         }
-                        //return 0;     
-            //}
-            //catch(Exception e)
-            //{
-                //Console.WriteLine(e.ToString());
-                //return 2;
-            //}
+                return 0;     
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return 2;
+            }
              
         }
 

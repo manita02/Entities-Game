@@ -135,7 +135,8 @@ namespace crudsGame.src.views
         private void cbCurrentTerrain_SelectedIndexChanged(object sender, EventArgs e)
         {
             lbBonderingTerrains.DataSource = mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
-            lbEntitiesOnAterrain.DataSource = ((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList;
+            //lbEntitiesOnAterrain.DataSource = ((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList;
+            LoadListBoxWithEntitiesOnATerrain();
             lbFoodsOnAterrain.DataSource = ((Terrain)cbCurrentTerrain.SelectedItem).FoodsList;
             lbItemsOnAterrain.DataSource = ((Terrain)cbCurrentTerrain.SelectedItem).ItemsList;
             ChangeColorOfSelectedHexagonAndTheirBorderingHexagons((Terrain)cbCurrentTerrain.SelectedItem);
@@ -190,6 +191,7 @@ namespace crudsGame.src.views
 
         private void cargarlistobentidadesposiblesdeataaque()
         {
+            
             lbEntitiesToAttack.Items.Clear();
             if (((Entity)lbEntitiesOnAterrain.SelectedItem).attackRange == 1)
             {
@@ -213,6 +215,12 @@ namespace crudsGame.src.views
             }
 
             lbEntitiesToAttack.Items.Remove((Entity)lbEntitiesOnAterrain.SelectedItem);//elimina el seleccionado
+            
+            if (lbEntitiesToAttack.Items.Count > 0)
+            {
+                lbEntitiesToAttack.SelectedIndex = 0;
+            }
+            
         }
 
 
@@ -264,12 +272,46 @@ namespace crudsGame.src.views
 
         }
 
+        public void LoadListBoxWithEntitiesOnATerrain()
+        {
+            
+            lbEntitiesOnAterrain.Items.Clear();
+            foreach (Entity creatures in ((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList)
+            {
+                lbEntitiesOnAterrain.Items.Add(creatures);
+            }
+
+            if (lbEntitiesOnAterrain.Items.Count > 0)
+            {
+                lbEntitiesOnAterrain.SelectedIndex = 0;
+            }
+            
+        }
+
         private void btnAttack_Click(object sender, EventArgs e)
         {
             try
-            { //chequear metodo atacar en entidad esta rarisimoo
-                ((Entity)lbEntitiesOnAterrain.SelectedItem).BeingAttacked(((Entity)lbEntitiesOnAterrain.SelectedItem).Attack(((Entity)lbEntitiesToAttack.SelectedItem)), ((Entity)lbEntitiesToAttack.SelectedItem));
+            {
+                int result = ((Entity)lbEntitiesOnAterrain.SelectedItem).BeingAttacked(((Entity)lbEntitiesOnAterrain.SelectedItem).Attack(((Entity)lbEntitiesToAttack.SelectedItem)), ((Entity)lbEntitiesToAttack.SelectedItem));
+                if (result == 1)//puede ser con booleanos esto en vez de int
+                {
+                    //MessageBox.Show("la vida esta en 0 de la entidad player one: " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name);
+                    new MessageBoxDarkMode(((Entity)lbEntitiesToAttack.SelectedItem).name + " mató a "+ ((Entity)lbEntitiesOnAterrain.SelectedItem).name + "!!!", "ATENCIÓN", "Ok", Resources.ko, true);
+                    mapController.eliminarDelMapaUnaEntidadqMurio((Entity)lbEntitiesOnAterrain.SelectedItem, (Map)cbMaps.SelectedItem);//no me va a dejar eliminar porque esta con el datasource
+                    LoadListBoxWithEntitiesOnATerrain();
+                    cargarlistobentidadesposiblesdeataaque();
+                }
+                else if (result == 2)
+                {
+                    //MessageBox.Show("la vida esta en 0 de la entidad player two: " + ((Entity)lbEntitiesToAttack.SelectedItem).name);
+                    new MessageBoxDarkMode(((Entity)lbEntitiesOnAterrain.SelectedItem).name + " mató a " + ((Entity)lbEntitiesToAttack.SelectedItem).name + "!!!", "ATENCIÓN", "Ok", Resources.ko, true);
+                    mapController.eliminarDelMapaUnaEntidadqMurio((Entity)lbEntitiesToAttack.SelectedItem, (Map)cbMaps.SelectedItem);
+                    cargarlistobentidadesposiblesdeataaque();
+                    LoadListBoxWithEntitiesOnATerrain();
+                }
+
                 UpdateProgressbars();
+
             }
             catch(Exception ex) 
             {
