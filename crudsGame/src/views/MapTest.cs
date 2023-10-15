@@ -191,7 +191,7 @@ namespace crudsGame.src.views
 
         private void cargarlistobentidadesposiblesdeataaque()
         {
-            
+
             lbEntitiesToAttack.Items.Clear();
             if (((Entity)lbEntitiesOnAterrain.SelectedItem).attackRange == 1)
             {
@@ -215,12 +215,12 @@ namespace crudsGame.src.views
             }
 
             lbEntitiesToAttack.Items.Remove((Entity)lbEntitiesOnAterrain.SelectedItem);//elimina el seleccionado
-            
+
             if (lbEntitiesToAttack.Items.Count > 0)
             {
                 lbEntitiesToAttack.SelectedIndex = 0;
             }
-            
+
         }
 
 
@@ -238,6 +238,8 @@ namespace crudsGame.src.views
 
             lbDefense.Text = "Defense Points = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).defensePoints;
             pbDefensePoints.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).defensePoints;
+
+
 
         }
 
@@ -274,7 +276,7 @@ namespace crudsGame.src.views
 
         public void LoadListBoxWithEntitiesOnATerrain()
         {
-            
+
             lbEntitiesOnAterrain.Items.Clear();
             foreach (Entity creatures in ((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList)
             {
@@ -285,7 +287,7 @@ namespace crudsGame.src.views
             {
                 lbEntitiesOnAterrain.SelectedIndex = 0;
             }
-            
+
         }
 
         private void btnAttack_Click(object sender, EventArgs e)
@@ -296,7 +298,7 @@ namespace crudsGame.src.views
                 if (result == 1)//puede ser con booleanos esto en vez de int
                 {
                     //MessageBox.Show("la vida esta en 0 de la entidad player one: " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name);
-                    new MessageBoxDarkMode(((Entity)lbEntitiesToAttack.SelectedItem).name + " mató a "+ ((Entity)lbEntitiesOnAterrain.SelectedItem).name + "!!!", "ATENCIÓN", "Ok", Resources.ko, true);
+                    new MessageBoxDarkMode(((Entity)lbEntitiesToAttack.SelectedItem).name + " mató a " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + "!!!", "ATENCIÓN", "Ok", Resources.ko, true);
                     mapController.eliminarDelMapaUnaEntidadqMurio((Entity)lbEntitiesOnAterrain.SelectedItem, (Map)cbMaps.SelectedItem);//no me va a dejar eliminar porque esta con el datasource
                     LoadListBoxWithEntitiesOnATerrain();
                     cargarlistobentidadesposiblesdeataaque();
@@ -311,13 +313,35 @@ namespace crudsGame.src.views
                 }
 
                 UpdateProgressbars();
+                UpdateInfoPlayerTWO();
 
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
                 UpdateProgressbars();
             }
+        }
+
+        private void UpdateInfoPlayerTWO()
+        {
+            if (lbEntitiesToAttack.Items.Count > 0)
+            {
+                pnAttack.Enabled = true;
+                lbCurrentLifePlayerTwo.Text = "Current Life = " + ((Entity)lbEntitiesToAttack.SelectedItem).currentLife;
+                pbCurrentLifePlayerTwo.Value = ((Entity)lbEntitiesToAttack.SelectedItem).currentLife;
+            }
+            else
+            {
+                pnAttack.Enabled = false;
+            }
+
+        }
+        private void lbEntitiesToAttack_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateInfoPlayerTWO();
+
+
         }
     }
 }
