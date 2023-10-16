@@ -10,6 +10,7 @@ namespace crudsGame.src.model.Kingdoms
 {
     internal class Animalia:IKingdom
     {
+        /*
         public bool CanInteract(Entity entity, Item item)
         {
             if (entity.kingdom.ToString() == item.kingdom.ToString())
@@ -17,6 +18,13 @@ namespace crudsGame.src.model.Kingdoms
                 return true;
             }
             return false;
+        }
+        */
+
+        public bool CanInteract(Item item)
+        {
+            return item.kingdom is Animalia; //devuelve true
+
         }
 
         public override string ToString()

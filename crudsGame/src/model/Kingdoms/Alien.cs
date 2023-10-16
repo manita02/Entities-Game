@@ -10,6 +10,8 @@ namespace crudsGame.src.model.Kingdoms
 {
     internal class Alien:IKingdom
     {
+
+        /*
         public bool CanInteract(Entity entity, Item item)
         {
             if (entity.kingdom.ToString() == item.kingdom.ToString())
@@ -17,6 +19,13 @@ namespace crudsGame.src.model.Kingdoms
                 return true;
             }
             return false;
+        }
+        */
+
+        public bool CanInteract(Item item)
+        {
+            return item.kingdom is Alien; //devuelve true
+
         }
 
         public override string ToString()

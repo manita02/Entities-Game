@@ -562,11 +562,11 @@ namespace crudsGame.src.model
         }
 
 
-        public void UsarItem(Entity entity, Item item)
+        public void UsarItem(Entity entity, Item item)//no es necesario pasar la entidaddd
         {
-            if (Kingdom.CanInteract(entity, item) == true)
+            if (Kingdom.CanInteract(item) == true)
             {
-                item.Interact(entity); 
+                item.Interact(this); 
                 //if (item.Interact(entity) == true)
                 //{
                     //return true; 
@@ -596,41 +596,47 @@ namespace crudsGame.src.model
             }
             else
             {
-                new MessageBoxDarkMode("La entidad seleccionada ( "+entity.name+" ) no puede usar este item ya que no coinciden sus reinos!!", "ALERTA", "Ok", Resources.warning, true);
+                new MessageBoxDarkMode("La entidad seleccionada ( "+ this.name+" ) no puede usar este item ya que no coinciden sus reinos!!", "ALERTA", "Ok", Resources.warning, true);
                 
                 //MessageBox.Show("la entidad seleccionada no puede usar este item");
                 //return true;
             }
         }
 
-        public void Eat(Entity entity,  Food food)
+        public void Eat(Entity entity,  Food food)//no es necesario pasar la entidad creo q funciona el caneat
         {
-            //if (Diet.CanEat(food) == true){
+            /*
+                 if (Diet.CanEat(entity, food) == true)
+                 {
+                     food.Interact(entity);
+                     //entity.currentEnergy -= 10;
+                 }
+                 else
+                 {
+                     throw new Exception("La dieta ( "+entity.diet+" ) de la entidad seleccionada ( "+entity.name+" ) no coincide con el alimento a ingerir");
+                     //MessageBox.Show("la entidad seleccionada no puede comer este alimento");
+                 }
+            */
 
-            //}
-            //try
-            //{
-                if (Diet.CanEat(entity, food) == true)
+            
+                if (Diet.CanEat(food) == true)
                 {
-                    food.Interact(entity);
+                    food.Interact(this);
                     //entity.currentEnergy -= 10;
                 }
                 else
                 {
-                    throw new Exception("La dieta ( "+entity.diet+" ) de la entidad seleccionada ( "+entity.name+" ) no coincide con el alimento a ingerir");
+                    throw new Exception("La dieta ( "+this.diet+" ) de la entidad seleccionada ( "+this.name+" ) no coincide con el alimento a ingerir");
                     //MessageBox.Show("la entidad seleccionada no puede comer este alimento");
                 }
+           
 
-            //}
-            //catch (Exception e)
-            //{
-                //Console.WriteLine(e.ToString());
-            //}
-            
-            
+
+
+
         }
 
-       
+
 
         public override string ToString()
         {

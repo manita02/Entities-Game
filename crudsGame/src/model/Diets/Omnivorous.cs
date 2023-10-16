@@ -9,7 +9,7 @@ namespace crudsGame.src.model.Diets
 {
     internal class Omnivorous : IDiet
     {
-        
+        /*
         public bool CanEat(Entity entity, Food food)
         {
             //MessageBox.Show("dieta entidad: " + entity.diet.ToString());
@@ -22,8 +22,9 @@ namespace crudsGame.src.model.Diets
             return false;
             
         }
+        */
         
-        /*
+        
         public bool CanEat(Food food)
         {
             //MessageBox.Show("dieta entidad: " + entity.diet.ToString());
@@ -32,7 +33,7 @@ namespace crudsGame.src.model.Diets
             return food.diet is Carnivore || food.diet is Herbivorous;
           
         }
-        */
+        
 
         public override string ToString()
         {
