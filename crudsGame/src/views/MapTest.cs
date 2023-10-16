@@ -37,6 +37,7 @@ namespace crudsGame.src.views
             {
                 hexagonsList[i].HexagonText = $"{i}";
             }
+            LoadMap();
         }
 
         private void AddHexagonsToList()
@@ -92,8 +93,45 @@ namespace crudsGame.src.views
             }
         }
 
+
+
+        private void LoadMap()
+        {
+            if (mapController.GetMaps().Count>0)
+            {
+                cbMaps.DataSource = mapController.GetMaps();
+
+
+
+                cbCurrentTerrain.DataSource = mapController.GetTerrains((Map)cbMaps.SelectedItem);
+                lbBonderingTerrains.DataSource = mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
+
+                /*
+                foreach (Terrain i in mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem))
+                {
+                    lbBorderingTerrains.Items.Add(i.ToString());
+                }
+                */
+                //lbBorderingTerrains.DataSource= mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
+
+
+                //quedaa este q seria terreno a donde se moveraa formController.RefreshDataSource(bsSelectedLand, cbSelectedLand, () => mapController.getLands((Map)cbMaps.SelectedItem));
+
+
+                cbMaps.SelectedIndex = 0;
+                PaintHexagons();
+                btnGenerateMap.Enabled = false;
+
+                //habria que hacer una validacion de que para generar un mapa debe haber mas de 40 entidades, comidas e items, ya que esta programado para que haya dos de cada una por terreno
+
+            }
+
+
+        }
+
         private void btnGenerateMap_Click(object sender, EventArgs e)
         {
+            
             mapController.GenerateMap();
             cbMaps.DataSource = mapController.GetMaps();
 
@@ -118,8 +156,8 @@ namespace crudsGame.src.views
             PaintHexagons();
             btnGenerateMap.Enabled = false;
 
-            //habria que hacer una validacion de que para generar un mapa debe haber mas de 36 entidades, comidas e items, ya que esta programado para que haya dos de cada una por terreno
-
+            //habria que hacer una validacion de que para generar un mapa debe haber mas de 40 entidades, comidas e items, ya que esta programado para que haya dos de cada una por terreno
+            
         }
 
         private void PaintHexagons()

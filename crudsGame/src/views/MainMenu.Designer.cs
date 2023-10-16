@@ -37,8 +37,8 @@
             cRUDEntityToolStripMenuItem = new ToolStripMenuItem();
             cRUDItemToolStripMenuItem = new ToolStripMenuItem();
             cRUDFoodsToolStripMenuItem = new ToolStripMenuItem();
-            btnExit = new MaterialSkin.Controls.MaterialRaisedButton();
             mAPTESTToolStripMenuItem = new ToolStripMenuItem();
+            btnExit = new MaterialSkin.Controls.MaterialRaisedButton();
             materialContextMenuStrip1.SuspendLayout();
             menu1.SuspendLayout();
             SuspendLayout();
@@ -108,6 +108,15 @@
             cRUDFoodsToolStripMenuItem.Text = "CRUD foods";
             cRUDFoodsToolStripMenuItem.Click += cRUDFoodsToolStripMenuItem_Click_1;
             // 
+            // mAPTESTToolStripMenuItem
+            // 
+            mAPTESTToolStripMenuItem.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            mAPTESTToolStripMenuItem.ForeColor = SystemColors.Control;
+            mAPTESTToolStripMenuItem.Name = "mAPTESTToolStripMenuItem";
+            mAPTESTToolStripMenuItem.Size = new Size(98, 25);
+            mAPTESTToolStripMenuItem.Text = "MAP TEST";
+            mAPTESTToolStripMenuItem.Click += mAPTESTToolStripMenuItem_Click;
+            // 
             // btnExit
             // 
             btnExit.AutoSize = true;
@@ -123,15 +132,6 @@
             btnExit.Text = "EXIT";
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += btnExit_Click_1;
-            // 
-            // mAPTESTToolStripMenuItem
-            // 
-            mAPTESTToolStripMenuItem.Font = new Font("MV Boli", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            mAPTESTToolStripMenuItem.ForeColor = SystemColors.Control;
-            mAPTESTToolStripMenuItem.Name = "mAPTESTToolStripMenuItem";
-            mAPTESTToolStripMenuItem.Size = new Size(107, 25);
-            mAPTESTToolStripMenuItem.Text = "MAP TEST";
-            mAPTESTToolStripMenuItem.Click += mAPTESTToolStripMenuItem_Click;
             // 
             // MainMenu
             // 
