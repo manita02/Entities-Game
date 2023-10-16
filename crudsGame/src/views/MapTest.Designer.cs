@@ -92,6 +92,9 @@
             label2 = new Label();
             btnAttack = new MaterialSkin.Controls.MaterialRaisedButton();
             lbEntitiesToAttack = new ListBox();
+            btnMoveInfo = new MaterialSkin.Controls.MaterialRaisedButton();
+            lbMoveInfo = new Label();
+            btnMove = new MaterialSkin.Controls.MaterialFlatButton();
             groupBox2.SuspendLayout();
             pnItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picItems).BeginInit();
@@ -817,11 +820,63 @@
             lbEntitiesToAttack.TabIndex = 38;
             lbEntitiesToAttack.SelectedIndexChanged += lbEntitiesToAttack_SelectedIndexChanged;
             // 
+            // btnMoveInfo
+            // 
+            btnMoveInfo.AutoSize = true;
+            btnMoveInfo.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnMoveInfo.Depth = 0;
+            btnMoveInfo.Icon = null;
+            btnMoveInfo.Location = new Point(138, 629);
+            btnMoveInfo.MouseState = MaterialSkin.MouseState.HOVER;
+            btnMoveInfo.Name = "btnMoveInfo";
+            btnMoveInfo.Primary = true;
+            btnMoveInfo.Size = new Size(102, 36);
+            btnMoveInfo.TabIndex = 38;
+            btnMoveInfo.Text = "MOVER INFO";
+            btnMoveInfo.UseVisualStyleBackColor = true;
+            btnMoveInfo.Click += btnMoveInfo_Click;
+            // 
+            // lbMoveInfo
+            // 
+            lbMoveInfo.AutoSize = true;
+            lbMoveInfo.BackColor = Color.Transparent;
+            lbMoveInfo.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lbMoveInfo.ForeColor = Color.Plum;
+            lbMoveInfo.ImageAlign = ContentAlignment.MiddleLeft;
+            lbMoveInfo.Location = new Point(295, 493);
+            lbMoveInfo.Name = "lbMoveInfo";
+            lbMoveInfo.RightToLeft = RightToLeft.Yes;
+            lbMoveInfo.Size = new Size(292, 18);
+            lbMoveInfo.TabIndex = 39;
+            lbMoveInfo.Text = "        Clickee el hexagono donde se moverá";
+            lbMoveInfo.TextAlign = ContentAlignment.MiddleCenter;
+            lbMoveInfo.Visible = false;
+            // 
+            // btnMove
+            // 
+            btnMove.AutoSize = true;
+            btnMove.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnMove.Depth = 0;
+            btnMove.Icon = null;
+            btnMove.Location = new Point(138, 584);
+            btnMove.Margin = new Padding(4, 6, 4, 6);
+            btnMove.MouseState = MaterialSkin.MouseState.HOVER;
+            btnMove.Name = "btnMove";
+            btnMove.Primary = false;
+            btnMove.Size = new Size(231, 36);
+            btnMove.TabIndex = 40;
+            btnMove.Text = "MOVER ENTIDAD A TERRENO N°X";
+            btnMove.UseVisualStyleBackColor = true;
+            btnMove.Click += btnMove_Click;
+            // 
             // MapTest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1700, 816);
+            Controls.Add(btnMove);
+            Controls.Add(lbMoveInfo);
+            Controls.Add(btnMoveInfo);
             Controls.Add(groupBox2);
             Controls.Add(materialLabel5);
             Controls.Add(materialLabel2);
@@ -942,5 +997,8 @@
         private PictureBox picFoods;
         private Panel pnItems;
         private PictureBox picItems;
+        private MaterialSkin.Controls.MaterialRaisedButton btnMoveInfo;
+        private Label lbMoveInfo;
+        private MaterialSkin.Controls.MaterialFlatButton btnMove;
     }
 }

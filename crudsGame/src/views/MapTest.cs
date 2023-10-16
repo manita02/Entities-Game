@@ -16,6 +16,7 @@ using crudsGame.src.model.Terrains.Map;
 using crudsGame.src.model.Terrains;
 using crudsGame.src.model;
 using crudsGame.src.model.Items;
+using crudsGame.src.interfaces;
 
 namespace crudsGame.src.views
 {
@@ -23,6 +24,7 @@ namespace crudsGame.src.views
     {
         List<HexagonControl> hexagonsList = new List<HexagonControl>();
         MapController mapController = MapController.GetInstance();
+        int i = 0;
         public MapTest()
         {
             InitializeComponent();
@@ -65,13 +67,17 @@ namespace crudsGame.src.views
 
         private void Hexagon_Click(object sender, EventArgs e)
         {
-            HexagonControl clickedHexagon = sender as HexagonControl;
+            if (lbMoveInfo.Visible == false)//CAMBIOSSSSSSSSSSSSSSS
+            {
+                HexagonControl clickedHexagon = sender as HexagonControl;
 
-            int index = hexagonsList.IndexOf(clickedHexagon);
-            //MessageBox.Show("indice hxagono clikeado: " + index);
-            cbCurrentTerrain.SelectedIndex = index;
-            //MessageBox.Show("index en combo currentTerrain: " + cbCurrentTerrain.SelectedIndex);
-            ChangeColorOfSelectedHexagonAndTheirBorderingHexagons(mapController.GetTerrains((Map)cbMaps.SelectedItem)[index]);
+                int index = hexagonsList.IndexOf(clickedHexagon);
+                //MessageBox.Show("indice hxagono clikeado: " + index);
+                cbCurrentTerrain.SelectedIndex = index;
+                //MessageBox.Show("index en combo currentTerrain: " + cbCurrentTerrain.SelectedIndex);
+                ChangeColorOfSelectedHexagonAndTheirBorderingHexagons(mapController.GetTerrains((Map)cbMaps.SelectedItem)[index]);
+            }
+
         }
 
         private void ResetHexagonBorderColor()
@@ -97,7 +103,7 @@ namespace crudsGame.src.views
 
         private void LoadMap()
         {
-            if (mapController.GetMaps().Count>0)
+            if (mapController.GetMaps().Count > 0)
             {
                 cbMaps.DataSource = mapController.GetMaps();
 
@@ -131,7 +137,7 @@ namespace crudsGame.src.views
 
         private void btnGenerateMap_Click(object sender, EventArgs e)
         {
-            
+
             mapController.GenerateMap();
             cbMaps.DataSource = mapController.GetMaps();
 
@@ -157,7 +163,7 @@ namespace crudsGame.src.views
             btnGenerateMap.Enabled = false;
 
             //habria que hacer una validacion de que para generar un mapa debe haber mas de 40 entidades, comidas e items, ya que esta programado para que haya dos de cada una por terreno
-            
+
         }
 
         private void PaintHexagons()
@@ -197,6 +203,9 @@ namespace crudsGame.src.views
                 MessageBox.Show("ambiente: " + s.ToString());
             }
             */
+            btnMoveInfo.Text = "MOVER entidad seleccionada (" + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ") a otro terreno";
+
+
             lbEnvironmentsOfAnEntity.DataSource = ((Entity)lbEntitiesOnAterrain.SelectedItem).environmentList;//funciona
             lbId.Text = "Id = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).id;
             lbName.Text = "Name = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name;
@@ -379,6 +388,57 @@ namespace crudsGame.src.views
         {
             UpdateInfoPlayerTWO();
 
+
+        }
+
+
+        private void Hexagon_ClickForMove(object sender, EventArgs e)
+        {
+            Terrain terrenoAnteriorSeleccionado = (Terrain)cbCurrentTerrain.SelectedItem;
+            HexagonControl clickedHexagon = sender as HexagonControl;
+
+            int index = hexagonsList.IndexOf(clickedHexagon);
+            //MessageBox.Show("indice hxagono clikeado: " + index);
+            //cbCurrentTerrain.SelectedIndex = index;
+            //MessageBox.Show("index en combo currentTerrain: " + cbCurrentTerrain.SelectedIndex);
+            ChangeColorOfSelectedHexagonToMove(mapController.GetTerrains((Map)cbMaps.SelectedItem)[index], terrenoAnteriorSeleccionado);
+        }
+
+
+        private void ChangeColorOfSelectedHexagonToMove(Terrain terrainDondeSeMovera, Terrain terrenoAnteriorSeleccionado)
+        {
+
+            ResetHexagonBorderColor();
+            hexagonsList[((Terrain)cbCurrentTerrain.SelectedItem).Id].BorderColor = Color.Yellow;
+            hexagonsList[((Terrain)cbCurrentTerrain.SelectedItem).Id].Enabled = false;
+
+            for (int i = 0; i < ((Terrain)cbCurrentTerrain.SelectedItem).BorderingTerrainsList.Count(); i++)
+            {
+                hexagonsList[terrenoAnteriorSeleccionado.BorderingTerrainsList[i].Id].BorderColor = Color.DarkOrange;
+            }
+
+
+            hexagonsList[terrainDondeSeMovera.Id].BorderColor = Color.DarkViolet;//este vendria a ser a donde se va a mover
+
+
+            btnMove.Text = "Mover a " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + " al terreno N°" + terrainDondeSeMovera.Id;
+        }
+
+        private void btnMoveInfo_Click(object sender, EventArgs e)
+        {
+            lbMoveInfo.Visible = true;
+            lbMoveInfo.Text = "\tHaga click sobre el hexagono\n\t donde quiera que se mueva " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ".\n\t Tenga en cuenta que sólo\n\t podrá moverse sobre los\n\t terrenos limítrofes";
+            foreach (var hexagon in hexagonsList)
+            {
+                //MessageBox.Show(hexagon.Name);
+                hexagon.Click += Hexagon_ClickForMove;
+            }
+            btnMoveInfo.Visible = false;
+
+        }
+
+        private void btnMove_Click(object sender, EventArgs e)
+        {
 
         }
     }
