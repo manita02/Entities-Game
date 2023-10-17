@@ -41,7 +41,6 @@ namespace crudsGame.src.controllers
         }
 
 
-
         public void AddTerrain(ITerrain terrainType, Map map)
         {
             Terrain TerrainToAdd = new Terrain(terrainType);
@@ -145,7 +144,6 @@ namespace crudsGame.src.controllers
         private Entity obtenerunaentidadrandomquecoindaconelterrenodondeseubicara(Terrain terrain, List<Entity> newList, List<int> availableIndexes)
         {
             int x = 0;
-            //Entity randomEntityOnee = null;
             Random random = new Random();
             //MessageBox.Show("ambiente por parametro: " + terrain.TerrainType.ToString());
 
@@ -153,35 +151,65 @@ namespace crudsGame.src.controllers
             while (x != 1)
             {
                 x = 0;
+                //se elije un indice random de la lista de indices disponibles para agregar de la lista de entidades
                 int indexrandmom = random.Next(availableIndexes.Count);
                 //MessageBox.Show("index random: " + indexrandmom+ " _cantidad en la newList: "+newList.Count+" cantidad de indices disponibles: "+availableIndexes.Count);
+                
+                //aca de la lista de entidades que seria newList se le asigna entre corchetes el index anterior para obtener una entidad random
                 Entity randomEntityOne = newList[indexrandmom];
                 //MessageBox.Show("trabajando con: " + randomEntityOne.name);
+
+                switch (terrain.TerrainType)
+                {
+                    case Water: //si el terreno es agua
+                        foreach (IEnvironment env in randomEntityOne.environmentList)
+                        {
+                            //MessageBox.Show("ambiente necesito que sea aquatico: " + env.ToString());
+
+                            if (env is Aquatic || env is Aereal) //si en la lista de ambientes de la entidad random obtenida anteriormente tiene a acuatico o aereo
+                            {
+                                x++;//corta el ciclo x = 1
+                                //MessageBox.Show("La entidad" + randomEntityOne.name + "es aquatico_ valor de x: " + x);
+                                //MessageBox.Show("llegandooo");
+                                return randomEntityOne; //retorna la entidad para que pueda ser agregada
+                            }
+                        }
+                        break;
+                    case Land:
+                        foreach (IEnvironment env in randomEntityOne.environmentList)
+                        {
+                            //MessageBox.Show("ambiente necesito que sea terrestre: " + env.ToString());
+                            if (env is Terrestrial || env is Aereal)
+                            {
+
+                                x++;
+                                //MessageBox.Show("La entidad" + randomEntityOne.name + "es terrestre valor de x: " + x);
+                                //MessageBox.Show("llegandooo");
+                                return randomEntityOne;
+                            }
+                        }
+                        break;
+
+                }
+                
+                /*
                 if (terrain.TerrainType is Water)
                 {
-
-
                     foreach (IEnvironment env in randomEntityOne.environmentList)
                     {
                         //MessageBox.Show("ambiente necesito que sea aquatico: " + env.ToString());
                         if (env is Aquatic || env is Aereal)
                         {
-
-
                             x++;
                             //MessageBox.Show("La entidad" + randomEntityOne.name + "es aquatico_ valor de x: " + x);
                             //MessageBox.Show("llegandooo");
                             return randomEntityOne;
                         }
                     }
-
-
                 }
 
                 if (terrain.TerrainType is Land)
                 {
-
-
                     foreach (IEnvironment env in randomEntityOne.environmentList)
                     {
                         //MessageBox.Show("ambiente necesito que sea terrestre: " + env.ToString());
@@ -196,16 +224,14 @@ namespace crudsGame.src.controllers
                     }
 
                     //el problema aca es q... si tengo terrenos en el mapa ponele de agua.. y ya ubique esas de agua en otros lados, y no me quedan mas de agua, cague porque no voy a poder ubicar mas :(
-                    //sino tengo que crear mas entidades que sean de agua y tierra y ahi me ahorro el problema
+                    //para evitar estos problemas tengo que controlar que haya 9 de agua y 9 de tierra = total 18
 
 
                 }
+                */
 
             }
             return null;
-
-
-
         }
 
 
@@ -558,69 +584,5 @@ namespace crudsGame.src.controllers
             }
 
         }
-
-
-
-
-        /* ver estooooooooooo posicionaaaaaaaabless
-        public void SetPositionsOfPositionableObjects(Map map)
-        {
-            Random random = new Random();
-            foreach (IPositionable positionable in PositionableObjectRegistry.GetAllPositionableObjects())
-            {
-                int randomLand = random.Next(0, getLands(map).Count);
-                //TODO: resolver como colocar en el mapa las entidades según su habitat.
-                //if(getLands(map)[randomLand].TerrainType.getHabitatsSupported().Contains())
-                getLands(map)[randomLand].Positionables.Add(positionable);
-                //positionable.Position(getLands(map)[randomLand]);
-            }
-        }
-        public List<IPositionable> GetPositionablesInLand(Land land)
-        {
-            return land.Positionables;
-        }
-
-        //Generics para traer IPositionables según la clase.
-        public List<T> GetPositionablesInLand<T>(Land land) where T : IPositionable
-        {
-            return land.Positionables.OfType<T>().ToList();
-        }
-
-
-        public void MoveMovible2(Land landOrigin, Land landDestiny, Entity entity)
-        {
-            List<IPositionable> MoviblesToRemove = new List<IPositionable>();
-
-            foreach (IPositionable p in landOrigin.Positionables)
-            {
-                if (p.Equals(entity))
-                {
-                    MoviblesToRemove.Add(p);
-                    landDestiny.Positionables.Add(p);
-                    break;
-                }
-            }
-
-            foreach (IPositionable p in MoviblesToRemove)
-            {
-                landOrigin.Positionables.Remove(p);
-            }
-        }
-
-        public void MoveMovible(Land landOrigin, Land landDestiny, Entity entity)
-        {
-            foreach (var habitat in entity.HabitatList)
-            {
-                if (landDestiny.TerrainType.getHabitatsSupported().Contains(habitat))
-                {
-                    landDestiny.Positionables.Add(entity);
-                    landOrigin.Positionables.Remove(entity);
-                }
-                else throw new Exception($"{entity} ({entity.HabitatName}) no es compatible con el tipo de terreno {landDestiny}");
-            }
-
-
-        }
-        */
     }
 }
