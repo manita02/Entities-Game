@@ -20,7 +20,7 @@ namespace crudsGame.src.model.Environments
             throw new Exception("no se puede");
             */
 
-            //MessageBox.Show("se puede mover en agua");
+            MessageBox.Show("se puede mover en agua");
             return terrain is Water;
         }
 

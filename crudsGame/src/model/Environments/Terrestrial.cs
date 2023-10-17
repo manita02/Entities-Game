@@ -19,7 +19,7 @@ namespace crudsGame.src.model.Environments
             }
             throw new Exception("no se puede");
             */
-            //MessageBox.Show("se puede mover en tierra");
+            MessageBox.Show("se puede mover en tierra");
             return terrain is Land;
         }
 

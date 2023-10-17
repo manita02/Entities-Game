@@ -67,11 +67,12 @@ namespace crudsGame.src.views
 
         private void Hexagon_Click(object sender, EventArgs e)
         {
-            if (lbMoveInfo.Visible == false)//CAMBIOSSSSSSSSSSSSSSS
+            if (pnMove.Visible == false)//CAMBIOSSSSSSSSSSSSSSS
             {
                 HexagonControl clickedHexagon = sender as HexagonControl;
 
                 int index = hexagonsList.IndexOf(clickedHexagon);
+                hexagonsList[index].Enabled = true;
                 //MessageBox.Show("indice hxagono clikeado: " + index);
                 cbCurrentTerrain.SelectedIndex = index;
                 //MessageBox.Show("index en combo currentTerrain: " + cbCurrentTerrain.SelectedIndex);
@@ -91,6 +92,7 @@ namespace crudsGame.src.views
         private void ChangeColorOfSelectedHexagonAndTheirBorderingHexagons(Terrain terrain)
         {
             ResetHexagonBorderColor();
+
             hexagonsList[terrain.Id].BorderColor = Color.Yellow;
             //MessageBox.Show("terreno que debe coindir: " + terrain.ToString());
             for (int i = 0; i < terrain.BorderingTerrainsList.Count(); i++)
@@ -426,8 +428,8 @@ namespace crudsGame.src.views
 
         private void btnMoveInfo_Click(object sender, EventArgs e)
         {
-            lbMoveInfo.Visible = true;
-            lbMoveInfo.Text = "\tHaga click sobre el hexagono\n\t donde quiera que se mueva " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ".\n\t Tenga en cuenta que sólo\n\t podrá moverse sobre los\n\t terrenos limítrofes";
+            pnMove.Visible = true;
+            lbMoveInfo.Text = "Haga click sobre el hexagono \ndonde quiera que se mueva \n" + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ". Tenga en cuenta que \nsólo podrá moverse sobre los \nterrenos limítrofes";
             foreach (var hexagon in hexagonsList)
             {
                 //MessageBox.Show(hexagon.Name);
@@ -435,10 +437,95 @@ namespace crudsGame.src.views
             }
             btnMoveInfo.Visible = false;
 
+            cbCurrentTerrain.Enabled = false;
+            pnAttack.Enabled = false;
+            pnEntities.Enabled = false;
+            pnFoods.Enabled = false;
+            pnItems.Enabled = false;
+
+
+
+            btnMove.Visible = true;
+
         }
 
         private void btnMove_Click(object sender, EventArgs e)
         {
+            int index = 0;
+            foreach (var hexagon in hexagonsList)
+            {
+                if (hexagon.BorderColor == Color.DarkViolet)
+                {
+                    index = hexagonsList.IndexOf(hexagon);
+                }
+                // O utiliza el color original del borde
+            }
+            Terrain terr = (((Map)cbMaps.SelectedItem).TerrainsList[index]);
+            MessageBox.Show("terreno seleccionado en color violeta: " + terr.ToString());
+
+            if (mapController.chequearQueUnTerrenoEnParticularSeaLimitrofeDelTerrenoActualSeleccionado(((Terrain)cbCurrentTerrain.SelectedItem),terr)==true)
+            {
+                try
+                {
+                    if (((Entity)lbEntitiesOnAterrain.SelectedItem).MoveThrough(terr.TerrainType) == true)
+                    {
+
+                        //borrar la entidad del terreno donde se encuentra
+                        mapController.eliminarUnaEntidadDeUnTerreno(((Entity)lbEntitiesOnAterrain.SelectedItem), (Terrain)cbCurrentTerrain.SelectedItem);
+
+
+
+                        //luego agregarla a el terreno donde se va a mover
+                        mapController.agregarEntidadAlTerrenoDondeSeMovio(((Entity)lbEntitiesOnAterrain.SelectedItem), terr);
+
+
+
+                        MessageBox.Show("se puede..");
+
+                        pnMove.Visible = false;
+
+                        hexagonsList[((Terrain)cbCurrentTerrain.SelectedItem).Id].Enabled = true;
+
+                        //hayq volver a llamar al hexagon click anterior
+                        foreach (var hexagon in hexagonsList)
+                        {
+                            //MessageBox.Show(hexagon.Name);
+                            hexagon.Click += Hexagon_Click;
+                        }
+
+                        LoadListBoxWithEntitiesOnATerrain();
+                        btnMove.Visible = false;
+                        btnMoveInfo.Visible = true;
+
+                        cbCurrentTerrain.Enabled = true;
+                        pnAttack.Enabled = true;
+                        pnEntities.Enabled = true;
+                        pnFoods.Enabled = true;
+                        pnItems.Enabled = true;
+
+
+
+                    }
+                    /*
+                    else
+                    {
+                        MessageBox.Show("no se puede..");
+                    }
+                    */
+
+                }
+                catch (Exception ex)
+                {
+                    new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+                }
+
+            }
+            else
+            {
+                new MessageBoxDarkMode("No se puede mover la entidad hasta el terreno N°"+terr.Id+" (esta muy lejos). Recuerde solo podra moverse en los terrenos limitrofes (bordes de color naranja)", "ERROR", "Ok", Resources.error, true);
+            }
+            
+
 
         }
     }

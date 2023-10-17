@@ -680,6 +680,7 @@ namespace crudsGame.src.model
                     
                     if (env.CanMoveThrough(terrain) == true)
                     {
+                        this.currentEnergy -= 10;//pierde energia al moverse
                         //MessageBox.Show("la entidad: " + name + " se puede mover en: " + terrain.ToString());
                         return true;
                     }
@@ -691,7 +692,8 @@ namespace crudsGame.src.model
 
 
                 }
-                return false;
+            throw new Exception("La entidad entidad seleccionada ( " + this.name + " ) NO puede moverse sobre "+terrain.ToString() + "!!!");
+            //return false;
 
             //}
             //catch(Exception e)

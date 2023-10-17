@@ -482,6 +482,29 @@ namespace crudsGame.src.controllers
         }
 
 
+        public void eliminarUnaEntidadDeUnTerreno(Entity entity, Terrain terr)
+        {
+            terr.EntitiesList.Remove(entity);
+        }
+
+
+        public void agregarEntidadAlTerrenoDondeSeMovio(Entity entity, Terrain terr)
+        {
+            terr.EntitiesList.Add(entity);
+        }
+
+        public bool chequearQueUnTerrenoEnParticularSeaLimitrofeDelTerrenoActualSeleccionado(Terrain terrenoActual, Terrain posibleTerrenoLimitrofe)
+        {
+            if (terrenoActual.BorderingTerrainsList.Contains(posibleTerrenoLimitrofe)==true)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+
+
         public void eliminarDelMapaUnaEntidadqMurio(Entity entity, Map map)
         {
             foreach (Terrain terr in map.TerrainsList)

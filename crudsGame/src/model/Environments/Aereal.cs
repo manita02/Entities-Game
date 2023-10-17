@@ -19,9 +19,9 @@ namespace crudsGame.src.model.Environments
             }
             throw new Exception("no se puede");
             */
-            if (terrain is Aquatic || terrain is Land)
+            if (terrain is Water || terrain is Land)
             {
-                //MessageBox.Show("se puede mover en aireeee");
+                MessageBox.Show("se puede mover en aireeee");
                 return true;
             }
 

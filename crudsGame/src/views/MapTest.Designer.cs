@@ -95,6 +95,8 @@
             btnMoveInfo = new MaterialSkin.Controls.MaterialRaisedButton();
             lbMoveInfo = new Label();
             btnMove = new MaterialSkin.Controls.MaterialFlatButton();
+            pnMove = new Panel();
+            pictureBox1 = new PictureBox();
             groupBox2.SuspendLayout();
             pnItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picItems).BeginInit();
@@ -104,6 +106,8 @@
             ((System.ComponentModel.ISupportInitialize)picEntity).BeginInit();
             pnAttack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picAttack).BeginInit();
+            pnMove.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // hex18
@@ -122,7 +126,7 @@
             materialDivider1.Location = new Point(25, 141);
             materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
             materialDivider1.Name = "materialDivider1";
-            materialDivider1.Size = new Size(562, 555);
+            materialDivider1.Size = new Size(562, 663);
             materialDivider1.TabIndex = 1;
             materialDivider1.Text = "materialDivider1";
             // 
@@ -826,7 +830,7 @@
             btnMoveInfo.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnMoveInfo.Depth = 0;
             btnMoveInfo.Icon = null;
-            btnMoveInfo.Location = new Point(138, 629);
+            btnMoveInfo.Location = new Point(29, 765);
             btnMoveInfo.MouseState = MaterialSkin.MouseState.HOVER;
             btnMoveInfo.Name = "btnMoveInfo";
             btnMoveInfo.Primary = true;
@@ -840,17 +844,16 @@
             // 
             lbMoveInfo.AutoSize = true;
             lbMoveInfo.BackColor = Color.Transparent;
-            lbMoveInfo.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lbMoveInfo.ForeColor = Color.Plum;
+            lbMoveInfo.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lbMoveInfo.ForeColor = Color.Indigo;
             lbMoveInfo.ImageAlign = ContentAlignment.MiddleLeft;
-            lbMoveInfo.Location = new Point(295, 493);
+            lbMoveInfo.Location = new Point(30, 7);
             lbMoveInfo.Name = "lbMoveInfo";
-            lbMoveInfo.RightToLeft = RightToLeft.Yes;
-            lbMoveInfo.Size = new Size(292, 18);
+            lbMoveInfo.RightToLeft = RightToLeft.No;
+            lbMoveInfo.Size = new Size(89, 18);
             lbMoveInfo.TabIndex = 39;
-            lbMoveInfo.Text = "        Clickee el hexagono donde se moverá";
+            lbMoveInfo.Text = "CLICKEEE";
             lbMoveInfo.TextAlign = ContentAlignment.MiddleCenter;
-            lbMoveInfo.Visible = false;
             // 
             // btnMove
             // 
@@ -858,7 +861,7 @@
             btnMove.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnMove.Depth = 0;
             btnMove.Icon = null;
-            btnMove.Location = new Point(138, 584);
+            btnMove.Location = new Point(30, 256);
             btnMove.Margin = new Padding(4, 6, 4, 6);
             btnMove.MouseState = MaterialSkin.MouseState.HOVER;
             btnMove.Name = "btnMove";
@@ -867,15 +870,37 @@
             btnMove.TabIndex = 40;
             btnMove.Text = "MOVER ENTIDAD A TERRENO N°X";
             btnMove.UseVisualStyleBackColor = true;
+            btnMove.Visible = false;
             btnMove.Click += btnMove_Click;
+            // 
+            // pnMove
+            // 
+            pnMove.BackColor = Color.LightSlateGray;
+            pnMove.Controls.Add(pictureBox1);
+            pnMove.Controls.Add(lbMoveInfo);
+            pnMove.Controls.Add(btnMove);
+            pnMove.Location = new Point(291, 495);
+            pnMove.Name = "pnMove";
+            pnMove.Size = new Size(296, 309);
+            pnMove.TabIndex = 41;
+            pnMove.Visible = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.walk;
+            pictureBox1.Location = new Point(97, 133);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(100, 100);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 41;
+            pictureBox1.TabStop = false;
             // 
             // MapTest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1700, 816);
-            Controls.Add(btnMove);
-            Controls.Add(lbMoveInfo);
+            Controls.Add(pnMove);
             Controls.Add(btnMoveInfo);
             Controls.Add(groupBox2);
             Controls.Add(materialLabel5);
@@ -920,6 +945,9 @@
             pnAttack.ResumeLayout(false);
             pnAttack.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picAttack).EndInit();
+            pnMove.ResumeLayout(false);
+            pnMove.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1000,5 +1028,7 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnMoveInfo;
         private Label lbMoveInfo;
         private MaterialSkin.Controls.MaterialFlatButton btnMove;
+        private Panel pnMove;
+        private PictureBox pictureBox1;
     }
 }
