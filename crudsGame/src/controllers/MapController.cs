@@ -1,9 +1,11 @@
-﻿using crudsGame.src.interfaces;
+﻿using crudsGame.Properties;
+using crudsGame.src.interfaces;
 using crudsGame.src.model;
 using crudsGame.src.model.Environments;
 using crudsGame.src.model.Items;
 using crudsGame.src.model.Terrains;
 using crudsGame.src.model.Terrains.Map;
+using crudsGame.src.views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -499,7 +501,10 @@ namespace crudsGame.src.controllers
             {
                 return true;
             }
-            return false;
+            else
+            {
+                throw new Exception("No se puede mover la entidad hasta el terreno N°" + posibleTerrenoLimitrofe.Id + " (esta muy lejos). Recuerde solo podra moverse en los terrenos limitrofes (bordes de color naranja)");
+            }
         }
 
 
