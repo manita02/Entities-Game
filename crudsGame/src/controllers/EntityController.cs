@@ -86,7 +86,7 @@ namespace crudsGame.src.controllers
             return EntitiesList;
         }
 
-        private List<IEnvironment> agarrandoAmbientes(int numeroAl)
+        private List<IEnvironment> GenerateRandomListOfEnvironments(int numeroAl)
         {
             List<IEnvironment> lista = new List<IEnvironment>();
             if (numeroAl % 3 == 0)
@@ -120,14 +120,14 @@ namespace crudsGame.src.controllers
             KingdomList = GetKingdomList();
 
             //Entity item1 = new Entity(index, KingdomList[1], "pruebass", DietList[random.Next(0, DietList.Count)], EnvironmentList[random.Next(0, EnvironmentList.Count)], 30, 30, 2, 3, random.Next(0, 1));
-            Entity item1 = new Entity(index, KingdomList[1], "pruebass", DietList[random.Next(0, DietList.Count)], agarrandoAmbientes(random.Next(0,100)), 30, 30, 30, 30, random.Next(0, 2));
+            Entity item1 = new Entity(index, KingdomList[1], "pruebass", DietList[random.Next(0, DietList.Count)], GenerateRandomListOfEnvironments(random.Next(0,100)), 30, 30, 30, 30, random.Next(0, 2));
             EntitiesList.Add(item1);
             index++;
 
             foreach (var name in RandomNames)
             {
                 //Entity entity = new Entity(index, KingdomList[random.Next(0, KingdomList.Count)], name, DietList[random.Next(0, DietList.Count)], EnvironmentList[random.Next(0, EnvironmentList.Count)], 100, 100, random.Next(10, 80), random.Next(10, 80), random.Next(0, 1));
-                Entity entity = new Entity(index, KingdomList[random.Next(0, KingdomList.Count)], name, DietList[random.Next(0, DietList.Count)], agarrandoAmbientes(random.Next(0, 100)), 100, 100, random.Next(10, 80), random.Next(10, 80), random.Next(0, 2));
+                Entity entity = new Entity(index, KingdomList[random.Next(0, KingdomList.Count)], name, DietList[random.Next(0, DietList.Count)], GenerateRandomListOfEnvironments(random.Next(0, 100)), 100, 100, random.Next(10, 80), random.Next(10, 80), random.Next(0, 2));
 
 
                 //MessageBox.Show("id: " + entity.id + " NAME: " + entity.name);
@@ -191,20 +191,12 @@ namespace crudsGame.src.controllers
 
         }
 
-
-        public void DeleteAnEntity(int r)//chequear este
+        public void AddEntity(Entity entity)
         {
-            MessageBox.Show("index de tabla: " + r);
-            for (int i = 0; i < GetEntitiesList().Count; i++)
-            {
-                if (i == r)
-                {
-                    MessageBox.Show("recorriendo: " + r);
-                    GetEntitiesList().RemoveAt(i);
-                }
-            }
+            EntitiesList.Add(entity);
         }
 
+        /*
         public void AddEntity(Entity entity)
         {
             GetEntitiesList().Add(entity); //se carga en la lista
@@ -225,13 +217,53 @@ namespace crudsGame.src.controllers
             dgvEntity.Rows[x].Cells[9].Value = entity.CurrentEnergy;
             dgvEntity.Rows[x].Cells[10].Value = entity.MaxLife;
             dgvEntity.Rows[x].Cells[11].Value = entity.CurrentLife;
-            */
+            
 
         }
+        */
 
+        public Entity SearchEntityById(int id)
+        {
+            foreach (var ent in EntitiesList)
+            {
+                if (ent.id == id)
+                {
+                    return ent;
+                }
+            }
+            return null;
+        }
 
+        public bool VerifyIfTheItemListboxEnvironmentIsInTheListOfEnvironmentsItself(Entity entity, IEnvironment checkedEnvironment)
+        {
+            for (int i = 0; i < entity.environmentList.Count; i++)
+            {
+                if (checkedEnvironment == entity.environmentList[i])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
+        public bool CheckIfAnEntityCreatedWithTheSameNameAlreadyExists(Entity entity)
+        {
+            foreach (Entity e in EntitiesList)
+            {
+                if (e.name == entity.name)
+                {
+                    //EntitiesList.Remove(entity);
+                    //MessageBox.Show("existe");
+                    throw new Exception("Ya existe una entidad con el mismo nombre (" + entity.name + ")");
+                }
+            }
+            return false;
+            
+        }
 
-
+        public void DeleteAnEntity(int row)
+        {
+            EntitiesList.RemoveAt(row);
+        }
     }
 }
