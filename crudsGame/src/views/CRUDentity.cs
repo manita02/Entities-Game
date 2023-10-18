@@ -157,6 +157,22 @@ namespace crudsGame.src.views
 
         private void cbKingdom_SelectedIndexChanged(object sender, EventArgs e)
         {
+            switch (cbKingdom.Text)
+            {
+                case "Alien":
+                    picCreature.Image = Properties.Resources.alien;
+                    break;
+                case "Animalia":
+                    picCreature.Image = Properties.Resources.animalia;
+                    break;
+                case "Plantae":
+                    picCreature.Image = Properties.Resources.plant;
+                    break;
+                case "Machine":
+                    picCreature.Image = Properties.Resources.robot;
+                    break;
+            }
+            /*
             if (cbKingdom.Text == "Alien")
             {
                 //BackColor = Color.MediumSeaGreen;
@@ -177,6 +193,7 @@ namespace crudsGame.src.views
                 //BackColor = Color.Peru;
                 picCreature.Image = Properties.Resources.robot;
             }
+            */
         }
 
 
