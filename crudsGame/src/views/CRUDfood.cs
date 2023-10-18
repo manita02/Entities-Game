@@ -32,8 +32,13 @@ namespace crudsGame.src.views
 
         }
 
-        bool exist = false;
+        //bool exist = false;
         int rows = 0;
+
+        private void UpdateFoodId()
+        {
+            txtId.Text = Convert.ToString(foodCtn.GetFoodList().Count());
+        }
 
         private void LoadFoodsByDefault()
         {
@@ -51,6 +56,19 @@ namespace crudsGame.src.views
             dgvFoods.Rows[x].Cells[3].Value = food.calories;
         }
 
+        public int GetIndexOfDietComboThatComesFromTheDatagrid()
+        {
+            foreach (var diet in foodCtn.GetDietList())
+            {
+                if (diet.ToString() == dgvFoods.CurrentRow.Cells[2].Value.ToString())
+                {
+                    return foodCtn.GetDietList().IndexOf(diet);
+                }
+            }
+            return -1;
+        }
+
+        /*
         private void CheckIfFoodExists(Food food)
         {
 
@@ -68,30 +86,9 @@ namespace crudsGame.src.views
             }
 
         }
+        */
 
-        private void CleanFields()
-        {
-            txtName.Text = "";
-            txtCalories.Text = "";
-        }
-
-        private void UpdateFoodId()
-        {
-            txtId.Text = Convert.ToString(foodCtn.GetFoodList().Count());
-        }
-
-        public int GetIndexOfDietComboThatComesFromTheDatagrid()
-        {
-            foreach (var diet in foodCtn.GetDietList())
-            {
-                if (diet.ToString() == dgvFoods.CurrentRow.Cells[2].Value.ToString())
-                {
-                    return foodCtn.GetDietList().IndexOf(diet);
-                }
-            }
-            return -1;
-        }
-
+        #region Selection Index Changed
         private void dgvFoods_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvFoods.SelectedRows.Count > 0)
@@ -104,9 +101,22 @@ namespace crudsGame.src.views
             }
         }
 
-
         private void cbDiet_SelectedIndexChanged(object sender, EventArgs e)
         {
+            switch (cbDiet.Text)
+            {
+                case "Carnivore":
+                    picDiet.Image = Properties.Resources.carnivore;
+                    break;
+                case "Herbivorous":
+                    picDiet.Image = Properties.Resources.herbivorous;
+                    break;
+                case "Solar Energy":
+                    picDiet.Image = Properties.Resources.solar_energy;
+                    break;
+            }
+
+            /*
             if (cbDiet.Text == "Carnivore")
             {
                 picDiet.Image = Properties.Resources.carnivore;
@@ -119,13 +129,26 @@ namespace crudsGame.src.views
             {
                 picDiet.Image = Properties.Resources.solar_energy;
             }
+            */
         }
 
+        #endregion
+
+
+        #region Buttons Interactions
         private void btnCreatee_Click(object sender, EventArgs e)
         {
             try
             {
                 Food food = foodCtn.CreateFood(foodCtn.GetFoodList().Count(), txtName.Text, GeneralController.CheckThatTheFieldIsNotNull(txtCalories), (IDiet)(cbDiet.SelectedItem));
+
+                if (foodCtn.CheckIfAfoodCreatedWithTheSameNameAlreadyExists(food) == false)
+                {
+                    //foodCtn.GetFoodList().Add(food);
+                    foodCtn.AddFood(food);
+                    LoadFoodIntoDatagrid(dgvFoods.Rows.Add(), food);
+                }
+                /*
                 CheckIfFoodExists(food);
                 if (exist == false)
                 {
@@ -133,6 +156,7 @@ namespace crudsGame.src.views
                     LoadFoodIntoDatagrid(dgvFoods.Rows.Add(), food);
                 }
                 exist = false;
+                */
 
                 UpdateFoodId();
 
@@ -141,12 +165,6 @@ namespace crudsGame.src.views
             {
                 new MessageBoxDarkMode(ex.Message + " por esto no se creará la comida", "Error", "Ok", Resources.error, true);
             }
-
-
-
-
-
-
         }
 
         private void btnUpdatee_Click(object sender, EventArgs e)
@@ -158,8 +176,8 @@ namespace crudsGame.src.views
                 {
                     if (dgvFoods.SelectedRows.Count > 0)
                     {
-
-                        Food food = foodCtn.CreateFood(foodCtn.GetFoodList().Count(), txtName.Text, GeneralController.CheckThatTheFieldIsNotNull(txtCalories), (IDiet)(cbDiet.SelectedItem));
+                        Food food = foodCtn.Update(foodCtn.SearchFoodById((int)dgvFoods.CurrentRow.Cells[0].Value), Convert.ToInt32(txtId.Text), txtName.Text, GeneralController.CheckThatTheFieldIsNotNull(txtCalories), (IDiet)(cbDiet.SelectedItem));
+                        //Food food = foodCtn.CreateFood(foodCtn.GetFoodList().Count(), txtName.Text, GeneralController.CheckThatTheFieldIsNotNull(txtCalories), (IDiet)(cbDiet.SelectedItem));
                         LoadFoodIntoDatagrid(rows, food);
                         this.rows = 0;
                         new MessageBoxDarkMode("Comida actualizada con éxito!!", "Aviso", "Ok", Resources.update, true);
@@ -185,7 +203,7 @@ namespace crudsGame.src.views
                 }
 
             }
-            
+
 
 
         }
@@ -199,9 +217,10 @@ namespace crudsGame.src.views
                 {
                     if (dgvFoods.SelectedRows.Count > 0)
                     {
-                        int r = dgvFoods.CurrentRow.Index;
-                        foodCtn.GetFoodList().RemoveAt(r);
-                        dgvFoods.Rows.RemoveAt(r);
+                        int row = dgvFoods.CurrentRow.Index;
+                        //foodCtn.GetFoodList().RemoveAt(r);
+                        foodCtn.DeleteAfood(row);
+                        dgvFoods.Rows.RemoveAt(row);
                         UpdateFoodId();
                         new MessageBoxDarkMode("Comida eliminada con éxito!!", "Aviso", "Ok", Resources.delete, true);
                     }
@@ -217,10 +236,18 @@ namespace crudsGame.src.views
                 UpdateFoodId();
             }
         }
+        #endregion
+
 
         private void txtCalories_KeyPress(object sender, KeyPressEventArgs e)
         {
             GeneralController.ValidateNumbers(e);
+        }
+
+        private void CleanFields()
+        {
+            txtName.Text = "";
+            txtCalories.Text = "";
         }
     }
 }

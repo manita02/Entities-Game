@@ -94,5 +94,51 @@ namespace crudsGame.src.controllers
 
         }
 
+        public bool CheckIfAfoodCreatedWithTheSameNameAlreadyExists(Food food)
+        {
+            foreach (Food f in foodList)
+            {
+                if (f.name == f.name)
+                {
+                    //EntitiesList.Remove(entity);
+                    //MessageBox.Show("existe");
+                    throw new Exception("Ya existe una entidad con el mismo nombre (" + food.name + ")");
+                }
+            }
+            return false;
+
+        }
+
+        public void AddFood(Food food)
+        {
+            foodList.Add(food);
+        }
+
+        public void DeleteAfood(int row)
+        {
+            foodList.RemoveAt(row);
+        }
+
+        public Food SearchFoodById(int id)
+        {
+            foreach (var food in foodList)
+            {
+                if (food.id == id)
+                {
+                    return food;
+                }
+            }
+            return null;
+        }
+
+        public Food Update(Food food, int id, string name, int calories, IDiet diet)
+        {
+            food.id = id;
+            food.name = name;
+            food.diet = diet;
+            food.calories = calories;
+            return food;
+        }
+
     }
 }
