@@ -102,7 +102,7 @@ namespace crudsGame.src.controllers
                 {
                     //EntitiesList.Remove(entity);
                     //MessageBox.Show("existe");
-                    throw new Exception("Ya existe una entidad con el mismo nombre (" + food.name + ")");
+                    throw new Exception("Ya existe una comida con el mismo nombre (" + food.name + ")");
                 }
             }
             return false;

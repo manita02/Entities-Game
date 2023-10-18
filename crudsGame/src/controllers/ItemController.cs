@@ -1,5 +1,6 @@
 ﻿using crudsGame.src.factoryMethod;
 using crudsGame.src.interfaces;
+using crudsGame.src.model;
 using crudsGame.src.model.Items;
 using crudsGame.src.model.Items.Strategy;
 using crudsGame.src.model.Items.Strategy.Negatives;
@@ -135,6 +136,52 @@ namespace crudsGame.src.controllers
         {
             return new Item(id, name, type, kingdom);
 
+        }
+
+        public bool CheckIfAitemCreatedWithTheSameNameAlreadyExists(Item item)
+        {
+            foreach (Item i in itemList)
+            {
+                if (i.name == i.name)
+                {
+                    //EntitiesList.Remove(entity);
+                    //MessageBox.Show("existe");
+                    throw new Exception("Ya existe un item con el mismo nombre (" + item.name + ")");
+                }
+            }
+            return false;
+
+        }
+
+        public void AddItem(Item item)
+        {
+            itemList.Add(item);
+        }
+
+        public void DeleteAitem(int row)
+        {
+            itemList.RemoveAt(row);
+        }
+
+        public Item SearchItemById(int id)
+        {
+            foreach (var item in itemList)
+            {
+                if (item.id == id)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        public Item Update(Item item, int id, string name, IStrategyTypeOfItem type, IKingdom kingdom)
+        {
+            item.id = id;
+            item.name = name;
+            item.itemStrategy = type;
+            item.kingdom = kingdom;
+            return item;
         }
 
 

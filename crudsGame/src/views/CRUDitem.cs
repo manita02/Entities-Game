@@ -34,9 +34,20 @@ namespace crudsGame.src.views
             cbType.DataSource = itemCtn.GetStrategyItemsList();
             cbKingdom.DataSource = itemCtn.GetKingdomList();
         }
-
-        bool exist = false;
         int rows = 0;
+
+        private void UpdateItemId()
+        {
+            txtId.Text = Convert.ToString(itemCtn.GetItemList().Count());
+        }
+
+        private void LoadItemIntoDatagrid(int x, Item item)
+        {
+            dgvItems.Rows[x].Cells[0].Value = item.id;
+            dgvItems.Rows[x].Cells[1].Value = item.name;
+            dgvItems.Rows[x].Cells[2].Value = item.kingdom;
+            dgvItems.Rows[x].Cells[3].Value = item.itemStrategy;
+        }
 
         private void LoadItemsByDefault()
         {
@@ -46,6 +57,7 @@ namespace crudsGame.src.views
             }
         }
 
+        /*
         private void CheckIfItemExists(Item item)
         {
 
@@ -63,17 +75,7 @@ namespace crudsGame.src.views
             }
 
         }
-
-       
-        private void CleanFields()
-        {
-            txtName.Text = "";
-        }
-
-        private void UpdateItemId()
-        {
-            txtId.Text = Convert.ToString(itemCtn.GetItemList().Count());
-        }
+        */
 
         #region Get Kingdoms and Item Types that comes from the Datagrid
         public int GetIndexOfKingdomsComboThatComesFromTheDatagrid()
@@ -102,14 +104,11 @@ namespace crudsGame.src.views
         }
         #endregion
 
-        private void LoadItemIntoDatagrid(int x, Item item)
-        {
-            dgvItems.Rows[x].Cells[0].Value = item.id;
-            dgvItems.Rows[x].Cells[1].Value = item.name;
-            dgvItems.Rows[x].Cells[2].Value = item.kingdom;
-            dgvItems.Rows[x].Cells[3].Value = item.itemStrategy;
-        }
-
+        
+        #region Select Index Changed
+        
+        
+        /*
         private void dgvItems_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvItems.SelectedRows.Count > 0)
@@ -121,45 +120,36 @@ namespace crudsGame.src.views
                 cbKingdom.SelectedIndex = GetIndexOfKingdomsComboThatComesFromTheDatagrid();
             }
         }
-
-        private void txtValue_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            GeneralController.ValidateNumbers(e);
-        }
+        */
 
         private void cbType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbType.Text == "Increases Energy")
+            switch (cbType.Text)
             {
-                picItem.Image = Properties.Resources.moreEnergy;
-            }
-            if (cbType.Text == "Increases Life")
-            {
-                picItem.Image = Properties.Resources.moreLife;
-            }
-            if (cbType.Text == "Increases Attack Points")
-            {
-                picItem.Image = Properties.Resources.moreAttack;
-            }
-            if (cbType.Text == "Increases Defense Points")
-            {
-                picItem.Image = Properties.Resources.moreDefense;
-            }
-            if (cbType.Text == "Loses Energy")
-            {
-                picItem.Image = Properties.Resources.loseEnergy;
-            }
-            if (cbType.Text == "Loses Life")
-            {
-                picItem.Image = Properties.Resources.loseLifee;
-            }
-            if (cbType.Text == "Loses Attack Points")
-            {
-                picItem.Image = Properties.Resources.loseAttack;
-            }
-            if (cbType.Text == "Loses Defense Points")
-            {
-                picItem.Image = Properties.Resources.loseDefense;
+                case "Increases Energy":
+                    picItem.Image = Properties.Resources.moreEnergy;
+                    break;
+                case "Increases Life":
+                    picItem.Image = Properties.Resources.moreLife;
+                    break;
+                case "Increases Attack Points":
+                    picItem.Image = Properties.Resources.moreAttack;
+                    break;
+                case "Increases Defense Points":
+                    picItem.Image = Properties.Resources.moreDefense;
+                    break;
+                case "Loses Energy":
+                    picItem.Image = Properties.Resources.loseEnergy;
+                    break;
+                case "Loses Attack Points":
+                    picItem.Image = Properties.Resources.loseAttack;
+                    break;
+                case "Loses Life":
+                    picItem.Image = Properties.Resources.loseLifee;
+                    break;
+                case "Loses Defense Points":
+                    picItem.Image = Properties.Resources.loseDefense;
+                    break;
             }
         }
 
@@ -175,18 +165,31 @@ namespace crudsGame.src.views
             }
         }
 
+        #endregion
+
+
+      
+
+        #region Buttons Interactions
         private void btnCreatee_Click(object sender, EventArgs e)
         {
             try
             {
                 Item item = itemCtn.CreateItem(itemCtn.GetItemList().Count(), txtName.Text, (IStrategyTypeOfItem)(cbType.SelectedItem), (IKingdom)(cbKingdom.SelectedItem));
+                if (itemCtn.CheckIfAitemCreatedWithTheSameNameAlreadyExists(item) == false)
+                {
+                    itemCtn.AddItem(item);
+                    //itemCtn.GetItemList().Add(item);
+                    LoadItemIntoDatagrid(dgvItems.Rows.Add(), item);
+                }
+                /*
                 CheckIfItemExists(item);
                 if (exist == false)
                 {
-                    itemCtn.GetItemList().Add(item);
-                    LoadItemIntoDatagrid(dgvItems.Rows.Add(), item);
+                    
                 }
                 exist = false;
+                */
 
                 UpdateItemId();
 
@@ -210,8 +213,8 @@ namespace crudsGame.src.views
                 {
                     if (dgvItems.SelectedRows.Count > 0)
                     {
-
-                        Item item = itemCtn.CreateItem(itemCtn.GetItemList().Count(), txtName.Text, (IStrategyTypeOfItem)(cbType.SelectedItem), (IKingdom)(cbKingdom.SelectedItem));
+                        Item item = itemCtn.Update(itemCtn.SearchItemById((int)dgvItems.CurrentRow.Cells[0].Value), Convert.ToInt32(txtId.Text), txtName.Text, (IStrategyTypeOfItem)(cbType.SelectedItem), (IKingdom)(cbKingdom.SelectedItem));
+                        //Item item = itemCtn.CreateItem(itemCtn.GetItemList().Count(), txtName.Text, (IStrategyTypeOfItem)(cbType.SelectedItem), (IKingdom)(cbKingdom.SelectedItem));
                         //this.rows = itemCtn.UpdateAnEntity(rows, dgvItems, item);
                         LoadItemIntoDatagrid(rows, item);
                         this.rows = 0;
@@ -250,9 +253,10 @@ namespace crudsGame.src.views
                 {
                     if (dgvItems.SelectedRows.Count > 0)
                     {
-                        int r = dgvItems.CurrentRow.Index;
-                        itemCtn.GetItemList().RemoveAt(r);
-                        dgvItems.Rows.RemoveAt(r);
+                        int row = dgvItems.CurrentRow.Index;
+                        //itemCtn.GetItemList().RemoveAt(row);
+                        itemCtn.DeleteAitem(row);
+                        dgvItems.Rows.RemoveAt(row);
                         UpdateItemId();
                         new MessageBoxDarkMode("Item eliminado con éxito!!", "Aviso", "Ok", Resources.delete, true);
                     }
@@ -267,6 +271,12 @@ namespace crudsGame.src.views
                 }
                 UpdateItemId();
             }
+        }
+        #endregion
+
+        private void CleanFields()
+        {
+            txtName.Text = "";
         }
     }
 }
