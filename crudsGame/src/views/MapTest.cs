@@ -24,7 +24,7 @@ namespace crudsGame.src.views
     {
         List<HexagonControl> hexagonsList = new List<HexagonControl>();
         MapController mapController = MapController.GetInstance();
-        
+
         public MapTest()
         {
             InitializeComponent();
@@ -179,7 +179,7 @@ namespace crudsGame.src.views
                 /// <summary>
                 /// Llama a este metodo y le pasa la lista de entidades que tiene el terreno actual
                 /// </summary>
-                AddEntitiesToListbox(((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList,lbEntitiesToAttack); //entidades en terreno actual
+                AddEntitiesToListbox(((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList, lbEntitiesToAttack); //entidades en terreno actual
                 /*
                 foreach (Entity entity in ((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList)
                 {
@@ -214,7 +214,7 @@ namespace crudsGame.src.views
         public void LoadListBoxOfEntitiesOnAcurrentTerrain()
         {
             lbEntitiesOnAterrain.Items.Clear();
-            AddEntitiesToListbox(((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList,lbEntitiesOnAterrain);
+            AddEntitiesToListbox(((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList, lbEntitiesOnAterrain);
             /*
             foreach (Entity creatures in ((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList)
             {
@@ -334,11 +334,20 @@ namespace crudsGame.src.views
                 LoadProgressbarOfSelectedEntity();
             }
         }
+
+        private void btnSleep_Click(object sender, EventArgs e)
+        {
+            
+                ((Entity)lbEntitiesOnAterrain.SelectedItem).Sleep();
+                
+                LoadProgressbarOfSelectedEntity();
+             
+        }
         #endregion
 
 
         #region Selected Index Changed
-        //selectindex changeeeeeeeeeeeed
+        
         private void cbCurrentTerrain_SelectedIndexChanged(object sender, EventArgs e)
         {
             lbBonderingTerrains.DataSource = mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
@@ -363,6 +372,7 @@ namespace crudsGame.src.views
                 MessageBox.Show("ambiente: " + s.ToString());
             }
             */
+            btnSleep.Text = "SLEEP (" + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ")";
             btnMoveInfo.Text = "MOVER entidad seleccionada (" + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ") a otro terreno";
 
 
@@ -476,56 +486,59 @@ namespace crudsGame.src.views
             */
             Terrain terr = (((Map)cbMaps.SelectedItem).TerrainsList[GetTheIndexOfTheSelectedHexagon()]);
             //MessageBox.Show("terreno seleccionado en color violeta: " + terr.ToString());
-                try
+            try
+            {
+                if (mapController.chequearQueUnTerrenoEnParticularSeaLimitrofeDelTerrenoActualSeleccionado(((Terrain)cbCurrentTerrain.SelectedItem), terr) == true)
                 {
-                    if (mapController.chequearQueUnTerrenoEnParticularSeaLimitrofeDelTerrenoActualSeleccionado(((Terrain)cbCurrentTerrain.SelectedItem), terr) == true)
+                    if (((Entity)lbEntitiesOnAterrain.SelectedItem).MoveThrough(terr.TerrainType) == true)
                     {
-                        if (((Entity)lbEntitiesOnAterrain.SelectedItem).MoveThrough(terr.TerrainType) == true)
+                        //borrar la entidad del terreno donde se encuentra
+                        mapController.eliminarUnaEntidadDeUnTerreno(((Entity)lbEntitiesOnAterrain.SelectedItem), (Terrain)cbCurrentTerrain.SelectedItem);
+
+
+                        //luego agregarla a el terreno donde se va a mover
+                        mapController.agregarEntidadAlTerrenoDondeSeMovio(((Entity)lbEntitiesOnAterrain.SelectedItem), terr);
+
+                        //MessageBox.Show("se puede..");
+
+
+                        pnMove.Visible = false;
+
+                        hexagonsList[((Terrain)cbCurrentTerrain.SelectedItem).Id].Enabled = true;
+
+                        //hayq volver a llamar al hexagon click anterior
+                        SetHexagonClickWithBorderingTerrains();
+                        /*
+                        foreach (var hexagon in hexagonsList)
                         {
-                            //borrar la entidad del terreno donde se encuentra
-                            mapController.eliminarUnaEntidadDeUnTerreno(((Entity)lbEntitiesOnAterrain.SelectedItem), (Terrain)cbCurrentTerrain.SelectedItem);
-
-
-                            //luego agregarla a el terreno donde se va a mover
-                            mapController.agregarEntidadAlTerrenoDondeSeMovio(((Entity)lbEntitiesOnAterrain.SelectedItem), terr);
-
-                            //MessageBox.Show("se puede..");
-
-                            pnMove.Visible = false;
-
-                            hexagonsList[((Terrain)cbCurrentTerrain.SelectedItem).Id].Enabled = true;
-
-                            //hayq volver a llamar al hexagon click anterior
-                            SetHexagonClickWithBorderingTerrains();
-                            /*
-                            foreach (var hexagon in hexagonsList)
-                            {
-                                //MessageBox.Show(hexagon.Name);
-                                hexagon.Click += Hexagon_Click;
-                            }
-                            */
-
-                            LoadListBoxOfEntitiesOnAcurrentTerrain();
-                            btnMove.Visible = false;
-
-                            ChangePanelStates(true);
-                            /*
-                            btnMoveInfo.Visible = true;
-
-                            cbCurrentTerrain.Enabled = true;
-                            pnAttack.Enabled = true;
-                            pnEntities.Enabled = true;
-                            pnFoods.Enabled = true;
-                            pnItems.Enabled = true;
-                            */
+                            //MessageBox.Show(hexagon.Name);
+                            hexagon.Click += Hexagon_Click;
                         }
+                        */
+
+                        LoadListBoxOfEntitiesOnAcurrentTerrain();
+                        btnMove.Visible = false;
+
+                        ChangePanelStates(true);
+                        /*
+                        btnMoveInfo.Visible = true;
+
+                        cbCurrentTerrain.Enabled = true;
+                        pnAttack.Enabled = true;
+                        pnEntities.Enabled = true;
+                        pnFoods.Enabled = true;
+                        pnItems.Enabled = true;
+                        */
                     }
                 }
-                catch (Exception ex)
-                {
-                    new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
-                }
+            }
+            catch (Exception ex)
+            {
+                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+            }
         }
+
+        
     }
     #endregion
 }

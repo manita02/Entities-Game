@@ -203,60 +203,70 @@ namespace crudsGame.src.views
 
         private void btnUpdatee_Click(object sender, EventArgs e)
         {
-            try
+            MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de guardar los cambios??", "ALERTA", "OkCancel", Resources.warning);
+            if (GeneralController.MessageBoxDialogResult(messageBox) == true)
             {
-                if (dgvItems.SelectedRows.Count > 0)
+                try
                 {
+                    if (dgvItems.SelectedRows.Count > 0)
+                    {
 
-                    Item item = itemCtn.CreateItem(itemCtn.GetItemList().Count(), txtName.Text, (IStrategyTypeOfItem)(cbType.SelectedItem), (IKingdom)(cbKingdom.SelectedItem));
-                    //this.rows = itemCtn.UpdateAnEntity(rows, dgvItems, item);
-                    LoadItemIntoDatagrid(rows, item);
-                    this.rows = 0;
-                    btnCreatee.Visible = true;
-                    btnDeletee.Visible = true;
-                    dgvItems.Enabled = true;
+                        Item item = itemCtn.CreateItem(itemCtn.GetItemList().Count(), txtName.Text, (IStrategyTypeOfItem)(cbType.SelectedItem), (IKingdom)(cbKingdom.SelectedItem));
+                        //this.rows = itemCtn.UpdateAnEntity(rows, dgvItems, item);
+                        LoadItemIntoDatagrid(rows, item);
+                        this.rows = 0;
+                        btnCreatee.Visible = true;
+                        btnDeletee.Visible = true;
+                        dgvItems.Enabled = true;
+                        new MessageBoxDarkMode("Item actualizado con éxito!!", "Aviso", "Ok", Resources.update, true);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!");
+                    }
+                    CleanFields();
+                    UpdateItemId();
+                    
 
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!");
+                    new MessageBoxDarkMode(ex.Message + " por esto no se editará el item", "Error", "Ok", Resources.error, true);
+                    btnCreatee.Visible = false;
+                    btnDeletee.Visible = false;
+                    dgvItems.Enabled = false;
                 }
-                CleanFields();
-                UpdateItemId();
-
-            }
-            catch (Exception ex)
-            {
-                new MessageBoxDarkMode(ex.Message + " por esto no se editará el item", "Error", "Ok", Resources.error, true);
-                btnCreatee.Visible = false;
-                btnDeletee.Visible = false;
-                dgvItems.Enabled = false;
             }
            
         }
 
         private void btnDeletee_Click(object sender, EventArgs e)
         {
-            if (dgvItems.Rows.Count > 2)
+            MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de eliminar este item??", "ALERTA", "OkCancel", Resources.warning);
+            if (GeneralController.MessageBoxDialogResult(messageBox) == true)
             {
-                if (dgvItems.SelectedRows.Count > 0)
+                if (dgvItems.Rows.Count > 2)
                 {
-                    int r = dgvItems.CurrentRow.Index;
-                    itemCtn.GetItemList().RemoveAt(r);
-                    dgvItems.Rows.RemoveAt(r);
-                    UpdateItemId();
+                    if (dgvItems.SelectedRows.Count > 0)
+                    {
+                        int r = dgvItems.CurrentRow.Index;
+                        itemCtn.GetItemList().RemoveAt(r);
+                        dgvItems.Rows.RemoveAt(r);
+                        UpdateItemId();
+                        new MessageBoxDarkMode("Item eliminado con éxito!!", "Aviso", "Ok", Resources.delete, true);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!");
+                    MessageBox.Show("Debe existir mas de un item en la tabla para poder eliminar!!");
                 }
+                UpdateItemId();
             }
-            else
-            {
-                MessageBox.Show("Debe existir mas de un item en la tabla para poder eliminar!!");
-            }
-            UpdateItemId();
-
         }
     }
 }

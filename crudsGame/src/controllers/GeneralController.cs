@@ -15,6 +15,16 @@ namespace crudsGame.src.controllers
 {
     static class GeneralController
     {
+        public static bool MessageBoxDialogResult(MessageBoxDarkMode messageBoxDarkMode)
+        {
+            bool messageBoxResponse = false;
+            messageBoxDarkMode.ResponseEvent += (sender, e) =>
+            {
+                messageBoxResponse = e.status;
+            };
+            messageBoxDarkMode.ShowDialog();
+            return messageBoxResponse;
+        }
         /*
         public static IInteractuable CreateItem(string seleccionCombo, int txtId, string txtName, int txtValue) //me sirve pa los dos tipos de items
         {

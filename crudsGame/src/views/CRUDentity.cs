@@ -300,14 +300,20 @@ namespace crudsGame.src.views
             }  
         }
 
+        
+
+
         private void btnUpdatee_Click(object sender, EventArgs e)
         {
-            try
+            MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de guardar los cambios??", "ALERTA", "OkCancel", Resources.warning);
+            if (GeneralController.MessageBoxDialogResult(messageBox) == true)
             {
-                if (dgvEntities.SelectedRows.Count > 0)
+                try
                 {
-                    //if (CheckEmptyFields() == false)
-                    //{
+                    if (dgvEntities.SelectedRows.Count > 0)
+                    {
+                        //if (CheckEmptyFields() == false)
+                        //{
                         Entity entity = entityCtn.Update(SearchEntityById((int)dgvEntities.CurrentRow.Cells[0].Value), Convert.ToInt32(txtId.Text), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), GeneralController.CheckThatTheFieldIsNotNull(txtMaxEnergy), GeneralController.CheckThatTheFieldIsNotNull(txtMaxLife), GeneralController.CheckThatTheFieldIsNotNull(txtAttack), GeneralController.CheckThatTheFieldIsNotNull(txtDefense), Convert.ToInt16(txtRange.Text));
 
 
@@ -319,51 +325,56 @@ namespace crudsGame.src.views
                         btnCreatee.Visible = true;
                         btnDeletee.Visible = true;
                         dgvEntities.Enabled = true;
-                    //}
+                        new MessageBoxDarkMode("Entidad actualizada con éxito!!", "Aviso", "Ok", Resources.update, true);
+                        //}
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!");
+                    }
+                    CleanFields();
+                    UpdateEntityId();
+                    
+
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!");
+                    new MessageBoxDarkMode(ex.Message + " por esto no se editará la entidad", "Error", "Ok", Resources.error, true);
+                    btnCreatee.Visible = false;
+                    btnDeletee.Visible = false;
+                    dgvEntities.Enabled = false;
                 }
-                CleanFields();
-                UpdateEntityId();
-
             }
-            catch (Exception ex)
-            {
-                new MessageBoxDarkMode(ex.Message +" por esto no se editará la entidad", "Error", "Ok", Resources.error, true);
-                btnCreatee.Visible = false;
-                btnDeletee.Visible = false;
-                dgvEntities.Enabled = false;
-            }
-            
-
         }
 
         private void btnDeletee_Click(object sender, EventArgs e)
         {
-            if (dgvEntities.Rows.Count > 2)
+            MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de eliminar esta entidad??", "ALERTA", "OkCancel", Resources.warning);
+            if (GeneralController.MessageBoxDialogResult(messageBox) == true)
             {
-                if (dgvEntities.SelectedRows.Count > 0)
+                if (dgvEntities.Rows.Count > 2)
                 {
-                    //int r = dgvEntities.SelectedRows.Count;
-                    int r = dgvEntities.CurrentRow.Index;
-                    //entityCtn.DeleteAnEntity(r);
-                    entityCtn.GetEntitiesList().RemoveAt(r);
-                    dgvEntities.Rows.RemoveAt(r);
-                    UpdateEntityId();
+                    if (dgvEntities.SelectedRows.Count > 0)
+                    {
+                        //int r = dgvEntities.SelectedRows.Count;
+                        int r = dgvEntities.CurrentRow.Index;
+                        //entityCtn.DeleteAnEntity(r);
+                        entityCtn.GetEntitiesList().RemoveAt(r);
+                        dgvEntities.Rows.RemoveAt(r);
+                        UpdateEntityId();
+                        new MessageBoxDarkMode("Entidad eliminada con éxito!!", "Aviso", "Ok", Resources.delete, true);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!");
+                    MessageBox.Show("Debe existir mas de una entidad en la tabla para poder eliminar!!");
                 }
+                UpdateEntityId();
             }
-            else
-            {
-                MessageBox.Show("Debe existir mas de una entidad en la tabla para poder eliminar!!");
-            }
-            UpdateEntityId();
-
         }
     }
 }

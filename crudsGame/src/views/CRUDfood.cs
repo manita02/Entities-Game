@@ -151,60 +151,71 @@ namespace crudsGame.src.views
 
         private void btnUpdatee_Click(object sender, EventArgs e)
         {
-            try
+            MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de guardar los cambios??", "ALERTA", "OkCancel", Resources.warning);
+            if (GeneralController.MessageBoxDialogResult(messageBox) == true)
             {
-                if (dgvFoods.SelectedRows.Count > 0)
+                try
                 {
+                    if (dgvFoods.SelectedRows.Count > 0)
+                    {
 
-                    Food food = foodCtn.CreateFood(foodCtn.GetFoodList().Count(), txtName.Text, GeneralController.CheckThatTheFieldIsNotNull(txtCalories), (IDiet)(cbDiet.SelectedItem));
-                    LoadFoodIntoDatagrid(rows, food);
-                    this.rows = 0;
+                        Food food = foodCtn.CreateFood(foodCtn.GetFoodList().Count(), txtName.Text, GeneralController.CheckThatTheFieldIsNotNull(txtCalories), (IDiet)(cbDiet.SelectedItem));
+                        LoadFoodIntoDatagrid(rows, food);
+                        this.rows = 0;
+                        new MessageBoxDarkMode("Comida actualizada con éxito!!", "Aviso", "Ok", Resources.update, true);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe seleccionar una fila de la tabla para editar una comida!!");
+                    }
+                    CleanFields();
+                    UpdateFoodId();
+                    btnCreatee.Visible = true;
+                    btnDeletee.Visible = true;
+                    dgvFoods.Enabled = true;
 
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Debe seleccionar una fila de la tabla para editar una comida!!");
+                    new MessageBoxDarkMode(ex.Message + " por esto no se editará la comida", "Error", "Ok", Resources.error, true);
+                    btnCreatee.Visible = false;
+                    btnDeletee.Visible = false;
+                    dgvFoods.Enabled = false;
                 }
-                CleanFields();
-                UpdateFoodId();
-                btnCreatee.Visible = true;
-                btnDeletee.Visible = true;
-                dgvFoods.Enabled = true;
 
             }
-            catch (Exception ex)
-            {
-                new MessageBoxDarkMode(ex.Message + " por esto no se editará la comida", "Error", "Ok", Resources.error, true);
-                btnCreatee.Visible = false;
-                btnDeletee.Visible = false;
-                dgvFoods.Enabled = false;
-            }
+            
 
 
         }
 
         private void btnDeletee_Click(object sender, EventArgs e)
         {
-            if (dgvFoods.Rows.Count > 2)
+            MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de guardar los cambios??", "ALERTA", "OkCancel", Resources.warning);
+            if (GeneralController.MessageBoxDialogResult(messageBox) == true)
             {
-                if (dgvFoods.SelectedRows.Count > 0)
+                if (dgvFoods.Rows.Count > 2)
                 {
-                    int r = dgvFoods.CurrentRow.Index;
-                    foodCtn.GetFoodList().RemoveAt(r);
-                    dgvFoods.Rows.RemoveAt(r);
-                    UpdateFoodId();
+                    if (dgvFoods.SelectedRows.Count > 0)
+                    {
+                        int r = dgvFoods.CurrentRow.Index;
+                        foodCtn.GetFoodList().RemoveAt(r);
+                        dgvFoods.Rows.RemoveAt(r);
+                        UpdateFoodId();
+                        new MessageBoxDarkMode("Comida eliminada con éxito!!", "Aviso", "Ok", Resources.delete, true);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe seleccionar una fila de la tabla para editar una comida!!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Debe seleccionar una fila de la tabla para editar una comida!!");
+                    MessageBox.Show("Debe existir mas de un comida en la tabla para poder eliminar!!");
                 }
+                UpdateFoodId();
             }
-            else
-            {
-                MessageBox.Show("Debe existir mas de un comida en la tabla para poder eliminar!!");
-            }
-            UpdateFoodId();
-
         }
 
         private void txtCalories_KeyPress(object sender, KeyPressEventArgs e)

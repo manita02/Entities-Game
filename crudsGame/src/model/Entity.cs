@@ -654,9 +654,33 @@ namespace crudsGame.src.model
         */
         public void Sleep()
         {
-            this.currentEnergy += 50; //hay q llamr a los getters xq ya tienen hechas las validaciones
-            this.currentLife += this.maxLife; 
-        }
+            try
+            {
+                this.currentLife += this.maxLife;
+            }
+            catch (Exception ex)
+            {
+                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+            }
+
+            try
+            {
+                this.currentEnergy += 50;
+                new MessageBoxDarkMode(this.name + " ha recuperado la mitad de su energía y su vida completa!!", "ALERTA", "Ok", Resources.check, true);
+            }
+            catch (Exception ex)
+            {
+                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+            }
+
+
+
+
+            /*
+            this.currentLife += this.maxLife;
+            this.currentEnergy += 50; //hay q llamr a los getters xq ya tienen hechas las validaciones  
+            */
+            }
 
         public List<IEnvironment> HabitatsCompatible()
         {

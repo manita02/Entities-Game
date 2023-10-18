@@ -519,6 +519,7 @@ namespace crudsGame.src.controllers
         public void agregarEntidadAlTerrenoDondeSeMovio(Entity entity, Terrain terr)
         {
             terr.EntitiesList.Add(entity);
+            new MessageBoxDarkMode("La entidad "+entity.name+" se ha movido al terreno N°"+terr.Id+ " con éxito!!", "ATENCIÓN", "Ok", Resources.check, true);
         }
 
         public bool chequearQueUnTerrenoEnParticularSeaLimitrofeDelTerrenoActualSeleccionado(Terrain terrenoActual, Terrain posibleTerrenoLimitrofe)

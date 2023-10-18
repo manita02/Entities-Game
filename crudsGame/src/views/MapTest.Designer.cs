@@ -97,6 +97,7 @@
             btnMove = new MaterialSkin.Controls.MaterialFlatButton();
             pnMove = new Panel();
             pictureBox1 = new PictureBox();
+            btnSleep = new MaterialSkin.Controls.MaterialFlatButton();
             groupBox2.SuspendLayout();
             pnItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picItems).BeginInit();
@@ -707,6 +708,7 @@
             // pnEntities
             // 
             pnEntities.BackColor = Color.MidnightBlue;
+            pnEntities.Controls.Add(btnSleep);
             pnEntities.Controls.Add(lbKingdom);
             pnEntities.Controls.Add(materialLabel3);
             pnEntities.Controls.Add(label1);
@@ -895,6 +897,23 @@
             pictureBox1.TabIndex = 41;
             pictureBox1.TabStop = false;
             // 
+            // btnSleep
+            // 
+            btnSleep.AutoSize = true;
+            btnSleep.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnSleep.Depth = 0;
+            btnSleep.Icon = null;
+            btnSleep.Location = new Point(315, 617);
+            btnSleep.Margin = new Padding(4, 6, 4, 6);
+            btnSleep.MouseState = MaterialSkin.MouseState.HOVER;
+            btnSleep.Name = "btnSleep";
+            btnSleep.Primary = false;
+            btnSleep.Size = new Size(61, 36);
+            btnSleep.TabIndex = 47;
+            btnSleep.Text = "SLEEP";
+            btnSleep.UseVisualStyleBackColor = true;
+            btnSleep.Click += btnSleep_Click;
+            // 
             // MapTest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1030,5 +1049,6 @@
         private MaterialSkin.Controls.MaterialFlatButton btnMove;
         private Panel pnMove;
         private PictureBox pictureBox1;
+        private MaterialSkin.Controls.MaterialFlatButton btnSleep;
     }
 }
