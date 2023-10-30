@@ -28,6 +28,8 @@ namespace crudsGame.src.controllers
         private readonly List<Land> Lands = new List<Land>();
         private readonly List<IPositionable> positionables = new List<IPositionable>();
 
+        
+
 
 
         private MapController() { }

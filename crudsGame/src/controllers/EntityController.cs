@@ -37,6 +37,7 @@ namespace crudsGame.src.controllers
         List<IDiet> DietList = new List<IDiet>();
         List<IKingdom> KingdomList = new List<IKingdom>();
         List<IEnvironment> EnvironmentList = new List<IEnvironment>();
+       
 
 
 
@@ -75,7 +76,7 @@ namespace crudsGame.src.controllers
             return EnvironmentList;
         }
 
-
+       
         public List<Entity> GetEntitiesList()
         {
             if (EntitiesList.Count == 0)
