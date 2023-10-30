@@ -397,6 +397,7 @@ namespace crudsGame.src.views
             GeneralController.ValidateNumbers(e);
         }
 
+      
         private void CleanFields()
         {
             txtName.Text = "";

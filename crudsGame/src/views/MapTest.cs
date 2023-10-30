@@ -337,17 +337,17 @@ namespace crudsGame.src.views
 
         private void btnSleep_Click(object sender, EventArgs e)
         {
-            
-                ((Entity)lbEntitiesOnAterrain.SelectedItem).Sleep();
-                
-                LoadProgressbarOfSelectedEntity();
-             
+
+            ((Entity)lbEntitiesOnAterrain.SelectedItem).Sleep();
+
+            LoadProgressbarOfSelectedEntity();
+
         }
         #endregion
 
 
         #region Selected Index Changed
-        
+
         private void cbCurrentTerrain_SelectedIndexChanged(object sender, EventArgs e)
         {
             lbBonderingTerrains.DataSource = mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
@@ -538,7 +538,7 @@ namespace crudsGame.src.views
             }
         }
 
-        
+
     }
     #endregion
 }
