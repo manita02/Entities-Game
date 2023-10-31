@@ -233,6 +233,7 @@ namespace crudsGame.src.views
         #region Load Progress Bars
         private void LoadProgressbarOfSelectedEntity()
         {
+
             lbCurrentLife.Text = "Current Life = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).currentLife;
             pbCurrentLife.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).currentLife;
 

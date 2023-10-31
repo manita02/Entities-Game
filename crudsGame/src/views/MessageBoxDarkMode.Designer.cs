@@ -50,7 +50,7 @@
             panel2.Location = new Point(0, 0);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(509, 175);
+            panel2.Size = new Size(634, 230);
             panel2.TabIndex = 4;
             // 
             // btnCancel
@@ -58,7 +58,7 @@
             btnCancel.BackColor = Color.FromArgb(35, 39, 42);
             btnCancel.FlatStyle = FlatStyle.Flat;
             btnCancel.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCancel.Location = new Point(323, 126);
+            btnCancel.Location = new Point(370, 178);
             btnCancel.Margin = new Padding(3, 2, 3, 2);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(88, 38);
@@ -73,7 +73,7 @@
             btnConfirm.BackColor = Color.FromArgb(35, 39, 42);
             btnConfirm.FlatStyle = FlatStyle.Flat;
             btnConfirm.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnConfirm.Location = new Point(89, 126);
+            btnConfirm.Location = new Point(136, 178);
             btnConfirm.Margin = new Padding(3, 2, 3, 2);
             btnConfirm.Name = "btnConfirm";
             btnConfirm.Size = new Size(88, 38);
@@ -86,28 +86,28 @@
             // lblMessage
             // 
             lblMessage.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            lblMessage.Location = new Point(129, 26);
+            lblMessage.Location = new Point(164, 19);
             lblMessage.Name = "lblMessage";
-            lblMessage.Size = new Size(321, 68);
+            lblMessage.Size = new Size(458, 149);
             lblMessage.TabIndex = 2;
             lblMessage.Text = "Message";
             // 
             // pictureBoxImage
             // 
             pictureBoxImage.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBoxImage.Location = new Point(20, 19);
+            pictureBoxImage.Location = new Point(8, 24);
             pictureBoxImage.Margin = new Padding(3, 2, 3, 2);
             pictureBoxImage.Name = "pictureBoxImage";
-            pictureBoxImage.Size = new Size(88, 75);
+            pictureBoxImage.Size = new Size(146, 135);
             pictureBoxImage.TabIndex = 1;
             pictureBoxImage.TabStop = false;
             // 
             // MessageBoxDarkMode
             // 
-            AutoScaleDimensions = new SizeF(9F, 18F);
+            AutoScaleDimensions = new SizeF(14F, 29F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 39, 42);
-            ClientSize = new Size(509, 175);
+            ClientSize = new Size(634, 230);
             Controls.Add(panel2);
             Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             ForeColor = Color.White;

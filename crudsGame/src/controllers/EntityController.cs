@@ -121,14 +121,14 @@ namespace crudsGame.src.controllers
             KingdomList = GetKingdomList();
 
             //Entity item1 = new Entity(index, KingdomList[1], "pruebass", DietList[random.Next(0, DietList.Count)], EnvironmentList[random.Next(0, EnvironmentList.Count)], 30, 30, 2, 3, random.Next(0, 1));
-            Entity item1 = new Entity(index, KingdomList[1], "pruebass", DietList[random.Next(0, DietList.Count)], GenerateRandomListOfEnvironments(random.Next(0,100)), 500, 500, 30, 30, random.Next(0, 2));
+            Entity item1 = new Entity(index, KingdomList[1], "pruebass", DietList[random.Next(0, DietList.Count)], GenerateRandomListOfEnvironments(random.Next(0,100)), random.Next(300, 500), random.Next(300, 500), 30, 30, random.Next(0, 2));
             EntitiesList.Add(item1);
             index++;
 
             foreach (var name in RandomNames)
             {
                 //Entity entity = new Entity(index, KingdomList[random.Next(0, KingdomList.Count)], name, DietList[random.Next(0, DietList.Count)], EnvironmentList[random.Next(0, EnvironmentList.Count)], 100, 100, random.Next(10, 80), random.Next(10, 80), random.Next(0, 1));
-                Entity entity = new Entity(index, KingdomList[random.Next(0, KingdomList.Count)], name, DietList[random.Next(0, DietList.Count)], GenerateRandomListOfEnvironments(random.Next(0, 100)), 500, 500, random.Next(100, 400), random.Next(100, 400), random.Next(0, 2));
+                Entity entity = new Entity(index, KingdomList[random.Next(0, KingdomList.Count)], name, DietList[random.Next(0, DietList.Count)], GenerateRandomListOfEnvironments(random.Next(0, 100)), random.Next(300, 500), random.Next(300, 500), random.Next(100, 400), random.Next(100, 400), random.Next(0, 2));
 
 
                 //MessageBox.Show("id: " + entity.id + " NAME: " + entity.name);
