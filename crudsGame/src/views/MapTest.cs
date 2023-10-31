@@ -87,7 +87,7 @@ namespace crudsGame.src.views
                 //MessageBox.Show("indice hxagono clikeado: " + index);
                 cbCurrentTerrain.SelectedIndex = index;
                 //MessageBox.Show("index en combo currentTerrain: " + cbCurrentTerrain.SelectedIndex);
-                ChangeColorOfSelectedHexagonAndTheirBorderingHexagons(mapController.GetTerrains((Map)cbMaps.SelectedItem)[index]);
+                ChangeColorOfSelectedHexagonAndTheirBorderingHexagons(mapController.GetTerrains(mapController.GetMap())[index]);
             }
 
         }
@@ -118,19 +118,27 @@ namespace crudsGame.src.views
         /// </summary>
         private void CheckIfAmapAlreadyExists()
         {
-            if (mapController.GetMaps().Count > 0) //si la lista de mapas es mayor a cero.. por ahora pensado para un unico mapa, si siguiera asi habria que quitar esto de las listas y dejar un solo mapa
+            if (mapController.GetMap().TerrainsList.Count > 0) //si la lista de mapas es mayor a cero.. por ahora pensado para un unico mapa, si siguiera asi habria que quitar esto de las listas y dejar un solo mapa
             {
                 LoadMap();
+            }
+            else
+            {
+                if (mapController.GenerateMap() == true)
+                {
+                    LoadMap();
+                }
             }
         }
 
         private void LoadMap()
         {
-            cbMaps.DataSource = mapController.GetMaps();
-            cbCurrentTerrain.DataSource = mapController.GetTerrains((Map)cbMaps.SelectedItem);
+            //cbMaps.Items.Add(mapController.GetMap());
+            //cbMaps.SelectedIndex = 0;
+            cbCurrentTerrain.DataSource = mapController.GetTerrains(mapController.GetMap());
             lbBonderingTerrains.DataSource = mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
 
-            cbMaps.SelectedIndex = 0;
+            //cbMaps.SelectedIndex = 0;
             PaintHexagons();
             btnGenerateMap.Enabled = false;
 
@@ -138,7 +146,7 @@ namespace crudsGame.src.views
 
         private void PaintHexagons()
         {
-            List<Terrain> terrainsList = mapController.GetTerrains((Map)cbMaps.SelectedItem);
+            List<Terrain> terrainsList = mapController.GetTerrains(mapController.GetMap());
 
             for (int i = 0; i < hexagonsList.Count(); i++)
             {
@@ -312,7 +320,7 @@ namespace crudsGame.src.views
             {
                 if (((Entity)lbEntitiesOnAterrain.SelectedItem).Eat(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Food)lbFoodsOnAterrain.SelectedItem)) == true)
                 {
-                    mapController.eliminarDelMapaUnaComidaIngerida((Food)lbFoodsOnAterrain.SelectedItem, (Map)cbMaps.SelectedItem);
+                    mapController.eliminarDelMapaUnaComidaIngerida((Food)lbFoodsOnAterrain.SelectedItem, mapController.GetMap());
                     LoadListBoxOfFoodsOnAcurrentTerrain();
                     LoadProgressbarOfSelectedEntity();
 
@@ -335,7 +343,7 @@ namespace crudsGame.src.views
             {
                 if (((Entity)lbEntitiesOnAterrain.SelectedItem).UsarItem(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Item)lbItemsOnAterrain.SelectedItem)) == true)
                 {
-                    mapController.eliminarDelMapaUnItemUtilizado((Item)lbItemsOnAterrain.SelectedItem, (Map)cbMaps.SelectedItem);
+                    mapController.eliminarDelMapaUnItemUtilizado((Item)lbItemsOnAterrain.SelectedItem, mapController.GetMap());
                     LoadListBoxOfItemsOnAcurrentTerrain();
                     LoadProgressbarOfSelectedEntity();
                 }
@@ -358,7 +366,7 @@ namespace crudsGame.src.views
                 {
                     //MessageBox.Show("la vida esta en 0 de la entidad player one: " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name);
                     new MessageBoxDarkMode(((Entity)lbEntitiesToAttack.SelectedItem).name + " mató a " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + "!!!", "ATENCIÓN", "Ok", Resources.ko, true);
-                    mapController.eliminarDelMapaUnaEntidadqMurio((Entity)lbEntitiesOnAterrain.SelectedItem, (Map)cbMaps.SelectedItem);//no me va a dejar eliminar porque esta con el datasource
+                    mapController.eliminarDelMapaUnaEntidadqMurio((Entity)lbEntitiesOnAterrain.SelectedItem, mapController.GetMap());
                     LoadListBoxOfEntitiesOnAcurrentTerrain();
                     LoadListboxOfEntitiesToAttack();
                 }
@@ -366,7 +374,7 @@ namespace crudsGame.src.views
                 {
                     //MessageBox.Show("la vida esta en 0 de la entidad player two: " + ((Entity)lbEntitiesToAttack.SelectedItem).name);
                     new MessageBoxDarkMode(((Entity)lbEntitiesOnAterrain.SelectedItem).name + " mató a " + ((Entity)lbEntitiesToAttack.SelectedItem).name + "!!!", "ATENCIÓN", "Ok", Resources.ko, true);
-                    mapController.eliminarDelMapaUnaEntidadqMurio((Entity)lbEntitiesToAttack.SelectedItem, (Map)cbMaps.SelectedItem);
+                    mapController.eliminarDelMapaUnaEntidadqMurio((Entity)lbEntitiesToAttack.SelectedItem, mapController.GetMap());
                     LoadListboxOfEntitiesToAttack();
                     LoadListBoxOfEntitiesOnAcurrentTerrain();
                 }
@@ -455,7 +463,7 @@ namespace crudsGame.src.views
             HexagonControl clickedHexagon = sender as HexagonControl;
             int index = hexagonsList.IndexOf(clickedHexagon);
             //MessageBox.Show("indice hxagono clikeado: " + index);
-            ChangeColorOfSelectedHexagonToMove(mapController.GetTerrains((Map)cbMaps.SelectedItem)[index], terrenoAnteriorSeleccionado);
+            ChangeColorOfSelectedHexagonToMove(mapController.GetTerrains(mapController.GetMap())[index], terrenoAnteriorSeleccionado);
         }
 
 
@@ -534,7 +542,7 @@ namespace crudsGame.src.views
                 }
             }
             */
-            Terrain terr = (((Map)cbMaps.SelectedItem).TerrainsList[GetTheIndexOfTheSelectedHexagon()]);
+            Terrain terr = ((mapController.GetMap()).TerrainsList[GetTheIndexOfTheSelectedHexagon()]);
             //MessageBox.Show("terreno seleccionado en color violeta: " + terr.ToString());
             try
             {

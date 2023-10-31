@@ -24,8 +24,9 @@ namespace crudsGame.src.controllers
 
         //private TerrainController terrainController = TerrainController.GetInstance();
         private static MapController instance;
-        private readonly List<Map> maps = new List<Map>();
-        private readonly List<Land> Lands = new List<Land>();
+        private readonly Map map = new Map();
+        //private readonly List<Map> maps = new List<Map>();
+        //private readonly List<Land> Lands = new List<Land>();
         private readonly List<IPositionable> positionables = new List<IPositionable>();
         int problema = 0;
 
@@ -66,9 +67,9 @@ namespace crudsGame.src.controllers
             return map.TerrainsList;
         }
 
-        public List<Map> GetMaps()
+        public Map GetMap()
         {
-            return maps;
+            return map;
         }
 
         public List<Terrain> GetBorderingTerrains(Terrain terrain)
@@ -113,7 +114,7 @@ namespace crudsGame.src.controllers
             {
                 if (chequearSiHayCuarentaEntidadesComidasItems() == true)
                 {
-                    Map map = new Map();
+                    //Map map = new Map();
                     var random = new Random();
                     for (int i = 0; i < 19; i++)
                     {
@@ -154,7 +155,9 @@ namespace crudsGame.src.controllers
 
                     }
                     //MessageBox.Show("cantidad en lista de terrenos " + map.TerrainsList.Count);
-                    maps.Add(map);
+                    //MessageBox.Show("cantidad en lista de terrenos desde el get " + GetMap().TerrainsList.Count);
+                    
+                    //maps.Add(map);
                     setBorderingTerrains(map); //una vez q salio de for setea de forma general a todos los terrenos creados sus limitrofes
                     setEntidadesEnMapa(map);
                     setComidasEnMapa(map);
@@ -241,7 +244,7 @@ namespace crudsGame.src.controllers
                                 }
 
                                 problema++;
-                                MessageBox.Show("valor del problema en water: " + problema);
+                                //MessageBox.Show("valor del problema en water: " + problema);
                             }
                             else
                             {
@@ -266,7 +269,7 @@ namespace crudsGame.src.controllers
                                 }
 
                                 problema++;
-                                MessageBox.Show("valor del problema en tierra: " + problema);
+                                //MessageBox.Show("valor del problema en tierra: " + problema);
                             }
                             else
                             {
@@ -383,7 +386,7 @@ namespace crudsGame.src.controllers
             }
             catch(Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message, "Error", "Ok", Resources.error, true);
+                new MessageBoxDarkMode(ex.Message, "Errorers de prueba mucho", "Ok", Resources.error, true);
             }
         }
 
@@ -672,12 +675,12 @@ namespace crudsGame.src.controllers
         {
             foreach (Terrain terr in map.TerrainsList)
             {
-                MessageBox.Show("cantidad en lista antes de borrar: " + terr.FoodsList.Count + "en terreno " + terr.Id);
+                //MessageBox.Show("cantidad en lista antes de borrar: " + terr.FoodsList.Count + "en terreno " + terr.Id);
                 if (terr.FoodsList.Contains(food))
                 {
 
                     terr.FoodsList.Remove(food);//borra la entidad del terreno donde se encuentre
-                    MessageBox.Show("cantidad en lista DESPUES DE de borrar: " + terr.FoodsList.Count + " la entidad " + food.name);
+                    //MessageBox.Show("cantidad en lista DESPUES DE de borrar: " + terr.FoodsList.Count + " la entidad " + food.name);
                     
                 }
                     

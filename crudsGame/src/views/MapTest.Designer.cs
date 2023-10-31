@@ -50,14 +50,12 @@
             hex17 = new HexagonControl();
             btnGenerateMap = new MaterialSkin.Controls.MaterialRaisedButton();
             cbCurrentTerrain = new ComboBox();
-            cbMaps = new ComboBox();
             lbBonderingTerrains = new ListBox();
             lbEntitiesOnAterrain = new ListBox();
             lbEnvironmentsOfAnEntity = new ListBox();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             lbFoodsOnAterrain = new ListBox();
             materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
@@ -317,6 +315,7 @@
             btnGenerateMap.AutoSize = true;
             btnGenerateMap.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnGenerateMap.Depth = 0;
+            btnGenerateMap.Enabled = false;
             btnGenerateMap.Icon = null;
             btnGenerateMap.Location = new Point(36, 86);
             btnGenerateMap.Margin = new Padding(4, 5, 4, 5);
@@ -331,7 +330,7 @@
             // 
             // cbCurrentTerrain
             // 
-            cbCurrentTerrain.Enabled = false;
+            cbCurrentTerrain.DropDownStyle = ComboBoxStyle.DropDownList;
             cbCurrentTerrain.FormattingEnabled = true;
             cbCurrentTerrain.Location = new Point(404, 150);
             cbCurrentTerrain.Margin = new Padding(4, 5, 4, 5);
@@ -339,15 +338,6 @@
             cbCurrentTerrain.Size = new Size(246, 33);
             cbCurrentTerrain.TabIndex = 21;
             cbCurrentTerrain.SelectedIndexChanged += cbCurrentTerrain_SelectedIndexChanged;
-            // 
-            // cbMaps
-            // 
-            cbMaps.FormattingEnabled = true;
-            cbMaps.Location = new Point(349, 91);
-            cbMaps.Margin = new Padding(4, 5, 4, 5);
-            cbMaps.Name = "cbMaps";
-            cbMaps.Size = new Size(172, 33);
-            cbMaps.TabIndex = 23;
             // 
             // lbBonderingTerrains
             // 
@@ -425,20 +415,6 @@
             materialLabel3.Size = new Size(292, 27);
             materialLabel3.TabIndex = 29;
             materialLabel3.Text = "Entities in this current terrain:";
-            // 
-            // materialLabel5
-            // 
-            materialLabel5.AutoSize = true;
-            materialLabel5.Depth = 0;
-            materialLabel5.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            materialLabel5.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel5.Location = new Point(269, 91);
-            materialLabel5.Margin = new Padding(4, 0, 4, 0);
-            materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel5.Name = "materialLabel5";
-            materialLabel5.Size = new Size(71, 27);
-            materialLabel5.TabIndex = 31;
-            materialLabel5.Text = "Maps:";
             // 
             // materialLabel6
             // 
@@ -980,11 +956,9 @@
             Controls.Add(pnMove);
             Controls.Add(btnMoveInfo);
             Controls.Add(groupBox2);
-            Controls.Add(materialLabel5);
             Controls.Add(materialLabel2);
             Controls.Add(materialLabel1);
             Controls.Add(lbBonderingTerrains);
-            Controls.Add(cbMaps);
             Controls.Add(cbCurrentTerrain);
             Controls.Add(btnGenerateMap);
             Controls.Add(hex17);
@@ -1055,14 +1029,12 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnGenerateMap;
         private ComboBox cbCurrentTerrain;
         private MaterialSkin.Controls.MaterialListView lbBorderingTerrains;
-        private ComboBox cbMaps;
         private ListBox lbBonderingTerrains;
         private ListBox lbEntitiesOnAterrain;
         private ListBox lbEnvironmentsOfAnEntity;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
-        private MaterialSkin.Controls.MaterialLabel materialLabel5;
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         private ListBox lbFoodsOnAterrain;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
