@@ -134,9 +134,6 @@ namespace crudsGame.src.views
             PaintHexagons();
             btnGenerateMap.Enabled = false;
 
-            //esta validacion tiene q estar en MapCtn
-            //habria que hacer una validacion de que para generar un mapa debe haber mas de 40 entidades, comidas e items, ya que esta programado para que haya dos de cada una por terreno
-
         }
 
         private void PaintHexagons()
@@ -210,6 +207,27 @@ namespace crudsGame.src.views
 
         }
 
+        public void LoadListBoxOfFoodsOnAcurrentTerrain()
+        {
+            lbFoodsOnAterrain.Items.Clear();
+
+
+            foreach (Food food in ((Terrain)cbCurrentTerrain.SelectedItem).FoodsList)
+            {
+                lbFoodsOnAterrain.Items.Add(food);
+            }
+        }
+
+        public void LoadListBoxOfItemsOnAcurrentTerrain()
+        {
+            lbItemsOnAterrain.Items.Clear();
+
+
+            foreach (Item item in ((Terrain)cbCurrentTerrain.SelectedItem).ItemsList)
+            {
+                lbItemsOnAterrain.Items.Add(item);
+            }
+        }
 
         public void LoadListBoxOfEntitiesOnAcurrentTerrain()
         {
@@ -235,10 +253,12 @@ namespace crudsGame.src.views
         {
 
             lbCurrentLife.Text = "Current Life = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).currentLife;
+            pbCurrentLife.Maximum = ((Entity)lbEntitiesOnAterrain.SelectedItem).maxLife;
             pbCurrentLife.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).currentLife;
 
 
             lbCurrentEnergy.Text = "Current Energy = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).currentEnergy;
+            pbCurrentEnergy.Maximum = ((Entity)lbEntitiesOnAterrain.SelectedItem).maxEnergy;
             pbCurrentEnergy.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).currentEnergy;
 
             lbAttack.Text = "Attack Points = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).attackPoints;
@@ -255,6 +275,7 @@ namespace crudsGame.src.views
             {
                 pnAttack.Enabled = true;
                 lbCurrentLifePlayerTwo.Text = "Current Life = " + ((Entity)lbEntitiesToAttack.SelectedItem).currentLife;
+                pbCurrentLifePlayerTwo.Maximum = ((Entity)lbEntitiesToAttack.SelectedItem).maxLife;
                 pbCurrentLifePlayerTwo.Value = ((Entity)lbEntitiesToAttack.SelectedItem).currentLife;
             }
             else
@@ -270,16 +291,35 @@ namespace crudsGame.src.views
         #region Buttons Interactions
         private void btnGenerateMap_Click(object sender, EventArgs e)
         {
-            mapController.GenerateMap();
-            LoadMap();
+            //try
+            //{
+            if (mapController.GenerateMap() == true)
+            {
+                LoadMap();
+            }
+
+            //}
+            //catch (Exception ex)
+            //{
+            //new MessageBoxDarkMode(ex.Message, "Error", "Ok", Resources.error, true);
+            //}
+
         }
 
         private void btnEat_Click(object sender, EventArgs e)
         {
             try
             {
-                ((Entity)lbEntitiesOnAterrain.SelectedItem).Eat(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Food)lbFoodsOnAterrain.SelectedItem));
-                LoadProgressbarOfSelectedEntity();
+                if (((Entity)lbEntitiesOnAterrain.SelectedItem).Eat(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Food)lbFoodsOnAterrain.SelectedItem)) == true)
+                {
+                    mapController.eliminarDelMapaUnaComidaIngerida((Food)lbFoodsOnAterrain.SelectedItem, (Map)cbMaps.SelectedItem);
+                    LoadListBoxOfFoodsOnAcurrentTerrain();
+                    LoadProgressbarOfSelectedEntity();
+
+
+                }
+
+
             }
             catch (Exception ex)
             {
@@ -293,8 +333,14 @@ namespace crudsGame.src.views
         {
             try
             {
-                ((Entity)lbEntitiesOnAterrain.SelectedItem).UsarItem(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Item)lbItemsOnAterrain.SelectedItem));
-                LoadProgressbarOfSelectedEntity();
+                if (((Entity)lbEntitiesOnAterrain.SelectedItem).UsarItem(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Item)lbItemsOnAterrain.SelectedItem)) == true)
+                {
+                    mapController.eliminarDelMapaUnItemUtilizado((Item)lbItemsOnAterrain.SelectedItem, (Map)cbMaps.SelectedItem);
+                    LoadListBoxOfItemsOnAcurrentTerrain();
+                    LoadProgressbarOfSelectedEntity();
+                }
+
+
             }
             catch (Exception ex)
             {
@@ -335,7 +381,7 @@ namespace crudsGame.src.views
                 LoadProgressbarOfSelectedEntity();
             }
         }
-
+        /*
         private void btnSleep_Click(object sender, EventArgs e)
         {
 
@@ -344,6 +390,7 @@ namespace crudsGame.src.views
             LoadProgressbarOfSelectedEntity();
 
         }
+        */
         #endregion
 
 
@@ -353,8 +400,10 @@ namespace crudsGame.src.views
         {
             lbBonderingTerrains.DataSource = mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
             LoadListBoxOfEntitiesOnAcurrentTerrain();
-            lbFoodsOnAterrain.DataSource = ((Terrain)cbCurrentTerrain.SelectedItem).FoodsList;
-            lbItemsOnAterrain.DataSource = ((Terrain)cbCurrentTerrain.SelectedItem).ItemsList;
+            LoadListBoxOfFoodsOnAcurrentTerrain();
+            LoadListBoxOfItemsOnAcurrentTerrain();
+            //lbFoodsOnAterrain.DataSource = ((Terrain)cbCurrentTerrain.SelectedItem).FoodsList;
+            //lbItemsOnAterrain.DataSource = ((Terrain)cbCurrentTerrain.SelectedItem).ItemsList;
             ChangeColorOfSelectedHexagonAndTheirBorderingHexagons((Terrain)cbCurrentTerrain.SelectedItem);
 
         }
@@ -373,7 +422,7 @@ namespace crudsGame.src.views
                 MessageBox.Show("ambiente: " + s.ToString());
             }
             */
-            btnSleep.Text = "SLEEP (" + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ")";
+            //btnSleep.Text = "SLEEP (" + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ")";
             btnMoveInfo.Text = "MOVER entidad seleccionada (" + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ") a otro terreno";
 
 

@@ -13,10 +13,13 @@ namespace crudsGame.src.model.Terrains.Map
         private static int lastId = -1;//cheqqq
         private ITerrain terrainType;
         private List<Terrain> borderingTerrainsList = new List<Terrain>();
-        //private List<IPositionable> positionablesList; me pa que noo
+        
         private List<Entity>entitiesList=new List<Entity>();
         private List<Food> foodList = new List<Food>();
         private List<Item> itemList = new List<Item>();
+
+
+        
 
 
         public int Id { get; private set; }
@@ -28,6 +31,9 @@ namespace crudsGame.src.model.Terrains.Map
         internal List<Entity> EntitiesList { get => entitiesList; set => entitiesList = value; }
         internal List<Food> FoodsList { get => foodList; set => foodList = value; }
         internal List<Item> ItemsList { get => itemList; set => itemList = value; }
+
+
+        
 
         //Ihabitat vendira a ser como ienvironmet q tengo yo es lo mismo
         //las comidas items y entidades deben implementar la iterfaz ipositionable y su metodo
@@ -59,6 +65,8 @@ namespace crudsGame.src.model.Terrains.Map
             EntitiesList = new List<Entity>();
             FoodsList = new List<Food>();
             itemList = new List<Item>();
+
+            
         }
         public Terrain() { }
         public override string ToString()

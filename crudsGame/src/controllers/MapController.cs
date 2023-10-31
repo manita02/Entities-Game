@@ -27,8 +27,9 @@ namespace crudsGame.src.controllers
         private readonly List<Map> maps = new List<Map>();
         private readonly List<Land> Lands = new List<Land>();
         private readonly List<IPositionable> positionables = new List<IPositionable>();
+        int problema = 0;
 
-        
+
 
 
 
@@ -49,6 +50,7 @@ namespace crudsGame.src.controllers
             //MessageBox.Show("terreno a añadir: " + TerrainToAdd.ToString());
 
             map.TerrainsList.Add(TerrainToAdd);
+            
         }
 
 
@@ -60,6 +62,7 @@ namespace crudsGame.src.controllers
 
         public List<Terrain> GetTerrains(Map map)
         {
+            //MessageBox.Show("cantidad en lista de terrenos " + map.TerrainsList.Count);
             return map.TerrainsList;
         }
 
@@ -104,27 +107,83 @@ namespace crudsGame.src.controllers
         }
         */
 
-        public void GenerateMap()
+        public bool GenerateMap()
         {
-            Map map = new Map();
-            var random = new Random();
-            for (int i = 0; i < 19; i++)
+            try
             {
-                List<ITerrain> terrainTypes = TerrainsTypesList();
-                //MessageBox.Show("cantidad de tipos de terrenos: " + terrainTypes.Count);
-                ITerrain randomTerrain = terrainTypes[random.Next(terrainTypes.Count)];
-                //MessageBox.Show("index seleccioado: " + randomTerrain);
-                AddTerrain(randomTerrain, map);
+                if (chequearSiHayCuarentaEntidadesComidasItems() == true)
+                {
+                    Map map = new Map();
+                    var random = new Random();
+                    for (int i = 0; i < 19; i++)
+                    {
+                        List<ITerrain> terrainTypes = TerrainsTypesList();
+                        //MessageBox.Show("cantidad de tipos de terrenos: " + terrainTypes.Count);
+                        ITerrain randomTerrain = terrainTypes[random.Next(terrainTypes.Count)];
+                        //MessageBox.Show("index seleccioado: " + randomTerrain);
+                        AddTerrain(randomTerrain, map);
+
+                        /*
+                        if (i % 4 == 0)
+                        {
+                            AddTerrain(new Water(), map);
+                        }
+                        else
+                        {
+                            if (i % 3 == 0)
+                            {
+                                AddTerrain(new Water(), map);
+                            }
+                            else
+                            {
+                                if (i % 2 == 0)
+                                {
+                                    AddTerrain(new Land(), map);
+                                }
+                                else
+                                {
+                                    AddTerrain(new Land(), map);
+                                }
+
+                            }
+
+                        }
+                        */
+
+
+
+                    }
+                    //MessageBox.Show("cantidad en lista de terrenos " + map.TerrainsList.Count);
+                    maps.Add(map);
+                    setBorderingTerrains(map); //una vez q salio de for setea de forma general a todos los terrenos creados sus limitrofes
+                    setEntidadesEnMapa(map);
+                    setComidasEnMapa(map);
+                    setItemsEnMapa(map);
+
+                    return true;
+                }
+                return false;
             }
-            maps.Add(map);
-            setBorderingTerrains(map); //una vez q salio de for setea de forma general a todos los terrenos creados sus limitrofes
-            setEntidadesEnMapa(map);
-            setComidasEnMapa(map);
-            setItemsEnMapa(map);
+            catch (Exception e)
+            {
+                new MessageBoxDarkMode(e.Message, "Aviso", "Ok", Resources.warning, true);
+            }
+            return false;
+            
+            
 
 
         }
 
+        public bool chequearSiHayCuarentaEntidadesComidasItems()
+        {
+            if ((entityCtn.GetEntitiesList().Count < 40) || (foodCtn.GetFoodList().Count < 40) || (itemCtn.GetItemList().Count < 40))
+            {
+                throw new Exception("Para poder generar el mapa deben existir 40 entidades, 40 comidas y 40 items. Por favor verifique en los CRUDs que haya creado esta cantidad.");
+                return false;
+            }
+            return true;   
+        }
 
         public bool buscarsilaentidadyaseagregoalmapaenalgunterreno(Entity entidadAbuscar, Map map)
         {
@@ -146,17 +205,20 @@ namespace crudsGame.src.controllers
         private Entity obtenerunaentidadrandomquecoindaconelterrenodondeseubicara(Terrain terrain, List<Entity> newList, List<int> availableIndexes)
         {
             int x = 0;
+
             Random random = new Random();
             //MessageBox.Show("ambiente por parametro: " + terrain.TerrainType.ToString());
 
             //MessageBox.Show("valor de availbale indices: " + availableIndexes.Count);
+
             while (x != 1)
             {
+                //problema = 0;
                 x = 0;
                 //se elije un indice random de la lista de indices disponibles para agregar de la lista de entidades
                 int indexrandmom = random.Next(availableIndexes.Count);
                 //MessageBox.Show("index random: " + indexrandmom+ " _cantidad en la newList: "+newList.Count+" cantidad de indices disponibles: "+availableIndexes.Count);
-                
+
                 //aca de la lista de entidades que seria newList se le asigna entre corchetes el index anterior para obtener una entidad random
                 Entity randomEntityOne = newList[indexrandmom];
                 //MessageBox.Show("trabajando con: " + randomEntityOne.name);
@@ -166,34 +228,56 @@ namespace crudsGame.src.controllers
                     case Water: //si el terreno es agua
                         foreach (IEnvironment env in randomEntityOne.environmentList)
                         {
-                            //MessageBox.Show("ambiente necesito que sea aquatico: " + env.ToString());
-
-                            if (env is Aquatic || env is Aereal) //si en la lista de ambientes de la entidad random obtenida anteriormente tiene a acuatico o aereo
+                            if (problema != 50)
                             {
-                                x++;//corta el ciclo x = 1
-                                //MessageBox.Show("La entidad" + randomEntityOne.name + "es aquatico_ valor de x: " + x);
-                                //MessageBox.Show("llegandooo");
-                                return randomEntityOne; //retorna la entidad para que pueda ser agregada
+                                //MessageBox.Show("ambiente necesito que sea aquatico: " + env.ToString());
+
+                                if (env is Aquatic || env is Aereal) //si en la lista de ambientes de la entidad random obtenida anteriormente tiene a acuatico o aereo
+                                {
+                                    x++;//corta el ciclo x = 1
+                                        //MessageBox.Show("La entidad" + randomEntityOne.name + "es aquatico_ valor de x: " + x);
+                                        //MessageBox.Show("llegandooo");
+                                    return randomEntityOne; //retorna la entidad para que pueda ser agregada
+                                }
+
+                                problema++;
+                                MessageBox.Show("valor del problema en water: " + problema);
+                            }
+                            else
+                            {
+                                throw new Exception("ocurrio un error debera de volver a generar el mapa.. problema = " + problema);
+                                //MessageBox.Show("ocurrio un error debera de volver a generar el mapa.. problema = " + problema);
                             }
                         }
                         break;
                     case Land:
                         foreach (IEnvironment env in randomEntityOne.environmentList)
                         {
-                            //MessageBox.Show("ambiente necesito que sea terrestre: " + env.ToString());
-                            if (env is Terrestrial || env is Aereal)
+                            if (problema != 50)
                             {
+                                //MessageBox.Show("ambiente necesito que sea terrestre: " + env.ToString());
+                                if (env is Terrestrial || env is Aereal)
+                                {
 
-                                x++;
-                                //MessageBox.Show("La entidad" + randomEntityOne.name + "es terrestre valor de x: " + x);
-                                //MessageBox.Show("llegandooo");
-                                return randomEntityOne;
+                                    x++;
+                                    //MessageBox.Show("La entidad" + randomEntityOne.name + "es terrestre valor de x: " + x);
+                                    //MessageBox.Show("llegandooo");
+                                    return randomEntityOne;
+                                }
+
+                                problema++;
+                                MessageBox.Show("valor del problema en tierra: " + problema);
+                            }
+                            else
+                            {
+                                throw new Exception("ocurrio un error debera de volver a generar el mapa.. problema = " + problema);
+                                //MessageBox.Show("ocurrio un error debera de volver a generar el mapa.. problema = " + problema);
                             }
                         }
                         break;
 
                 }
-                
+
                 /*
                 if (terrain.TerrainType is Water)
                 {
@@ -233,12 +317,19 @@ namespace crudsGame.src.controllers
                 */
 
             }
+        
             return null;
         }
 
 
+    
+            
+      
+
+
         public void setEntidadesEnMapa(Map map)
         {
+            try { 
             List<Entity> newList = entityCtn.GetEntitiesList();
             //List<int> availableIndexes = Enumerable.Range(0, newList.Count).ToList();
             Random random = new Random();
@@ -288,6 +379,11 @@ namespace crudsGame.src.controllers
 
                 }
 
+            }
+            }
+            catch(Exception ex)
+            {
+                new MessageBoxDarkMode(ex.Message, "Error", "Ok", Resources.error, true);
             }
         }
 
@@ -576,16 +672,20 @@ namespace crudsGame.src.controllers
         {
             foreach (Terrain terr in map.TerrainsList)
             {
-                //MessageBox.Show("cantidad en lista antes de borrar: " + terr.EntitiesList.Count + "en terreno " + terr.Id);
+                MessageBox.Show("cantidad en lista antes de borrar: " + terr.FoodsList.Count + "en terreno " + terr.Id);
                 if (terr.FoodsList.Contains(food))
                 {
 
                     terr.FoodsList.Remove(food);//borra la entidad del terreno donde se encuentre
-                    //MessageBox.Show("cantidad en lista DESPUES DE de borrar: " + terr.EntitiesList.Count + " la entidad " + item.name);
+                    MessageBox.Show("cantidad en lista DESPUES DE de borrar: " + terr.FoodsList.Count + " la entidad " + food.name);
+                    
                 }
-
+                    
             }
-
+               
         }
+
+
+       
     }
 }

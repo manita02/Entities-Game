@@ -84,7 +84,6 @@
             btnEat = new MaterialSkin.Controls.MaterialRaisedButton();
             picFoods = new PictureBox();
             pnEntities = new Panel();
-            btnSleep = new MaterialSkin.Controls.MaterialFlatButton();
             picEntity = new PictureBox();
             pnAttack = new Panel();
             picAttack = new PictureBox();
@@ -332,6 +331,7 @@
             // 
             // cbCurrentTerrain
             // 
+            cbCurrentTerrain.Enabled = false;
             cbCurrentTerrain.FormattingEnabled = true;
             cbCurrentTerrain.Location = new Point(404, 150);
             cbCurrentTerrain.Margin = new Padding(4, 5, 4, 5);
@@ -553,7 +553,7 @@
             pbCurrentEnergy.Depth = 0;
             pbCurrentEnergy.Location = new Point(244, 416);
             pbCurrentEnergy.Margin = new Padding(4, 5, 4, 5);
-            pbCurrentEnergy.Maximum = 500;
+            pbCurrentEnergy.Maximum = 5000;
             pbCurrentEnergy.MouseState = MaterialSkin.MouseState.HOVER;
             pbCurrentEnergy.Name = "pbCurrentEnergy";
             pbCurrentEnergy.Size = new Size(300, 5);
@@ -564,7 +564,7 @@
             pbCurrentLife.Depth = 0;
             pbCurrentLife.Location = new Point(248, 366);
             pbCurrentLife.Margin = new Padding(4, 5, 4, 5);
-            pbCurrentLife.Maximum = 500;
+            pbCurrentLife.Maximum = 5000;
             pbCurrentLife.MouseState = MaterialSkin.MouseState.HOVER;
             pbCurrentLife.Name = "pbCurrentLife";
             pbCurrentLife.Size = new Size(300, 5);
@@ -770,7 +770,6 @@
             // pnEntities
             // 
             pnEntities.BackColor = Color.MidnightBlue;
-            pnEntities.Controls.Add(btnSleep);
             pnEntities.Controls.Add(lbKingdom);
             pnEntities.Controls.Add(materialLabel3);
             pnEntities.Controls.Add(label1);
@@ -795,30 +794,13 @@
             pnEntities.Size = new Size(558, 817);
             pnEntities.TabIndex = 38;
             // 
-            // btnSleep
-            // 
-            btnSleep.AutoSize = true;
-            btnSleep.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnSleep.Depth = 0;
-            btnSleep.Icon = null;
-            btnSleep.Location = new Point(450, 1028);
-            btnSleep.Margin = new Padding(6, 10, 6, 10);
-            btnSleep.MouseState = MaterialSkin.MouseState.HOVER;
-            btnSleep.Name = "btnSleep";
-            btnSleep.Primary = false;
-            btnSleep.Size = new Size(83, 36);
-            btnSleep.TabIndex = 47;
-            btnSleep.Text = "SLEEP";
-            btnSleep.UseVisualStyleBackColor = true;
-            btnSleep.Click += btnSleep_Click;
-            // 
             // picEntity
             // 
             picEntity.Image = Properties.Resources.entity;
-            picEntity.Location = new Point(296, 0);
+            picEntity.Location = new Point(273, 0);
             picEntity.Margin = new Padding(4, 5, 4, 5);
             picEntity.Name = "picEntity";
-            picEntity.Size = new Size(300, 335);
+            picEntity.Size = new Size(323, 371);
             picEntity.SizeMode = PictureBoxSizeMode.StretchImage;
             picEntity.TabIndex = 46;
             picEntity.TabStop = false;
@@ -854,7 +836,7 @@
             pbCurrentLifePlayerTwo.Depth = 0;
             pbCurrentLifePlayerTwo.Location = new Point(252, 68);
             pbCurrentLifePlayerTwo.Margin = new Padding(4, 5, 4, 5);
-            pbCurrentLifePlayerTwo.Maximum = 500;
+            pbCurrentLifePlayerTwo.Maximum = 5000;
             pbCurrentLifePlayerTwo.MouseState = MaterialSkin.MouseState.HOVER;
             pbCurrentLifePlayerTwo.Name = "pbCurrentLifePlayerTwo";
             pbCurrentLifePlayerTwo.Size = new Size(300, 5);
@@ -1126,6 +1108,6 @@
         private MaterialSkin.Controls.MaterialFlatButton btnMove;
         private Panel pnMove;
         private PictureBox pictureBox1;
-        private MaterialSkin.Controls.MaterialFlatButton btnSleep;
+        //private MaterialSkin.Controls.MaterialFlatButton btnSleep;
     }
 }

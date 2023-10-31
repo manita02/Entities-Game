@@ -98,7 +98,7 @@ namespace crudsGame.src.controllers
         {
             foreach (Food f in foodList)
             {
-                if (f.name == f.name)
+                if (f.name == food.name)
                 {
                     //EntitiesList.Remove(entity);
                     //MessageBox.Show("existe");

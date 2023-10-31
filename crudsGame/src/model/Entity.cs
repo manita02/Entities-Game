@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace crudsGame.src.model
 {
-    public class Entity : IPositionable
+    public class Entity
     {
         int Id;
         IKingdom Kingdom;
@@ -562,11 +562,12 @@ namespace crudsGame.src.model
         }
 
 
-        public void UsarItem(Entity entity, Item item)//no es necesario pasar la entidaddd
+        public bool UsarItem(Entity entity, Item item)//no es necesario pasar la entidaddd
         {
             if (Kingdom.CanInteract(item) == true)
             {
-                item.Interact(this); 
+                item.Interact(this);
+                return true;
                 //if (item.Interact(entity) == true)
                 //{
                     //return true; 
@@ -601,9 +602,10 @@ namespace crudsGame.src.model
                 //MessageBox.Show("la entidad seleccionada no puede usar este item");
                 //return true;
             }
+            return false;
         }
 
-        public void Eat(Entity entity,  Food food)//no es necesario pasar la entidad creo q funciona el caneat
+        public bool Eat(Entity entity,  Food food)//no es necesario pasar la entidad creo q funciona el caneat
         {
             /*
                  if (Diet.CanEat(entity, food) == true)
@@ -622,6 +624,7 @@ namespace crudsGame.src.model
                 if (Diet.CanEat(food) == true)
                 {
                     food.Interact(this);
+                    return true;
                     //entity.currentEnergy -= 10;
                 }
                 else
@@ -629,6 +632,7 @@ namespace crudsGame.src.model
                     throw new Exception("La dieta ( "+this.diet+" ) de la entidad seleccionada ( "+this.name+" ) no coincide con el alimento a ingerir");
                     //MessageBox.Show("la entidad seleccionada no puede comer este alimento");
                 }
+                
            
 
 
@@ -682,10 +686,7 @@ namespace crudsGame.src.model
             */
             }
 
-        public List<IEnvironment> HabitatsCompatible()
-        {
-            return environmentList;//me retorna los ambientesss
-        }
+        
 
         public bool MoveThrough(ITerrain terrain)
         {
