@@ -596,7 +596,10 @@ namespace crudsGame.src.views
             }
         }
 
-
+        private void MapTest_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
     #endregion
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using crudsGame.Properties;
+using crudsGame.src.controllers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -50,8 +52,13 @@ namespace crudsGame.src.views
 
         private void mAPTESTToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frm = new MapTest();
-            frm.ShowDialog();
+            MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de generar el mapa?? No podrá volver a crear, editar o eliminar entidades, items y comidas", "ATENCIÓN", "OkCancel", Resources.info);
+            if (GeneralController.MessageBoxDialogResult(messageBox) == true)
+            {
+                Form frm = new MapTest();
+                frm.ShowDialog();
+            }
+                
         }
     }
 }

@@ -126,7 +126,7 @@
             materialDivider1.Margin = new Padding(4, 5, 4, 5);
             materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
             materialDivider1.Name = "materialDivider1";
-            materialDivider1.Size = new Size(660, 943);
+            materialDivider1.Size = new Size(660, 889);
             materialDivider1.TabIndex = 1;
             materialDivider1.Text = "materialDivider1";
             // 
@@ -879,7 +879,7 @@
             btnMoveInfo.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnMoveInfo.Depth = 0;
             btnMoveInfo.Icon = null;
-            btnMoveInfo.Location = new Point(22, 1032);
+            btnMoveInfo.Location = new Point(36, 972);
             btnMoveInfo.Margin = new Padding(4, 5, 4, 5);
             btnMoveInfo.MouseState = MaterialSkin.MouseState.HOVER;
             btnMoveInfo.Name = "btnMoveInfo";
@@ -912,7 +912,7 @@
             btnMove.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnMove.Depth = 0;
             btnMove.Icon = null;
-            btnMove.Location = new Point(0, 367);
+            btnMove.Location = new Point(6, 309);
             btnMove.Margin = new Padding(6, 10, 6, 10);
             btnMove.MouseState = MaterialSkin.MouseState.HOVER;
             btnMove.Name = "btnMove";
@@ -933,14 +933,14 @@
             pnMove.Location = new Point(36, 612);
             pnMove.Margin = new Padding(4, 5, 4, 5);
             pnMove.Name = "pnMove";
-            pnMove.Size = new Size(368, 413);
+            pnMove.Size = new Size(368, 360);
             pnMove.TabIndex = 41;
             pnMove.Visible = false;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.walk;
-            pictureBox1.Location = new Point(112, 221);
+            pictureBox1.Location = new Point(118, 163);
             pictureBox1.Margin = new Padding(4, 5, 4, 5);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(126, 133);
@@ -952,7 +952,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1946, 1106);
+            ClientSize = new Size(1946, 1047);
             Controls.Add(pnMove);
             Controls.Add(btnMoveInfo);
             Controls.Add(groupBox2);
@@ -984,6 +984,8 @@
             Margin = new Padding(4, 5, 4, 5);
             Name = "MapTest";
             Text = "MapTest";
+            WindowState = FormWindowState.Maximized;
+            FormClosed += MapTest_FormClosed;
             groupBox2.ResumeLayout(false);
             pnItems.ResumeLayout(false);
             pnItems.PerformLayout();
