@@ -272,3 +272,4 @@ C:\Users\manit\Desktop\criatures_game\probandoAnimales\crudsGame\obj\Debug\net6.
 C:\Users\manit\Desktop\criatures_game\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.pdb
 C:\Users\manit\Desktop\criatures_game\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.genruntimeconfig.cache
 C:\Users\manit\Desktop\criatures_game\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\ref\crudsGame.dll
+C:\Users\manit\Desktop\criatures_game\probandoAnimales\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.Menu.resources

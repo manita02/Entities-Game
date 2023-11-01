@@ -18,7 +18,7 @@ namespace crudsGame
             //Application.Run(new AttackTest());
             //Application.Run(new MapTest());
             //Application.Run(new CRUDfood());
-            Application.Run(new MainMenu());
+            Application.Run(new Menu());
 
         }
     }
