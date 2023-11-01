@@ -98,7 +98,7 @@ Es una aplicación realizada según el patrón MVC (Modelo, Vista, Controlador) 
 - Si la defensa🛡️ de la entidad atacada supera los puntos de ataque de la entidad atacante, la diferencia entre estos valores se resta a la vida de la entidad atacante🥊. 
 
 <section align="center">
-      <img src="https://i0.wp.com/actugeekgaming.com/wp-content/uploads/2019/10/payday3-ps5-release-768x432.jpg?resize=696%2C392&ssl=1" alt="attack">
+      <img src="https://i.pinimg.com/564x/67/65/45/676545d02d073c47032601eb77c65edd.jpg" alt="attack">
 </section>
 
   
