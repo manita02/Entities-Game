@@ -596,9 +596,13 @@ namespace crudsGame.src.views
             }
         }
 
-        private void MapTest_FormClosed(object sender, FormClosedEventArgs e)
+        private void MapTest_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro que desea salir?? Se cerrará la aplicación por completo...", "Aviso", "OkCancel", Resources.question);
+            if (GeneralController.MessageBoxDialogResult(messageBox) == false)
+            {
+                e.Cancel = true;
+            }
         }
     }
     #endregion

@@ -985,7 +985,7 @@
             Name = "MapTest";
             Text = "MapTest";
             WindowState = FormWindowState.Maximized;
-            FormClosed += MapTest_FormClosed;
+            FormClosing += MapTest_FormClosing;
             groupBox2.ResumeLayout(false);
             pnItems.ResumeLayout(false);
             pnItems.PerformLayout();
