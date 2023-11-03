@@ -31,8 +31,7 @@
 ## Sobre Entities Game :shipit:
 
 <p align="justify">
-<!--Se pretende desarrollar un videojuego basado en turnos. El juego se desarrolla en un mapa dividido en casilleros hexagonales (terrenos) en donde los jugadores pueden posicionar entidades. Estas entidades pueden moverse entre casilleros, atacar otras entidades e interactuar con diferentes objetos. Una entidad puede ser acuática, terrestre, aérea o cualquier combinación de ellas (acuático-terrestre, aéreo-terrestre, aéreo-acuático-terrestre, etc), esto define el terreno por el cual puede moverse y su posición sobre el tablero.-->
-Es una aplicación realizada según el patrón MVC (Modelo, Vista, Controlador) que permite el ABM (Alta, Baja, Modificación), de entidades, items y comidas. A su vez posee algunas funcionalidades de juego entre las mismas entidades, por medio de un mapa dividido en casilleros hexagonales (terrenos) en donde tendremos entidades, items y comidas. Las entidades pueden moverse entre casilleros, atacar otras entidades e interactuar con diferentes objetos. Una entidad puede ser acuática, terrestre, aérea o cualquier combinación de ellas (acuático-terrestre, aéreo-terrestre, aéreo-acuático-terrestre, etc), esto define el terreno por el cual puede moverse y su posición sobre el tablero.
+Es una aplicación realizada según el patrón MVC (Modelo, Vista, Controlador) que permite el ABM (Alta, Baja, Modificación), de entidades, items y comidas. A su vez posee algunas funcionalidades de juego por medio de un mapa dividido en casilleros hexagonales (terrenos) en donde tendremos los objetos mencionados anteriormente. Las entidades pueden moverse entre casilleros, atacar otras entidades e interactuar con comidas o items. Una entidad puede ser acuática, terrestre, aérea o cualquier combinación de ellas (acuático-terrestre, aéreo-terrestre, aéreo-acuático-terrestre, etc), esto define el terreno por el cual puede moverse y su posición sobre el mapa.
 </p>
 
 
