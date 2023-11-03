@@ -104,10 +104,10 @@ namespace crudsGame.src.views
         }
         #endregion
 
-        
+
         #region Select Index Changed
-        
-        
+
+
         /*
         private void dgvItems_SelectionChanged(object sender, EventArgs e)
         {
@@ -168,7 +168,7 @@ namespace crudsGame.src.views
         #endregion
 
 
-      
+
 
         #region Buttons Interactions
         private void btnCreatee_Click(object sender, EventArgs e)
@@ -195,12 +195,12 @@ namespace crudsGame.src.views
 
                 CleanFields();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 new MessageBoxDarkMode(ex.Message + " por esto no se creará el item", "Error", "Ok", Resources.error, true);
             }
-                
-            
+
+
 
         }
 
@@ -230,7 +230,7 @@ namespace crudsGame.src.views
                     }
                     CleanFields();
                     UpdateItemId();
-                    
+
 
                 }
                 catch (Exception ex)
@@ -241,7 +241,7 @@ namespace crudsGame.src.views
                     dgvItems.Enabled = false;
                 }
             }
-           
+
         }
 
         private void btnDeletee_Click(object sender, EventArgs e)

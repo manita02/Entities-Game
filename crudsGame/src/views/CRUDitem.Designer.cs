@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CRUDitem));
             dgvItems = new DataGridView();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
@@ -55,18 +59,48 @@
             // dgvItems
             // 
             dgvItems.AllowUserToAddRows = false;
+            dgvItems.AllowUserToResizeColumns = false;
+            dgvItems.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = Color.White;
             dgvItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvItems.BorderStyle = BorderStyle.Fixed3D;
             dgvItems.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvItems.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4 });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvItems.DefaultCellStyle = dataGridViewCellStyle3;
             dgvItems.Location = new Point(-1, 387);
             dgvItems.Name = "dgvItems";
             dgvItems.ReadOnly = true;
             dgvItems.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvItems.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvItems.RowHeadersVisible = false;
-            dgvItems.RowTemplate.Height = 25;
+            dgvItems.RowHeadersWidth = 62;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvItems.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dgvItems.RowTemplate.Height = 35;
             dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvItems.Size = new Size(775, 306);
             dgvItems.TabIndex = 13;
@@ -75,26 +109,34 @@
             // dataGridViewTextBoxColumn1
             // 
             dataGridViewTextBoxColumn1.HeaderText = "Id";
+            dataGridViewTextBoxColumn1.MinimumWidth = 8;
             dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             dataGridViewTextBoxColumn1.ReadOnly = true;
+            dataGridViewTextBoxColumn1.Width = 150;
             // 
             // dataGridViewTextBoxColumn2
             // 
             dataGridViewTextBoxColumn2.HeaderText = "Name";
+            dataGridViewTextBoxColumn2.MinimumWidth = 8;
             dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             dataGridViewTextBoxColumn2.ReadOnly = true;
+            dataGridViewTextBoxColumn2.Width = 150;
             // 
             // dataGridViewTextBoxColumn3
             // 
             dataGridViewTextBoxColumn3.HeaderText = "Kingdom";
+            dataGridViewTextBoxColumn3.MinimumWidth = 8;
             dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             dataGridViewTextBoxColumn3.ReadOnly = true;
+            dataGridViewTextBoxColumn3.Width = 150;
             // 
             // dataGridViewTextBoxColumn4
             // 
             dataGridViewTextBoxColumn4.HeaderText = "Type";
+            dataGridViewTextBoxColumn4.MinimumWidth = 8;
             dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             dataGridViewTextBoxColumn4.ReadOnly = true;
+            dataGridViewTextBoxColumn4.Width = 150;
             // 
             // cbType
             // 
@@ -103,7 +145,7 @@
             cbType.Location = new Point(143, 244);
             cbType.Margin = new Padding(4);
             cbType.Name = "cbType";
-            cbType.Size = new Size(205, 26);
+            cbType.Size = new Size(205, 37);
             cbType.TabIndex = 8;
             cbType.SelectedIndexChanged += cbType_SelectedIndexChanged;
             // 
@@ -114,7 +156,7 @@
             cbKingdom.Location = new Point(143, 209);
             cbKingdom.Margin = new Padding(4);
             cbKingdom.Name = "cbKingdom";
-            cbKingdom.Size = new Size(205, 26);
+            cbKingdom.Size = new Size(205, 37);
             cbKingdom.TabIndex = 32;
             // 
             // picItem
@@ -137,7 +179,7 @@
             materialLabel1.Margin = new Padding(4, 0, 4, 0);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(25, 19);
+            materialLabel1.Size = new Size(35, 27);
             materialLabel1.TabIndex = 34;
             materialLabel1.Text = "Id:";
             // 
@@ -151,7 +193,7 @@
             materialLabel2.Margin = new Padding(4, 0, 4, 0);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
-            materialLabel2.Size = new Size(53, 19);
+            materialLabel2.Size = new Size(76, 27);
             materialLabel2.TabIndex = 35;
             materialLabel2.Text = "Name:";
             // 
@@ -165,7 +207,7 @@
             materialLabel3.Margin = new Padding(4, 0, 4, 0);
             materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel3.Name = "materialLabel3";
-            materialLabel3.Size = new Size(72, 19);
+            materialLabel3.Size = new Size(104, 27);
             materialLabel3.TabIndex = 36;
             materialLabel3.Text = "Kingdom:";
             // 
@@ -179,7 +221,7 @@
             materialLabel4.Margin = new Padding(4, 0, 4, 0);
             materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel4.Name = "materialLabel4";
-            materialLabel4.Size = new Size(45, 19);
+            materialLabel4.Size = new Size(64, 27);
             materialLabel4.TabIndex = 37;
             materialLabel4.Text = "Type:";
             // 
@@ -205,7 +247,7 @@
             btnCreatee.MouseState = MaterialSkin.MouseState.HOVER;
             btnCreatee.Name = "btnCreatee";
             btnCreatee.Primary = true;
-            btnCreatee.Size = new Size(71, 36);
+            btnCreatee.Size = new Size(99, 36);
             btnCreatee.TabIndex = 39;
             btnCreatee.Text = "CREATE";
             btnCreatee.UseVisualStyleBackColor = true;
@@ -221,7 +263,7 @@
             btnUpdatee.MouseState = MaterialSkin.MouseState.HOVER;
             btnUpdatee.Name = "btnUpdatee";
             btnUpdatee.Primary = true;
-            btnUpdatee.Size = new Size(73, 36);
+            btnUpdatee.Size = new Size(101, 36);
             btnUpdatee.TabIndex = 40;
             btnUpdatee.Text = "UPDATE";
             btnUpdatee.UseVisualStyleBackColor = true;
@@ -237,7 +279,7 @@
             btnDeletee.MouseState = MaterialSkin.MouseState.HOVER;
             btnDeletee.Name = "btnDeletee";
             btnDeletee.Primary = true;
-            btnDeletee.Size = new Size(69, 36);
+            btnDeletee.Size = new Size(95, 36);
             btnDeletee.TabIndex = 41;
             btnDeletee.Text = "DELETE";
             btnDeletee.UseVisualStyleBackColor = true;
@@ -256,7 +298,7 @@
             txtId.SelectedText = "";
             txtId.SelectionLength = 0;
             txtId.SelectionStart = 0;
-            txtId.Size = new Size(205, 23);
+            txtId.Size = new Size(205, 32);
             txtId.TabIndex = 42;
             txtId.TabStop = false;
             txtId.UseSystemPasswordChar = false;
@@ -273,14 +315,14 @@
             txtName.SelectedText = "";
             txtName.SelectionLength = 0;
             txtName.SelectionStart = 0;
-            txtName.Size = new Size(206, 23);
+            txtName.Size = new Size(206, 32);
             txtName.TabIndex = 43;
             txtName.TabStop = false;
             txtName.UseSystemPasswordChar = false;
             // 
             // CRUDitem
             // 
-            AutoScaleDimensions = new SizeF(9F, 18F);
+            AutoScaleDimensions = new SizeF(14F, 29F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(862, 702);

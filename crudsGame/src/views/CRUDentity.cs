@@ -271,7 +271,7 @@ namespace crudsGame.src.views
 
         private bool checkNumeroMaxAingresarPuntosDefensaYataque()
         {
-            if (Convert.ToInt16(txtAttack.Text) > 400|| Convert.ToInt16(txtAttack.Text) > 400)
+            if (Convert.ToInt16(txtAttack.Text) > 400 || Convert.ToInt16(txtAttack.Text) > 400)
             {
                 new MessageBoxDarkMode("Los puntos de ataque y defensa de una entidad, deben ser menores a 400", "Error", "Ok", Resources.error, true);
                 return false;
@@ -380,7 +380,7 @@ namespace crudsGame.src.views
                     }
 
                 }
-            
+
             }
         }
 

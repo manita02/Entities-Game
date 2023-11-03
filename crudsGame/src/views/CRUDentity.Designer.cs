@@ -79,7 +79,7 @@
             cbKingdom.DropDownStyle = ComboBoxStyle.DropDownList;
             cbKingdom.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             cbKingdom.FormattingEnabled = true;
-            cbKingdom.Location = new Point(197, 223);
+            cbKingdom.Location = new Point(202, 154);
             cbKingdom.Margin = new Padding(4, 5, 4, 5);
             cbKingdom.Name = "cbKingdom";
             cbKingdom.Size = new Size(291, 37);
@@ -91,7 +91,7 @@
             cbDiet.DropDownStyle = ComboBoxStyle.DropDownList;
             cbDiet.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             cbDiet.FormattingEnabled = true;
-            cbDiet.Location = new Point(197, 350);
+            cbDiet.Location = new Point(202, 281);
             cbDiet.Margin = new Padding(4, 5, 4, 5);
             cbDiet.Name = "cbDiet";
             cbDiet.Size = new Size(290, 37);
@@ -100,11 +100,14 @@
             // dgvEntities
             // 
             dgvEntities.AllowUserToAddRows = false;
+            dgvEntities.AllowUserToResizeColumns = false;
+            dgvEntities.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             dgvEntities.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvEntities.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvEntities.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = SystemColors.Control;
             dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
@@ -114,7 +117,7 @@
             dgvEntities.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvEntities.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvEntities.Columns.AddRange(new DataGridViewColumn[] { id, kingdom, name, diet, environment, attackPoints, defensePoints, attackRange, maxEnergy, currentEnergy, maxLife, currentLife });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = SystemColors.Window;
             dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
@@ -122,16 +125,17 @@
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvEntities.DefaultCellStyle = dataGridViewCellStyle3;
-            dgvEntities.Location = new Point(4, 656);
+            dgvEntities.Location = new Point(4, 611);
             dgvEntities.Margin = new Padding(4, 5, 4, 5);
             dgvEntities.Name = "dgvEntities";
             dgvEntities.ReadOnly = true;
             dgvEntities.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dgvEntities.RowHeadersVisible = false;
             dgvEntities.RowHeadersWidth = 62;
-            dgvEntities.RowTemplate.Height = 25;
+            dgvEntities.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvEntities.RowTemplate.Height = 35;
             dgvEntities.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvEntities.Size = new Size(1717, 325);
+            dgvEntities.Size = new Size(1717, 348);
             dgvEntities.TabIndex = 16;
             dgvEntities.SelectionChanged += dgvEntities_SelectionChanged;
             // 
@@ -238,7 +242,7 @@
             clbEnvironments.CheckOnClick = true;
             clbEnvironments.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             clbEnvironments.FormattingEnabled = true;
-            clbEnvironments.Location = new Point(670, 423);
+            clbEnvironments.Location = new Point(675, 354);
             clbEnvironments.Margin = new Padding(4, 5, 4, 5);
             clbEnvironments.Name = "clbEnvironments";
             clbEnvironments.Size = new Size(233, 120);
@@ -246,10 +250,10 @@
             // 
             // picCreature
             // 
-            picCreature.Location = new Point(1083, 158);
+            picCreature.Location = new Point(1146, 124);
             picCreature.Margin = new Padding(4, 5, 4, 5);
             picCreature.Name = "picCreature";
-            picCreature.Size = new Size(661, 480);
+            picCreature.Size = new Size(607, 435);
             picCreature.SizeMode = PictureBoxSizeMode.StretchImage;
             picCreature.TabIndex = 26;
             picCreature.TabStop = false;
@@ -260,7 +264,7 @@
             materialLabel4.Depth = 0;
             materialLabel4.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel4.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel4.Location = new Point(80, 230);
+            materialLabel4.Location = new Point(85, 161);
             materialLabel4.Margin = new Padding(7, 0, 7, 0);
             materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel4.Name = "materialLabel4";
@@ -274,7 +278,7 @@
             materialLabel3.Depth = 0;
             materialLabel3.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel3.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel3.Location = new Point(126, 350);
+            materialLabel3.Location = new Point(131, 281);
             materialLabel3.Margin = new Padding(7, 0, 7, 0);
             materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel3.Name = "materialLabel3";
@@ -288,7 +292,7 @@
             materialLabel2.Depth = 0;
             materialLabel2.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel2.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel2.Location = new Point(107, 290);
+            materialLabel2.Location = new Point(112, 221);
             materialLabel2.Margin = new Padding(7, 0, 7, 0);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
@@ -302,7 +306,7 @@
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel1.Location = new Point(147, 165);
+            materialLabel1.Location = new Point(152, 96);
             materialLabel1.Margin = new Padding(7, 0, 7, 0);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
@@ -316,7 +320,7 @@
             materialLabel5.Depth = 0;
             materialLabel5.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel5.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel5.Location = new Point(34, 423);
+            materialLabel5.Location = new Point(39, 354);
             materialLabel5.Margin = new Padding(7, 0, 7, 0);
             materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel5.Name = "materialLabel5";
@@ -330,7 +334,7 @@
             materialLabel6.Depth = 0;
             materialLabel6.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel6.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel6.Location = new Point(520, 423);
+            materialLabel6.Location = new Point(525, 354);
             materialLabel6.Margin = new Padding(7, 0, 7, 0);
             materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel6.Name = "materialLabel6";
@@ -344,7 +348,7 @@
             materialLabel7.Depth = 0;
             materialLabel7.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel7.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel7.Location = new Point(19, 490);
+            materialLabel7.Location = new Point(24, 421);
             materialLabel7.Margin = new Padding(7, 0, 7, 0);
             materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel7.Name = "materialLabel7";
@@ -358,7 +362,7 @@
             materialLabel8.Depth = 0;
             materialLabel8.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel8.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel8.Location = new Point(524, 290);
+            materialLabel8.Location = new Point(529, 221);
             materialLabel8.Margin = new Padding(7, 0, 7, 0);
             materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel8.Name = "materialLabel8";
@@ -372,7 +376,7 @@
             materialLabel9.Depth = 0;
             materialLabel9.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel9.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel9.Location = new Point(37, 558);
+            materialLabel9.Location = new Point(42, 489);
             materialLabel9.Margin = new Padding(7, 0, 7, 0);
             materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel9.Name = "materialLabel9";
@@ -386,7 +390,7 @@
             materialLabel10.Depth = 0;
             materialLabel10.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel10.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel10.Location = new Point(550, 353);
+            materialLabel10.Location = new Point(555, 284);
             materialLabel10.Margin = new Padding(7, 0, 7, 0);
             materialLabel10.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel10.Name = "materialLabel10";
@@ -398,7 +402,7 @@
             // 
             txtAttack.Depth = 0;
             txtAttack.Hint = "";
-            txtAttack.Location = new Point(194, 417);
+            txtAttack.Location = new Point(199, 350);
             txtAttack.Margin = new Padding(4, 5, 4, 5);
             txtAttack.MaxLength = 32767;
             txtAttack.MouseState = MaterialSkin.MouseState.HOVER;
@@ -417,7 +421,7 @@
             // 
             txtName.Depth = 0;
             txtName.Hint = "";
-            txtName.Location = new Point(197, 283);
+            txtName.Location = new Point(202, 216);
             txtName.Margin = new Padding(4, 5, 4, 5);
             txtName.MaxLength = 32767;
             txtName.MouseState = MaterialSkin.MouseState.HOVER;
@@ -436,7 +440,7 @@
             txtId.Depth = 0;
             txtId.Enabled = false;
             txtId.Hint = "";
-            txtId.Location = new Point(197, 158);
+            txtId.Location = new Point(202, 92);
             txtId.Margin = new Padding(4, 5, 4, 5);
             txtId.MaxLength = 32767;
             txtId.MouseState = MaterialSkin.MouseState.HOVER;
@@ -455,7 +459,7 @@
             // 
             txtDefense.Depth = 0;
             txtDefense.Hint = "";
-            txtDefense.Location = new Point(194, 483);
+            txtDefense.Location = new Point(199, 414);
             txtDefense.Margin = new Padding(4, 5, 4, 5);
             txtDefense.MaxLength = 32767;
             txtDefense.MouseState = MaterialSkin.MouseState.HOVER;
@@ -474,7 +478,7 @@
             // 
             txtRange.Depth = 0;
             txtRange.Hint = "";
-            txtRange.Location = new Point(194, 552);
+            txtRange.Location = new Point(199, 483);
             txtRange.Margin = new Padding(4, 5, 4, 5);
             txtRange.MaxLength = 32767;
             txtRange.MouseState = MaterialSkin.MouseState.HOVER;
@@ -493,7 +497,7 @@
             // 
             txtMaxEnergy.Depth = 0;
             txtMaxEnergy.Hint = "";
-            txtMaxEnergy.Location = new Point(670, 290);
+            txtMaxEnergy.Location = new Point(675, 219);
             txtMaxEnergy.Margin = new Padding(4, 5, 4, 5);
             txtMaxEnergy.MaxLength = 32767;
             txtMaxEnergy.MouseState = MaterialSkin.MouseState.HOVER;
@@ -512,7 +516,7 @@
             // 
             txtMaxLife.Depth = 0;
             txtMaxLife.Hint = "";
-            txtMaxLife.Location = new Point(667, 347);
+            txtMaxLife.Location = new Point(672, 280);
             txtMaxLife.Margin = new Padding(4, 5, 4, 5);
             txtMaxLife.MaxLength = 32767;
             txtMaxLife.MouseState = MaterialSkin.MouseState.HOVER;
@@ -533,7 +537,7 @@
             btnDeletee.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnDeletee.Depth = 0;
             btnDeletee.Icon = null;
-            btnDeletee.Location = new Point(1734, 828);
+            btnDeletee.Location = new Point(1735, 741);
             btnDeletee.Margin = new Padding(6, 7, 6, 7);
             btnDeletee.MouseState = MaterialSkin.MouseState.HOVER;
             btnDeletee.Name = "btnDeletee";
@@ -550,7 +554,7 @@
             btnUpdatee.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnUpdatee.Depth = 0;
             btnUpdatee.Icon = null;
-            btnUpdatee.Location = new Point(1731, 732);
+            btnUpdatee.Location = new Point(1732, 645);
             btnUpdatee.Margin = new Padding(6, 7, 6, 7);
             btnUpdatee.MouseState = MaterialSkin.MouseState.HOVER;
             btnUpdatee.Name = "btnUpdatee";
@@ -567,7 +571,7 @@
             btnCreatee.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnCreatee.Depth = 0;
             btnCreatee.Icon = null;
-            btnCreatee.Location = new Point(520, 608);
+            btnCreatee.Location = new Point(525, 539);
             btnCreatee.Margin = new Padding(6, 7, 6, 7);
             btnCreatee.MouseState = MaterialSkin.MouseState.HOVER;
             btnCreatee.Name = "btnCreatee";
@@ -582,11 +586,11 @@
             // 
             materialDivider1.BackColor = Color.FromArgb(31, 0, 0, 0);
             materialDivider1.Depth = 0;
-            materialDivider1.Location = new Point(1720, 698);
+            materialDivider1.Location = new Point(1721, 611);
             materialDivider1.Margin = new Padding(7, 8, 7, 8);
             materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
             materialDivider1.Name = "materialDivider1";
-            materialDivider1.Size = new Size(131, 238);
+            materialDivider1.Size = new Size(131, 348);
             materialDivider1.TabIndex = 66;
             materialDivider1.Text = "materialDivider1";
             // 
@@ -595,7 +599,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1846, 1106);
+            ClientSize = new Size(1846, 962);
             Controls.Add(btnDeletee);
             Controls.Add(btnUpdatee);
             Controls.Add(btnCreatee);
@@ -624,6 +628,7 @@
             Controls.Add(cbKingdom);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 5, 4, 5);
+            MaximizeBox = false;
             Name = "CRUDentity";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CRUDentity";

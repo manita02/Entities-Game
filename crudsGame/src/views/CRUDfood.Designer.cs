@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CRUDfood));
             cbDiet = new ComboBox();
             dgvFoods = new DataGridView();
@@ -58,23 +63,55 @@
             cbDiet.Location = new Point(145, 212);
             cbDiet.Margin = new Padding(4);
             cbDiet.Name = "cbDiet";
-            cbDiet.Size = new Size(205, 26);
+            cbDiet.Size = new Size(205, 37);
             cbDiet.TabIndex = 38;
             cbDiet.SelectedIndexChanged += cbDiet_SelectedIndexChanged;
             // 
             // dgvFoods
             // 
             dgvFoods.AllowUserToAddRows = false;
+            dgvFoods.AllowUserToResizeColumns = false;
+            dgvFoods.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvFoods.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvFoods.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvFoods.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvFoods.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvFoods.Columns.AddRange(new DataGridViewColumn[] { id, name, diet, calories });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvFoods.DefaultCellStyle = dataGridViewCellStyle3;
             dgvFoods.Location = new Point(0, 398);
             dgvFoods.Margin = new Padding(4);
             dgvFoods.Name = "dgvFoods";
             dgvFoods.ReadOnly = true;
             dgvFoods.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvFoods.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvFoods.RowHeadersVisible = false;
-            dgvFoods.RowTemplate.Height = 25;
+            dgvFoods.RowHeadersWidth = 62;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvFoods.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dgvFoods.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvFoods.RowTemplate.Height = 35;
             dgvFoods.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvFoods.Size = new Size(871, 266);
             dgvFoods.TabIndex = 41;
@@ -83,26 +120,34 @@
             // id
             // 
             id.HeaderText = "Id";
+            id.MinimumWidth = 8;
             id.Name = "id";
             id.ReadOnly = true;
+            id.Width = 150;
             // 
             // name
             // 
             name.HeaderText = "Name";
+            name.MinimumWidth = 8;
             name.Name = "name";
             name.ReadOnly = true;
+            name.Width = 150;
             // 
             // diet
             // 
             diet.HeaderText = "Diet";
+            diet.MinimumWidth = 8;
             diet.Name = "diet";
             diet.ReadOnly = true;
+            diet.Width = 150;
             // 
             // calories
             // 
             calories.HeaderText = "Calories";
+            calories.MinimumWidth = 8;
             calories.Name = "calories";
             calories.ReadOnly = true;
+            calories.Width = 150;
             // 
             // picDiet
             // 
@@ -124,7 +169,7 @@
             materialLabel4.Margin = new Padding(5, 0, 5, 0);
             materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel4.Name = "materialLabel4";
-            materialLabel4.Size = new Size(69, 19);
+            materialLabel4.Size = new Size(96, 27);
             materialLabel4.TabIndex = 48;
             materialLabel4.Text = "Calories:";
             // 
@@ -138,7 +183,7 @@
             materialLabel3.Margin = new Padding(5, 0, 5, 0);
             materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel3.Name = "materialLabel3";
-            materialLabel3.Size = new Size(40, 19);
+            materialLabel3.Size = new Size(55, 27);
             materialLabel3.TabIndex = 47;
             materialLabel3.Text = "Diet:";
             // 
@@ -152,7 +197,7 @@
             materialLabel2.Margin = new Padding(5, 0, 5, 0);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
-            materialLabel2.Size = new Size(53, 19);
+            materialLabel2.Size = new Size(76, 27);
             materialLabel2.TabIndex = 46;
             materialLabel2.Text = "Name:";
             // 
@@ -166,7 +211,7 @@
             materialLabel1.Margin = new Padding(5, 0, 5, 0);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(25, 19);
+            materialLabel1.Size = new Size(35, 27);
             materialLabel1.TabIndex = 45;
             materialLabel1.Text = "Id:";
             // 
@@ -181,7 +226,7 @@
             btnDeletee.MouseState = MaterialSkin.MouseState.HOVER;
             btnDeletee.Name = "btnDeletee";
             btnDeletee.Primary = true;
-            btnDeletee.Size = new Size(69, 36);
+            btnDeletee.Size = new Size(95, 36);
             btnDeletee.TabIndex = 52;
             btnDeletee.Text = "DELETE";
             btnDeletee.UseVisualStyleBackColor = true;
@@ -198,7 +243,7 @@
             btnUpdatee.MouseState = MaterialSkin.MouseState.HOVER;
             btnUpdatee.Name = "btnUpdatee";
             btnUpdatee.Primary = true;
-            btnUpdatee.Size = new Size(73, 36);
+            btnUpdatee.Size = new Size(101, 36);
             btnUpdatee.TabIndex = 51;
             btnUpdatee.Text = "UPDATE";
             btnUpdatee.UseVisualStyleBackColor = true;
@@ -215,7 +260,7 @@
             btnCreatee.MouseState = MaterialSkin.MouseState.HOVER;
             btnCreatee.Name = "btnCreatee";
             btnCreatee.Primary = true;
-            btnCreatee.Size = new Size(71, 36);
+            btnCreatee.Size = new Size(99, 36);
             btnCreatee.TabIndex = 50;
             btnCreatee.Text = "CREATE";
             btnCreatee.UseVisualStyleBackColor = true;
@@ -245,7 +290,7 @@
             txtName.SelectedText = "";
             txtName.SelectionLength = 0;
             txtName.SelectionStart = 0;
-            txtName.Size = new Size(206, 23);
+            txtName.Size = new Size(206, 32);
             txtName.TabIndex = 54;
             txtName.TabStop = false;
             txtName.UseSystemPasswordChar = false;
@@ -263,7 +308,7 @@
             txtId.SelectedText = "";
             txtId.SelectionLength = 0;
             txtId.SelectionStart = 0;
-            txtId.Size = new Size(205, 23);
+            txtId.Size = new Size(205, 32);
             txtId.TabIndex = 53;
             txtId.TabStop = false;
             txtId.UseSystemPasswordChar = false;
@@ -280,7 +325,7 @@
             txtCalories.SelectedText = "";
             txtCalories.SelectionLength = 0;
             txtCalories.SelectionStart = 0;
-            txtCalories.Size = new Size(206, 23);
+            txtCalories.Size = new Size(206, 32);
             txtCalories.TabIndex = 55;
             txtCalories.TabStop = false;
             txtCalories.UseSystemPasswordChar = false;
@@ -288,7 +333,7 @@
             // 
             // CRUDfood
             // 
-            AutoScaleDimensions = new SizeF(9F, 18F);
+            AutoScaleDimensions = new SizeF(14F, 29F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(963, 667);
