@@ -45,7 +45,7 @@ Es una aplicación realizada según el patrón MVC (Modelo, Vista, Controlador) 
    
 
 ### :white_check_mark: `Descargar proyecto`:inbox_tray:
-- [Download](https://github.com/manita02/probandoAnimales/archive/refs/heads/main.zip):anger: 
+- [Download](https://github.com/manita02/Entities-Game/archive/refs/heads/main.zip):anger: 
 
 
 

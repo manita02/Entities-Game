@@ -64,7 +64,7 @@ namespace crudsGame.src.views
         {
             ProcessStartInfo psInfo = new ProcessStartInfo
             {
-                FileName = "https://github.com/manita02/probandoAnimales",
+                FileName = "https://github.com/manita02/Entities-Game",
                 UseShellExecute = true
             };
             Process.Start(psInfo);

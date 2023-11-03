@@ -81,11 +81,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\manit\\Desktop\\criatures_game\\probandoAnimales\\crudsGame\\crudsGame.csproj",
+      "projectUniqueName": "C:\\Users\\manit\\Desktop\\checkMain\\probandoAnimales\\crudsGame\\crudsGame.csproj",
       "projectName": "crudsGame",
-      "projectPath": "C:\\Users\\manit\\Desktop\\criatures_game\\probandoAnimales\\crudsGame\\crudsGame.csproj",
+      "projectPath": "C:\\Users\\manit\\Desktop\\checkMain\\probandoAnimales\\crudsGame\\crudsGame.csproj",
       "packagesPath": "C:\\Users\\manit\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\manit\\Desktop\\criatures_game\\probandoAnimales\\crudsGame\\obj\\",
+      "outputPath": "C:\\Users\\manit\\Desktop\\checkMain\\probandoAnimales\\crudsGame\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\manit\\AppData\\Roaming\\NuGet\\NuGet.Config",
