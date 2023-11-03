@@ -57,7 +57,7 @@
             materialMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
             materialMenuStrip1.Name = "materialMenuStrip1";
             materialMenuStrip1.Padding = new Padding(6, 60, 0, 2);
-            materialMenuStrip1.Size = new Size(177, 644);
+            materialMenuStrip1.Size = new Size(186, 644);
             materialMenuStrip1.TabIndex = 0;
             materialMenuStrip1.Text = "materialMenuStrip1";
             // 
@@ -66,7 +66,7 @@
             cRUDsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cRUDEntitiesToolStripMenuItem, cRUDItemsToolStripMenuItem, cRUDFoodsToolStripMenuItem });
             cRUDsToolStripMenuItem.Name = "cRUDsToolStripMenuItem";
             cRUDsToolStripMenuItem.Padding = new Padding(6, 20, 6, 0);
-            cRUDsToolStripMenuItem.Size = new Size(164, 49);
+            cRUDsToolStripMenuItem.Size = new Size(173, 49);
             cRUDsToolStripMenuItem.Text = "CRUDs";
             // 
             // cRUDEntitiesToolStripMenuItem
@@ -94,7 +94,7 @@
             // 
             gENERATEAMAPToolStripMenuItem.Name = "gENERATEAMAPToolStripMenuItem";
             gENERATEAMAPToolStripMenuItem.Padding = new Padding(6, 20, 6, 0);
-            gENERATEAMAPToolStripMenuItem.Size = new Size(164, 49);
+            gENERATEAMAPToolStripMenuItem.Size = new Size(173, 49);
             gENERATEAMAPToolStripMenuItem.Text = "Generate a Map";
             gENERATEAMAPToolStripMenuItem.Click += gENERATEAMAPToolStripMenuItem_Click;
             // 
@@ -102,14 +102,15 @@
             // 
             fUNCTIONALITIESToolStripMenuItem.Name = "fUNCTIONALITIESToolStripMenuItem";
             fUNCTIONALITIESToolStripMenuItem.Padding = new Padding(6, 20, 6, 0);
-            fUNCTIONALITIESToolStripMenuItem.Size = new Size(164, 49);
+            fUNCTIONALITIESToolStripMenuItem.Size = new Size(173, 49);
             fUNCTIONALITIESToolStripMenuItem.Text = "Functionalities";
+            fUNCTIONALITIESToolStripMenuItem.Click += fUNCTIONALITIESToolStripMenuItem_Click;
             // 
             // sEECODEToolStripMenuItem
             // 
             sEECODEToolStripMenuItem.Name = "sEECODEToolStripMenuItem";
             sEECODEToolStripMenuItem.Padding = new Padding(6, 20, 6, 0);
-            sEECODEToolStripMenuItem.Size = new Size(164, 49);
+            sEECODEToolStripMenuItem.Size = new Size(173, 49);
             sEECODEToolStripMenuItem.Text = "See Code";
             sEECODEToolStripMenuItem.Click += sEECODEToolStripMenuItem_Click;
             // 
@@ -117,7 +118,7 @@
             // 
             eXITToolStripMenuItem.Name = "eXITToolStripMenuItem";
             eXITToolStripMenuItem.Padding = new Padding(6, 20, 6, 0);
-            eXITToolStripMenuItem.Size = new Size(164, 49);
+            eXITToolStripMenuItem.Size = new Size(173, 49);
             eXITToolStripMenuItem.Text = "Exit";
             eXITToolStripMenuItem.Click += eXITToolStripMenuItem_Click;
             // 

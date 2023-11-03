@@ -73,5 +73,15 @@ namespace crudsGame.src.views
 
 
         }
+
+        private void fUNCTIONALITIESToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProcessStartInfo psInfo = new ProcessStartInfo
+            {
+                FileName = "https://drive.google.com/file/d/1o8hg8Nqz7P3_5GSXhBtr-4U8dZ7K5NyH/view?usp=sharing",
+                UseShellExecute = true
+            };
+            Process.Start(psInfo);
+        }
     }
 }
