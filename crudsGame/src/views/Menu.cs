@@ -43,13 +43,21 @@ namespace crudsGame.src.views
 
         private void gENERATEAMAPToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de generar el mapa?? No podrá volver a crear, editar o eliminar entidades, items y comidas", "ATENCIÓN", "OkCancel", Resources.question);
-            if (GeneralController.MessageBoxDialogResult(messageBox) == true)
+            try
             {
-                Form frm = new MapTest();
-                frm.ShowDialog();
-                this.Close();
+                MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de generar el mapa?? No podrá volver a crear, editar o eliminar entidades, items y comidas", "ATENCIÓN", "OkCancel", Resources.question);
+                if (GeneralController.MessageBoxDialogResult(messageBox) == true)
+                {
+                    Form frm = new MapTest();
+                    frm.ShowDialog();
+                    this.Close();
+                }
             }
+            catch (Exception ex)
+            {
+                new MessageBoxDarkMode(ex.Message, "ATENCIÓN", "Ok", Resources.error);
+            }
+            
         }
 
         private void sEECODEToolStripMenuItem_Click(object sender, EventArgs e)

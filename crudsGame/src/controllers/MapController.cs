@@ -110,8 +110,8 @@ namespace crudsGame.src.controllers
 
         public bool GenerateMap()
         {
-            try
-            {
+            //try
+            //{
                 if (chequearSiHayCuarentaEntidadesComidasItems() == true)
                 {
                     //Map map = new Map();
@@ -166,12 +166,12 @@ namespace crudsGame.src.controllers
                     return true;
                 }
                 return false;
-            }
-            catch (Exception e)
-            {
-                new MessageBoxDarkMode(e.Message, "Aviso", "Ok", Resources.warning, true);
-            }
-            return false;
+            //}
+            //catch (Exception e)
+            //{
+                //new MessageBoxDarkMode(e.Message, "Aviso", "Ok", Resources.warning, true);
+            //}
+            //return false;
             
             
 
@@ -183,7 +183,7 @@ namespace crudsGame.src.controllers
             if ((entityCtn.GetEntitiesList().Count < 40) || (foodCtn.GetFoodList().Count < 40) || (itemCtn.GetItemList().Count < 40))
             {
                 throw new Exception("Para poder generar el mapa deben existir 40 entidades, 40 comidas y 40 items. Por favor verifique en los CRUDs que haya creado esta cantidad.");
-                return false;
+                
             }
             return true;   
         }
@@ -248,7 +248,7 @@ namespace crudsGame.src.controllers
                             }
                             else
                             {
-                                throw new Exception("Algunas de las entidades creadas no podrán colocarse sobre los terrenos aleatorios generados (agua) debido a que en su propia lista de ambientes, no coinden con los terrenos que se encontraban libres para ocupar... problema = " + problema);
+                                throw new Exception("Algunas de las entidades creadas no podrán colocarse sobre los terrenos aleatorios generados debido a que en su propia lista de ambientes, no coinden con los terrenos que se encontraban libres para ocupar... problema = " + problema);
                                 //MessageBox.Show("ocurrio un error debera de volver a generar el mapa.. problema = " + problema);
                             }
                         }
@@ -273,7 +273,7 @@ namespace crudsGame.src.controllers
                             }
                             else
                             {
-                                throw new Exception("Algunas de las entidades creadas no podrán colocarse sobre los terrenos aleatorios generados (tierra) debido a que en su propia lista de ambientes, no coinden con los terrenos que se encontraban libres para ocupar... problema = " + problema);
+                                throw new Exception("Algunas de las entidades creadas no podrán colocarse sobre los terrenos aleatorios generados debido a que en su propia lista de ambientes, no coinden con los terrenos que se encontraban libres para ocupar... problema = " + problema);
                                 //MessageBox.Show("ocurrio un error debera de volver a generar el mapa.. problema = " + problema);
                             }
                         }

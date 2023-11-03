@@ -180,6 +180,7 @@ namespace crudsGame.src.views
                 {
                     itemCtn.AddItem(item);
                     //itemCtn.GetItemList().Add(item);
+                    new MessageBoxDarkMode("Ítem ("+item.name+") creado satisfactoriamente!!", "Aviso", "Ok", Resources.check, true);
                     LoadItemIntoDatagrid(dgvItems.Rows.Add(), item);
                 }
                 /*

@@ -300,6 +300,7 @@ namespace crudsGame.src.views
                     {
                         //entityCtn.GetEntitiesList().Add(entity); //se carga en la lista
                         entityCtn.AddEntity(entity);
+                        new MessageBoxDarkMode("Entidad (" + entity.name + ") creada satisfactoriamente!!", "Aviso", "Ok", Resources.check, true);
                         //MessageBox.Show("lo agrego a la lista");
                         LoadCreatureIntoDatagrid(dgvEntities.Rows.Add(), entity); //se carga en la tabla
                                                                                   //MessageBox.Show("lo agrego a la tabla");  

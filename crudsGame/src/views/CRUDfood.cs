@@ -146,6 +146,7 @@ namespace crudsGame.src.views
                 {
                     //foodCtn.GetFoodList().Add(food);
                     foodCtn.AddFood(food);
+                    new MessageBoxDarkMode("Comida (" + food.name + ") creada satisfactoriamente!!", "Aviso", "Ok", Resources.check, true);
                     LoadFoodIntoDatagrid(dgvFoods.Rows.Add(), food);
                 }
                 /*

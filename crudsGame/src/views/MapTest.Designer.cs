@@ -358,7 +358,7 @@
             lbEntitiesOnAterrain.Location = new Point(14, 50);
             lbEntitiesOnAterrain.Margin = new Padding(4, 5, 4, 5);
             lbEntitiesOnAterrain.Name = "lbEntitiesOnAterrain";
-            lbEntitiesOnAterrain.Size = new Size(333, 62);
+            lbEntitiesOnAterrain.Size = new Size(333, 91);
             lbEntitiesOnAterrain.TabIndex = 25;
             lbEntitiesOnAterrain.SelectedIndexChanged += lbEntitiesOnAterrain_SelectedIndexChanged;
             // 
@@ -370,7 +370,7 @@
             lbEnvironmentsOfAnEntity.Margin = new Padding(4, 5, 4, 5);
             lbEnvironmentsOfAnEntity.Name = "lbEnvironmentsOfAnEntity";
             lbEnvironmentsOfAnEntity.SelectionMode = SelectionMode.None;
-            lbEnvironmentsOfAnEntity.Size = new Size(355, 91);
+            lbEnvironmentsOfAnEntity.Size = new Size(232, 91);
             lbEnvironmentsOfAnEntity.TabIndex = 26;
             lbEnvironmentsOfAnEntity.SelectedIndexChanged += lbEnvironmentsOfAnEntity_SelectedIndexChanged;
             // 
@@ -470,7 +470,7 @@
             // 
             lbKingdom.AutoSize = true;
             lbKingdom.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            lbKingdom.ForeColor = Color.LightSeaGreen;
+            lbKingdom.ForeColor = Color.Olive;
             lbKingdom.Location = new Point(-4, 306);
             lbKingdom.Margin = new Padding(4, 0, 4, 0);
             lbKingdom.Name = "lbKingdom";
@@ -482,7 +482,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.Chartreuse;
+            label1.ForeColor = Color.Aqua;
             label1.Location = new Point(-4, 600);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
@@ -494,7 +494,7 @@
             // 
             lbDiet.AutoSize = true;
             lbDiet.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            lbDiet.ForeColor = Color.OrangeRed;
+            lbDiet.ForeColor = Color.LightGreen;
             lbDiet.Location = new Point(-4, 262);
             lbDiet.Margin = new Padding(4, 0, 4, 0);
             lbDiet.Name = "lbDiet";
