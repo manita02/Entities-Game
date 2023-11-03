@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
@@ -52,6 +53,9 @@
             txtName = new MaterialSkin.Controls.MaterialSingleLineTextField();
             txtId = new MaterialSkin.Controls.MaterialSingleLineTextField();
             txtCalories = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            ttpCreate = new ToolTip(components);
+            ttpUpdate = new ToolTip(components);
+            ttpDelete = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)dgvFoods).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picDiet).BeginInit();
             SuspendLayout();
@@ -60,7 +64,7 @@
             // 
             cbDiet.DropDownStyle = ComboBoxStyle.DropDownList;
             cbDiet.FormattingEnabled = true;
-            cbDiet.Location = new Point(145, 212);
+            cbDiet.Location = new Point(143, 213);
             cbDiet.Margin = new Padding(4);
             cbDiet.Name = "cbDiet";
             cbDiet.Size = new Size(205, 37);
@@ -165,7 +169,7 @@
             materialLabel4.Depth = 0;
             materialLabel4.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel4.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel4.Location = new Point(48, 252);
+            materialLabel4.Location = new Point(46, 273);
             materialLabel4.Margin = new Padding(5, 0, 5, 0);
             materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel4.Name = "materialLabel4";
@@ -179,7 +183,7 @@
             materialLabel3.Depth = 0;
             materialLabel3.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel3.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel3.Location = new Point(80, 212);
+            materialLabel3.Location = new Point(78, 217);
             materialLabel3.Margin = new Padding(5, 0, 5, 0);
             materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel3.Name = "materialLabel3";
@@ -193,7 +197,7 @@
             materialLabel2.Depth = 0;
             materialLabel2.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel2.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel2.Location = new Point(67, 173);
+            materialLabel2.Location = new Point(65, 166);
             materialLabel2.Margin = new Padding(5, 0, 5, 0);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
@@ -207,7 +211,7 @@
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel1.Location = new Point(99, 135);
+            materialLabel1.Location = new Point(97, 115);
             materialLabel1.Margin = new Padding(5, 0, 5, 0);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
@@ -229,6 +233,7 @@
             btnDeletee.Size = new Size(95, 36);
             btnDeletee.TabIndex = 52;
             btnDeletee.Text = "DELETE";
+            ttpDelete.SetToolTip(btnDeletee, "Select a row to Delete");
             btnDeletee.UseVisualStyleBackColor = true;
             btnDeletee.Click += btnDeletee_Click;
             // 
@@ -246,6 +251,7 @@
             btnUpdatee.Size = new Size(101, 36);
             btnUpdatee.TabIndex = 51;
             btnUpdatee.Text = "UPDATE";
+            ttpUpdate.SetToolTip(btnUpdatee, "Select a row to Update");
             btnUpdatee.UseVisualStyleBackColor = true;
             btnUpdatee.Click += btnUpdatee_Click;
             // 
@@ -255,7 +261,7 @@
             btnCreatee.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnCreatee.Depth = 0;
             btnCreatee.Icon = null;
-            btnCreatee.Location = new Point(144, 295);
+            btnCreatee.Location = new Point(142, 325);
             btnCreatee.Margin = new Padding(4);
             btnCreatee.MouseState = MaterialSkin.MouseState.HOVER;
             btnCreatee.Name = "btnCreatee";
@@ -263,6 +269,7 @@
             btnCreatee.Size = new Size(99, 36);
             btnCreatee.TabIndex = 50;
             btnCreatee.Text = "CREATE";
+            ttpCreate.SetToolTip(btnCreatee, "Create a food");
             btnCreatee.UseVisualStyleBackColor = true;
             btnCreatee.Click += btnCreatee_Click;
             // 
@@ -274,7 +281,7 @@
             materialDivider1.Margin = new Padding(5);
             materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
             materialDivider1.Name = "materialDivider1";
-            materialDivider1.Size = new Size(92, 143);
+            materialDivider1.Size = new Size(121, 266);
             materialDivider1.TabIndex = 49;
             materialDivider1.Text = "materialDivider1";
             // 
@@ -282,7 +289,7 @@
             // 
             txtName.Depth = 0;
             txtName.Hint = "";
-            txtName.Location = new Point(145, 173);
+            txtName.Location = new Point(143, 162);
             txtName.MaxLength = 32767;
             txtName.MouseState = MaterialSkin.MouseState.HOVER;
             txtName.Name = "txtName";
@@ -300,7 +307,7 @@
             txtId.Depth = 0;
             txtId.Enabled = false;
             txtId.Hint = "";
-            txtId.Location = new Point(144, 131);
+            txtId.Location = new Point(142, 111);
             txtId.MaxLength = 32767;
             txtId.MouseState = MaterialSkin.MouseState.HOVER;
             txtId.Name = "txtId";
@@ -317,7 +324,7 @@
             // 
             txtCalories.Depth = 0;
             txtCalories.Hint = "";
-            txtCalories.Location = new Point(145, 252);
+            txtCalories.Location = new Point(143, 269);
             txtCalories.MaxLength = 32767;
             txtCalories.MouseState = MaterialSkin.MouseState.HOVER;
             txtCalories.Name = "txtCalories";
@@ -336,7 +343,7 @@
             AutoScaleDimensions = new SizeF(14F, 29F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(963, 667);
+            ClientSize = new Size(990, 667);
             Controls.Add(txtCalories);
             Controls.Add(txtName);
             Controls.Add(txtId);
@@ -354,6 +361,7 @@
             Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
+            MaximizeBox = false;
             Name = "CRUDfood";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CRUDfood";
@@ -383,5 +391,8 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField txtName;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtId;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtCalories;
+        private ToolTip ttpCreate;
+        private ToolTip ttpUpdate;
+        private ToolTip ttpDelete;
     }
 }

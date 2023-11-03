@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
@@ -52,6 +53,9 @@
             btnDeletee = new MaterialSkin.Controls.MaterialRaisedButton();
             txtId = new MaterialSkin.Controls.MaterialSingleLineTextField();
             txtName = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            ttpCreate = new ToolTip(components);
+            ttpUpdate = new ToolTip(components);
+            ttpDelete = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)dgvItems).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picItem).BeginInit();
             SuspendLayout();
@@ -102,7 +106,7 @@
             dgvItems.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvItems.RowTemplate.Height = 35;
             dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvItems.Size = new Size(775, 306);
+            dgvItems.Size = new Size(869, 306);
             dgvItems.TabIndex = 13;
             dgvItems.SelectionChanged += dgvItems_SelectionChanged_1;
             // 
@@ -142,10 +146,10 @@
             // 
             cbType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbType.FormattingEnabled = true;
-            cbType.Location = new Point(143, 244);
+            cbType.Location = new Point(143, 272);
             cbType.Margin = new Padding(4);
             cbType.Name = "cbType";
-            cbType.Size = new Size(205, 37);
+            cbType.Size = new Size(303, 37);
             cbType.TabIndex = 8;
             cbType.SelectedIndexChanged += cbType_SelectedIndexChanged;
             // 
@@ -153,15 +157,15 @@
             // 
             cbKingdom.DropDownStyle = ComboBoxStyle.DropDownList;
             cbKingdom.FormattingEnabled = true;
-            cbKingdom.Location = new Point(143, 209);
+            cbKingdom.Location = new Point(150, 210);
             cbKingdom.Margin = new Padding(4);
             cbKingdom.Name = "cbKingdom";
-            cbKingdom.Size = new Size(205, 37);
+            cbKingdom.Size = new Size(296, 37);
             cbKingdom.TabIndex = 32;
             // 
             // picItem
             // 
-            picItem.Location = new Point(473, 74);
+            picItem.Location = new Point(528, 75);
             picItem.Margin = new Padding(4);
             picItem.Name = "picItem";
             picItem.Size = new Size(330, 305);
@@ -175,7 +179,7 @@
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel1.Location = new Point(105, 132);
+            materialLabel1.Location = new Point(105, 94);
             materialLabel1.Margin = new Padding(4, 0, 4, 0);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
@@ -189,7 +193,7 @@
             materialLabel2.Depth = 0;
             materialLabel2.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel2.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel2.Location = new Point(66, 169);
+            materialLabel2.Location = new Point(66, 153);
             materialLabel2.Margin = new Padding(4, 0, 4, 0);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
@@ -203,7 +207,7 @@
             materialLabel3.Depth = 0;
             materialLabel3.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel3.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel3.Location = new Point(42, 209);
+            materialLabel3.Location = new Point(42, 214);
             materialLabel3.Margin = new Padding(4, 0, 4, 0);
             materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel3.Name = "materialLabel3";
@@ -217,7 +221,7 @@
             materialLabel4.Depth = 0;
             materialLabel4.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel4.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel4.Location = new Point(76, 244);
+            materialLabel4.Location = new Point(76, 281);
             materialLabel4.Margin = new Padding(4, 0, 4, 0);
             materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel4.Name = "materialLabel4";
@@ -229,11 +233,11 @@
             // 
             materialDivider1.BackColor = Color.FromArgb(31, 0, 0, 0);
             materialDivider1.Depth = 0;
-            materialDivider1.Location = new Point(774, 387);
+            materialDivider1.Location = new Point(866, 387);
             materialDivider1.Margin = new Padding(4);
             materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
             materialDivider1.Name = "materialDivider1";
-            materialDivider1.Size = new Size(87, 119);
+            materialDivider1.Size = new Size(122, 306);
             materialDivider1.TabIndex = 38;
             materialDivider1.Text = "materialDivider1";
             // 
@@ -243,13 +247,14 @@
             btnCreatee.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnCreatee.Depth = 0;
             btnCreatee.Icon = null;
-            btnCreatee.Location = new Point(176, 286);
+            btnCreatee.Location = new Point(169, 330);
             btnCreatee.MouseState = MaterialSkin.MouseState.HOVER;
             btnCreatee.Name = "btnCreatee";
             btnCreatee.Primary = true;
             btnCreatee.Size = new Size(99, 36);
             btnCreatee.TabIndex = 39;
             btnCreatee.Text = "CREATE";
+            ttpCreate.SetToolTip(btnCreatee, "Create a item");
             btnCreatee.UseVisualStyleBackColor = true;
             btnCreatee.Click += btnCreatee_Click;
             // 
@@ -259,13 +264,14 @@
             btnUpdatee.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnUpdatee.Depth = 0;
             btnUpdatee.Icon = null;
-            btnUpdatee.Location = new Point(780, 403);
+            btnUpdatee.Location = new Point(872, 403);
             btnUpdatee.MouseState = MaterialSkin.MouseState.HOVER;
             btnUpdatee.Name = "btnUpdatee";
             btnUpdatee.Primary = true;
             btnUpdatee.Size = new Size(101, 36);
             btnUpdatee.TabIndex = 40;
             btnUpdatee.Text = "UPDATE";
+            ttpUpdate.SetToolTip(btnUpdatee, "Select a row to Update");
             btnUpdatee.UseVisualStyleBackColor = true;
             btnUpdatee.Click += btnUpdatee_Click;
             // 
@@ -275,13 +281,14 @@
             btnDeletee.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnDeletee.Depth = 0;
             btnDeletee.Icon = null;
-            btnDeletee.Location = new Point(782, 452);
+            btnDeletee.Location = new Point(874, 452);
             btnDeletee.MouseState = MaterialSkin.MouseState.HOVER;
             btnDeletee.Name = "btnDeletee";
             btnDeletee.Primary = true;
             btnDeletee.Size = new Size(95, 36);
             btnDeletee.TabIndex = 41;
             btnDeletee.Text = "DELETE";
+            ttpDelete.SetToolTip(btnDeletee, "Select a row to Delete");
             btnDeletee.UseVisualStyleBackColor = true;
             btnDeletee.Click += btnDeletee_Click;
             // 
@@ -290,7 +297,7 @@
             txtId.Depth = 0;
             txtId.Enabled = false;
             txtId.Hint = "";
-            txtId.Location = new Point(143, 132);
+            txtId.Location = new Point(143, 90);
             txtId.MaxLength = 32767;
             txtId.MouseState = MaterialSkin.MouseState.HOVER;
             txtId.Name = "txtId";
@@ -298,7 +305,7 @@
             txtId.SelectedText = "";
             txtId.SelectionLength = 0;
             txtId.SelectionStart = 0;
-            txtId.Size = new Size(205, 32);
+            txtId.Size = new Size(303, 32);
             txtId.TabIndex = 42;
             txtId.TabStop = false;
             txtId.UseSystemPasswordChar = false;
@@ -307,7 +314,7 @@
             // 
             txtName.Depth = 0;
             txtName.Hint = "";
-            txtName.Location = new Point(142, 169);
+            txtName.Location = new Point(142, 149);
             txtName.MaxLength = 32767;
             txtName.MouseState = MaterialSkin.MouseState.HOVER;
             txtName.Name = "txtName";
@@ -315,7 +322,7 @@
             txtName.SelectedText = "";
             txtName.SelectionLength = 0;
             txtName.SelectionStart = 0;
-            txtName.Size = new Size(206, 32);
+            txtName.Size = new Size(304, 32);
             txtName.TabIndex = 43;
             txtName.TabStop = false;
             txtName.UseSystemPasswordChar = false;
@@ -325,7 +332,7 @@
             AutoScaleDimensions = new SizeF(14F, 29F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(862, 702);
+            ClientSize = new Size(990, 698);
             Controls.Add(txtName);
             Controls.Add(txtId);
             Controls.Add(picItem);
@@ -343,6 +350,7 @@
             Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
+            MaximizeBox = false;
             Name = "CRUDitem";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CRUDitem";
@@ -371,5 +379,8 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnDeletee;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtId;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtName;
+        private ToolTip ttpCreate;
+        private ToolTip ttpUpdate;
+        private ToolTip ttpDelete;
     }
 }

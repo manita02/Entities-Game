@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
@@ -70,6 +71,9 @@
             btnUpdatee = new MaterialSkin.Controls.MaterialRaisedButton();
             btnCreatee = new MaterialSkin.Controls.MaterialRaisedButton();
             materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
+            ttpCreate = new ToolTip(components);
+            ttpUpdate = new ToolTip(components);
+            ttpDelete = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)dgvEntities).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picCreature).BeginInit();
             SuspendLayout();
@@ -545,6 +549,7 @@
             btnDeletee.Size = new Size(95, 36);
             btnDeletee.TabIndex = 69;
             btnDeletee.Text = "DELETE";
+            ttpDelete.SetToolTip(btnDeletee, "Select a row to Delete");
             btnDeletee.UseVisualStyleBackColor = true;
             btnDeletee.Click += btnDeletee_Click;
             // 
@@ -562,6 +567,7 @@
             btnUpdatee.Size = new Size(101, 36);
             btnUpdatee.TabIndex = 68;
             btnUpdatee.Text = "UPDATE";
+            ttpUpdate.SetToolTip(btnUpdatee, "Select a row to Update");
             btnUpdatee.UseVisualStyleBackColor = true;
             btnUpdatee.Click += btnUpdatee_Click;
             // 
@@ -579,6 +585,7 @@
             btnCreatee.Size = new Size(99, 36);
             btnCreatee.TabIndex = 67;
             btnCreatee.Text = "CREATE";
+            ttpCreate.SetToolTip(btnCreatee, "Create an entity");
             btnCreatee.UseVisualStyleBackColor = true;
             btnCreatee.Click += btnCreatee_Click;
             // 
@@ -681,5 +688,8 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnUpdatee;
         private MaterialSkin.Controls.MaterialRaisedButton btnCreatee;
         private MaterialSkin.Controls.MaterialDivider materialDivider1;
+        private ToolTip ttpCreate;
+        private ToolTip ttpUpdate;
+        private ToolTip ttpDelete;
     }
 }
