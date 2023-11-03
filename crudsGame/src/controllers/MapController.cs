@@ -248,7 +248,7 @@ namespace crudsGame.src.controllers
                             }
                             else
                             {
-                                throw new Exception("ocurrio un error debera de volver a generar el mapa.. problema = " + problema);
+                                throw new Exception("Algunas de las entidades creadas no podrán colocarse sobre los terrenos aleatorios generados (agua) debido a que en su propia lista de ambientes, no coinden con los terrenos que se encontraban libres para ocupar... problema = " + problema);
                                 //MessageBox.Show("ocurrio un error debera de volver a generar el mapa.. problema = " + problema);
                             }
                         }
@@ -273,7 +273,7 @@ namespace crudsGame.src.controllers
                             }
                             else
                             {
-                                throw new Exception("ocurrio un error debera de volver a generar el mapa.. problema = " + problema);
+                                throw new Exception("Algunas de las entidades creadas no podrán colocarse sobre los terrenos aleatorios generados (tierra) debido a que en su propia lista de ambientes, no coinden con los terrenos que se encontraban libres para ocupar... problema = " + problema);
                                 //MessageBox.Show("ocurrio un error debera de volver a generar el mapa.. problema = " + problema);
                             }
                         }
@@ -386,7 +386,7 @@ namespace crudsGame.src.controllers
             }
             catch(Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message, "Errorers de prueba mucho", "Ok", Resources.error, true);
+                new MessageBoxDarkMode(ex.Message, "Aviso", "Ok", Resources.info, true);
             }
         }
 

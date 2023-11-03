@@ -118,7 +118,7 @@ namespace crudsGame.src.views
         /// </summary>
         private void CheckIfAmapAlreadyExists()
         {
-            if (mapController.GetMap().TerrainsList.Count > 0) //si la lista de mapas es mayor a cero.. por ahora pensado para un unico mapa, si siguiera asi habria que quitar esto de las listas y dejar un solo mapa
+            if (mapController.GetMap().TerrainsList.Count > 0) //esto esta al pedo xq una vez creado el mapa ya no podra volver al menu principal
             {
                 LoadMap();
             }
@@ -260,19 +260,19 @@ namespace crudsGame.src.views
         private void LoadProgressbarOfSelectedEntity()
         {
 
-            lbCurrentLife.Text = "Current Life = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).currentLife;
+            lbCurrentLife.Text = "🖤Current Life🖤 = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).currentLife;
             pbCurrentLife.Maximum = ((Entity)lbEntitiesOnAterrain.SelectedItem).maxLife;
             pbCurrentLife.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).currentLife;
 
 
-            lbCurrentEnergy.Text = "Current Energy = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).currentEnergy;
+            lbCurrentEnergy.Text = "⚡Current Energy⚡ = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).currentEnergy;
             pbCurrentEnergy.Maximum = ((Entity)lbEntitiesOnAterrain.SelectedItem).maxEnergy;
             pbCurrentEnergy.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).currentEnergy;
 
-            lbAttack.Text = "Attack Points = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).attackPoints;
+            lbAttack.Text = "💣Attack Points💣 = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).attackPoints;
             pbAttackPoints.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).attackPoints;
 
-            lbDefense.Text = "Defense Points = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).defensePoints;
+            lbDefense.Text = "🛡️Defense Points🛡️ = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).defensePoints;
             pbDefensePoints.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).defensePoints;
 
         }
@@ -282,7 +282,7 @@ namespace crudsGame.src.views
             if (lbEntitiesToAttack.Items.Count > 0)
             {
                 pnAttack.Enabled = true;
-                lbCurrentLifePlayerTwo.Text = "Current Life = " + ((Entity)lbEntitiesToAttack.SelectedItem).currentLife;
+                lbCurrentLifePlayerTwo.Text = "⚔️Current Life⚔️ = " + ((Entity)lbEntitiesToAttack.SelectedItem).currentLife;
                 pbCurrentLifePlayerTwo.Maximum = ((Entity)lbEntitiesToAttack.SelectedItem).maxLife;
                 pbCurrentLifePlayerTwo.Value = ((Entity)lbEntitiesToAttack.SelectedItem).currentLife;
             }
@@ -435,11 +435,11 @@ namespace crudsGame.src.views
 
 
             lbEnvironmentsOfAnEntity.DataSource = ((Entity)lbEntitiesOnAterrain.SelectedItem).environmentList;//funciona
-            lbId.Text = "Id = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).id;
-            lbName.Text = "Name = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name;
-            lbDiet.Text = "Diet = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).diet;
-            lbRange.Text = "Attack Range = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).attackRange;
-            lbKingdom.Text = "Kingdom = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).kingdom;
+            lbId.Text = "📛Id📛 = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).id;
+            lbName.Text = "🐲Name🐲 = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name;
+            lbDiet.Text = "🍽️Diet🍽️ = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).diet;
+            lbRange.Text = "🥊Attack Range🥊 = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).attackRange;
+            lbKingdom.Text = "👑Kingdom👑 = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).kingdom;
 
 
             LoadProgressbarOfSelectedEntity();
@@ -497,7 +497,7 @@ namespace crudsGame.src.views
         private void btnMoveInfo_Click(object sender, EventArgs e)
         {
             pnMove.Visible = true;
-            lbMoveInfo.Text = "Haga click sobre el hexagono \ndonde quiera que se mueva \n" + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ". Tenga en cuenta que \nsólo podrá moverse sobre los \nterrenos limítrofes";
+            lbMoveInfo.Text = "👣Haga click sobre el hexagono \ndonde quiera que se mueva \n" + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ". Tenga en cuenta que \nsólo podrá moverse sobre los \nterrenos limítrofes👣";
             foreach (var hexagon in hexagonsList)
             {
                 //MessageBox.Show(hexagon.Name);

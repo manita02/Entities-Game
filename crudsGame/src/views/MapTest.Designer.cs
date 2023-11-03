@@ -112,7 +112,7 @@
             // 
             hex18.BorderColor = Color.Black;
             hex18.HexagonText = "";
-            hex18.Location = new Point(167, 525);
+            hex18.Location = new Point(168, 525);
             hex18.Margin = new Padding(4, 5, 4, 5);
             hex18.Name = "hex18";
             hex18.Size = new Size(80, 80);
@@ -244,7 +244,7 @@
             // 
             hex9.BorderColor = Color.Black;
             hex9.HexagonText = "";
-            hex9.Location = new Point(300, 353);
+            hex9.Location = new Point(300, 352);
             hex9.Margin = new Padding(4, 5, 4, 5);
             hex9.Name = "hex9";
             hex9.Size = new Size(80, 80);
@@ -274,7 +274,7 @@
             // 
             hex10.BorderColor = Color.Black;
             hex10.HexagonText = "";
-            hex10.Location = new Point(34, 437);
+            hex10.Location = new Point(34, 438);
             hex10.Margin = new Padding(4, 5, 4, 5);
             hex10.Name = "hex10";
             hex10.Size = new Size(80, 80);
@@ -344,11 +344,11 @@
             lbBonderingTerrains.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             lbBonderingTerrains.FormattingEnabled = true;
             lbBonderingTerrains.ItemHeight = 29;
-            lbBonderingTerrains.Location = new Point(404, 247);
+            lbBonderingTerrains.Location = new Point(404, 248);
             lbBonderingTerrains.Margin = new Padding(4, 5, 4, 5);
             lbBonderingTerrains.Name = "lbBonderingTerrains";
             lbBonderingTerrains.SelectionMode = SelectionMode.None;
-            lbBonderingTerrains.Size = new Size(260, 178);
+            lbBonderingTerrains.Size = new Size(260, 149);
             lbBonderingTerrains.TabIndex = 24;
             // 
             // lbEntitiesOnAterrain
@@ -358,7 +358,7 @@
             lbEntitiesOnAterrain.Location = new Point(14, 50);
             lbEntitiesOnAterrain.Margin = new Padding(4, 5, 4, 5);
             lbEntitiesOnAterrain.Name = "lbEntitiesOnAterrain";
-            lbEntitiesOnAterrain.Size = new Size(333, 91);
+            lbEntitiesOnAterrain.Size = new Size(333, 62);
             lbEntitiesOnAterrain.TabIndex = 25;
             lbEntitiesOnAterrain.SelectedIndexChanged += lbEntitiesOnAterrain_SelectedIndexChanged;
             // 
@@ -370,7 +370,7 @@
             lbEnvironmentsOfAnEntity.Margin = new Padding(4, 5, 4, 5);
             lbEnvironmentsOfAnEntity.Name = "lbEnvironmentsOfAnEntity";
             lbEnvironmentsOfAnEntity.SelectionMode = SelectionMode.None;
-            lbEnvironmentsOfAnEntity.Size = new Size(355, 120);
+            lbEnvironmentsOfAnEntity.Size = new Size(355, 91);
             lbEnvironmentsOfAnEntity.TabIndex = 26;
             lbEnvironmentsOfAnEntity.SelectedIndexChanged += lbEnvironmentsOfAnEntity_SelectedIndexChanged;
             // 
@@ -380,13 +380,13 @@
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel1.Location = new Point(234, 150);
+            materialLabel1.Location = new Point(193, 152);
             materialLabel1.Margin = new Padding(4, 0, 4, 0);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(161, 27);
+            materialLabel1.Size = new Size(211, 27);
             materialLabel1.TabIndex = 27;
-            materialLabel1.Text = "Current Terrian:";
+            materialLabel1.Text = "\U0001f9edCurrent Terrian\U0001f9ed:";
             // 
             // materialLabel2
             // 
@@ -398,9 +398,9 @@
             materialLabel2.Margin = new Padding(4, 0, 4, 0);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
-            materialLabel2.Size = new Size(200, 27);
+            materialLabel2.Size = new Size(250, 27);
             materialLabel2.TabIndex = 28;
-            materialLabel2.Text = "Bondering Terrains:";
+            materialLabel2.Text = "🏝️Bondering Terrains🗾:";
             // 
             // materialLabel3
             // 
@@ -408,13 +408,13 @@
             materialLabel3.Depth = 0;
             materialLabel3.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel3.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel3.Location = new Point(14, 14);
+            materialLabel3.Location = new Point(-6, 14);
             materialLabel3.Margin = new Padding(4, 0, 4, 0);
             materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel3.Name = "materialLabel3";
-            materialLabel3.Size = new Size(292, 27);
+            materialLabel3.Size = new Size(342, 27);
             materialLabel3.TabIndex = 29;
-            materialLabel3.Text = "Entities in this current terrain:";
+            materialLabel3.Text = "👾Entities in this current terrain🤖:";
             // 
             // materialLabel6
             // 
@@ -422,23 +422,23 @@
             materialLabel6.Depth = 0;
             materialLabel6.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel6.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel6.Location = new Point(26, 40);
+            materialLabel6.Location = new Point(0, 46);
             materialLabel6.Margin = new Padding(4, 0, 4, 0);
             materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel6.Name = "materialLabel6";
-            materialLabel6.Size = new Size(78, 27);
+            materialLabel6.Size = new Size(128, 27);
             materialLabel6.TabIndex = 32;
-            materialLabel6.Text = "Foods:";
+            materialLabel6.Text = "🍖Foods\U0001f951:";
             // 
             // lbFoodsOnAterrain
             // 
             lbFoodsOnAterrain.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             lbFoodsOnAterrain.FormattingEnabled = true;
             lbFoodsOnAterrain.ItemHeight = 29;
-            lbFoodsOnAterrain.Location = new Point(112, 40);
+            lbFoodsOnAterrain.Location = new Point(128, 46);
             lbFoodsOnAterrain.Margin = new Padding(4, 5, 4, 5);
             lbFoodsOnAterrain.Name = "lbFoodsOnAterrain";
-            lbFoodsOnAterrain.Size = new Size(314, 149);
+            lbFoodsOnAterrain.Size = new Size(314, 120);
             lbFoodsOnAterrain.TabIndex = 33;
             // 
             // materialLabel7
@@ -447,23 +447,23 @@
             materialLabel7.Depth = 0;
             materialLabel7.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel7.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel7.Location = new Point(10, 29);
+            materialLabel7.Location = new Point(4, 42);
             materialLabel7.Margin = new Padding(4, 0, 4, 0);
             materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel7.Name = "materialLabel7";
-            materialLabel7.Size = new Size(72, 27);
+            materialLabel7.Size = new Size(122, 27);
             materialLabel7.TabIndex = 34;
-            materialLabel7.Text = "Items:";
+            materialLabel7.Text = "⚗️Items\U0001f9ec:";
             // 
             // lbItemsOnAterrain
             // 
             lbItemsOnAterrain.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             lbItemsOnAterrain.FormattingEnabled = true;
             lbItemsOnAterrain.ItemHeight = 29;
-            lbItemsOnAterrain.Location = new Point(91, 29);
+            lbItemsOnAterrain.Location = new Point(128, 42);
             lbItemsOnAterrain.Margin = new Padding(4, 5, 4, 5);
             lbItemsOnAterrain.Name = "lbItemsOnAterrain";
-            lbItemsOnAterrain.Size = new Size(362, 120);
+            lbItemsOnAterrain.Size = new Size(362, 91);
             lbItemsOnAterrain.TabIndex = 35;
             // 
             // lbKingdom
@@ -471,7 +471,7 @@
             lbKingdom.AutoSize = true;
             lbKingdom.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             lbKingdom.ForeColor = Color.LightSeaGreen;
-            lbKingdom.Location = new Point(16, 306);
+            lbKingdom.Location = new Point(-4, 306);
             lbKingdom.Margin = new Padding(4, 0, 4, 0);
             lbKingdom.Name = "lbKingdom";
             lbKingdom.Size = new Size(124, 29);
@@ -483,19 +483,19 @@
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.Chartreuse;
-            label1.Location = new Point(16, 600);
+            label1.Location = new Point(-4, 600);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(426, 29);
+            label1.Size = new Size(480, 29);
             label1.TabIndex = 44;
-            label1.Text = "Environments of the selected entity:";
+            label1.Text = "🌊Environments🌎 of the selected entity:";
             // 
             // lbDiet
             // 
             lbDiet.AutoSize = true;
             lbDiet.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             lbDiet.ForeColor = Color.OrangeRed;
-            lbDiet.Location = new Point(16, 262);
+            lbDiet.Location = new Point(-4, 262);
             lbDiet.Margin = new Padding(4, 0, 4, 0);
             lbDiet.Name = "lbDiet";
             lbDiet.Size = new Size(67, 29);
@@ -505,45 +505,45 @@
             // pbDefensePoints
             // 
             pbDefensePoints.Depth = 0;
-            pbDefensePoints.Location = new Point(242, 512);
+            pbDefensePoints.Location = new Point(272, 514);
             pbDefensePoints.Margin = new Padding(4, 5, 4, 5);
             pbDefensePoints.Maximum = 400;
             pbDefensePoints.MouseState = MaterialSkin.MouseState.HOVER;
             pbDefensePoints.Name = "pbDefensePoints";
-            pbDefensePoints.Size = new Size(300, 5);
+            pbDefensePoints.Size = new Size(274, 5);
             pbDefensePoints.TabIndex = 42;
             // 
             // pbAttackPoints
             // 
             pbAttackPoints.Depth = 0;
-            pbAttackPoints.Location = new Point(242, 466);
+            pbAttackPoints.Location = new Point(272, 467);
             pbAttackPoints.Margin = new Padding(4, 5, 4, 5);
             pbAttackPoints.Maximum = 400;
             pbAttackPoints.MouseState = MaterialSkin.MouseState.HOVER;
             pbAttackPoints.Name = "pbAttackPoints";
-            pbAttackPoints.Size = new Size(300, 5);
+            pbAttackPoints.Size = new Size(274, 5);
             pbAttackPoints.TabIndex = 41;
             // 
             // pbCurrentEnergy
             // 
             pbCurrentEnergy.Depth = 0;
-            pbCurrentEnergy.Location = new Point(244, 416);
+            pbCurrentEnergy.Location = new Point(272, 417);
             pbCurrentEnergy.Margin = new Padding(4, 5, 4, 5);
             pbCurrentEnergy.Maximum = 5000;
             pbCurrentEnergy.MouseState = MaterialSkin.MouseState.HOVER;
             pbCurrentEnergy.Name = "pbCurrentEnergy";
-            pbCurrentEnergy.Size = new Size(300, 5);
+            pbCurrentEnergy.Size = new Size(276, 5);
             pbCurrentEnergy.TabIndex = 40;
             // 
             // pbCurrentLife
             // 
             pbCurrentLife.Depth = 0;
-            pbCurrentLife.Location = new Point(248, 366);
+            pbCurrentLife.Location = new Point(272, 366);
             pbCurrentLife.Margin = new Padding(4, 5, 4, 5);
             pbCurrentLife.Maximum = 5000;
             pbCurrentLife.MouseState = MaterialSkin.MouseState.HOVER;
             pbCurrentLife.Name = "pbCurrentLife";
-            pbCurrentLife.Size = new Size(300, 5);
+            pbCurrentLife.Size = new Size(280, 5);
             pbCurrentLife.TabIndex = 39;
             // 
             // lbDefense
@@ -552,7 +552,7 @@
             lbDefense.Depth = 0;
             lbDefense.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             lbDefense.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            lbDefense.Location = new Point(14, 504);
+            lbDefense.Location = new Point(-6, 504);
             lbDefense.Margin = new Padding(4, 0, 4, 0);
             lbDefense.MouseState = MaterialSkin.MouseState.HOVER;
             lbDefense.Name = "lbDefense";
@@ -566,7 +566,7 @@
             lbRange.Depth = 0;
             lbRange.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             lbRange.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            lbRange.Location = new Point(14, 556);
+            lbRange.Location = new Point(-6, 556);
             lbRange.Margin = new Padding(4, 0, 4, 0);
             lbRange.MouseState = MaterialSkin.MouseState.HOVER;
             lbRange.Name = "lbRange";
@@ -580,7 +580,7 @@
             lbCurrentLife.Depth = 0;
             lbCurrentLife.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             lbCurrentLife.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            lbCurrentLife.Location = new Point(14, 356);
+            lbCurrentLife.Location = new Point(-6, 356);
             lbCurrentLife.Margin = new Padding(4, 0, 4, 0);
             lbCurrentLife.MouseState = MaterialSkin.MouseState.HOVER;
             lbCurrentLife.Name = "lbCurrentLife";
@@ -594,7 +594,7 @@
             lbAttack.Depth = 0;
             lbAttack.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             lbAttack.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            lbAttack.Location = new Point(14, 456);
+            lbAttack.Location = new Point(-6, 456);
             lbAttack.Margin = new Padding(4, 0, 4, 0);
             lbAttack.MouseState = MaterialSkin.MouseState.HOVER;
             lbAttack.Name = "lbAttack";
@@ -608,7 +608,7 @@
             lbCurrentEnergy.Depth = 0;
             lbCurrentEnergy.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             lbCurrentEnergy.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            lbCurrentEnergy.Location = new Point(14, 406);
+            lbCurrentEnergy.Location = new Point(-6, 406);
             lbCurrentEnergy.Margin = new Padding(4, 0, 4, 0);
             lbCurrentEnergy.MouseState = MaterialSkin.MouseState.HOVER;
             lbCurrentEnergy.Name = "lbCurrentEnergy";
@@ -622,7 +622,7 @@
             lbName.Depth = 0;
             lbName.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             lbName.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            lbName.Location = new Point(14, 212);
+            lbName.Location = new Point(-6, 212);
             lbName.Margin = new Padding(4, 0, 4, 0);
             lbName.MouseState = MaterialSkin.MouseState.HOVER;
             lbName.Name = "lbName";
@@ -636,7 +636,7 @@
             lbId.Depth = 0;
             lbId.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             lbId.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            lbId.Location = new Point(14, 156);
+            lbId.Location = new Point(-6, 156);
             lbId.Margin = new Padding(4, 0, 4, 0);
             lbId.MouseState = MaterialSkin.MouseState.HOVER;
             lbId.Name = "lbId";
@@ -659,7 +659,7 @@
             groupBox2.Size = new Size(1231, 889);
             groupBox2.TabIndex = 37;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Things in this current terrain";
+            groupBox2.Text = "📌Things in this current terrain📌";
             // 
             // pnItems
             // 
@@ -668,7 +668,7 @@
             pnItems.Controls.Add(lbItemsOnAterrain);
             pnItems.Controls.Add(btnUse);
             pnItems.Controls.Add(picItems);
-            pnItems.Location = new Point(574, 667);
+            pnItems.Location = new Point(574, 668);
             pnItems.Margin = new Padding(4, 5, 4, 5);
             pnItems.Name = "pnItems";
             pnItems.Size = new Size(649, 191);
@@ -680,7 +680,7 @@
             btnUse.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnUse.Depth = 0;
             btnUse.Icon = null;
-            btnUse.Location = new Point(10, 87);
+            btnUse.Location = new Point(26, 90);
             btnUse.Margin = new Padding(4, 5, 4, 5);
             btnUse.MouseState = MaterialSkin.MouseState.HOVER;
             btnUse.Name = "btnUse";
@@ -694,10 +694,10 @@
             // picItems
             // 
             picItems.Image = Properties.Resources.pociones;
-            picItems.Location = new Point(461, 9);
+            picItems.Location = new Point(493, 17);
             picItems.Margin = new Padding(4, 5, 4, 5);
             picItems.Name = "picItems";
-            picItems.Size = new Size(183, 162);
+            picItems.Size = new Size(152, 138);
             picItems.SizeMode = PictureBoxSizeMode.StretchImage;
             picItems.TabIndex = 39;
             picItems.TabStop = false;
@@ -709,7 +709,7 @@
             pnFoods.Controls.Add(materialLabel6);
             pnFoods.Controls.Add(btnEat);
             pnFoods.Controls.Add(picFoods);
-            pnFoods.Location = new Point(574, 437);
+            pnFoods.Location = new Point(574, 438);
             pnFoods.Margin = new Padding(4, 5, 4, 5);
             pnFoods.Name = "pnFoods";
             pnFoods.Size = new Size(649, 225);
@@ -721,7 +721,7 @@
             btnEat.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnEat.Depth = 0;
             btnEat.Icon = null;
-            btnEat.Location = new Point(31, 110);
+            btnEat.Location = new Point(26, 111);
             btnEat.Margin = new Padding(4, 5, 4, 5);
             btnEat.MouseState = MaterialSkin.MouseState.HOVER;
             btnEat.Name = "btnEat";
@@ -764,19 +764,19 @@
             pnEntities.Controls.Add(lbCurrentLife);
             pnEntities.Controls.Add(lbRange);
             pnEntities.Controls.Add(picEntity);
-            pnEntities.Location = new Point(8, 33);
+            pnEntities.Location = new Point(8, 32);
             pnEntities.Margin = new Padding(4, 5, 4, 5);
             pnEntities.Name = "pnEntities";
-            pnEntities.Size = new Size(558, 817);
+            pnEntities.Size = new Size(558, 818);
             pnEntities.TabIndex = 38;
             // 
             // picEntity
             // 
             picEntity.Image = Properties.Resources.entity;
-            picEntity.Location = new Point(273, 0);
+            picEntity.Location = new Point(272, 0);
             picEntity.Margin = new Padding(4, 5, 4, 5);
             picEntity.Name = "picEntity";
-            picEntity.Size = new Size(323, 371);
+            picEntity.Size = new Size(322, 371);
             picEntity.SizeMode = PictureBoxSizeMode.StretchImage;
             picEntity.TabIndex = 46;
             picEntity.TabStop = false;
@@ -790,7 +790,7 @@
             pnAttack.Controls.Add(label2);
             pnAttack.Controls.Add(btnAttack);
             pnAttack.Controls.Add(lbEntitiesToAttack);
-            pnAttack.Location = new Point(574, 33);
+            pnAttack.Location = new Point(574, 32);
             pnAttack.Margin = new Padding(4, 5, 4, 5);
             pnAttack.Name = "pnAttack";
             pnAttack.Size = new Size(649, 391);
@@ -824,7 +824,7 @@
             lbCurrentLifePlayerTwo.Depth = 0;
             lbCurrentLifePlayerTwo.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             lbCurrentLifePlayerTwo.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            lbCurrentLifePlayerTwo.Location = new Point(68, 54);
+            lbCurrentLifePlayerTwo.Location = new Point(6, 56);
             lbCurrentLifePlayerTwo.Margin = new Padding(4, 0, 4, 0);
             lbCurrentLifePlayerTwo.MouseState = MaterialSkin.MouseState.HOVER;
             lbCurrentLifePlayerTwo.Name = "lbCurrentLifePlayerTwo";
@@ -836,12 +836,12 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(20, 12);
+            label2.Location = new Point(-2, 12);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(368, 29);
+            label2.Size = new Size(422, 29);
             label2.TabIndex = 39;
-            label2.Text = "Entities to attack (Player Two):";
+            label2.Text = "\U0001f91cEntities to attack (Player Two)💥:";
             // 
             // btnAttack
             // 
@@ -869,7 +869,7 @@
             lbEntitiesToAttack.Location = new Point(285, 88);
             lbEntitiesToAttack.Margin = new Padding(4, 5, 4, 5);
             lbEntitiesToAttack.Name = "lbEntitiesToAttack";
-            lbEntitiesToAttack.Size = new Size(344, 236);
+            lbEntitiesToAttack.Size = new Size(344, 207);
             lbEntitiesToAttack.TabIndex = 38;
             lbEntitiesToAttack.SelectedIndexChanged += lbEntitiesToAttack_SelectedIndexChanged;
             // 
@@ -940,10 +940,10 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.walk;
-            pictureBox1.Location = new Point(118, 163);
+            pictureBox1.Location = new Point(118, 162);
             pictureBox1.Margin = new Padding(4, 5, 4, 5);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(126, 133);
+            pictureBox1.Size = new Size(126, 132);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 41;
             pictureBox1.TabStop = false;
@@ -952,7 +952,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1946, 1047);
+            ClientSize = new Size(1942, 1048);
             Controls.Add(pnMove);
             Controls.Add(btnMoveInfo);
             Controls.Add(groupBox2);
