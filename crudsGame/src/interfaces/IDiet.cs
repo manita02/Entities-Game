@@ -9,7 +9,9 @@ namespace crudsGame.src.interfaces
 {
     public interface IDiet
     {
-        bool CanEat(Entity entity, Food food); //preguntar maurooo
+        //bool CanEat(Entity entity, Food food); 
+
+        bool CanEat(Food food); //este tiene q ir
         string ToString();
 
         

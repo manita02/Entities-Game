@@ -9,15 +9,31 @@ namespace crudsGame.src.model.Diets
 {
     internal class Omnivorous : IDiet
     {
+        /*
         public bool CanEat(Entity entity, Food food)
         {
-            if (entity.diet.ToString() == food.diet.ToString())
+            //MessageBox.Show("dieta entidad: " + entity.diet.ToString());
+            //MessageBox.Show("comida dieta: " + food.diet.ToString());
+
+            if (entity.diet.ToString() == "Omnivorous" && ((food.diet.ToString() == "Carnivore") || (food.diet.ToString() == "Herbivorous")))
             {
                 return true;
             }
             return false;
             
         }
+        */
+        
+        
+        public bool CanEat(Food food)
+        {
+            //MessageBox.Show("dieta entidad: " + entity.diet.ToString());
+            //MessageBox.Show("comida dieta: " + food.diet.ToString());
+
+            return food.diet is Carnivore || food.diet is Herbivorous;
+          
+        }
+        
 
         public override string ToString()
         {

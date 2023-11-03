@@ -1,9 +1,13 @@
-﻿using crudsGame.src.interfaces;
+﻿using crudsGame.Properties;
+using crudsGame.src.interfaces;
+using crudsGame.src.views;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace crudsGame.src.model.Items.Strategy.Negatives
 {
@@ -12,15 +16,18 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
         Random random = new Random();
         public void ApplyItem(Entity entity)
         {
-            if (entity.defensePoints != 0)
+            try
             {
-                entity.currentEnergy -= 10;
-                MessageBox.Show("The " + entity.name + " creature used an item that made him lose defense points!!");
                 entity.defensePoints -= random.Next(5, 15);
+                entity.currentEnergy -= 10;
+                new MessageBoxDarkMode("The " + entity.name + " creature used an item that made him lose defense points!!", "ATENCIÓN", "Ok", Resources.neg, true);
+                //return true;
+
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Su entidad perdió todos sus puntos de defensa");
+                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+                //return true;
             }
         }
 

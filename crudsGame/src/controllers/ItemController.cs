@@ -1,5 +1,6 @@
 ﻿using crudsGame.src.factoryMethod;
 using crudsGame.src.interfaces;
+using crudsGame.src.model;
 using crudsGame.src.model.Items;
 using crudsGame.src.model.Items.Strategy;
 using crudsGame.src.model.Items.Strategy.Negatives;
@@ -28,7 +29,7 @@ namespace crudsGame.src.controllers
             return Instance;
         }
 
-        List<string> PositiveNames = new List<string> { "Saliva Divina", "Furia de Preyton", "Poción de Bravura", "Poción de Fortaleza", "Néctar Calmante de Esmeralda", "Pócima de Donosura", "Ácido de Troll", "Elixir de la Condenación", "Esencia del Caos", "Licor de Tzeentch" };
+        List<string> PositiveNames = new List<string> { "Saliva Divina", "Furia de Preyton", "Poción de Bravura", "Poción de Fortaleza", "Néctar Calmante de Esmeralda", "Posición de Agilidad", "Posición de Brazos de Araña", "Coraje Líquido", "Favor de Greta", "Posición de Fuerza Diabólica", "Posición de Ingenio", "Posición de Liderazgo", "Posición de Suerte", "Tónico de Lucidez", "Posición de Sigilo", "Posición de Respuesta", "Posición de Ojos de Gato", "Néctar de la Belleza", "Pócima de Donosura", "Ácido de Troll", "Elixir de la Condenación", "Esencia del Caos", "Licor de Tzeentch", "Vena en Polvo", "Último Aliento", "Poción de Terror", "Posición de Torpeza", "Sangre Mareal", "Sangre Ciega", "Skalm", "Poción de Respirar Fuego", "Poción de Piedra", "Poción de Ojos de Águila", "Poción de Ojos de Búho", "Poción Maldita", "Licor Vidente de Serpiente", "Licor Adelgazante", "Leche de La Asamblea", "Poción Ojos de Rata", "Poción Murciélago" };
         List<string> NegativeNames = new List<string> { "Pócima de Donosura", "Ácido de Troll", "Elixir de la Condenación", "Esencia del Caos", "Licor de Tzeentch" };
         List<Item> itemList = new List<Item>();
         List<IStrategyTypeOfItem> interactuables = new List<IStrategyTypeOfItem>();
@@ -77,14 +78,14 @@ namespace crudsGame.src.controllers
             kingdomsList = GetKingdomList();
 
             
-            Item item1 = new Item(index, "probandoo", new LosesAttackPoints(), KingdomCreator.CreateAkingdom(2)); 
+            Item item1 = new Item(index, "probandoo", new LosesLife(), KingdomCreator.CreateAkingdom(2)); 
             itemList.Add(item1);
             index++;
             
 
             foreach (var name in PositiveNames)
             {
-                if (index <= 4)
+                if (index <= 17)
                 {
                     Item item = new Item(index, name, interactuables[random.Next(0, 4)], kingdomsList[random.Next(0, kingdomsList.Count)]);
                     itemList.Add(item);
@@ -135,6 +136,52 @@ namespace crudsGame.src.controllers
         {
             return new Item(id, name, type, kingdom);
 
+        }
+
+        public bool CheckIfAitemCreatedWithTheSameNameAlreadyExists(Item item)
+        {
+            foreach (Item i in itemList)
+            {
+                if (i.name == item.name)
+                {
+                    //EntitiesList.Remove(entity);
+                    //MessageBox.Show("existe");
+                    throw new Exception("Ya existe un item con el mismo nombre (" + item.name + ")");
+                }
+            }
+            return false;
+
+        }
+
+        public void AddItem(Item item)
+        {
+            itemList.Add(item);
+        }
+
+        public void DeleteAitem(int row)
+        {
+            itemList.RemoveAt(row);
+        }
+
+        public Item SearchItemById(int id)
+        {
+            foreach (var item in itemList)
+            {
+                if (item.id == id)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        public Item Update(Item item, int id, string name, IStrategyTypeOfItem type, IKingdom kingdom)
+        {
+            item.id = id;
+            item.name = name;
+            item.itemStrategy = type;
+            item.kingdom = kingdom;
+            return item;
         }
 
 

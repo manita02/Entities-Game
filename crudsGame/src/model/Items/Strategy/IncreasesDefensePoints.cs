@@ -1,4 +1,6 @@
-﻿using crudsGame.src.interfaces;
+﻿using crudsGame.Properties;
+using crudsGame.src.interfaces;
+using crudsGame.src.views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,26 +14,30 @@ namespace crudsGame.src.model.Items.Strategy
         Random random = new Random();
         public void ApplyItem(Entity entity)
         {
-            if (entity.defensePoints != 80)
+            try
             {
-                entity.currentEnergy -= 10;
-                MessageBox.Show("The " + entity.name + " creature has used a item that increased its defense points!!");
-                entity.defensePoints += random.Next(5, 15);    
+                //if (entity.defensePoints != 80)
+                //{
+                    entity.currentEnergy -= 10;
+                    new MessageBoxDarkMode("The " + entity.name + " creature has used a item that increased its defense points!!", "ATENCIÓN", "Ok", Resources.check, true);
+                    
+                    entity.defensePoints += random.Next(5, 15);
+                    //return true;
+                //}
+                //else
+                //{
+                    //MessageBox.Show("Su entidad tiene lo maximo que puede obtener en puntos de defensa");
+                    //return true;
+                //}
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Su entidad tiene lo maximo que puede obtener en puntos de defensa");
+                new MessageBoxDarkMode(ex.Message + ", no podrá utilizar este item", "ALERTA", "Ok", Resources.warning, true);
+                //return true;
             }
-            //try
-            //{
-            
-                
-            //}
-            //catch(Exception e)
-            //{
-            //    MessageBox.Show(e.ToString());
-            //}
-            
+
+
+
 
         }
 

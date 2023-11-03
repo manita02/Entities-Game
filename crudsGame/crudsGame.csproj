@@ -6,10 +6,21 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>Resources\skull.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Form1.Designer.cs" />
+    <Compile Remove="src\controllers\MapControllere.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\skull.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.Core" Version="3.7.203" />
+    <PackageReference Include="MaterialSkin.NET5" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>

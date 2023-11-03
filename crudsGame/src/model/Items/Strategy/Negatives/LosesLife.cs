@@ -1,4 +1,6 @@
-﻿using crudsGame.src.interfaces;
+﻿using crudsGame.Properties;
+using crudsGame.src.interfaces;
+using crudsGame.src.views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +14,30 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
         Random random = new Random();
         public void ApplyItem(Entity entity)
         {
-            //if (entity.currentLife != 0)
-            //{
-                entity.currentEnergy -= 10;
-                entity.currentLife -= random.Next(5, 15);
-                MessageBox.Show("The " + entity.name + " creature used an item that made him lose life (-" + entity.currentLife);
-            //}
-            //else
-            //{
-                //MessageBox.Show("Su entidad tiene lo maximo que puede obtener en vida");
-            //}
+            try
+            {
+                //MessageBox.Show(entity.currentLife.ToString());
+                //if (entity.currentLife != 0)
+                //{
+                    
+                    entity.currentLife -= random.Next(5, 30);
+                    entity.currentEnergy -= 10;
+                    new MessageBoxDarkMode("The " + entity.name + " creature used an item that made him lose life (-" + entity.currentLife, "ATENCIÓN", "Ok", Resources.neg, true);
+                
+                    //return true;
+                //}
+                //else
+                //{
+                    //MessageBox.Show("Su entidad ha muerto");
+                    //return false;
+                //}
+            }
+            catch (Exception ex)
+            {
+                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+                //return true;
+            }
+            
 
 
             //}
@@ -31,7 +47,6 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
             //}
 
         }
-
 
 
         public override string ToString()

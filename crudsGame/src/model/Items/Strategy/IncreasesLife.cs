@@ -1,4 +1,6 @@
-﻿using crudsGame.src.interfaces;
+﻿using crudsGame.Properties;
+using crudsGame.src.interfaces;
+using crudsGame.src.views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,24 +14,40 @@ namespace crudsGame.src.model.Items.Strategy
         Random random = new Random();
         public void ApplyItem(Entity entity)
         {
-            if (entity.currentLife != entity.maxLife)
+
+            try
             {
-                entity.currentEnergy -= 10;
-                entity.currentLife += random.Next(5, 15);
-                MessageBox.Show("The "+entity.name+ " creature has used a item that increased its life to "+ entity.currentLife);
+                //if (entity.currentLife != entity.maxLife)
+                //{
+                        
+                        entity.currentLife += random.Next(5, 15);
+                        entity.currentEnergy -= 10;
+                        new MessageBoxDarkMode("The " + entity.name + " creature has used a item that increased its life to " + entity.currentLife, "ATENCIÓN", "Ok", Resources.check, true);
+                       
+                        //return true;
+                    
+
+                //}
+                //else
+                //{
+                    //MessageBox.Show("Su entidad tiene lo maximo que puede obtener en vida");
+                    //return true;
+                //}
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Su entidad tiene lo maximo que puede obtener en vida");
+                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+                //return true;
             }
 
-            
+
+
             //}
             //catch(Exception e)
             //{
             //    MessageBox.Show(e.ToString());
             //}
-            
+
         }
 
        

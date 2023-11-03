@@ -9,6 +9,7 @@ namespace crudsGame.src.model.Diets
 {
     internal class SolarEnergy : IDiet
     {
+        /*
         public bool CanEat(Entity entity, Food food)
         {
             //MessageBox.Show("dieta entidad: " + entity.diet);
@@ -21,6 +22,16 @@ namespace crudsGame.src.model.Diets
             }
             
             return false;
+        }
+        */
+
+        public bool CanEat(Food food)
+        {
+            //MessageBox.Show("dieta entidad: " + entity.diet.ToString());
+            //MessageBox.Show("comida dieta: " + food.diet.ToString());
+
+            return food.diet is SolarEnergy;
+
         }
 
         public override string ToString()

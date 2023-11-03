@@ -1,10 +1,13 @@
-﻿using crudsGame.src.controllers;
+﻿using crudsGame.Properties;
+using crudsGame.src.controllers;
 using crudsGame.src.factoryMethod;
 using crudsGame.src.interfaces;
 using crudsGame.src.model;
 using crudsGame.src.model.Diets;
 using crudsGame.src.model.Items;
 using crudsGame.src.model.Kingdoms;
+using crudsGame.src.model.Terrains;
+using crudsGame.src.model.Terrains.Map;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +19,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace crudsGame.src.views
 {
@@ -27,6 +31,8 @@ namespace crudsGame.src.views
         ItemController itemCtn;
         EntityController entityCtn;
         FoodController foodCtn;
+        MapController mapCtn = MapController.GetInstance();
+        TerrainController terrainCtn = TerrainController.GetInstance();
 
 
         public AttackTest()
@@ -40,6 +46,7 @@ namespace crudsGame.src.views
             LoadComboboxWithCreaturesPlayerOne();
             cbItems.DataSource = itemCtn.GetItemList();
             cbFoods.DataSource = foodCtn.GetFoodList();
+
             //LoadComboWithFoods();
 
 
@@ -47,12 +54,13 @@ namespace crudsGame.src.views
             cbCreaturesPlayerTwo.SelectedIndex = 0;
             cbItems.SelectedIndex = 0;
 
+            RefreshMap();
             /*
             Food f1 = new Food(1, "carne", 10, new Carnivore());
             Food f2 = new Food(2, "manzana", 20, new Carnivore());
             Food f3 = new Food(3, "grillo", 30, new SolarEnergy());
             
-
+            
 
 
             foodsList.Add(f1);
@@ -98,6 +106,7 @@ namespace crudsGame.src.views
                     cbCreaturesPlayerTwo.Items.Remove(creature);
                 }
             }
+            cbCreaturesPlayerTwo.SelectedIndex = 0;
         }
 
         #endregion
@@ -181,9 +190,9 @@ namespace crudsGame.src.views
             pbCurrentEnergy.Value = GetOnePlayerCreatureSelectedFromCombo().currentEnergy;
 
             txtAttack.Text = GetOnePlayerCreatureSelectedFromCombo().attackPoints.ToString();
-            
+
             txtDefense.Text = GetOnePlayerCreatureSelectedFromCombo().defensePoints.ToString();
-            
+
 
         }
 
@@ -200,7 +209,7 @@ namespace crudsGame.src.views
             UpdateProgressbar();
             txtAttack.Text = GetOnePlayerCreatureSelectedFromCombo().attackPoints.ToString();
             txtDefense.Text = GetOnePlayerCreatureSelectedFromCombo().defensePoints.ToString();
-            txtEnvironment.Text = GetOnePlayerCreatureSelectedFromCombo().environment.ToString();
+            //txtEnvironment.Text = GetOnePlayerCreatureSelectedFromCombo().environment.ToString();
             txtKingdom.Text = GetOnePlayerCreatureSelectedFromCombo().kingdom.ToString();
             txtMaxEnergy.Text = GetOnePlayerCreatureSelectedFromCombo().maxEnergy.ToString();
             txtMaxLife.Text = GetOnePlayerCreatureSelectedFromCombo().maxLife.ToString();
@@ -212,31 +221,34 @@ namespace crudsGame.src.views
 
         private void btnAttack_Click(object sender, EventArgs e)
         {
-            if (GetOnePlayerCreatureSelectedFromCombo().currentLife <= 0)
+            /*
+            int result = GetOnePlayerCreatureSelectedFromCombo().BeingAttacked(GetOnePlayerCreatureSelectedFromCombo().Attack(GetTwoPlayerCreatureSelectedFromCombo()), GetTwoPlayerCreatureSelectedFromCombo());
+            //MessageBox.Show("valor de result: " + result.ToString());
+            if (result == 1)
             {
+                MessageBox.Show(" " + GetOnePlayerCreatureSelectedFromCombo().name + " falleció!!");
                 entityCtn.GetEntitiesList().Remove(GetOnePlayerCreatureSelectedFromCombo());
                 LoadComboboxWithCreaturesPlayerOne();
-                cbCreaturesPlayerOne.Text = "he is dead :(";
-                btnAttack.Enabled = false;
-                cbCreaturesPlayerTwo.Enabled = false;
+                //cbCreaturesPlayerOne.Text = "he is dead :(";
+                //btnAttack.Enabled = false;
+                //cbCreaturesPlayerTwo.Enabled = false;
+                cbCreaturesPlayerOne.SelectedIndex = 0;
             }
             else
             {
-                if (GetTwoPlayerCreatureSelectedFromCombo().currentLife <= 0)
+                if (result == 2)
                 {
+                    //MessageBox.Show(" " + GetTwoPlayerCreatureSelectedFromCombo().name + " falleció!!");
                     entityCtn.GetEntitiesList().Remove(GetTwoPlayerCreatureSelectedFromCombo());
                     LoadComboWithCreaturesPlayerTwo();
                     LoadComboboxWithCreaturesPlayerOne();
-                    cbCreaturesPlayerTwo.Text = "he is dead :(";
-                    btnAttack.Enabled = false;
-                }
-                else
-                {
-                    GetOnePlayerCreatureSelectedFromCombo().BeingAttacked(GetOnePlayerCreatureSelectedFromCombo().Attack(GetTwoPlayerCreatureSelectedFromCombo()), GetTwoPlayerCreatureSelectedFromCombo());
-                    UpdateProgressbar();
-                    UpdateJ2Labels();
+                    //cbCreaturesPlayerTwo.Text = "he is dead :(";
+                    //btnAttack.Enabled = false;
+                    cbCreaturesPlayerOne.SelectedIndex = 0;
                 }
             }
+            UpdateProgressbar();
+            UpdateJ2Labels()*/
         }
 
         private void cbCriatureToDefense_SelectedIndexChanged(object sender, EventArgs e)
@@ -247,21 +259,94 @@ namespace crudsGame.src.views
 
         private void btnComer_Click(object sender, EventArgs e)
         {
-            GetOnePlayerCreatureSelectedFromCombo().Eat(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedFoodFromCombobox());
-            UpdateProgressbar();
+            try
+            {
+                GetOnePlayerCreatureSelectedFromCombo().Eat(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedFoodFromCombobox());
+                UpdateProgressbar();
+            }
+            catch (Exception ex)
+            {
+                new MessageBoxDarkMode(ex.Message + " por eso no puede comer", "ALERTA", "Ok", Resources.warning, true);
+            }
+            
         }
 
         private void btnInteract_Click(object sender, EventArgs e)
         {
-            GetOnePlayerCreatureSelectedFromCombo().UsarItem(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedItemFromCombobox());
-            //GetSelectedItemFromCombobox().Interact(GetOnePlayerCreatureSelectedFromCombo());
+            //GetOnePlayerCreatureSelectedFromCombo().currentEnergy = 0;
+            //try
+            //{
+            
+                if (GetOnePlayerCreatureSelectedFromCombo().currentLife <= 0)
+                {
+                    MessageBox.Show("Su entidad ha perdido toda su vida por lo tanto murió...");
+                    entityCtn.GetEntitiesList().Remove(GetOnePlayerCreatureSelectedFromCombo());
+                    LoadComboboxWithCreaturesPlayerOne();
+                    cbCreaturesPlayerOne.SelectedIndex = 0;
+                }
+                else
+                {
+                    GetOnePlayerCreatureSelectedFromCombo().UsarItem(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedItemFromCombobox());
+                }
             UpdateProgressbar();
+
+            /*
+            if (GetOnePlayerCreatureSelectedFromCombo().UsarItem(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedItemFromCombobox()) == false)
+            {
+                //MessageBox.Show("Su entidad ha perdido toda su vida por lo tanto murió...");
+                entityCtn.GetEntitiesList().Remove(GetOnePlayerCreatureSelectedFromCombo());
+                LoadComboboxWithCreaturesPlayerOne();
+                cbCreaturesPlayerOne.SelectedIndex = 0;
+                //cbCreaturesPlayerOne.Items.Remove(GetOnePlayerCreatureSelectedFromCombo());
+            }
+            UpdateProgressbar();
+            */
+
+            //}
+            //catch (Exception ex)
+            //{
+            //new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+            //UpdateProgressbar();
+            //}
+
+
         }
 
         private void btnSleep_Click(object sender, EventArgs e)
         {
             GetOnePlayerCreatureSelectedFromCombo().Sleep();
             UpdateProgressbar();
+        }
+
+        private void RefreshMap()
+        {
+            bindingTerrains.DataSource = terrainCtn.GetTerrainList(); //cheq estooooooooooooo
+            bindingTerrains.ResetBindings(false);
+            cbCurrentTerrain.DataSource = bindingTerrains;
+        }
+
+        private void btnMap_Click(object sender, EventArgs e)
+        {
+            mapCtn.GenerateMap();
+            cbCurrentTerrain.DataSource = terrainCtn.GetTerrainList();
+            //RefreshMap();
+            btnMap.Enabled = false;
+        }
+
+        private void cbCurrentTerrain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //cbBorderingTerrainsOfCurrentTerrain.Items.Clear();
+            if (cbCurrentTerrain.SelectedItem is Terrain terrain)
+            {
+                //cbBorderingTerrainsOfCurrentTerrain.DataSource = terrainCtn.GetBorderingTerrainsList(terrain);
+
+                bindingBonderingTerrains.DataSource = terrainCtn.GetBorderingTerrainsList(terrain);
+                bindingBonderingTerrains.ResetBindings(false);
+                cbBorderingTerrainsOfCurrentTerrain.DataSource = bindingBonderingTerrains;
+                listBox1.DataSource = bindingBonderingTerrains;
+
+
+            }
         }
     }
 }

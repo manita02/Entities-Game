@@ -27,7 +27,7 @@ namespace crudsGame.src.controllers
             return Instance;
         }
 
-        List<string> foodNames = new List<string> { "Lechuga", "Tomate", "Choclo", "Pepino", "Banana", "Manzana", "Durazno", "Pollo", "Vaca", "Cerdo", "Llama", "Cabrito", "Paloma", "Rata", "Comadreja", "Lentejas", "Caramelos", "Chocolates", "Cebada", "Centeno", "Piel de Jabalí", "Rayos De Sol", "Rayos Ultra Violetas", "Corriente Eléctrica", "Rayos Nube - Nube", "Rayos Intra-Nube"};
+        List<string> foodNames = new List<string> { "Lechuga", "Tomate", "Choclo", "Pepino", "Banana", "Manzana", "Durazno", "Mandarina", "Acelga", "Rabanito", "Zapallo", "Uva", "Pollo", "Vaca", "Cerdo", "Llama", "Cabrito", "Paloma", "Rata", "Serpiente", "Sapo", "Liebre", "Conejo", "Coatí", "Rayos De Sol", "Rayos Ultra Violetas", "Corriente Eléctrica", "Rayos Nube - Nube", "Rayos Intra-Nube", "Netbook eNova", "Iphone X", "Samsung Galaxy J7", "Intel core i5-11400",  "TV LED RCA",  "Microondas",  "Heladera", "PC Gamer", "Amplificador 50 Watts", "Guitarra Eléctrica", "Batería Eléctrica" };
         List<Food> foodList = new List<Food>();
         List<IDiet> dietList = new List<IDiet>();
 
@@ -40,7 +40,7 @@ namespace crudsGame.src.controllers
             {
                 dietList.Add(DietCreator.CreateAdiet(1));
                 dietList.Add(DietCreator.CreateAdiet(2));
-                dietList.Add(DietCreator.CreateAdiet(3));
+                //dietList.Add(DietCreator.CreateAdiet(3));
                 dietList.Add(DietCreator.CreateAdiet(4));
             }
             return dietList;
@@ -53,24 +53,20 @@ namespace crudsGame.src.controllers
    
             foreach (var name in foodNames)
             {
-                if(index <= 6)
+                if(index <= 11)
                 {
-                    Food food = new Food(index, name, random.Next(1, 50), dietList[1]);
+                    Food food = new Food(index, name, random.Next(1, 50), dietList[1]);//herbiboro
                     foodList.Add(food);
                 }
-                if(index > 6 && index <= 13)
+                if(index > 11 && index <= 23)
                 {
-                    Food food = new Food(index, name, random.Next(1, 50), dietList[0]);
+                    Food food = new Food(index, name, random.Next(1, 50), dietList[0]);//carnivoro
                     foodList.Add(food);
                 }
-                if(index > 13 && index <= 20)
+                
+                if(index > 23)
                 {
-                    Food food = new Food(index, name, random.Next(1, 50), dietList[2]);
-                    foodList.Add(food);
-                }
-                if(index > 20)
-                {
-                    Food food = new Food(index, name, random.Next(1, 50), dietList[3]);
+                    Food food = new Food(index, name, random.Next(1, 50), dietList[2]);//solar
                     foodList.Add(food);
                 }
 
@@ -96,6 +92,52 @@ namespace crudsGame.src.controllers
         {
             return new Food(id, name, calories, diet);
 
+        }
+
+        public bool CheckIfAfoodCreatedWithTheSameNameAlreadyExists(Food food)
+        {
+            foreach (Food f in foodList)
+            {
+                if (f.name == food.name)
+                {
+                    //EntitiesList.Remove(entity);
+                    //MessageBox.Show("existe");
+                    throw new Exception("Ya existe una comida con el mismo nombre (" + food.name + ")");
+                }
+            }
+            return false;
+
+        }
+
+        public void AddFood(Food food)
+        {
+            foodList.Add(food);
+        }
+
+        public void DeleteAfood(int row)
+        {
+            foodList.RemoveAt(row);
+        }
+
+        public Food SearchFoodById(int id)
+        {
+            foreach (var food in foodList)
+            {
+                if (food.id == id)
+                {
+                    return food;
+                }
+            }
+            return null;
+        }
+
+        public Food Update(Food food, int id, string name, int calories, IDiet diet)
+        {
+            food.id = id;
+            food.name = name;
+            food.diet = diet;
+            food.calories = calories;
+            return food;
         }
 
     }

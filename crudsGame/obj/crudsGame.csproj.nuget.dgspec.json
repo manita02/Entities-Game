@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\manita02\\Desktop\\animalesREPOPRUEBAA\\probandoAnimales\\crudsGame\\crudsGame.csproj": {}
+    "C:\\Users\\manit\\Desktop\\criatures_game\\probandoAnimales\\crudsGame\\crudsGame.csproj": {}
   },
   "projects": {
-    "C:\\Users\\manita02\\Desktop\\animalesREPOPRUEBAA\\probandoAnimales\\crudsGame\\crudsGame.csproj": {
+    "C:\\Users\\manit\\Desktop\\criatures_game\\probandoAnimales\\crudsGame\\crudsGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\manita02\\Desktop\\animalesREPOPRUEBAA\\probandoAnimales\\crudsGame\\crudsGame.csproj",
+        "projectUniqueName": "C:\\Users\\manit\\Desktop\\criatures_game\\probandoAnimales\\crudsGame\\crudsGame.csproj",
         "projectName": "crudsGame",
-        "projectPath": "C:\\Users\\manita02\\Desktop\\animalesREPOPRUEBAA\\probandoAnimales\\crudsGame\\crudsGame.csproj",
-        "packagesPath": "C:\\Users\\manita02\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\manita02\\Desktop\\animalesREPOPRUEBAA\\probandoAnimales\\crudsGame\\obj\\",
+        "projectPath": "C:\\Users\\manit\\Desktop\\criatures_game\\probandoAnimales\\crudsGame\\crudsGame.csproj",
+        "packagesPath": "C:\\Users\\manit\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\manit\\Desktop\\criatures_game\\probandoAnimales\\crudsGame\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\manita02\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\manit\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,6 +39,16 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
+          "dependencies": {
+            "AWSSDK.Core": {
+              "target": "Package",
+              "version": "[3.7.203, )"
+            },
+            "MaterialSkin.NET5": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -58,7 +68,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

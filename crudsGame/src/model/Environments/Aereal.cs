@@ -12,7 +12,21 @@ namespace crudsGame.src.model.Environments
     {
         public bool CanMoveThrough(ITerrain terrain)
         {
-            return terrain is Air;
+            /*
+            if(terrain is Aquatic || terrain is Land)
+            {
+                return terrain;
+            }
+            throw new Exception("no se puede");
+            */
+            if (terrain is Water || terrain is Land)
+            {
+                MessageBox.Show("se puede mover en aireeee");
+                return true;
+            }
+
+            return false;
+               
         }
 
         public override string ToString()

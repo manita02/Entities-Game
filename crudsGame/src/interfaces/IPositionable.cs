@@ -8,5 +8,6 @@ namespace crudsGame.src.interfaces
 {
     internal interface IPositionable
     {
+        //public List<IEnvironment> HabitatsCompatible();
     }
 }

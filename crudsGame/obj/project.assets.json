@@ -1,26 +1,94 @@
 {
   "version": 3,
   "targets": {
-    "net6.0-windows7.0": {}
+    "net6.0-windows7.0": {
+      "AWSSDK.Core/3.7.203": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "MaterialSkin.NET5/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0-windows7.0/MaterialSkin.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0-windows7.0/MaterialSkin.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "AWSSDK.Core/3.7.203": {
+      "sha512": "eaBpKKMxrFfUXOtesGX7scIumznqWaGE/cCpq97ur2aJphytpLFb+tFg972WOjz6cAlrdz0Uie3Enxrgv4Wghw==",
+      "type": "package",
+      "path": "awssdk.core/3.7.203",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "awssdk.core.3.7.203.nupkg.sha512",
+        "awssdk.core.nuspec",
+        "images/AWSLogo.png",
+        "lib/net35/AWSSDK.Core.dll",
+        "lib/net35/AWSSDK.Core.pdb",
+        "lib/net35/AWSSDK.Core.xml",
+        "lib/net45/AWSSDK.Core.dll",
+        "lib/net45/AWSSDK.Core.pdb",
+        "lib/net45/AWSSDK.Core.xml",
+        "lib/netcoreapp3.1/AWSSDK.Core.dll",
+        "lib/netcoreapp3.1/AWSSDK.Core.pdb",
+        "lib/netcoreapp3.1/AWSSDK.Core.xml",
+        "lib/netstandard2.0/AWSSDK.Core.dll",
+        "lib/netstandard2.0/AWSSDK.Core.pdb",
+        "lib/netstandard2.0/AWSSDK.Core.xml",
+        "tools/account-management.ps1"
+      ]
+    },
+    "MaterialSkin.NET5/1.0.2": {
+      "sha512": "gsNBQF4dQJKilvw9nUIBomqMhRQ8cffNTaZGC37O/cZ53QrZAOh2sX+DI9NHyi6conkULY5/0dfaY4F9gOtLdg==",
+      "type": "package",
+      "path": "materialskin.net5/1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0-windows7.0/MaterialSkin.dll",
+        "materialskin.net5.1.0.2.nupkg.sha512",
+        "materialskin.net5.nuspec"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0-windows7.0": []
+    "net6.0-windows7.0": [
+      "AWSSDK.Core >= 3.7.203",
+      "MaterialSkin.NET5 >= 1.0.2"
+    ]
   },
   "packageFolders": {
-    "C:\\Users\\manita02\\.nuget\\packages\\": {}
+    "C:\\Users\\manit\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\manita02\\Desktop\\animalesREPOPRUEBAA\\probandoAnimales\\crudsGame\\crudsGame.csproj",
+      "projectUniqueName": "C:\\Users\\manit\\Desktop\\criatures_game\\probandoAnimales\\crudsGame\\crudsGame.csproj",
       "projectName": "crudsGame",
-      "projectPath": "C:\\Users\\manita02\\Desktop\\animalesREPOPRUEBAA\\probandoAnimales\\crudsGame\\crudsGame.csproj",
-      "packagesPath": "C:\\Users\\manita02\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\manita02\\Desktop\\animalesREPOPRUEBAA\\probandoAnimales\\crudsGame\\obj\\",
+      "projectPath": "C:\\Users\\manit\\Desktop\\criatures_game\\probandoAnimales\\crudsGame\\crudsGame.csproj",
+      "packagesPath": "C:\\Users\\manit\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\manit\\Desktop\\criatures_game\\probandoAnimales\\crudsGame\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\manita02\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\manit\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -45,6 +113,16 @@
     "frameworks": {
       "net6.0-windows7.0": {
         "targetAlias": "net6.0-windows",
+        "dependencies": {
+          "AWSSDK.Core": {
+            "target": "Package",
+            "version": "[3.7.203, )"
+          },
+          "MaterialSkin.NET5": {
+            "target": "Package",
+            "version": "[1.0.2, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
@@ -64,7 +142,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

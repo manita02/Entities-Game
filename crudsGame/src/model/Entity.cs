@@ -1,7 +1,11 @@
-﻿using crudsGame.src.interfaces;
+﻿using crudsGame.Properties;
+using crudsGame.src.interfaces;
 using crudsGame.src.model.Items;
 using crudsGame.src.model.Kingdoms;
+using crudsGame.src.views;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -11,13 +15,14 @@ using System.Threading.Tasks;
 
 namespace crudsGame.src.model
 {
-    public class Entity : IPositionable
+    public class Entity
     {
         int Id;
         IKingdom Kingdom;
         string Name;
         IDiet Diet;
         IEnvironment Environment;
+        List<IEnvironment> EnvironmentsList = new List<IEnvironment>();
         int MaxEnergy;
         int CurrentEnergy;
         int MaxLife;
@@ -26,6 +31,27 @@ namespace crudsGame.src.model
         int DefensePoints;
         int AttackRange;
 
+
+        
+        public Entity(int id, IKingdom kingdomm, string namee, IDiet diet, List<IEnvironment> environments, int maxenergy, int maxlifee, int attackpoints, int defensepoints, int attackrange)
+        {
+            Id = id;
+            kingdom = kingdomm; //aca hay q usar las propiedadesss, el metodo que hay q modificar siempre es el set
+            name = namee;
+            Diet = diet;
+            environmentList = environments;
+            maxEnergy = maxenergy;
+            CurrentEnergy = MaxEnergy;
+            maxLife = maxlifee;
+            CurrentLife = MaxLife;
+            attackPoints = attackpoints;
+            defensePoints = defensepoints;
+            attackRange = attackrange;
+        }
+
+
+
+        /*
         public Entity(int id, IKingdom kingdom, string name, IDiet diet, IEnvironment environment, int maxenergy, int maxlife, int attackpoints, int defensepoints, int attackrange)
         {
             Id = id;
@@ -41,6 +67,39 @@ namespace crudsGame.src.model
             DefensePoints = defensepoints;
             AttackRange = attackrange;
         }
+        */
+
+        #region Properties
+
+        public List<IEnvironment> environmentList
+        {
+            get
+            {
+                
+                    //if (EnvironmentsList.Count() != 0) //|| EnvironmentsList!=null)//nova el null
+                    //{
+                        return EnvironmentsList;
+
+                    //}
+                    //else
+                    //{
+                        //throw new Exception("Debe seleccionar por lo menos un environment para la criatura " + Name);
+
+                    //}        
+            }
+            set
+            {
+                if (value.Count() != 0)
+                {
+                    EnvironmentsList = value;
+
+                }
+                else
+                {
+                    throw new Exception("Tiene que seleccionar como mínimo un ambiente para la criatura " + Name);
+                } 
+            }
+        }
 
         public int id
         {
@@ -54,6 +113,7 @@ namespace crudsGame.src.model
             }
         }
 
+        /*
         public IEnvironment environment
         {
             get
@@ -70,12 +130,23 @@ namespace crudsGame.src.model
                 else throw new InvalidOperationException("You have to select a environment");
             }
         }
+        */
 
         public string name
         {
             get
             {
-                return Name;
+                  
+                //if (!string.IsNullOrEmpty(Name))
+                //{
+                    return Name;
+                //}
+                //else
+                //{
+                    //throw new Exception("Debe asignarle un nombre a esta entidad!!");
+                //}
+                
+                
             }
 
             set
@@ -84,7 +155,7 @@ namespace crudsGame.src.model
                 {
                     Name = value;
                 }
-                else throw new NullReferenceException("The name cannot be empty!!");
+                else throw new Exception("The name cannot be empty!!");
             }
         }
 
@@ -136,12 +207,14 @@ namespace crudsGame.src.model
                 if (value < 0)
                 {
                     CurrentEnergy = 0;
-                    MessageBox.Show("The creature" + Name + " is very tired");
+                    //MessageBox.Show("The creature" + Name + " is very tired");
                     throw new Exception("The creature "+ Name +" is very tired");
                 }
-                else if (value > MaxEnergy)
+                else if (value >= MaxEnergy)
                 {
                     CurrentEnergy = MaxEnergy;
+                    throw new Exception("La entidad "+this.Name+" ha obtenido lo máximo que puede obtener en energía ( "+this.MaxEnergy+" )");
+
                 }
                 else
                 {
@@ -162,25 +235,90 @@ namespace crudsGame.src.model
             {
                 if (value > 0)
                 {
-                    //MessageBox.Show("ENTRE: " + this.CurrentEnergy);
                     MaxEnergy = value;
                 }
-                else throw new InvalidOperationException("la energia maxima esta mal");
+                else
+                {
+                    throw new Exception("La energía máxima debe ser mayor a cero!!");
+                }       
             }
         }
 
         public int maxLife
         {
-            get => MaxLife;
-            //get { return maxLife; }
+            get
+            {
+                return MaxLife;
+            }
             set
             {
-                if (value > 0) MaxLife = value;
-                else throw new InvalidOperationException("la vida siempre sera mayor a 0");
+                if (value > 0)
+                {
+                    MaxLife = value;
+                }
+                else
+                {
+                    throw new Exception("La vida máxima debe ser mayor a cero!!");
+                } 
             }
         }
 
-        public int attackPoints { //aca hay errores
+
+
+
+
+        public int attackPoints
+        {
+            get
+            { 
+                return AttackPoints;
+            }
+
+            set
+            {
+                
+                if (value > 0)
+                {
+                    AttackPoints = value;
+                }
+                else
+                {
+                    AttackPoints = 0;
+                    throw new Exception("La entidad " + this.Name + " ha perdido todos sus puntos de ataque debido a que ha utilizado un item!!");
+
+                }
+            }
+        }
+
+        
+        public int defensePoints {
+            get
+            { 
+               return DefensePoints; 
+            }
+
+            set
+            {
+                if (value > 0)
+                {
+                    DefensePoints = value;
+                }
+                else
+                {
+                    DefensePoints = 0;
+                    throw new Exception("La entidad " + this.Name + " ha perdido todos sus puntos de defensa debido a que ha utilizado un item!!");
+
+                }
+            }
+        }
+        
+
+
+
+
+
+        /*
+        public int attackPoints { 
             get
             {
                 if(AttackPoints <= 0)
@@ -217,19 +355,36 @@ namespace crudsGame.src.model
                     
                 AttackPoints = 80;
                     throw new ArgumentOutOfRangeException(nameof(value), "The valid range for attack points is between 10 and 80.");
-                */
+                
             }
         }
+        */
 
-
+        /*
         public int defensePoints {
             get
             {
-                return DefensePoints;
+                if (DefensePoints <= 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return DefensePoints;
+                }
             }
 
             set
             {
+                if (value >= 80)
+                {
+                    DefensePoints = 80;
+                }
+                else
+                {
+                    DefensePoints = value;
+                }
+                /*
                 if (value >= 10 && value <= 80)
                 {
                     DefensePoints = value;
@@ -237,14 +392,28 @@ namespace crudsGame.src.model
                 else
                     DefensePoints = 80;
                     throw new ArgumentOutOfRangeException(nameof(value), "The valid range for defense points is between 10 and 80.");
+                
 
             }
+        }
+        */
+
+        private Entity Die(Entity entity)
+        {
+            return entity;
         }
         public int currentLife
         {
             get
             {
-                return CurrentLife;
+                //if (CurrentLife <= 0)
+                //{
+                    //return 0;
+                //}
+                //else
+                //{
+                    return CurrentLife;
+                //}
             }
             set
             {
@@ -252,13 +421,15 @@ namespace crudsGame.src.model
                 {
                     CurrentLife = 0;
                     
-                    MessageBox.Show("The creature "+ Name +" has died");
+                    //MessageBox.Show("The creature "+ Name +" has died");
+                    
                     throw new Exception("The creature " + Name + " has died");
                     
                 }
-                else if (value > MaxLife)
+                else if (value >= MaxLife)
                 {
                     CurrentLife = MaxLife;
+                    throw new Exception("La entidad " + this.Name + " ha obtenido lo máximo que puede obtener en vida ( " + this.MaxEnergy + " )");
                 }
                 else
                 {
@@ -276,109 +447,200 @@ namespace crudsGame.src.model
 
             set
             {
-                if (value == 0 || value == 1)
+                
+                if (value >= 0 && value <= 1)
                 {
                     AttackRange = value;
                 }
-                if (value > 0)
+                else
                 {
-                    MessageBox.Show("El ataque solo puede ser 0 o 1");
-                    AttackRange = 1;
+                    throw new Exception("El rango de ataque solo puede ser 0 o 1");
+                    //MessageBox.Show("El ataque solo puede ser 0 o 1");
+                    //AttackRange = 1;
                 }
                 
-                else throw new ArgumentOutOfRangeException(nameof(value), "Attack Range can be 0 (zero) or 1 (one)");
+
+                
+
+                //else throw new ArgumentOutOfRangeException(nameof(value), "Attack Range can be 0 (zero) or 1 (one)");
 
             }
         }
+        #endregion
 
-
-        public int Attack(Entity entity)
+        public int Attack(Entity entityPlayerTwo)
         {
-            try
-            {
+            //try
+            //{
                 this.currentEnergy -= 10;
 
                 int DicePlayerOne = Dice.TrowDice();
                 int DicePlayerTwo = Dice.TrowDice();
 
+                new MessageBoxDarkMode(" Player one ha lanzado el dado: +" + DicePlayerOne + "\n " + this.name + " ataca con (" + this.attackPoints + " + " + DicePlayerOne + ") a " + entityPlayerTwo.name, "ATENCIÓN", "Ok", Resources.moreAttack, true);
+                //MessageBox.Show(" Player one ha lanzado el dado: +" + DicePlayerOne + "\n " + this.name + " ataca con (" + this.attackPoints + " + " + DicePlayerOne + ") a " + entityPlayerTwo.name);
 
-                MessageBox.Show("\t Player one ha lanzado el dado: +" + DicePlayerOne + "\n \t " + this.name + " ataca con (" + this.attackPoints + " + " + DicePlayerOne + ") a " + entity.name);
-                MessageBox.Show("\t Player two ha lanzado el dado: +" + DicePlayerTwo + "\n \t " + entity.name + " se defenderá con (" + entity.defensePoints + " + " + DicePlayerTwo);
+                new MessageBoxDarkMode(" Player two ha lanzado el dado: +" + DicePlayerTwo + "\n " + entityPlayerTwo.name + " se defenderá con (" + entityPlayerTwo.defensePoints + " + " + DicePlayerTwo + ")", "ATENCIÓN", "Ok", Resources.moreDefense, true);
+                //MessageBox.Show(" Player two ha lanzado el dado: +" + DicePlayerTwo + "\n " + entityPlayerTwo.name + " se defenderá con (" + entityPlayerTwo.defensePoints + " + " + DicePlayerTwo +")");
 
-                
+                //MessageBox.Show("puntos de ataque entidad 1 = " + this.attackPoints + " valor dado = " + DicePlayerOne);
+                //MessageBox.Show("puntos de defensa entidad 2 = " + entityPlayerTwo.defensePoints + " valor dado = " + DicePlayerTwo);
 
-                return ((this.attackPoints + DicePlayerOne) - entity.defensePoints + DicePlayerTwo);
-            }
-            catch (Exception e)
-            {
-                Console.Write(e.ToString());
-                return 0;
-            }
+
+                //int ataque = this.attackPoints + DicePlayerOne;
+                //int defensa = entityPlayerTwo.defensePoints + DicePlayerTwo;
+                //MessageBox.Show("puntos de ataque mas dado 1 = " + ataque + " - PUNTOS DE DEFENSA MAS DADO 2 = " + defensa);
+
+                //int result = ataque - defensa;
+                new MessageBoxDarkMode("RESULADO FINAL DE ATAQUE: " + ((this.attackPoints + DicePlayerOne) - (entityPlayerTwo.defensePoints + DicePlayerTwo)), "ATENCIÓN", "Ok", Resources.info, true);
+                //MessageBox.Show("RESULADO FINAL DE ATAQUE: " + ((this.attackPoints + DicePlayerOne) - (entityPlayerTwo.defensePoints + DicePlayerTwo)));
+
+                return ((this.attackPoints + DicePlayerOne)-(entityPlayerTwo.defensePoints + DicePlayerTwo));
+            //return ((this.attackPoints + DicePlayerOne) - entityPlayerTwo.defensePoints + DicePlayerTwo);
+            //}
+            //catch (Exception e)
+            //{
+                //Console.Write(e.ToString());
+                //return 0;
+            //}
             
         }
 
-        public void BeingAttacked(int atkPoints, Entity entity)
+        public int BeingAttacked(int atkPoints, Entity entityPlayerTwo)
         {
             try
             {
-               
-                        if (atkPoints < 0)
+                  if (atkPoints < 0)
+                  {
+                        //MessageBox.Show("vida actual " + this.currentLife + " + " + atkPoints);
+                        //this.currentLife += atkPoints; //como es la entidad atacante usamos los atributos y no el get set
+                        //return 0;
+
+                        this.CurrentLife += atkPoints; //como es la entidad atacante usamos los atributos y no el get set
+                        if (this.CurrentLife <= 0)
                         {
-                            this.currentLife += atkPoints;
-                            MessageBox.Show("Ganó " + entity.name + "con sus puntos de defensa!!");
+                            //MessageBox.Show("vida de atacante: " + this.CurrentLife);
+                            return 1;
+                        }
+
+                    /*if (this.CurrentLife <= 0)
+                        {
+                            MessageBox.Show("vida de atacante: " + this.CurrentLife);
+                            return 1;
                         }
                         else
                         {
-                            if(atkPoints > 0)
+
+                            return 0;
+
+                        }
+                        */
+                    new MessageBoxDarkMode("Ganó " + entityPlayerTwo.name + " con sus puntos de defensa!!", "ATENCIÓN", "Ok", Resources.moreDefense, true);
+                    //MessageBox.Show("Ganó " + entityPlayerTwo.name + "con sus puntos de defensa!!");
+                }
+                        else
+                        {
+                            if (atkPoints > 0)
                             {
-                                entity.currentLife -= atkPoints;
-                                MessageBox.Show("Ganó " + this.name + "con sus puntos de ataque!!");
+                                //MessageBox.Show("vida actual de la entidad q se defiende" + entityPlayerTwo.currentLife + " - " + atkPoints);
+                                entityPlayerTwo.currentLife -= atkPoints; //aca al ser al defensa usamos el get set para que valla a la exepcion cuando se muere
+
+                                new MessageBoxDarkMode("Ganó " + this.name + " con sus puntos de ataque!!", "ATENCIÓN", "Ok", Resources.moreAttack, true);
+                                //MessageBox.Show("Ganó " + this.name + "con sus puntos de ataque!!");
+                                //return 0;
+                                return 0;
                             }
                         }
-                   
+                return 0;     
             }
             catch(Exception e)
             {
                 Console.WriteLine(e.ToString());
+                return 2;
             }
              
         }
 
 
-        public void UsarItem(Entity entity, Item item)
+        public bool UsarItem(Entity entity, Item item)//no es necesario pasar la entidaddd
         {
-            if (Kingdom.CanInteract(entity, item) == true)
+            if (Kingdom.CanInteract(item) == true)
             {
-                item.Interact(entity);
+                item.Interact(this);
+                return true;
+                //if (item.Interact(entity) == true)
+                //{
+                    //return true; 
+                //}
+                //else
+                //{
+                    //MessageBox.Show("La entidad esta muertaaaaaaa en usar item");
+                    //return false;
+                //}
+
+
+                /*
+                if (entity.currentLife <= 0)
+                {
+                    MessageBox.Show("su entidad murio");
+                    return false;
+                }
+                else
+                {
+                    item.Interact(entity);
+                    return true;
+                }
+                */
+
+
+                
             }
             else
             {
-                MessageBox.Show("la entidad seleccionada no puede usar este item");
+                new MessageBoxDarkMode("La entidad seleccionada ( "+ this.name+" ) no puede usar este item ya que no coinciden sus reinos!!", "ALERTA", "Ok", Resources.warning, true);
+                
+                //MessageBox.Show("la entidad seleccionada no puede usar este item");
+                //return true;
             }
+            return false;
         }
 
-        public void Eat(Entity entity,  Food food)
+        public bool Eat(Entity entity,  Food food)//no es necesario pasar la entidad creo q funciona el caneat
         {
-            try
-            {
-                if (Diet.CanEat(entity, food) == true)
+            /*
+                 if (Diet.CanEat(entity, food) == true)
+                 {
+                     food.Interact(entity);
+                     //entity.currentEnergy -= 10;
+                 }
+                 else
+                 {
+                     throw new Exception("La dieta ( "+entity.diet+" ) de la entidad seleccionada ( "+entity.name+" ) no coincide con el alimento a ingerir");
+                     //MessageBox.Show("la entidad seleccionada no puede comer este alimento");
+                 }
+            */
+
+            
+                if (Diet.CanEat(food) == true)
                 {
-                    food.Interact(entity);
+                    food.Interact(this);
+                    return true;
                     //entity.currentEnergy -= 10;
                 }
                 else
                 {
-                    MessageBox.Show("la entidad seleccionada no puede comer este alimento");
+                    throw new Exception("La dieta ( "+this.diet+" ) de la entidad seleccionada ( "+this.name+" ) no coincide con el alimento a ingerir");
+                    //MessageBox.Show("la entidad seleccionada no puede comer este alimento");
                 }
+                
+           
 
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-            
-            
+
+
+
         }
+
+
 
         public override string ToString()
         {
@@ -396,10 +658,75 @@ namespace crudsGame.src.model
         */
         public void Sleep()
         {
-            this.currentEnergy += 50; //hay q llamr a los getters xq ya tienen hechas las validaciones
-            this.currentLife += this.maxLife; 
-        }
+            try
+            {
+                this.currentLife += this.maxLife;
+            }
+            catch (Exception ex)
+            {
+                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+            }
 
-        //lo q queda seria generar automaticamente las entidades con otro masssive  creator para probar y despues conectarlo a los crudss  
+            try
+            {
+                this.currentEnergy += 50;
+                new MessageBoxDarkMode(this.name + " ha recuperado la mitad de su energía y su vida completa!!", "ALERTA", "Ok", Resources.check, true);
+            }
+            catch (Exception ex)
+            {
+                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+            }
+
+
+
+
+            /*
+            this.currentLife += this.maxLife;
+            this.currentEnergy += 50; //hay q llamr a los getters xq ya tienen hechas las validaciones  
+            */
+            }
+
+        
+
+        public bool MoveThrough(ITerrain terrain)
+        {
+            //try
+            //{
+                foreach (IEnvironment env in environmentList)
+                {
+                    //MessageBox.Show("la entidad: " + name + " tiene ambiente UN TIPO DE AMBIENTE: " + env.ToString());
+                    /*
+                    if (env.GetType() == env.CanMoveThrough(terrain).GetType())
+                    {
+                        MessageBox.Show("env type: " + env.GetType().ToString() + " _terrain type: " + env.CanMoveThrough(terrain).GetType());
+                        return true;
+                    }
+                    */
+                    
+                    if (env.CanMoveThrough(terrain) == true)
+                    {
+                        this.currentEnergy -= 10;//pierde energia al moverse
+                        //MessageBox.Show("la entidad: " + name + " se puede mover en: " + terrain.ToString());
+                        return true;
+                    }
+                    else
+                    {
+                        //MessageBox.Show("la entidad: " + name + " NO se puede mover en: " + terrain.ToString());
+                    }
+                    
+
+
+                }
+            throw new Exception("La entidad entidad seleccionada ( " + this.name + " ) NO puede moverse sobre "+terrain.ToString() + "!!!");
+            //return false;
+
+            //}
+            //catch(Exception e)
+            //{
+                //Console.WriteLine(e.Message);
+                //return false;
+            //}
+            
+        }
     }
 }
