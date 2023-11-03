@@ -21,7 +21,7 @@
     
 - [Ejecutar el proyecto :rocket:](#white_check_mark-ejecutar-proyectorocket)
 
-- [Reglas del juego :scroll:](#reglas-del-juego-scroll)
+- [Funcionalidades :scroll:](#funcionalidades-scroll)
 
 - [Tecnologías utilizadas :hammer:](#tecnologías-utilizadas-hammer)
 
@@ -62,7 +62,7 @@ Es una aplicación realizada según el patrón MVC (Modelo, Vista, Controlador) 
   </section>
 
 
-## Reglas del Juego :scroll:
+## Funcionalidades :scroll:
 ### :ballot_box_with_check: `Mapa`🗺️
 - El mapa se genera de forma aleatoria a través de la unión de 18 hexágonos. 
 - Cada hexágono representa un terreno, el cual puede ser de tipo Acuático🌊 o Terrestre🌎. 
@@ -98,7 +98,7 @@ Es una aplicación realizada según el patrón MVC (Modelo, Vista, Controlador) 
 - Si la defensa🛡️ de la entidad atacada supera los puntos de ataque de la entidad atacante, la diferencia entre estos valores se resta a la vida de la entidad atacante🥊. 
 
 <section align="center">
-      <img src="https://i.pinimg.com/564x/67/65/45/676545d02d073c47032601eb77c65edd.jpg" alt="attack">
+      <img src="https://e1.pxfuel.com/desktop-wallpaper/358/186/desktop-wallpaper-shirai-ryu-on-fire-shirai-ryu.jpg" alt="attack">
 </section>
 
   
