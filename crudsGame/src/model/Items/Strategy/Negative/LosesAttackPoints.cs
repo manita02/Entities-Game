@@ -14,41 +14,16 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
         Random random = new Random();
         public void ApplyItem(Entity entity)
         {
-            //try
-            //{
-            //MessageBox.Show("ataque: " + entity.attackPoints);
-            //if (entity.attackPoints != 0)
-            //{
             try
             {
-                entity.attackPoints -= random.Next(5, 15);
-                entity.currentEnergy -= 10;
-                new MessageBoxDarkMode("The " + entity.name + " creature used an item that made him lose attack points!!", "ATENCIÓN", "Ok", Resources.neg, true);
-
-                //return true;
-
+                entity.attackPoints -= random.Next(10, 50);
+                entity.currentEnergy -= 50;
+                MessageBox.Show("The " + entity.name + " creature used an item that made him lose attack points!!", "ATENCIÓN", "Ok", Resources.neg);
             }
             catch(Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
-                //return true;
+                MessageBox.Show(ex.Message, "ALERTA", "Ok", Resources.warning);
             }
-                    
-             //}
-             //else
-             //{
-                //throw new Exception("La entidad " + entity.name + " ha perdido todos sus puntos de ataque!!");
-               
-                //MessageBox.Show("Su entidad perdió todos sus puntos de ataque!!");
-                //return true;
-             //}
-            //}
-            //catch
-            //{
-                //return true;
-            //}
-            
-           
         }
 
         public override string ToString()

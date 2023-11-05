@@ -18,16 +18,13 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
         {
             try
             {
-                entity.defensePoints -= random.Next(5, 15);
-                entity.currentEnergy -= 10;
-                new MessageBoxDarkMode("The " + entity.name + " creature used an item that made him lose defense points!!", "ATENCIÓN", "Ok", Resources.neg, true);
-                //return true;
-
+                entity.defensePoints -= random.Next(10, 50);
+                entity.currentEnergy -= 50;
+                MessageBox.Show("The " + entity.name + " creature used an item that made him lose defense points!!", "ATENCIÓN", "Ok", Resources.neg);
             }
             catch (Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
-                //return true;
+                MessageBox.Show(ex.Message, "ALERTA", "Ok", Resources.warning);
             }
         }
 

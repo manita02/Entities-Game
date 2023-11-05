@@ -12,14 +12,7 @@ namespace crudsGame.src.model.Environments
     {
         public bool CanMoveThrough(ITerrain terrain)
         {
-            /*
-            if (terrain is Terrestrial)
-            {
-                return terrain;
-            }
-            throw new Exception("no se puede");
-            */
-            MessageBox.Show("se puede mover en tierra");
+            System.Windows.Forms.MessageBox.Show("se puede mover en tierra");
             return terrain is Land;
         }
 

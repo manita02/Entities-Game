@@ -19,28 +19,14 @@ namespace crudsGame.src.model.Items.Strategy.Positive
         {
             try
             {
-                //if (entity.attackPoints != 80)
-                //{
                 entity.currentEnergy -= 50;
-                new MessageBoxDarkMode("The " + entity.name + " creature has used a item that increased its attack points!!", "ATENCIÓN", "Ok", Resources.check, true);
-
+                MessageBox.Show("The " + entity.name + " creature has used a item that increased its attack points!!", "ATENCIÓN", "Ok", Resources.check);
                 entity.attackPoints += random.Next(10, 50);
-                //return true;
-                //}
-                //else
-                //{
-                //MessageBox.Show("Su entidad tiene lo maximo que puede obtener en puntos de ataque");
-                //return true;
-                //}
             }
             catch (Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message + ", no podrá utilizar este item", "ALERTA", "Ok", Resources.warning, true);
-                //return true;
+                MessageBox.Show(ex.Message + ", no podrá utilizar este item", "ALERTA", "Ok", Resources.warning);
             }
-
-
-
         }
 
         public override string ToString()

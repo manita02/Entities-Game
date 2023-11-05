@@ -16,24 +16,12 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
         {
             try
             {
-                //if (entity.currentEnergy != entity.maxEnergy)
-                //{
-                //MessageBox.Show("estoy: "+ entity.currentEnergy);
                 entity.currentEnergy -= random.Next(10, 50) - 5;
-                new MessageBoxDarkMode("The " + entity.name + " creature used an item that made him lose energy (-" + entity.currentEnergy, "ATENCIÓN", "Ok", Resources.neg, true);
-                
-                //return true;
-                //}
-                //else
-                //{
-                //MessageBox.Show("no estoy");
-                //MessageBox.Show("Su entidad tiene lo maximo que puede obtener en energia");
-                //}
+                MessageBox.Show("The " + entity.name + " creature used an item that made him lose energy (-" + entity.currentEnergy, "ATENCIÓN", "Ok", Resources.neg);
             }
             catch(Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
-                //return true;
+                MessageBox.Show(ex.Message, "ALERTA", "Ok", Resources.warning);
             }
             
         }

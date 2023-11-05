@@ -14,7 +14,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Message = crudsGame.src.model.Message;
+using MessageBox = crudsGame.src.model.MessageBox;
 
 namespace crudsGame.src.controllers
 {
@@ -271,7 +271,7 @@ namespace crudsGame.src.controllers
             }
             catch(Exception ex)
             {
-                Message.ShowMessageBoxDarkMode(ex.Message, "Aviso", "Ok", Resources.info);
+                MessageBox.Show(ex.Message, "Aviso", "Ok", Resources.info);
             }
         }
         #endregion
@@ -410,7 +410,7 @@ namespace crudsGame.src.controllers
         public void AddEntityToTerrainWhereMoved(Entity entity, Terrain terr)
         {
             terr.EntitiesList.Add(entity);
-            Message.ShowMessageBoxDarkMode("La entidad "+entity.name+" se ha movido al terreno N°"+terr.Id+ " con éxito!!", "ATENCIÓN", "Ok", Resources.check);
+            MessageBox.Show("La entidad "+entity.name+" se ha movido al terreno N°"+terr.Id+ " con éxito!!", "ATENCIÓN", "Ok", Resources.check);
         }
         #endregion
 
@@ -466,7 +466,7 @@ namespace crudsGame.src.controllers
             int finalResult = attackingEntity.FinallyResolveTheAttack(attackedEntity);
             if (finalResult == 1)//entidad atacante se muere
             {
-                Message.ShowMessageBoxDarkMode(attackedEntity.name + " mató a " + attackingEntity.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
+                MessageBox.Show(attackedEntity.name + " mató a " + attackingEntity.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
                 RemoveAnEntityThatDiedFromTheMap(attackingEntity);
                 return true;
             }
@@ -474,7 +474,7 @@ namespace crudsGame.src.controllers
             {
                 if (finalResult == 2)//entidad atacada se muere
                 {
-                    Message.ShowMessageBoxDarkMode(attackingEntity.name + " mató a " + attackedEntity.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
+                    MessageBox.Show(attackingEntity.name + " mató a " + attackedEntity.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
                     RemoveAnEntityThatDiedFromTheMap(attackedEntity);
                     return true;
                 }

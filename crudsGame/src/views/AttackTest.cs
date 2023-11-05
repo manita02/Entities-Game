@@ -280,7 +280,7 @@ namespace crudsGame.src.views
             
                 if (GetOnePlayerCreatureSelectedFromCombo().currentLife <= 0)
                 {
-                    MessageBox.Show("Su entidad ha perdido toda su vida por lo tanto murió...");
+                System.Windows.Forms.MessageBox.Show("Su entidad ha perdido toda su vida por lo tanto murió...");
                     entityCtn.GetEntitiesList().Remove(GetOnePlayerCreatureSelectedFromCombo());
                     LoadComboboxWithCreaturesPlayerOne();
                     cbCreaturesPlayerOne.SelectedIndex = 0;

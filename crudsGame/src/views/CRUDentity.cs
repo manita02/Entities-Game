@@ -365,7 +365,7 @@ namespace crudsGame.src.views
                         }
                         else
                         {
-                            MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!");
+                            System.Windows.Forms.MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!");
                         }
                         CleanFields();
                         UpdateEntityId();
@@ -405,12 +405,12 @@ namespace crudsGame.src.views
                     }
                     else
                     {
-                        MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!");
+                        System.Windows.Forms.MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Debe existir mas de una entidad en la tabla para poder eliminar!!");
+                    System.Windows.Forms.MessageBox.Show("Debe existir mas de una entidad en la tabla para poder eliminar!!");
                 }
                 UpdateEntityId();
             }

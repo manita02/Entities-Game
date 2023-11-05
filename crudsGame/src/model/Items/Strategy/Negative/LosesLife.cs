@@ -15,37 +15,16 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
         public void ApplyItem(Entity entity)
         {
             try
-            {
-                //MessageBox.Show(entity.currentLife.ToString());
-                //if (entity.currentLife != 0)
-                //{
-                    
-                    entity.currentLife -= random.Next(5, 30);
-                    entity.currentEnergy -= 10;
-                    new MessageBoxDarkMode("The " + entity.name + " creature used an item that made him lose life (-" + entity.currentLife, "ATENCIÓN", "Ok", Resources.neg, true);
-                
-                    //return true;
-                //}
-                //else
-                //{
-                    //MessageBox.Show("Su entidad ha muerto");
-                    //return false;
-                //}
+            {    
+                entity.currentLife -= random.Next(10, 50);
+                entity.currentEnergy -= 50;
+                MessageBox.Show("The " + entity.name + " creature used an item that made him lose life (-" + entity.currentLife, "ATENCIÓN", "Ok", Resources.neg);
             }
             catch (Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
-                //return true;
+                MessageBox.Show(ex.Message, "ALERTA", "Ok", Resources.warning);
+                
             }
-            
-
-
-            //}
-            //catch(Exception e)
-            //{
-            //    MessageBox.Show(e.ToString());
-            //}
-
         }
 
 

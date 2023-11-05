@@ -14,43 +14,17 @@ namespace crudsGame.src.model.Items.Strategy.Positive
         Random random = new Random();
         public void ApplyItem(Entity entity)
         {
-
             try
             {
-                //if (entity.currentLife != entity.maxLife)
-                //{
-
                 entity.currentLife += random.Next(10, 50);
                 entity.currentEnergy -= 50;
-                new MessageBoxDarkMode("The " + entity.name + " creature has used a item that increased its life to " + entity.currentLife, "ATENCIÓN", "Ok", Resources.check, true);
-
-                //return true;
-
-
-                //}
-                //else
-                //{
-                //MessageBox.Show("Su entidad tiene lo maximo que puede obtener en vida");
-                //return true;
-                //}
+                MessageBox.Show("The " + entity.name + " creature has used a item that increased its life to " + entity.currentLife, "ATENCIÓN", "Ok", Resources.check);
             }
             catch (Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
-                //return true;
+                MessageBox.Show(ex.Message, "ALERTA", "Ok", Resources.warning);
             }
-
-
-
-            //}
-            //catch(Exception e)
-            //{
-            //    MessageBox.Show(e.ToString());
-            //}
-
         }
-
-
 
         public override string ToString()
         {

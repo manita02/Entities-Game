@@ -473,14 +473,14 @@ namespace crudsGame.src.model
         {
             this.currentEnergy -= 50;
             int DicePlayerOne = Dice.TrowDice();
-            Message.ShowMessageBoxDarkMode(" Player one ha lanzado el dado: +" + DicePlayerOne + "\n " + this.name + " ataca con (" + this.attackPoints + " + " + DicePlayerOne + ")", "ATENCIÓN", "Ok", Resources.moreAttack);
+            MessageBox.Show(" Player one ha lanzado el dado: +" + DicePlayerOne + "\n " + this.name + " ataca con (" + this.attackPoints + " + " + DicePlayerOne + ")", "ATENCIÓN", "Ok", Resources.moreAttack);
             return this.attackPoints + DicePlayerOne;   
         }
 
         public int GetFullDefense(Entity entidadAtacada)
         {
             int DicePlayerTwo = Dice.TrowDice();
-            Message.ShowMessageBoxDarkMode(" Player two ha lanzado el dado: +" + DicePlayerTwo + "\n " + entidadAtacada.name + " se defenderá con (" + entidadAtacada.defensePoints + " + " + DicePlayerTwo + ")", "ATENCIÓN", "Ok", Resources.moreDefense);
+            MessageBox.Show(" Player two ha lanzado el dado: +" + DicePlayerTwo + "\n " + entidadAtacada.name + " se defenderá con (" + entidadAtacada.defensePoints + " + " + DicePlayerTwo + ")", "ATENCIÓN", "Ok", Resources.moreDefense);
             return entidadAtacada.defensePoints + DicePlayerTwo;
 
         }
@@ -491,7 +491,7 @@ namespace crudsGame.src.model
             try
             {
                 int result = GetFullAttack() - GetFullDefense(entidadAtacada);
-                Message.ShowMessageBoxDarkMode("RESULADO FINAL DEL ATAQUE: " + result, "ATENCIÓN", "Ok", Resources.info);
+                MessageBox.Show("RESULADO FINAL DEL ATAQUE: " + result, "ATENCIÓN", "Ok", Resources.info);
                 if (result < 0)
                 {
                     this.CurrentLife += result;
@@ -499,12 +499,12 @@ namespace crudsGame.src.model
                     {
                         return 1;
                     }
-                    Message.ShowMessageBoxDarkMode("Ganó " + entidadAtacada.name + " con sus puntos de defensa!!", "ATENCIÓN", "Ok", Resources.moreDefense);
+                    MessageBox.Show("Ganó " + entidadAtacada.name + " con sus puntos de defensa!!", "ATENCIÓN", "Ok", Resources.moreDefense);
                 }
                 else
                 {
                     entidadAtacada.currentLife -= result;
-                    Message.ShowMessageBoxDarkMode("Ganó " + this.name + " con sus puntos de ataque!!", "ATENCIÓN", "Ok", Resources.moreAttack);
+                    MessageBox.Show("Ganó " + this.name + " con sus puntos de ataque!!", "ATENCIÓN", "Ok", Resources.moreAttack);
                 }
                 return 0;
             }

@@ -127,7 +127,7 @@ namespace crudsGame.src.controllers
                 EntitiesList.Add(entity);
                 index++;
             }
-            MessageBox.Show("total lista: " + EntitiesList.Count);
+            System.Windows.Forms.MessageBox.Show("total lista: " + EntitiesList.Count);
             return EntitiesList;
         }
 

@@ -227,7 +227,7 @@ namespace crudsGame.src.views
                     }
                     else
                     {
-                        MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!");
+                        System.Windows.Forms.MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!");
                     }
                     CleanFields();
                     UpdateItemId();
@@ -263,12 +263,12 @@ namespace crudsGame.src.views
                     }
                     else
                     {
-                        MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!");
+                        System.Windows.Forms.MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Debe existir mas de un item en la tabla para poder eliminar!!");
+                    System.Windows.Forms.MessageBox.Show("Debe existir mas de un item en la tabla para poder eliminar!!");
                 }
                 UpdateItemId();
             }

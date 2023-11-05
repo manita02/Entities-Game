@@ -10,10 +10,9 @@ namespace crudsGame.src.model.Items
 {
     public class Item : IInteractuable
     {
-        int Id { get; set; }
-        string Name { get; set; }
-        IStrategyTypeOfItem ItemStrategy { get; set; }
-
+        int Id;
+        string Name;
+        IStrategyTypeOfItem ItemStrategy;
         IKingdom Kingdom;
 
         public Item(int id, string namee, IStrategyTypeOfItem itemStrategy, IKingdom kingdom)
@@ -24,6 +23,7 @@ namespace crudsGame.src.model.Items
             Kingdom = kingdom;
         }
 
+        #region Properties
         public int id
         {
             get
@@ -83,46 +83,17 @@ namespace crudsGame.src.model.Items
                 else throw new Exception("You have to select a kingdom");
             }
         }
+        #endregion
 
-
-        public override string ToString()
-        {
-            return Name +"_"+ Kingdom;
-        }
 
         public void Interact(Entity entity)
         {
-            //try {
-            /*
-                if (ItemStrategy.ApplyItem(entity) == true)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }*/
-                ItemStrategy.ApplyItem(entity);
-                //entity.currentEnergy -= 10;
+            ItemStrategy.ApplyItem(entity);
+        }
 
-            //}
-            //catch(Exception e)
-            //{
-                //Console.WriteLine(e.ToString());
-                //return false;
-            //}
-
-            
-            /*
-
-            if (ItemStrategy.ApplyItem(entity) == true)
-            {
-                entity.currentEnergy -= 10;
-            }
-            */
-
-
-
+        public override string ToString()
+        {
+            return Name + "_" + Kingdom;
         }
     }
 
@@ -134,3 +105,4 @@ namespace crudsGame.src.model.Items
 
 
 }
+

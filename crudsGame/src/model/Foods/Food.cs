@@ -23,6 +23,8 @@ namespace crudsGame.src.model.Foods
             calories = Calories;
             Diet = diet;
         }
+
+        #region Properties
         public int id
         {
             get
@@ -79,13 +81,11 @@ namespace crudsGame.src.model.Foods
                 if (value != null)
                 {
                     Diet = value;
-                    //MessageBox.Show("estoy");
                 }
-                else
-                    //MessageBox.Show("cac");
-                    throw new InvalidOperationException("You have to select a diet");
+                else throw new InvalidOperationException("You have to select a diet");
             }
         }
+        #endregion
 
 
         public void Interact(Entity entity)
@@ -94,14 +94,11 @@ namespace crudsGame.src.model.Foods
             {
                 entity.currentEnergy -= 10;
                 entity.currentEnergy += Calories;
-                new MessageBoxDarkMode("The creature " + entity.name + " ate " + Name + " and recovered + (" + Calories + ") energy", "ATENCIÓN", "Ok", Resources.check, true);
-
-                //return true;
+                MessageBox.Show("The creature " + entity.name + " ate " + Name + " and recovered + (" + Calories + ") energy", "ATENCIÓN", "Ok", Resources.check);
             }
             else
             {
-                new MessageBoxDarkMode("The creature " + entity.name + " is full, he can't eat more!!", "ALERTA", "Ok", Resources.warning, true);
-                //return true;
+                MessageBox.Show("The creature " + entity.name + " is full, he can't eat more!!", "ALERTA", "Ok", Resources.warning);
             }
         }
 
