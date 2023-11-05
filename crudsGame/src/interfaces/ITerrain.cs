@@ -8,8 +8,6 @@ namespace crudsGame.src.interfaces
 {
     public interface ITerrain
     {
-        
-        //string lugarEnDondeSeMovio(IEntity entity);
         Color getColor();
     }
 }

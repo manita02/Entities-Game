@@ -10,8 +10,6 @@ namespace crudsGame.src.interfaces
 {
     public interface IKingdom
     {
-        //bool CanInteract(Entity entity, Item item);
-
         bool CanInteract(Item item);
     }
 }

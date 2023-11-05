@@ -8,8 +8,6 @@ namespace crudsGame.src.interfaces
 {
     public interface IEnvironment
     {
-        bool CanMoveThrough(ITerrain terrain);
-        
-        
+        bool CanMoveThrough(ITerrain terrain);   
     }
 }
