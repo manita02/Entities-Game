@@ -40,7 +40,6 @@ namespace crudsGame.src.controllers
             {
                 dietList.Add(DietCreator.CreateAdiet(1));
                 dietList.Add(DietCreator.CreateAdiet(2));
-                //dietList.Add(DietCreator.CreateAdiet(3));
                 dietList.Add(DietCreator.CreateAdiet(4));
             }
             return dietList;
@@ -49,8 +48,6 @@ namespace crudsGame.src.controllers
         public List<Food> CreateFoodsMassively()
         {
             this.dietList = GetDietList();
-
-   
             foreach (var name in foodNames)
             {
                 if(index <= 11)
@@ -58,6 +55,7 @@ namespace crudsGame.src.controllers
                     Food food = new Food(index, name, random.Next(1, 50), dietList[1]);//herbiboro
                     foodList.Add(food);
                 }
+
                 if(index > 11 && index <= 23)
                 {
                     Food food = new Food(index, name, random.Next(1, 50), dietList[0]);//carnivoro
@@ -69,13 +67,10 @@ namespace crudsGame.src.controllers
                     Food food = new Food(index, name, random.Next(1, 50), dietList[2]);//solar
                     foodList.Add(food);
                 }
-
-                
                 index++;
             }
             MessageBox.Show("total lista: " + foodList.Count);
             return foodList;
-
         }
 
         public List<Food> GetFoodList()
@@ -86,7 +81,6 @@ namespace crudsGame.src.controllers
             }
             return this.foodList;
         }
-
 
         public Food CreateFood(int id, string name, int calories, IDiet diet)
         {
@@ -100,8 +94,6 @@ namespace crudsGame.src.controllers
             {
                 if (f.name == food.name)
                 {
-                    //EntitiesList.Remove(entity);
-                    //MessageBox.Show("existe");
                     throw new Exception("Ya existe una comida con el mismo nombre (" + food.name + ")");
                 }
             }

@@ -323,7 +323,7 @@ namespace crudsGame.src.views
             {
                 if (((Entity)lbEntitiesOnAterrain.SelectedItem).Eat(((Food)lbFoodsOnAterrain.SelectedItem)) == true)
                 {
-                    mapController.eliminarDelMapaUnaComidaIngerida((Food)lbFoodsOnAterrain.SelectedItem, mapController.GetMap());
+                    mapController.RemoveAnEatenFoodFromTheMap((Food)lbFoodsOnAterrain.SelectedItem);
                     LoadListBoxOfFoodsOnAcurrentTerrain();
                     LoadProgressbarOfSelectedEntity();
 
@@ -346,7 +346,7 @@ namespace crudsGame.src.views
             {
                 if (((Entity)lbEntitiesOnAterrain.SelectedItem).UsarItem(((Item)lbItemsOnAterrain.SelectedItem)) == true)
                 {
-                    mapController.eliminarDelMapaUnItemUtilizado((Item)lbItemsOnAterrain.SelectedItem, mapController.GetMap());
+                    mapController.RemoveAusedItemFromTheMap((Item)lbItemsOnAterrain.SelectedItem);
                     LoadListBoxOfItemsOnAcurrentTerrain();
                     LoadProgressbarOfSelectedEntity();
                 }
@@ -572,7 +572,7 @@ namespace crudsGame.src.views
             //MessageBox.Show("terreno seleccionado en color violeta: " + terr.ToString());
             try
             {
-                if (mapController.MoverEntidadAunTerreno(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Terrain)cbCurrentTerrain.SelectedItem), terr))
+                if (mapController.MoveEntitiyToTerrain(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Terrain)cbCurrentTerrain.SelectedItem), terr))
                 {
                     pnMove.Visible = false;
 

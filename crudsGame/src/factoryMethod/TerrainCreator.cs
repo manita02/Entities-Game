@@ -11,15 +11,15 @@ namespace crudsGame.src.factoryMethod
 {
     public class TerrainCreator
     {
-        public static ITerrain CreateAterrain(string seleccionDelCombo)
+        public const int Land = 1;
+        public const int Water = 2;
+        public static ITerrain CreateAterrain(int TerrainsType)
         {
-            switch (seleccionDelCombo)
+            switch (TerrainsType)
             {
-                case "Air":
-                    return new Air(); //estos metodos serian para cargar los combo
-                case "Land":
+                case Land:
                     return new Land();
-                case "Water":
+                case Water:
                     return new Water();
                 default: return null;
             }

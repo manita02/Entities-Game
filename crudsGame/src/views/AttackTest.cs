@@ -33,7 +33,7 @@ namespace crudsGame.src.views
         EntityController entityCtn;
         FoodController foodCtn;
         MapController mapCtn = MapController.GetInstance();
-        TerrainController terrainCtn = TerrainController.GetInstance();
+        //TerrainController terrainCtn = TerrainController.GetInstance();
 
 
         public AttackTest()
@@ -321,7 +321,7 @@ namespace crudsGame.src.views
 
         private void RefreshMap()
         {
-            bindingTerrains.DataSource = terrainCtn.GetTerrainList(); //cheq estooooooooooooo
+            //bindingTerrains.DataSource = terrainCtn.GetTerrainList(); //cheq estooooooooooooo
             bindingTerrains.ResetBindings(false);
             cbCurrentTerrain.DataSource = bindingTerrains;
         }
@@ -329,7 +329,7 @@ namespace crudsGame.src.views
         private void btnMap_Click(object sender, EventArgs e)
         {
             mapCtn.GenerateMap();
-            cbCurrentTerrain.DataSource = terrainCtn.GetTerrainList();
+            //cbCurrentTerrain.DataSource = terrainCtn.GetTerrainList();
             //RefreshMap();
             btnMap.Enabled = false;
         }
@@ -341,7 +341,7 @@ namespace crudsGame.src.views
             {
                 //cbBorderingTerrainsOfCurrentTerrain.DataSource = terrainCtn.GetBorderingTerrainsList(terrain);
 
-                bindingBonderingTerrains.DataSource = terrainCtn.GetBorderingTerrainsList(terrain);
+                //bindingBonderingTerrains.DataSource = terrainCtn.GetBorderingTerrainsList(terrain);
                 bindingBonderingTerrains.ResetBindings(false);
                 cbBorderingTerrainsOfCurrentTerrain.DataSource = bindingBonderingTerrains;
                 listBox1.DataSource = bindingBonderingTerrains;
