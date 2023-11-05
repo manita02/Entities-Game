@@ -1,5 +1,5 @@
 ﻿using crudsGame.src.interfaces;
-using crudsGame.src.model.Terrains;
+using crudsGame.src.model.Map.Terrains;
 using System;
 using System.Collections.Generic;
 using System.Linq;

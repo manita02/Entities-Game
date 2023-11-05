@@ -3,11 +3,12 @@ using crudsGame.src.controllers;
 using crudsGame.src.factoryMethod;
 using crudsGame.src.interfaces;
 using crudsGame.src.model;
-using crudsGame.src.model.Diets;
+using crudsGame.src.model.Foods.Diets;
+using crudsGame.src.model.Foods;
 using crudsGame.src.model.Items;
 using crudsGame.src.model.Kingdoms;
-using crudsGame.src.model.Terrains;
-using crudsGame.src.model.Terrains.Map;
+using crudsGame.src.model.Map;
+using crudsGame.src.model.Map.Terrains;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -261,7 +262,7 @@ namespace crudsGame.src.views
         {
             try
             {
-                GetOnePlayerCreatureSelectedFromCombo().Eat(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedFoodFromCombobox());
+                GetOnePlayerCreatureSelectedFromCombo().Eat(GetSelectedFoodFromCombobox());
                 UpdateProgressbar();
             }
             catch (Exception ex)
@@ -286,7 +287,7 @@ namespace crudsGame.src.views
                 }
                 else
                 {
-                    GetOnePlayerCreatureSelectedFromCombo().UsarItem(GetOnePlayerCreatureSelectedFromCombo(), GetSelectedItemFromCombobox());
+                    GetOnePlayerCreatureSelectedFromCombo().UsarItem(GetSelectedItemFromCombobox());
                 }
             UpdateProgressbar();
 

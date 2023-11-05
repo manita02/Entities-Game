@@ -2,7 +2,7 @@
 using crudsGame.src.factoryMethod;
 using crudsGame.src.interfaces;
 using crudsGame.src.model;
-using crudsGame.src.model.Diets;
+using crudsGame.src.model.Foods.Diets;
 using crudsGame.src.model.Items;
 using System;
 using System.Collections.Generic;

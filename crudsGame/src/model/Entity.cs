@@ -1,5 +1,6 @@
 ﻿using crudsGame.Properties;
 using crudsGame.src.interfaces;
+using crudsGame.src.model.Foods;
 using crudsGame.src.model.Items;
 using crudsGame.src.model.Kingdoms;
 using crudsGame.src.views;
@@ -429,7 +430,7 @@ namespace crudsGame.src.model
                 else if (value >= MaxLife)
                 {
                     CurrentLife = MaxLife;
-                    throw new Exception("La entidad " + this.Name + " ha obtenido lo máximo que puede obtener en vida ( " + this.MaxEnergy + " )");
+                    throw new Exception("La entidad " + this.Name + " ha obtenido lo máximo que puede obtener en vida ( " + this.MaxLife + " )");
                 }
                 else
                 {
@@ -468,12 +469,57 @@ namespace crudsGame.src.model
         }
         #endregion
 
+        public int GetFullAttack()
+        {
+            this.currentEnergy -= 50;
+            int DicePlayerOne = Dice.TrowDice();
+            Message.ShowMessageBoxDarkMode(" Player one ha lanzado el dado: +" + DicePlayerOne + "\n " + this.name + " ataca con (" + this.attackPoints + " + " + DicePlayerOne + ")", "ATENCIÓN", "Ok", Resources.moreAttack);
+            return this.attackPoints + DicePlayerOne;   
+        }
+
+        public int GetFullDefense(Entity entidadAtacada)
+        {
+            int DicePlayerTwo = Dice.TrowDice();
+            Message.ShowMessageBoxDarkMode(" Player two ha lanzado el dado: +" + DicePlayerTwo + "\n " + entidadAtacada.name + " se defenderá con (" + entidadAtacada.defensePoints + " + " + DicePlayerTwo + ")", "ATENCIÓN", "Ok", Resources.moreDefense);
+            return entidadAtacada.defensePoints + DicePlayerTwo;
+
+        }
+
+
+        public int FinallyResolveTheAttack(Entity entidadAtacada)
+        {
+            try
+            {
+                int result = GetFullAttack() - GetFullDefense(entidadAtacada);
+                Message.ShowMessageBoxDarkMode("RESULADO FINAL DEL ATAQUE: " + result, "ATENCIÓN", "Ok", Resources.info);
+                if (result < 0)
+                {
+                    this.CurrentLife += result;
+                    if (this.CurrentLife <= 0)
+                    {
+                        return 1;
+                    }
+                    Message.ShowMessageBoxDarkMode("Ganó " + entidadAtacada.name + " con sus puntos de defensa!!", "ATENCIÓN", "Ok", Resources.moreDefense);
+                }
+                else
+                {
+                    entidadAtacada.currentLife -= result;
+                    Message.ShowMessageBoxDarkMode("Ganó " + this.name + " con sus puntos de ataque!!", "ATENCIÓN", "Ok", Resources.moreAttack);
+                }
+                return 0;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return 2;
+            }    
+        }
+
         public int Attack(Entity entityPlayerTwo)
         {
             //try
             //{
-                this.currentEnergy -= 10;
-
+                this.currentEnergy -= 50;
                 int DicePlayerOne = Dice.TrowDice();
                 int DicePlayerTwo = Dice.TrowDice();
 
@@ -562,50 +608,23 @@ namespace crudsGame.src.model
         }
 
 
-        public bool UsarItem(Entity entity, Item item)//no es necesario pasar la entidaddd
+        public bool UsarItem(Item item)
         {
-            if (Kingdom.CanInteract(item) == true)
+            if (Kingdom.CanInteract(item))
             {
                 item.Interact(this);
                 return true;
-                //if (item.Interact(entity) == true)
-                //{
-                    //return true; 
-                //}
-                //else
-                //{
-                    //MessageBox.Show("La entidad esta muertaaaaaaa en usar item");
-                    //return false;
-                //}
-
-
-                /*
-                if (entity.currentLife <= 0)
-                {
-                    MessageBox.Show("su entidad murio");
-                    return false;
-                }
-                else
-                {
-                    item.Interact(entity);
-                    return true;
-                }
-                */
-
-
-                
             }
             else
             {
-                new MessageBoxDarkMode("La entidad seleccionada ( "+ this.name+" ) no puede usar este item ya que no coinciden sus reinos!!", "ALERTA", "Ok", Resources.warning, true);
-                
+                new MessageBoxDarkMode("La entidad seleccionada ( "+ this.name+" ) no puede usar este item ya que no coinciden sus reinos!!", "ALERTA", "Ok", Resources.warning, true);             
                 //MessageBox.Show("la entidad seleccionada no puede usar este item");
                 //return true;
             }
             return false;
         }
 
-        public bool Eat(Entity entity,  Food food)//no es necesario pasar la entidad creo q funciona el caneat
+        public bool Eat(Food food)
         {
             /*
                  if (Diet.CanEat(entity, food) == true)
@@ -621,7 +640,7 @@ namespace crudsGame.src.model
             */
 
             
-                if (Diet.CanEat(food) == true)
+                if (Diet.CanEat(food))
                 {
                     food.Interact(this);
                     return true;
@@ -658,6 +677,7 @@ namespace crudsGame.src.model
         */
         public void Sleep()
         {
+            /*
             try
             {
                 this.currentLife += this.maxLife;
@@ -705,7 +725,7 @@ namespace crudsGame.src.model
                     
                     if (env.CanMoveThrough(terrain) == true)
                     {
-                        this.currentEnergy -= 10;//pierde energia al moverse
+                        this.currentEnergy -= 50;//pierde energia al moverse
                         //MessageBox.Show("la entidad: " + name + " se puede mover en: " + terrain.ToString());
                         return true;
                     }

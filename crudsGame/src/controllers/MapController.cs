@@ -2,9 +2,10 @@
 using crudsGame.src.interfaces;
 using crudsGame.src.model;
 using crudsGame.src.model.Environments;
+using crudsGame.src.model.Foods;
 using crudsGame.src.model.Items;
-using crudsGame.src.model.Terrains;
-using crudsGame.src.model.Terrains.Map;
+using crudsGame.src.model.Map;
+using crudsGame.src.model.Map.Terrains;
 using crudsGame.src.views;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Message = crudsGame.src.model.Message;
 
 namespace crudsGame.src.controllers
 {
@@ -611,6 +613,24 @@ namespace crudsGame.src.controllers
         }
 
 
+        public bool MoverEntidadAunTerreno(Entity entity, Terrain terrenoActual, Terrain terrenoAdondeSeMovera)
+        {
+            if (chequearQueUnTerrenoEnParticularSeaLimitrofeDelTerrenoActualSeleccionado(terrenoActual, terrenoAdondeSeMovera) == true)
+            {
+                if (entity.MoveThrough(terrenoAdondeSeMovera.TerrainType))
+                {
+                    eliminarUnaEntidadDeUnTerreno(entity, terrenoActual);
+
+
+                    //luego agregarla a el terreno donde se va a mover
+                    agregarEntidadAlTerrenoDondeSeMovio(entity, terrenoAdondeSeMovera);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
         public void eliminarUnaEntidadDeUnTerreno(Entity entity, Terrain terr)
         {
             terr.EntitiesList.Remove(entity);
@@ -689,6 +709,25 @@ namespace crudsGame.src.controllers
         }
 
 
-       
+        public bool CheckIfAnyEntityDiedAfterTheAttack(Entity entidadAtacante, Entity entidadAtacada)
+        {
+            int finalResult = entidadAtacante.FinallyResolveTheAttack(entidadAtacada);
+            if (finalResult == 1)
+            {
+                Message.ShowMessageBoxDarkMode(entidadAtacada.name + " mató a " + entidadAtacante.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
+                eliminarDelMapaUnaEntidadqMurio(entidadAtacante, GetMap());
+                return true;
+            }
+            else
+            {
+                if (finalResult == 2)
+                {
+                    Message.ShowMessageBoxDarkMode(entidadAtacante.name + " mató a " + entidadAtacada.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
+                    eliminarDelMapaUnaEntidadqMurio(entidadAtacada, GetMap());
+                    return true;
+                }
+            }
+            return false;
+        } 
     }
 }

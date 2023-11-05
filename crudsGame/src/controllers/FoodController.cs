@@ -1,6 +1,6 @@
 ﻿using crudsGame.src.factoryMethod;
 using crudsGame.src.interfaces;
-using crudsGame.src.model;
+using crudsGame.src.model.Foods;
 using crudsGame.src.model.Items.Strategy;
 using System;
 using System.Collections.Generic;

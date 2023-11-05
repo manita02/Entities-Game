@@ -1,6 +1,5 @@
 ﻿using crudsGame.src.controllers;
 using crudsGame.src.interfaces;
-using crudsGame.src.model;
 using crudsGame.src.model.Items.Strategy;
 using System;
 using System.Collections.Generic;
@@ -15,6 +14,7 @@ using System.Windows.Forms;
 using static crudsGame.src.views.MaterialUI;
 using MaterialSkin.Controls;
 using crudsGame.Properties;
+using crudsGame.src.model.Foods;
 
 namespace crudsGame.src.views
 {

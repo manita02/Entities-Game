@@ -1,5 +1,5 @@
 ﻿using crudsGame.src.interfaces;
-using crudsGame.src.model.Diets;
+using crudsGame.src.model.Foods.Diets;
 using System;
 using System.Collections.Generic;
 using System.Linq;

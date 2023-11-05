@@ -12,11 +12,12 @@ using static crudsGame.src.views.MaterialUI;
 using MaterialSkin.Controls;
 using crudsGame.Properties;
 using crudsGame.src.controllers;
-using crudsGame.src.model.Terrains.Map;
-using crudsGame.src.model.Terrains;
+using crudsGame.src.model.Map.Terrains;
 using crudsGame.src.model;
 using crudsGame.src.model.Items;
 using crudsGame.src.interfaces;
+using crudsGame.src.model.Foods;
+using crudsGame.src.model.Map;
 
 namespace crudsGame.src.views
 {
@@ -288,6 +289,8 @@ namespace crudsGame.src.views
             }
             else
             {
+                lbCurrentLifePlayerTwo.Text = "⚔️Current Life⚔️ = 0 ";
+                pbCurrentLifePlayerTwo.Value = 0;
                 pnAttack.Enabled = false;
             }
 
@@ -318,7 +321,7 @@ namespace crudsGame.src.views
         {
             try
             {
-                if (((Entity)lbEntitiesOnAterrain.SelectedItem).Eat(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Food)lbFoodsOnAterrain.SelectedItem)) == true)
+                if (((Entity)lbEntitiesOnAterrain.SelectedItem).Eat(((Food)lbFoodsOnAterrain.SelectedItem)) == true)
                 {
                     mapController.eliminarDelMapaUnaComidaIngerida((Food)lbFoodsOnAterrain.SelectedItem, mapController.GetMap());
                     LoadListBoxOfFoodsOnAcurrentTerrain();
@@ -341,7 +344,7 @@ namespace crudsGame.src.views
         {
             try
             {
-                if (((Entity)lbEntitiesOnAterrain.SelectedItem).UsarItem(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Item)lbItemsOnAterrain.SelectedItem)) == true)
+                if (((Entity)lbEntitiesOnAterrain.SelectedItem).UsarItem(((Item)lbItemsOnAterrain.SelectedItem)) == true)
                 {
                     mapController.eliminarDelMapaUnItemUtilizado((Item)lbItemsOnAterrain.SelectedItem, mapController.GetMap());
                     LoadListBoxOfItemsOnAcurrentTerrain();
@@ -359,6 +362,28 @@ namespace crudsGame.src.views
 
         private void btnAttack_Click(object sender, EventArgs e)
         {
+            //try
+            //{
+            if (mapController.CheckIfAnyEntityDiedAfterTheAttack(((Entity)lbEntitiesOnAterrain.SelectedItem), (Entity)lbEntitiesToAttack.SelectedItem))
+            {
+                LoadListBoxOfEntitiesOnAcurrentTerrain();
+                LoadListboxOfEntitiesToAttack();
+            }
+            LoadProgressbarOfSelectedEntity();
+            LoadProgressbarOfEntitiesToAttackPlayerTwo();
+
+            //((Entity)lbEntitiesOnAterrain.SelectedItem).resolverFinalmenteElAtaque((Entity)lbEntitiesToAttack.SelectedItem);
+
+            //}
+            //catch(Exception ex)
+            //{
+            //new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+            //}
+
+
+
+
+            /*
             try
             {
                 int result = ((Entity)lbEntitiesOnAterrain.SelectedItem).BeingAttacked(((Entity)lbEntitiesOnAterrain.SelectedItem).Attack(((Entity)lbEntitiesToAttack.SelectedItem)), ((Entity)lbEntitiesToAttack.SelectedItem));
@@ -388,6 +413,7 @@ namespace crudsGame.src.views
                 new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
                 LoadProgressbarOfSelectedEntity();
             }
+            */
         }
         /*
         private void btnSleep_Click(object sender, EventArgs e)
@@ -546,6 +572,22 @@ namespace crudsGame.src.views
             //MessageBox.Show("terreno seleccionado en color violeta: " + terr.ToString());
             try
             {
+                if (mapController.MoverEntidadAunTerreno(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Terrain)cbCurrentTerrain.SelectedItem), terr))
+                {
+                    pnMove.Visible = false;
+
+                    hexagonsList[((Terrain)cbCurrentTerrain.SelectedItem).Id].Enabled = true;
+
+                    SetHexagonClickWithBorderingTerrains();
+                  
+                    LoadListBoxOfEntitiesOnAcurrentTerrain();
+                    btnMove.Visible = false;
+
+                    ChangePanelStates(true);
+
+                }
+                
+                /*
                 if (mapController.chequearQueUnTerrenoEnParticularSeaLimitrofeDelTerrenoActualSeleccionado(((Terrain)cbCurrentTerrain.SelectedItem), terr) == true)
                 {
                     if (((Entity)lbEntitiesOnAterrain.SelectedItem).MoveThrough(terr.TerrainType) == true)
@@ -572,7 +614,7 @@ namespace crudsGame.src.views
                             //MessageBox.Show(hexagon.Name);
                             hexagon.Click += Hexagon_Click;
                         }
-                        */
+                        
 
                         LoadListBoxOfEntitiesOnAcurrentTerrain();
                         btnMove.Visible = false;
@@ -586,9 +628,10 @@ namespace crudsGame.src.views
                         pnEntities.Enabled = true;
                         pnFoods.Enabled = true;
                         pnItems.Enabled = true;
-                        */
+                        
                     }
                 }
+                */
             }
             catch (Exception ex)
             {

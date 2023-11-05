@@ -1,4 +1,4 @@
-﻿using crudsGame.src.model;
+﻿using crudsGame.src.model.Foods;
 using System;
 using System.Collections.Generic;
 using System.Linq;

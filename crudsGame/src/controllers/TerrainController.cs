@@ -1,6 +1,6 @@
 ﻿using crudsGame.src.interfaces;
-using crudsGame.src.model.Terrains;
-using crudsGame.src.model.Terrains.Map;
+using crudsGame.src.model.Map;
+//using crudsGame.src.model.Terrains;
 using System;
 using System.Collections;
 using System.Collections.Generic;

@@ -358,7 +358,7 @@
             lbEntitiesOnAterrain.Location = new Point(14, 50);
             lbEntitiesOnAterrain.Margin = new Padding(4, 5, 4, 5);
             lbEntitiesOnAterrain.Name = "lbEntitiesOnAterrain";
-            lbEntitiesOnAterrain.Size = new Size(333, 91);
+            lbEntitiesOnAterrain.Size = new Size(250, 91);
             lbEntitiesOnAterrain.TabIndex = 25;
             lbEntitiesOnAterrain.SelectedIndexChanged += lbEntitiesOnAterrain_SelectedIndexChanged;
             // 
@@ -507,7 +507,7 @@
             pbDefensePoints.Depth = 0;
             pbDefensePoints.Location = new Point(272, 514);
             pbDefensePoints.Margin = new Padding(4, 5, 4, 5);
-            pbDefensePoints.Maximum = 400;
+            pbDefensePoints.Maximum = 450;
             pbDefensePoints.MouseState = MaterialSkin.MouseState.HOVER;
             pbDefensePoints.Name = "pbDefensePoints";
             pbDefensePoints.Size = new Size(274, 5);
@@ -518,7 +518,7 @@
             pbAttackPoints.Depth = 0;
             pbAttackPoints.Location = new Point(272, 467);
             pbAttackPoints.Margin = new Padding(4, 5, 4, 5);
-            pbAttackPoints.Maximum = 400;
+            pbAttackPoints.Maximum = 450;
             pbAttackPoints.MouseState = MaterialSkin.MouseState.HOVER;
             pbAttackPoints.Name = "pbAttackPoints";
             pbAttackPoints.Size = new Size(274, 5);
