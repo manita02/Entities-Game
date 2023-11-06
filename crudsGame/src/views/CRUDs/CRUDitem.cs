@@ -18,6 +18,7 @@ using Item = crudsGame.src.model.Items.Item;
 using static crudsGame.src.views.Design.MaterialUI;
 using MaterialSkin.Controls;
 using crudsGame.Properties;
+using MessageBox = crudsGame.src.model.MessageBox;
 
 namespace crudsGame.src.views
 {
@@ -57,25 +58,6 @@ namespace crudsGame.src.views
             }
         }
 
-        /*
-        private void CheckIfItemExists(Item item)
-        {
-
-            if (itemCtn.GetItemList().Count > 0)
-            {
-                for (int fila = 0; fila < dgvItems.Rows.Count - 1; fila++)
-                {
-
-                    if (dgvItems.Rows[fila].Cells[1].Value.ToString() == item.name)
-                    {
-                        MessageBox.Show("El item ' " + item.name + " ' ya existe!!!");
-                        exist = true;
-                    }
-                }
-            }
-
-        }
-        */
 
         #region Get Kingdoms and Item Types that comes from the Datagrid
         public int GetIndexOfKingdomsComboThatComesFromTheDatagrid()
@@ -107,20 +89,6 @@ namespace crudsGame.src.views
 
         #region Select Index Changed
 
-
-        /*
-        private void dgvItems_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvItems.SelectedRows.Count > 0)
-            {
-                this.rows = dgvItems.SelectedRows[0].Index;
-                txtId.Text = dgvItems.CurrentRow.Cells[0].Value.ToString();
-                txtName.Text = dgvItems.CurrentRow.Cells[1].Value.ToString();
-                cbType.SelectedIndex = GetIndexOfTheTypeItemsComboThatComesFromTheDatagrid();
-                cbKingdom.SelectedIndex = GetIndexOfKingdomsComboThatComesFromTheDatagrid();
-            }
-        }
-        */
 
         private void cbType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -179,35 +147,21 @@ namespace crudsGame.src.views
                 if (itemCtn.CheckIfAitemCreatedWithTheSameNameAlreadyExists(item) == false)
                 {
                     itemCtn.AddItem(item);
-                    //itemCtn.GetItemList().Add(item);
-                    new MessageBoxDarkMode("Ítem ("+item.name+") creado satisfactoriamente!!", "Aviso", "Ok", Resources.check, true);
+                    MessageBox.Show("Ítem ("+item.name+") creado satisfactoriamente!!", "Aviso", "Ok", Resources.check);
                     LoadItemIntoDatagrid(dgvItems.Rows.Add(), item);
                 }
-                /*
-                CheckIfItemExists(item);
-                if (exist == false)
-                {
-                    
-                }
-                exist = false;
-                */
-
                 UpdateItemId();
-
                 CleanFields();
             }
             catch (Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message + " por esto no se creará el item", "Error", "Ok", Resources.error, true);
+                MessageBox.Show(ex.Message + " por esto no se creará el item", "Error", "Ok", Resources.error);
             }
-
-
-
         }
 
         private void btnUpdatee_Click(object sender, EventArgs e)
         {
-            MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de guardar los cambios??", "ALERTA", "OkCancel", Resources.warning);
+            MessageBoxDarkMode messageBox = MessageBox.Show("Esta seguro de guardar los cambios??", "ALERTA", "OkCancel", Resources.warning);
             if (model.MessageBox.MessageBoxDialogResult(messageBox) == true)
             {
                 try
@@ -215,28 +169,23 @@ namespace crudsGame.src.views
                     if (dgvItems.SelectedRows.Count > 0)
                     {
                         Item item = itemCtn.Update(itemCtn.SearchItemById((int)dgvItems.CurrentRow.Cells[0].Value), Convert.ToInt32(txtId.Text), txtName.Text, (IStrategyTypeOfItem)(cbType.SelectedItem), (IKingdom)(cbKingdom.SelectedItem));
-                        //Item item = itemCtn.CreateItem(itemCtn.GetItemList().Count(), txtName.Text, (IStrategyTypeOfItem)(cbType.SelectedItem), (IKingdom)(cbKingdom.SelectedItem));
-                        //this.rows = itemCtn.UpdateAnEntity(rows, dgvItems, item);
                         LoadItemIntoDatagrid(rows, item);
                         this.rows = 0;
                         btnCreatee.Visible = true;
                         btnDeletee.Visible = true;
                         dgvItems.Enabled = true;
-                        new MessageBoxDarkMode("Item actualizado con éxito!!", "Aviso", "Ok", Resources.update, true);
-
+                        MessageBox.Show("Item actualizado con éxito!!", "Aviso", "Ok", Resources.update);
                     }
                     else
                     {
-                        System.Windows.Forms.MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!");
+                        MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!", "Error", "Ok", Resources.error);
                     }
                     CleanFields();
                     UpdateItemId();
-
-
                 }
                 catch (Exception ex)
                 {
-                    new MessageBoxDarkMode(ex.Message + " por esto no se editará el item", "Error", "Ok", Resources.error, true);
+                    MessageBox.Show(ex.Message + " por esto no se editará el item", "Error", "Ok", Resources.error);
                     btnCreatee.Visible = false;
                     btnDeletee.Visible = false;
                     dgvItems.Enabled = false;
@@ -247,28 +196,20 @@ namespace crudsGame.src.views
 
         private void btnDeletee_Click(object sender, EventArgs e)
         {
-            MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de eliminar este item??", "ALERTA", "OkCancel", Resources.warning);
+            MessageBoxDarkMode messageBox = MessageBox.Show("Esta seguro de eliminar este item??", "ALERTA", "OkCancel", Resources.warning);
             if (model.MessageBox.MessageBoxDialogResult(messageBox) == true)
             {
-                if (dgvItems.Rows.Count > 2)
+                if (dgvItems.SelectedRows.Count > 0)
                 {
-                    if (dgvItems.SelectedRows.Count > 0)
-                    {
-                        int row = dgvItems.CurrentRow.Index;
-                        //itemCtn.GetItemList().RemoveAt(row);
-                        itemCtn.DeleteAitem(row);
-                        dgvItems.Rows.RemoveAt(row);
-                        UpdateItemId();
-                        new MessageBoxDarkMode("Item eliminado con éxito!!", "Aviso", "Ok", Resources.delete, true);
-                    }
-                    else
-                    {
-                        System.Windows.Forms.MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!");
-                    }
+                    int row = dgvItems.CurrentRow.Index;
+                    itemCtn.DeleteAitem(row);
+                    dgvItems.Rows.RemoveAt(row);
+                    UpdateItemId();
+                    MessageBox.Show("Item eliminado con éxito!!", "Aviso", "Ok", Resources.delete);
                 }
                 else
                 {
-                    System.Windows.Forms.MessageBox.Show("Debe existir mas de un item en la tabla para poder eliminar!!");
+                    MessageBox.Show("Debe seleccionar una fila de la tabla para editar un item!!", "Error", "Ok", Resources.error);
                 }
                 UpdateItemId();
             }

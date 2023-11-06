@@ -17,7 +17,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static crudsGame.src.views.Design.MaterialUI;
 using MaterialSkin.Controls;
 using crudsGame.Properties;
-
+using MessageBox = crudsGame.src.model.MessageBox;
 
 namespace crudsGame.src.views
 {
@@ -31,9 +31,8 @@ namespace crudsGame.src.views
             InitializeComponent();
             LoadMaterial(this);
             LoadCreaturesbByDefault();
-            this.dgvEntities.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //es para que las columnas se adapten al tamaño del dgv
+            this.dgvEntities.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; 
             cbDiet.DataSource = entityCtn.GetDietList();
-            //cbEnvironment.DataSource = entityCtn.GetEnvironmentList();
             cbKingdom.DataSource = entityCtn.GetKingdomList();
             clbEnvironments.DataSource = entityCtn.GetEnvironmentList();
         }
@@ -54,16 +53,12 @@ namespace crudsGame.src.views
 
         private void LoadCreatureIntoDatagrid(int x, Entity entity)
         {
-
             dgvEntities.Rows[x].Cells[0].Value = entity.id;
             dgvEntities.Rows[x].Cells[1].Value = entity.kingdom;
             dgvEntities.Rows[x].Cells[2].Value = entity.name;
             dgvEntities.Rows[x].Cells[3].Value = entity.diet;
-
             DeselectChecksFromTheListbox();
             CheckEnvironmentsInListbox(entity);
-
-            //dgvEntities.Rows[x].Cells[4].Value = entity.environment;
             dgvEntities.Rows[x].Cells[5].Value = entity.attackPoints;
             dgvEntities.Rows[x].Cells[6].Value = entity.defensePoints;
             dgvEntities.Rows[x].Cells[7].Value = entity.attackRange;
@@ -114,24 +109,6 @@ namespace crudsGame.src.views
 
         #endregion
 
-        /*
-        private void CheckIfEntityExists(Entity entity)
-        {
-            if (entityCtn.GetEntitiesList().Count > 0)
-            {
-                for (int fila = 0; fila < dgvEntities.Rows.Count - 1; fila++)
-                {
-
-                    if (dgvEntities.Rows[fila].Cells[2].Value.ToString() == entity.name)
-                    {
-                        MessageBox.Show("La criatura ' " + entity.name + " ' ya existe!!!");
-                        exist = true;
-                    }
-                }
-            }
-        }
-        */
-
 
         #region Selected Index Changed
         private void dgvEntities_SelectionChanged(object sender, EventArgs e)
@@ -143,11 +120,8 @@ namespace crudsGame.src.views
                 cbKingdom.SelectedIndex = GetIndexOfKingdomsComboThatComesFromTheDatagrid();
                 txtName.Text = dgvEntities.CurrentRow.Cells[2].Value.ToString();
                 cbDiet.SelectedIndex = GetIndexOfDietComboThatComesFromTheDatagrid();
-
                 DeselectChecksFromTheListbox();
                 CheckEnvironmentsInListbox(entityCtn.SearchEntityById((int)(dgvEntities.CurrentRow.Cells[0].Value)));
-
-                //cbEnvironment.SelectedIndex = GetIndexOfEnvironmentsComboThatComesFromTheDatagrid();
                 txtAttack.Text = dgvEntities.CurrentRow.Cells[5].Value.ToString();
                 txtDefense.Text = dgvEntities.CurrentRow.Cells[6].Value.ToString();
                 txtRange.Text = dgvEntities.CurrentRow.Cells[7].Value.ToString();
@@ -173,60 +147,11 @@ namespace crudsGame.src.views
                     picCreature.Image = Properties.Resources.robot;
                     break;
             }
-            /*
-            if (cbKingdom.Text == "Alien")
-            {
-                //BackColor = Color.MediumSeaGreen;
-                picCreature.Image = Properties.Resources.alien;
-            }
-            if (cbKingdom.Text == "Animalia")
-            {
-                //BackColor = Color.Peru;
-                picCreature.Image = Properties.Resources.animalia;
-            }
-            if (cbKingdom.Text == "Plantae")
-            {
-                //BackColor = Color.Peru;
-                picCreature.Image = Properties.Resources.plant;
-            }
-            if (cbKingdom.Text == "Machine")
-            {
-                //BackColor = Color.Peru;
-                picCreature.Image = Properties.Resources.robot;
-            }
-            */
         }
 
 
         #endregion
 
-
-        /*
-        private Entity SearchEntityById(int id)
-        {
-            foreach (var ent in entityCtn.GetEntitiesList())
-            {
-                if (ent.id == id)
-                {
-                    return ent;
-                }
-            }
-            return null;
-        }
-        
-
-        private bool VerifyIfTheItemListboxEnvironmentIsInTheListOfEnvironmentsItself(Entity entity, IEnvironment checkedEnvironment)
-        {
-            for (int i = 0; i < entity.environmentList.Count; i++)
-            {
-                if (checkedEnvironment == entity.environmentList[i])
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        */
 
         #region CheckedListboxEnvironments Section
         private void CheckEnvironmentsInListbox(Entity entity)
@@ -268,78 +193,35 @@ namespace crudsGame.src.views
         #endregion
 
 
-
-
-        private bool checkNumeroMaxAingresarPuntosDefensaYataque()
-        {
-            if (Convert.ToInt16(txtAttack.Text) > 400 || Convert.ToInt16(txtAttack.Text) > 400)
-            {
-                new MessageBoxDarkMode("Los puntos de ataque y defensa de una entidad, deben ser menores a 400", "Error", "Ok", Resources.error, true);
-                return false;
-            }
-            return true;
-        }
-
-
         #region Buttons Interactions
         private void btnCreatee_Click(object sender, EventArgs e)
         {
             try
             {
-                //if (CheckEmptyFields() == false)
-                //{
-                //Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
-
-                if (checkNumeroMaxAingresarPuntosDefensaYataque() == true)
+                if (CheckMaximumNumberToEnterInDefenseAndAttackPoints() == true)
                 {
                     Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), GeneralController.CheckThatTheFieldIsNotNull(txtMaxEnergy), GeneralController.CheckThatTheFieldIsNotNull(txtMaxLife), GeneralController.CheckThatTheFieldIsNotNull(txtAttack), GeneralController.CheckThatTheFieldIsNotNull(txtDefense), Convert.ToInt16(txtRange.Text));
-
-                    //CheckIfEntityExists(entity);
-                    //MessageBox.Show("chequeo si esxiste..");
-
+                    
                     if (entityCtn.CheckIfAnEntityCreatedWithTheSameNameAlreadyExists(entity) == false)
                     {
-                        //entityCtn.GetEntitiesList().Add(entity); //se carga en la lista
                         entityCtn.AddEntity(entity);
-                        new MessageBoxDarkMode("Entidad (" + entity.name + ") creada satisfactoriamente!!", "Aviso", "Ok", Resources.check, true);
-                        //MessageBox.Show("lo agrego a la lista");
-                        LoadCreatureIntoDatagrid(dgvEntities.Rows.Add(), entity); //se carga en la tabla
-                                                                                  //MessageBox.Show("lo agrego a la tabla");  
+                        MessageBox.Show("Entidad (" + entity.name + ") creada satisfactoriamente!!", "Aviso", "Ok", Resources.check);
+                        LoadCreatureIntoDatagrid(dgvEntities.Rows.Add(), entity);                                                             
                     }
-
-                    /*
-                    if (exist == false)
-                    {
-                        entityCtn.GetEntitiesList().Add(entity); //se carga en la lista
-                        //MessageBox.Show("lo agrego a la lista");
-                        LoadCreatureIntoDatagrid(dgvEntities.Rows.Add(), entity); //se carga en la tabla
-                        //MessageBox.Show("lo agrego a la tabla");
-                    }
-                    exist = false;
-                    */
                     UpdateEntityId();
                     CleanFields();
-
-                    //}
-
                 }
-
-
-
             }
             catch (Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message + " por esto no se creará la entidad", "Error", "Ok", Resources.error, true);
-
+                MessageBox.Show(ex.Message + " por esto no se creará la entidad", "Error", "Ok", Resources.error);
             }
         }
 
 
-
-
         private void btnUpdatee_Click(object sender, EventArgs e)
         {
-            if (checkNumeroMaxAingresarPuntosDefensaYataque() == true)
+            if (CheckMaximumNumberToEnterInDefenseAndAttackPoints() == true)
             {
                 MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de guardar los cambios??", "ALERTA", "OkCancel", Resources.warning);
                 if (model.MessageBox.MessageBoxDialogResult(messageBox) == true)
@@ -348,34 +230,24 @@ namespace crudsGame.src.views
                     {
                         if (dgvEntities.SelectedRows.Count > 0)
                         {
-                            //if (CheckEmptyFields() == false)
-                            //{
                             Entity entity = entityCtn.Update(entityCtn.SearchEntityById((int)dgvEntities.CurrentRow.Cells[0].Value), Convert.ToInt32(txtId.Text), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), GeneralController.CheckThatTheFieldIsNotNull(txtMaxEnergy), GeneralController.CheckThatTheFieldIsNotNull(txtMaxLife), GeneralController.CheckThatTheFieldIsNotNull(txtAttack), GeneralController.CheckThatTheFieldIsNotNull(txtDefense), Convert.ToInt16(txtRange.Text));
-
-
-                            //Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), (IEnvironment)(cbEnvironment.SelectedItem), Convert.ToInt16(txtMaxEnergy.Text), Convert.ToInt16(txtMaxLife.Text), Convert.ToInt16(txtAttack.Text), Convert.ToInt16(txtDefense.Text), Convert.ToInt16(txtRange.Text));
-
-                            //this.rows = entityCtn.UpdateAnEntity(rows, dgvEntities, entity);
                             LoadCreatureIntoDatagrid(rows, entity);
                             this.rows = 0;
                             btnCreatee.Visible = true;
                             btnDeletee.Visible = true;
                             dgvEntities.Enabled = true;
-                            new MessageBoxDarkMode("Entidad actualizada con éxito!!", "Aviso", "Ok", Resources.update, true);
-                            //}
+                            MessageBox.Show("Entidad actualizada con éxito!!", "Aviso", "Ok", Resources.update);
                         }
                         else
                         {
-                            System.Windows.Forms.MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!");
+                            MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!", "Error", "Ok", Resources.error);
                         }
                         CleanFields();
                         UpdateEntityId();
-
-
                     }
                     catch (Exception ex)
                     {
-                        new MessageBoxDarkMode(ex.Message + " por esto no se editará la entidad", "Error", "Ok", Resources.error, true);
+                        MessageBox.Show(ex.Message + " por esto no se editará la entidad", "Error", "Ok", Resources.error);
                         btnCreatee.Visible = false;
                         btnDeletee.Visible = false;
                         dgvEntities.Enabled = false;
@@ -391,27 +263,17 @@ namespace crudsGame.src.views
             MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de eliminar esta entidad??", "ALERTA", "OkCancel", Resources.warning);
             if (model.MessageBox.MessageBoxDialogResult(messageBox) == true)
             {
-                if (dgvEntities.Rows.Count > 2)
+                if (dgvEntities.SelectedRows.Count > 0)
                 {
-                    if (dgvEntities.SelectedRows.Count > 0)
-                    {
-                        //int r = dgvEntities.SelectedRows.Count;
-                        int row = dgvEntities.CurrentRow.Index;
-                        //entityCtn.DeleteAnEntity(r);
-                        //entityCtn.GetEntitiesList().RemoveAt(r);
-                        entityCtn.DeleteAnEntity(row);
-                        dgvEntities.Rows.RemoveAt(row);
-                        UpdateEntityId();
-                        new MessageBoxDarkMode("Entidad eliminada con éxito!!", "Aviso", "Ok", Resources.delete, true);
-                    }
-                    else
-                    {
-                        System.Windows.Forms.MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!");
-                    }
+                    int row = dgvEntities.CurrentRow.Index;
+                    entityCtn.DeleteAnEntity(row);
+                    dgvEntities.Rows.RemoveAt(row);
+                    UpdateEntityId();
+                    MessageBox.Show("Entidad eliminada con éxito!!", "Aviso", "Ok", Resources.delete);
                 }
                 else
                 {
-                    System.Windows.Forms.MessageBox.Show("Debe existir mas de una entidad en la tabla para poder eliminar!!");
+                    MessageBox.Show("Debe seleccionar una fila de la tabla para eliminar una entidad!!", "Error", "Ok", Resources.error);
                 }
                 UpdateEntityId();
             }
@@ -419,11 +281,22 @@ namespace crudsGame.src.views
 
         #endregion
 
+
+        private bool CheckMaximumNumberToEnterInDefenseAndAttackPoints()
+        {
+            if (Convert.ToInt16(txtAttack.Text) > 400 || Convert.ToInt16(txtAttack.Text) > 400)
+            {
+                MessageBox.Show("Los puntos de ataque y defensa de una entidad, deben ser menores a 400", "Error", "Ok", Resources.error);
+                return false;
+            }
+            return true;
+        }
+
+
         private void txtAttack_KeyPress_1(object sender, KeyPressEventArgs e)
         {
             GeneralController.ValidateNumbers(e);
         }
-
 
         private void CleanFields()
         {
@@ -432,7 +305,6 @@ namespace crudsGame.src.views
             txtAttack.Text = "";
             txtDefense.Text = "";
             cbKingdom.SelectedIndex = 0;
-            //cbEnvironment.SelectedIndex = 0;
             cbDiet.SelectedIndex = 0;
         }
     }
