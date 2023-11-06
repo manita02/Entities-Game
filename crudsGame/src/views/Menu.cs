@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static crudsGame.src.views.MaterialUI;
+using static crudsGame.src.views.Design.MaterialUI;
 using MaterialSkin.Controls;
 using crudsGame.Properties;
 using crudsGame.src.controllers;

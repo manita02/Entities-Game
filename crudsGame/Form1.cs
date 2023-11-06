@@ -1,5 +1,5 @@
 using crudsGame.src.controllers;
-using static crudsGame.src.views.MaterialUI;
+using static crudsGame.src.views.Design.MaterialUI;
 using MaterialSkin.Controls;
 
 namespace crudsGame
