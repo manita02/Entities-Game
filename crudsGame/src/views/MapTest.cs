@@ -642,7 +642,7 @@ namespace crudsGame.src.views
         private void MapTest_FormClosing(object sender, FormClosingEventArgs e)
         {
             MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro que desea salir?? Se cerrará la aplicación por completo...", "Aviso", "OkCancel", Resources.question);
-            if (GeneralController.MessageBoxDialogResult(messageBox) == false)
+            if (model.MessageBox.MessageBoxDialogResult(messageBox) == false)
             {
                 e.Cancel = true;
             }

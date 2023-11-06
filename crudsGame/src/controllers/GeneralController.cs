@@ -15,17 +15,6 @@ namespace crudsGame.src.controllers
 {
     static class GeneralController
     {
-        public static bool MessageBoxDialogResult(MessageBoxDarkMode messageBoxDarkMode)
-        {
-            bool messageBoxResponse = false;
-            messageBoxDarkMode.ResponseEvent += (sender, e) =>
-            {
-                messageBoxResponse = e.status;
-            };
-            messageBoxDarkMode.ShowDialog();
-            return messageBoxResponse;
-        }
-        
         public static int CheckThatTheFieldIsNotNull(MaterialSingleLineTextField txt)
         {
             if (txt.Text != "")

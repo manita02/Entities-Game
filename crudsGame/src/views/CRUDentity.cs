@@ -18,6 +18,7 @@ using static crudsGame.src.views.MaterialUI;
 using MaterialSkin.Controls;
 using crudsGame.Properties;
 
+
 namespace crudsGame.src.views
 {
     public partial class CRUDentity : MaterialForm
@@ -341,7 +342,7 @@ namespace crudsGame.src.views
             if (checkNumeroMaxAingresarPuntosDefensaYataque() == true)
             {
                 MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de guardar los cambios??", "ALERTA", "OkCancel", Resources.warning);
-                if (GeneralController.MessageBoxDialogResult(messageBox) == true)
+                if (model.MessageBox.MessageBoxDialogResult(messageBox) == true)
                 {
                     try
                     {
@@ -388,7 +389,7 @@ namespace crudsGame.src.views
         private void btnDeletee_Click(object sender, EventArgs e)
         {
             MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de eliminar esta entidad??", "ALERTA", "OkCancel", Resources.warning);
-            if (GeneralController.MessageBoxDialogResult(messageBox) == true)
+            if (model.MessageBox.MessageBoxDialogResult(messageBox) == true)
             {
                 if (dgvEntities.Rows.Count > 2)
                 {

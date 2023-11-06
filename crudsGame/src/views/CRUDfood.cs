@@ -171,7 +171,7 @@ namespace crudsGame.src.views
         private void btnUpdatee_Click(object sender, EventArgs e)
         {
             MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de guardar los cambios??", "ALERTA", "OkCancel", Resources.warning);
-            if (GeneralController.MessageBoxDialogResult(messageBox) == true)
+            if (model.MessageBox.MessageBoxDialogResult(messageBox) == true)
             {
                 try
                 {
@@ -212,7 +212,7 @@ namespace crudsGame.src.views
         private void btnDeletee_Click(object sender, EventArgs e)
         {
             MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de guardar los cambios??", "ALERTA", "OkCancel", Resources.warning);
-            if (GeneralController.MessageBoxDialogResult(messageBox) == true)
+            if (model.MessageBox.MessageBoxDialogResult(messageBox) == true)
             {
                 if (dgvFoods.Rows.Count > 2)
                 {

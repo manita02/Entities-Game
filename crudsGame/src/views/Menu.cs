@@ -46,7 +46,7 @@ namespace crudsGame.src.views
             try
             {
                 MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de generar el mapa?? No podrá volver a crear, editar o eliminar entidades, items y comidas", "ATENCIÓN", "OkCancel", Resources.question);
-                if (GeneralController.MessageBoxDialogResult(messageBox) == true)
+                if (model.MessageBox.MessageBoxDialogResult(messageBox) == true)
                 {
                     Form frm = new MapTest();
                     frm.ShowDialog();
@@ -74,7 +74,7 @@ namespace crudsGame.src.views
         private void eXITToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro que desea salir??", "Aviso", "OkCancel", Resources.question);
-            if (GeneralController.MessageBoxDialogResult(messageBox) == true)
+            if (model.MessageBox.MessageBoxDialogResult(messageBox) == true)
             {
                 this.Close();
             }
