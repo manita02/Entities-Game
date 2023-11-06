@@ -13,7 +13,6 @@ namespace crudsGame.src.model
         public static MessageBoxDarkMode Show(string message,string title,string type, Image img)
         {
             return new MessageBoxDarkMode(message, title, type, img, true);
-
         }
     }
 }

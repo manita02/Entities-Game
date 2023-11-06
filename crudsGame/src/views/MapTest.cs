@@ -151,7 +151,7 @@ namespace crudsGame.src.views
 
             for (int i = 0; i < hexagonsList.Count(); i++)
             {
-                hexagonsList[i].BackColor = terrainsList[i].TerrainType.getColor();
+                hexagonsList[i].BackColor = terrainsList[i].TerrainType.GetColor();
             }
         }
 
@@ -344,7 +344,7 @@ namespace crudsGame.src.views
         {
             try
             {
-                if (((Entity)lbEntitiesOnAterrain.SelectedItem).UsarItem(((Item)lbItemsOnAterrain.SelectedItem)) == true)
+                if (((Entity)lbEntitiesOnAterrain.SelectedItem).UseItem(((Item)lbItemsOnAterrain.SelectedItem)) == true)
                 {
                     mapController.RemoveAusedItemFromTheMap((Item)lbItemsOnAterrain.SelectedItem);
                     LoadListBoxOfItemsOnAcurrentTerrain();

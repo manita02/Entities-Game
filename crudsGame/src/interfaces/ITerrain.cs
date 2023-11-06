@@ -8,6 +8,6 @@ namespace crudsGame.src.interfaces
 {
     public interface ITerrain
     {
-        Color getColor();
+        Color GetColor();
     }
 }

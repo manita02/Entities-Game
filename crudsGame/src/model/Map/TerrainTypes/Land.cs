@@ -10,7 +10,7 @@ namespace crudsGame.src.model.Map.Terrains
     internal class Land : ITerrain
     {
         private Color color = Color.LimeGreen;
-        public Color getColor()
+        public Color GetColor()
         {
             return color;
         }

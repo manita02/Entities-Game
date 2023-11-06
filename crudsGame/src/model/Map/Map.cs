@@ -9,20 +9,13 @@ namespace crudsGame.src.model.Map
 {
     internal class Map
     {
-        private static int lastId = 0;
         private List<Terrain> terrainsList;
         public int Id { get; private set; }
         internal List<Terrain> TerrainsList { get => terrainsList; set => terrainsList = value; }
-        public Map(List<Terrain> terrain)//al mapa le setea la lista de terrenos por parametro
-        {
-            lastId++;
-            Id = lastId;
-            TerrainsList = terrain;
-        }
+        
         public Map()
         {
-            lastId++;
-            Id = lastId;
+            Id = 1;
             TerrainsList = new List<Terrain>();
         }
 

@@ -287,7 +287,7 @@ namespace crudsGame.src.views
                 }
                 else
                 {
-                    GetOnePlayerCreatureSelectedFromCombo().UsarItem(GetSelectedItemFromCombobox());
+                    GetOnePlayerCreatureSelectedFromCombo().UseItem(GetSelectedItemFromCombobox());
                 }
             UpdateProgressbar();
 
@@ -315,7 +315,7 @@ namespace crudsGame.src.views
 
         private void btnSleep_Click(object sender, EventArgs e)
         {
-            GetOnePlayerCreatureSelectedFromCombo().Sleep();
+            //GetOnePlayerCreatureSelectedFromCombo().Sleep();
             UpdateProgressbar();
         }
 

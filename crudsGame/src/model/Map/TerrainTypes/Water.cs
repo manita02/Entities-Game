@@ -11,8 +11,7 @@ namespace crudsGame.src.model.Map.Terrains
     {
         private Color color = Color.DeepSkyBlue;
 
-
-        public Color getColor()
+        public Color GetColor()
         {
             return color;
         }
