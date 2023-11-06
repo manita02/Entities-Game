@@ -341,7 +341,6 @@ C:\Users\manit\Desktop\main\Entities-Game\crudsGame\bin\Debug\net6.0-windows\cru
 C:\Users\manit\Desktop\main\Entities-Game\crudsGame\bin\Debug\net6.0-windows\AWSSDK.Core.dll
 C:\Users\manit\Desktop\main\Entities-Game\crudsGame\bin\Debug\net6.0-windows\MaterialSkin.dll
 C:\Users\manit\Desktop\main\Entities-Game\crudsGame\obj\Debug\net6.0-windows\crudsGame.csproj.AssemblyReference.cache
-C:\Users\manit\Desktop\main\Entities-Game\crudsGame\obj\Debug\net6.0-windows\crudsGame.Form1.resources
 C:\Users\manit\Desktop\main\Entities-Game\crudsGame\obj\Debug\net6.0-windows\crudsGame.Properties.Resources.resources
 C:\Users\manit\Desktop\main\Entities-Game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.AttackTest.resources
 C:\Users\manit\Desktop\main\Entities-Game\crudsGame\obj\Debug\net6.0-windows\crudsGame.src.views.CRUDentity.resources
