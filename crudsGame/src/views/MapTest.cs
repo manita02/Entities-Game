@@ -18,13 +18,14 @@ using crudsGame.src.model.Items;
 using crudsGame.src.interfaces;
 using crudsGame.src.model.Foods;
 using crudsGame.src.model.Map;
+using MessageBox = crudsGame.src.model.MessageBox;
 
 namespace crudsGame.src.views
 {
     public partial class MapTest : MaterialForm
     {
         List<HexagonControl> hexagonsList = new List<HexagonControl>();
-        MapController mapController = MapController.GetInstance();
+        MapController mapCtn = MapController.GetInstance();
 
         public MapTest()
         {
@@ -33,7 +34,7 @@ namespace crudsGame.src.views
             AddHexagonsToList();
             SetHexagonClickWithBorderingTerrains();
             AddNumbersToHexagons();
-            CheckIfAmapAlreadyExists();
+            LoadMap();
         }
 
         private void AddNumbersToHexagons()
@@ -53,14 +54,6 @@ namespace crudsGame.src.views
                 hex12, hex13, hex14, hex15, hex16, hex17,
                 hex18
             });
-            /*
-            int i = 0;
-            foreach (var hexagon in hexagonsList)
-            {
-                //MessageBox.Show("nombre: " + hexagon.Name + ", index: " + i);
-                i++;
-            }
-            */
         }
 
 
@@ -68,7 +61,6 @@ namespace crudsGame.src.views
         {
             foreach (var hexagon in hexagonsList)
             {
-                //MessageBox.Show(hexagon.Name);
                 hexagon.Click += Hexagon_Click;
             }
         }
@@ -82,13 +74,10 @@ namespace crudsGame.src.views
             if (pnMove.Visible == false)
             {
                 HexagonControl clickedHexagon = sender as HexagonControl;
-
                 int index = hexagonsList.IndexOf(clickedHexagon);
                 hexagonsList[index].Enabled = true;
-                //MessageBox.Show("indice hxagono clikeado: " + index);
                 cbCurrentTerrain.SelectedIndex = index;
-                //MessageBox.Show("index en combo currentTerrain: " + cbCurrentTerrain.SelectedIndex);
-                ChangeColorOfSelectedHexagonAndTheirBorderingHexagons(mapController.GetTerrains(mapController.GetMap())[index]);
+                ChangeColorOfSelectedHexagonAndTheirBorderingHexagons(mapCtn.GetTerrains(mapCtn.GetMap())[index]);
             }
 
         }
@@ -105,50 +94,26 @@ namespace crudsGame.src.views
         {
             ResetHexagonBorderColor();
             hexagonsList[terrain.Id].BorderColor = Color.Yellow; // Terreno Actual Seleccionado
-            //MessageBox.Show("terreno que debe coindir: " + terrain.ToString());
             for (int i = 0; i < terrain.BorderingTerrainsList.Count(); i++)
             {
                 hexagonsList[terrain.BorderingTerrainsList[i].Id].BorderColor = Color.DarkOrange; // Terrenos limitrofes del seleccionado anteriormente
             }
         }
 
-        /// <summary>
-        /// Si ya existe un mapa creado, directamente carga ese unico mapa y evita la posibilidad de generar nuevos mapas
-        /// Si llegase a ser requerimiento crear más de un mapa, esto ya no sirve
-        /// Si no es asi, modificar en la clase Map.cs que pide una lista de mapas ya que no es necesario
-        /// </summary>
-        private void CheckIfAmapAlreadyExists()
-        {
-            if (mapController.GetMap().TerrainsList.Count > 0) //esto esta al pedo xq una vez creado el mapa ya no podra volver al menu principal
-            {
-                LoadMap();
-            }
-            else
-            {
-                if (mapController.GenerateMap() == true)
-                {
-                    LoadMap();
-                }
-            }
-        }
-
         private void LoadMap()
         {
-            //cbMaps.Items.Add(mapController.GetMap());
-            //cbMaps.SelectedIndex = 0;
-            cbCurrentTerrain.DataSource = mapController.GetTerrains(mapController.GetMap());
-            lbBonderingTerrains.DataSource = mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
-
-            //cbMaps.SelectedIndex = 0;
-            PaintHexagons();
-            btnGenerateMap.Enabled = false;
-
+            if (mapCtn.GenerateMap() == true)
+            {
+                cbCurrentTerrain.DataSource = mapCtn.GetTerrains(mapCtn.GetMap());
+                lbBonderingTerrains.DataSource = mapCtn.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
+                PaintHexagons();
+            }
         }
+
 
         private void PaintHexagons()
         {
-            List<Terrain> terrainsList = mapController.GetTerrains(mapController.GetMap());
-
+            List<Terrain> terrainsList = mapCtn.GetTerrains(mapCtn.GetMap());
             for (int i = 0; i < hexagonsList.Count(); i++)
             {
                 hexagonsList[i].BackColor = terrainsList[i].TerrainType.GetColor();
@@ -158,6 +123,15 @@ namespace crudsGame.src.views
 
 
         #region Load Listboxs
+
+        private void SelectFirstListboxIndex(ListBox listbox)
+        {
+            if (listbox.Items.Count > 0)
+            {
+                listbox.SelectedIndex = 0;
+            }
+
+        }
         private void AddEntitiesToListbox(List<Entity> entitiesList, ListBox listbox)
         {
             foreach (Entity entity in entitiesList)
@@ -166,10 +140,8 @@ namespace crudsGame.src.views
             }
         }
 
-
         private void LoadListboxOfEntitiesToAttack()
         {
-
             lbEntitiesToAttack.Items.Clear();
             if (((Entity)lbEntitiesOnAterrain.SelectedItem).attackRange == 1)
             {
@@ -181,17 +153,10 @@ namespace crudsGame.src.views
                 {
                     AddEntitiesToListbox(terr.EntitiesList, lbEntitiesToAttack);
                 }
-
                 /// <summary>
                 /// Llama a este metodo y le pasa la lista de entidades que tiene el terreno actual
                 /// </summary>
                 AddEntitiesToListbox(((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList, lbEntitiesToAttack); //entidades en terreno actual
-                /*
-                foreach (Entity entity in ((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList)
-                {
-                    lbEntitiesToAttack.Items.Add(entity);
-                }
-                */
             }
             else if (((Entity)lbEntitiesOnAterrain.SelectedItem).attackRange == 0)
             {
@@ -199,28 +164,14 @@ namespace crudsGame.src.views
                 /// Llama a este metodo y le pasa la lista de entidades que tiene el terreno actual
                 /// </summary>
                 AddEntitiesToListbox(((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList, lbEntitiesToAttack); //entidades en terreno actual
-                /*
-                foreach (Entity entity in ((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList)
-                {
-                    lbEntitiesToAttack.Items.Add(entity);
-                }
-                */
             }
-
             lbEntitiesToAttack.Items.Remove((Entity)lbEntitiesOnAterrain.SelectedItem);//elimina el seleccionado
-
-            if (lbEntitiesToAttack.Items.Count > 0)
-            {
-                lbEntitiesToAttack.SelectedIndex = 0;
-            }
-
+            SelectFirstListboxIndex(lbEntitiesToAttack);
         }
 
         public void LoadListBoxOfFoodsOnAcurrentTerrain()
         {
             lbFoodsOnAterrain.Items.Clear();
-
-
             foreach (Food food in ((Terrain)cbCurrentTerrain.SelectedItem).FoodsList)
             {
                 lbFoodsOnAterrain.Items.Add(food);
@@ -230,8 +181,6 @@ namespace crudsGame.src.views
         public void LoadListBoxOfItemsOnAcurrentTerrain()
         {
             lbItemsOnAterrain.Items.Clear();
-
-
             foreach (Item item in ((Terrain)cbCurrentTerrain.SelectedItem).ItemsList)
             {
                 lbItemsOnAterrain.Items.Add(item);
@@ -242,17 +191,7 @@ namespace crudsGame.src.views
         {
             lbEntitiesOnAterrain.Items.Clear();
             AddEntitiesToListbox(((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList, lbEntitiesOnAterrain);
-            /*
-            foreach (Entity creatures in ((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList)
-            {
-                lbEntitiesOnAterrain.Items.Add(creatures);
-            }
-            */
-            if (lbEntitiesOnAterrain.Items.Count > 0)
-            {
-                lbEntitiesOnAterrain.SelectedIndex = 0;
-            }
-
+            SelectFirstListboxIndex(lbEntitiesOnAterrain);
         }
         #endregion
 
@@ -260,7 +199,6 @@ namespace crudsGame.src.views
         #region Load Progress Bars
         private void LoadProgressbarOfSelectedEntity()
         {
-
             lbCurrentLife.Text = "🖤Current Life🖤 = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).currentLife;
             pbCurrentLife.Maximum = ((Entity)lbEntitiesOnAterrain.SelectedItem).maxLife;
             pbCurrentLife.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).currentLife;
@@ -300,22 +238,6 @@ namespace crudsGame.src.views
 
 
         #region Buttons Interactions
-        private void btnGenerateMap_Click(object sender, EventArgs e)
-        {
-            //try
-            //{
-            if (mapController.GenerateMap() == true)
-            {
-                LoadMap();
-            }
-
-            //}
-            //catch (Exception ex)
-            //{
-            //new MessageBoxDarkMode(ex.Message, "Error", "Ok", Resources.error, true);
-            //}
-
-        }
 
         private void btnEat_Click(object sender, EventArgs e)
         {
@@ -323,18 +245,14 @@ namespace crudsGame.src.views
             {
                 if (((Entity)lbEntitiesOnAterrain.SelectedItem).Eat(((Food)lbFoodsOnAterrain.SelectedItem)) == true)
                 {
-                    mapController.RemoveAnEatenFoodFromTheMap((Food)lbFoodsOnAterrain.SelectedItem);
+                    mapCtn.RemoveAnEatenFoodFromTheMap((Food)lbFoodsOnAterrain.SelectedItem);
                     LoadListBoxOfFoodsOnAcurrentTerrain();
                     LoadProgressbarOfSelectedEntity();
-
-
                 }
-
-
             }
             catch (Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+                MessageBox.Show(ex.Message, "ALERTA", "Ok", Resources.warning);
                 LoadProgressbarOfSelectedEntity();
             }
 
@@ -346,85 +264,36 @@ namespace crudsGame.src.views
             {
                 if (((Entity)lbEntitiesOnAterrain.SelectedItem).UseItem(((Item)lbItemsOnAterrain.SelectedItem)) == true)
                 {
-                    mapController.RemoveAusedItemFromTheMap((Item)lbItemsOnAterrain.SelectedItem);
+                    mapCtn.RemoveAusedItemFromTheMap((Item)lbItemsOnAterrain.SelectedItem);
                     LoadListBoxOfItemsOnAcurrentTerrain();
                     LoadProgressbarOfSelectedEntity();
                 }
-
-
             }
             catch (Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+                MessageBox.Show(ex.Message, "ALERTA", "Ok", Resources.warning);
                 LoadProgressbarOfSelectedEntity();
             }
         }
 
         private void btnAttack_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            if (mapController.CheckIfAnyEntityDiedAfterTheAttack(((Entity)lbEntitiesOnAterrain.SelectedItem), (Entity)lbEntitiesToAttack.SelectedItem))
+            if(mapCtn.CheckIfAnyEntityDiedAfterTheAttack(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Entity)lbEntitiesToAttack.SelectedItem)))
+            {
+                LoadListBoxOfEntitiesOnAcurrentTerrain();
+                LoadListboxOfEntitiesToAttack();
+
+            }
+            /*
+            if (mapCtn.CheckIfAnyEntityDiedAfterTheAttack(((Entity)lbEntitiesOnAterrain.SelectedItem), (Entity)lbEntitiesToAttack.SelectedItem))
             {
                 LoadListBoxOfEntitiesOnAcurrentTerrain();
                 LoadListboxOfEntitiesToAttack();
             }
+            */
             LoadProgressbarOfSelectedEntity();
             LoadProgressbarOfEntitiesToAttackPlayerTwo();
-
-            //((Entity)lbEntitiesOnAterrain.SelectedItem).resolverFinalmenteElAtaque((Entity)lbEntitiesToAttack.SelectedItem);
-
-            //}
-            //catch(Exception ex)
-            //{
-            //new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
-            //}
-
-
-
-
-            /*
-            try
-            {
-                int result = ((Entity)lbEntitiesOnAterrain.SelectedItem).BeingAttacked(((Entity)lbEntitiesOnAterrain.SelectedItem).Attack(((Entity)lbEntitiesToAttack.SelectedItem)), ((Entity)lbEntitiesToAttack.SelectedItem));
-                if (result == 1)//puede ser con booleanos esto en vez de int
-                {
-                    //MessageBox.Show("la vida esta en 0 de la entidad player one: " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name);
-                    new MessageBoxDarkMode(((Entity)lbEntitiesToAttack.SelectedItem).name + " mató a " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + "!!!", "ATENCIÓN", "Ok", Resources.ko, true);
-                    mapController.eliminarDelMapaUnaEntidadqMurio((Entity)lbEntitiesOnAterrain.SelectedItem, mapController.GetMap());
-                    LoadListBoxOfEntitiesOnAcurrentTerrain();
-                    LoadListboxOfEntitiesToAttack();
-                }
-                else if (result == 2)
-                {
-                    //MessageBox.Show("la vida esta en 0 de la entidad player two: " + ((Entity)lbEntitiesToAttack.SelectedItem).name);
-                    new MessageBoxDarkMode(((Entity)lbEntitiesOnAterrain.SelectedItem).name + " mató a " + ((Entity)lbEntitiesToAttack.SelectedItem).name + "!!!", "ATENCIÓN", "Ok", Resources.ko, true);
-                    mapController.eliminarDelMapaUnaEntidadqMurio((Entity)lbEntitiesToAttack.SelectedItem, mapController.GetMap());
-                    LoadListboxOfEntitiesToAttack();
-                    LoadListBoxOfEntitiesOnAcurrentTerrain();
-                }
-
-                LoadProgressbarOfSelectedEntity();
-                LoadProgressbarOfEntitiesToAttackPlayerTwo();
-
-            }
-            catch (Exception ex)
-            {
-                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
-                LoadProgressbarOfSelectedEntity();
-            }
-            */
         }
-        /*
-        private void btnSleep_Click(object sender, EventArgs e)
-        {
-
-            ((Entity)lbEntitiesOnAterrain.SelectedItem).Sleep();
-
-            LoadProgressbarOfSelectedEntity();
-
-        }
-        */
         #endregion
 
 
@@ -432,33 +301,16 @@ namespace crudsGame.src.views
 
         private void cbCurrentTerrain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lbBonderingTerrains.DataSource = mapController.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
+            lbBonderingTerrains.DataSource = mapCtn.GetBorderingTerrains((Terrain)cbCurrentTerrain.SelectedItem);
             LoadListBoxOfEntitiesOnAcurrentTerrain();
             LoadListBoxOfFoodsOnAcurrentTerrain();
             LoadListBoxOfItemsOnAcurrentTerrain();
-            //lbFoodsOnAterrain.DataSource = ((Terrain)cbCurrentTerrain.SelectedItem).FoodsList;
-            //lbItemsOnAterrain.DataSource = ((Terrain)cbCurrentTerrain.SelectedItem).ItemsList;
             ChangeColorOfSelectedHexagonAndTheirBorderingHexagons((Terrain)cbCurrentTerrain.SelectedItem);
-
-        }
-
-        private void lbEnvironmentsOfAnEntity_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void lbEntitiesOnAterrain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*
-            MessageBox.Show("NOMBRE DE ENTIDAD SELECCIONADA: " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name);
-            foreach (var s in ((Entity)lbEntitiesOnAterrain.SelectedItem).environmentList)
-            {
-                MessageBox.Show("ambiente: " + s.ToString());
-            }
-            */
-            //btnSleep.Text = "SLEEP (" + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ")";
             btnMoveInfo.Text = "MOVER entidad seleccionada (" + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ") a otro terreno";
-
 
             lbEnvironmentsOfAnEntity.DataSource = ((Entity)lbEntitiesOnAterrain.SelectedItem).environmentList;//funciona
             lbId.Text = "📛Id📛 = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).id;
@@ -467,9 +319,7 @@ namespace crudsGame.src.views
             lbRange.Text = "🥊Attack Range🥊 = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).attackRange;
             lbKingdom.Text = "👑Kingdom👑 = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).kingdom;
 
-
             LoadProgressbarOfSelectedEntity();
-
             LoadListboxOfEntitiesToAttack();
         }
 
@@ -477,19 +327,16 @@ namespace crudsGame.src.views
         {
             LoadProgressbarOfEntitiesToAttackPlayerTwo();
         }
-
         #endregion
 
 
         #region Movement Section
-
         private void Hexagon_Click_For_Movement(object sender, EventArgs e)
         {
             Terrain terrenoAnteriorSeleccionado = (Terrain)cbCurrentTerrain.SelectedItem;
             HexagonControl clickedHexagon = sender as HexagonControl;
             int index = hexagonsList.IndexOf(clickedHexagon);
-            //MessageBox.Show("indice hxagono clikeado: " + index);
-            ChangeColorOfSelectedHexagonToMove(mapController.GetTerrains(mapController.GetMap())[index], terrenoAnteriorSeleccionado);
+            ChangeColorOfSelectedHexagonToMove(mapCtn.GetTerrains(mapCtn.GetMap())[index], terrenoAnteriorSeleccionado);
         }
 
 
@@ -526,20 +373,10 @@ namespace crudsGame.src.views
             lbMoveInfo.Text = "👣Haga click sobre el hexagono \ndonde quiera que se mueva \n" + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ". Tenga en cuenta que \nsólo podrá moverse sobre los \nterrenos limítrofes👣";
             foreach (var hexagon in hexagonsList)
             {
-                //MessageBox.Show(hexagon.Name);
                 hexagon.Click += Hexagon_Click_For_Movement;
             }
-            /*
-            btnMoveInfo.Visible = false;
-            cbCurrentTerrain.Enabled = false;
-            pnAttack.Enabled = false;
-            pnEntities.Enabled = false;
-            pnFoods.Enabled = false;
-            pnItems.Enabled = false;
-            */
             ChangePanelStates(false);
             btnMove.Visible = true;
-
         }
 
 
@@ -556,92 +393,31 @@ namespace crudsGame.src.views
             }
             return index;
         }
+
         private void btnMove_Click(object sender, EventArgs e)
         {
-            /*
-            int index = 0;
-            foreach (var hexagon in hexagonsList)
-            {
-                if (hexagon.BorderColor == Color.DarkViolet)
-                {
-                    index = hexagonsList.IndexOf(hexagon);
-                }
-            }
-            */
-            Terrain terr = ((mapController.GetMap()).TerrainsList[GetTheIndexOfTheSelectedHexagon()]);
-            //MessageBox.Show("terreno seleccionado en color violeta: " + terr.ToString());
+            Terrain terr = ((mapCtn.GetMap()).TerrainsList[GetTheIndexOfTheSelectedHexagon()]);
             try
             {
-                if (mapController.MoveEntitiyToTerrain(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Terrain)cbCurrentTerrain.SelectedItem), terr))
+                if (mapCtn.MoveEntitiyToTerrain(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Terrain)cbCurrentTerrain.SelectedItem), terr))
                 {
                     pnMove.Visible = false;
-
                     hexagonsList[((Terrain)cbCurrentTerrain.SelectedItem).Id].Enabled = true;
-
                     SetHexagonClickWithBorderingTerrains();
-                  
                     LoadListBoxOfEntitiesOnAcurrentTerrain();
                     btnMove.Visible = false;
-
                     ChangePanelStates(true);
-
                 }
-                
-                /*
-                if (mapController.chequearQueUnTerrenoEnParticularSeaLimitrofeDelTerrenoActualSeleccionado(((Terrain)cbCurrentTerrain.SelectedItem), terr) == true)
-                {
-                    if (((Entity)lbEntitiesOnAterrain.SelectedItem).MoveThrough(terr.TerrainType) == true)
-                    {
-                        //borrar la entidad del terreno donde se encuentra
-                        mapController.eliminarUnaEntidadDeUnTerreno(((Entity)lbEntitiesOnAterrain.SelectedItem), (Terrain)cbCurrentTerrain.SelectedItem);
-
-
-                        //luego agregarla a el terreno donde se va a mover
-                        mapController.agregarEntidadAlTerrenoDondeSeMovio(((Entity)lbEntitiesOnAterrain.SelectedItem), terr);
-
-                        //MessageBox.Show("se puede..");
-
-
-                        pnMove.Visible = false;
-
-                        hexagonsList[((Terrain)cbCurrentTerrain.SelectedItem).Id].Enabled = true;
-
-                        //hayq volver a llamar al hexagon click anterior
-                        SetHexagonClickWithBorderingTerrains();
-                        /*
-                        foreach (var hexagon in hexagonsList)
-                        {
-                            //MessageBox.Show(hexagon.Name);
-                            hexagon.Click += Hexagon_Click;
-                        }
-                        
-
-                        LoadListBoxOfEntitiesOnAcurrentTerrain();
-                        btnMove.Visible = false;
-
-                        ChangePanelStates(true);
-                        /*
-                        btnMoveInfo.Visible = true;
-
-                        cbCurrentTerrain.Enabled = true;
-                        pnAttack.Enabled = true;
-                        pnEntities.Enabled = true;
-                        pnFoods.Enabled = true;
-                        pnItems.Enabled = true;
-                        
-                    }
-                }
-                */
             }
             catch (Exception ex)
             {
-                new MessageBoxDarkMode(ex.Message, "ALERTA", "Ok", Resources.warning, true);
+                MessageBox.Show(ex.Message, "ALERTA", "Ok", Resources.warning);
             }
         }
 
         private void MapTest_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro que desea salir?? Se cerrará la aplicación por completo...", "Aviso", "OkCancel", Resources.question);
+            MessageBoxDarkMode messageBox = MessageBox.Show("Esta seguro que desea salir?? Se cerrará la aplicación por completo...", "Aviso", "OkCancel", Resources.question);
             if (model.MessageBox.MessageBoxDialogResult(messageBox) == false)
             {
                 e.Cancel = true;

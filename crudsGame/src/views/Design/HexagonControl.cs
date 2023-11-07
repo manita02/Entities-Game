@@ -14,7 +14,7 @@ namespace crudsGame.src.views
     public partial class HexagonControl : UserControl
     {
         private Color borderColor = Color.Black;
-        private int borderWidth = 10; // Ancho del borde en píxeles
+        private int borderWidth = 10; // es el ancho del borde (px)
 
         public string HexagonText
         {
@@ -28,23 +28,16 @@ namespace crudsGame.src.views
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.ResizeRedraw, true);
         }
-        /*
-        public HexagonControl()
-        {
+       
 
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            SetStyle(ControlStyles.ResizeRedraw, true);
-        }
-        */
-
-        // Propiedad para el color del borde
+        //establece el color al borde del hexagono
         public Color BorderColor
         {
             get { return borderColor; }
             set
             {
                 borderColor = value;
-                // Vuelve a dibujar el control cuando se cambia el color del borde.
+                // vuelve a dibujar el control (hexagono) cuando se cambia el color del borde.
                 Invalidate();
             }
         }
@@ -92,6 +85,7 @@ namespace crudsGame.src.views
 
             base.OnPaint(e);
         }
+        
     }
 }
 

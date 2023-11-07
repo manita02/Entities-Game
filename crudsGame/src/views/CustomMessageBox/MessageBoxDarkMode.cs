@@ -15,7 +15,7 @@ namespace crudsGame.src.views
 {
     public partial class MessageBoxDarkMode : Form
     {
-        public event EventHandler<ResponseEventHandler> ResponseEvent; //Subscribe to this event if using OkCancel
+        public event EventHandler<ResponseEventHandler> ResponseEvent; 
         ResponseEventHandler response = new ResponseEventHandler();
         string _Caption;
         string _Message;

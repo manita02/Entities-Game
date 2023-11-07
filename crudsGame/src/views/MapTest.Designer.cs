@@ -48,7 +48,6 @@
             hex14 = new HexagonControl();
             hex15 = new HexagonControl();
             hex17 = new HexagonControl();
-            btnGenerateMap = new MaterialSkin.Controls.MaterialRaisedButton();
             cbCurrentTerrain = new ComboBox();
             lbBonderingTerrains = new ListBox();
             lbEntitiesOnAterrain = new ListBox();
@@ -310,24 +309,6 @@
             hex17.Size = new Size(80, 80);
             hex17.TabIndex = 19;
             // 
-            // btnGenerateMap
-            // 
-            btnGenerateMap.AutoSize = true;
-            btnGenerateMap.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnGenerateMap.Depth = 0;
-            btnGenerateMap.Enabled = false;
-            btnGenerateMap.Icon = null;
-            btnGenerateMap.Location = new Point(36, 86);
-            btnGenerateMap.Margin = new Padding(4, 5, 4, 5);
-            btnGenerateMap.MouseState = MaterialSkin.MouseState.HOVER;
-            btnGenerateMap.Name = "btnGenerateMap";
-            btnGenerateMap.Primary = true;
-            btnGenerateMap.Size = new Size(195, 36);
-            btnGenerateMap.TabIndex = 20;
-            btnGenerateMap.Text = "GENERATE A MAP";
-            btnGenerateMap.UseVisualStyleBackColor = true;
-            btnGenerateMap.Click += btnGenerateMap_Click;
-            // 
             // cbCurrentTerrain
             // 
             cbCurrentTerrain.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -372,7 +353,6 @@
             lbEnvironmentsOfAnEntity.SelectionMode = SelectionMode.None;
             lbEnvironmentsOfAnEntity.Size = new Size(232, 91);
             lbEnvironmentsOfAnEntity.TabIndex = 26;
-            lbEnvironmentsOfAnEntity.SelectedIndexChanged += lbEnvironmentsOfAnEntity_SelectedIndexChanged;
             // 
             // materialLabel1
             // 
@@ -960,7 +940,6 @@
             Controls.Add(materialLabel1);
             Controls.Add(lbBonderingTerrains);
             Controls.Add(cbCurrentTerrain);
-            Controls.Add(btnGenerateMap);
             Controls.Add(hex17);
             Controls.Add(hex15);
             Controls.Add(hex14);
@@ -1028,7 +1007,6 @@
         private HexagonControl hex14;
         private HexagonControl hex15;
         private HexagonControl hex17;
-        private MaterialSkin.Controls.MaterialRaisedButton btnGenerateMap;
         private ComboBox cbCurrentTerrain;
         private MaterialSkin.Controls.MaterialListView lbBorderingTerrains;
         private ListBox lbBonderingTerrains;

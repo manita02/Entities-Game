@@ -166,6 +166,8 @@ namespace crudsGame.src.controllers
         }
 
 
+      
+
         /// <summary>
         /// Obtiene una entidad random donde su ambiente coincida con el terreno donde se ubicará
         /// </summary>
@@ -463,23 +465,24 @@ namespace crudsGame.src.controllers
         /// </summary>
         public bool CheckIfAnyEntityDiedAfterTheAttack(Entity attackingEntity, Entity attackedEntity)
         {
-            int finalResult = attackingEntity.FinallyResolveTheAttack(attackedEntity);
-            if (finalResult == 1)//entidad atacante se muere
+            int resultAtaque = attackingEntity.Attack(attackedEntity);
+                if (resultAtaque == 1)//entidad atacante se muere
             {
-                MessageBox.Show(attackedEntity.name + " mató a " + attackingEntity.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
-                RemoveAnEntityThatDiedFromTheMap(attackingEntity);
-                return true;
-            }
-            else
-            {
-                if (finalResult == 2)//entidad atacada se muere
-                {
-                    MessageBox.Show(attackingEntity.name + " mató a " + attackedEntity.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
-                    RemoveAnEntityThatDiedFromTheMap(attackedEntity);
+                    MessageBox.Show(attackedEntity.name + " mató a " + attackingEntity.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
+                    RemoveAnEntityThatDiedFromTheMap(attackingEntity);
                     return true;
+
                 }
-            }
-            return false;
-        } 
+                else
+                {
+                    if (resultAtaque == 2)//entidad atacada se muere
+                    {
+                        MessageBox.Show(attackingEntity.name + " mató a " + attackedEntity.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
+                        RemoveAnEntityThatDiedFromTheMap(attackedEntity);
+                        return true;
+                    }     
+                }
+                return false;            
+        }
     }
 }

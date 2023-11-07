@@ -294,50 +294,58 @@ namespace crudsGame.src.model
         #endregion
 
         #region Attack
-        public int GetFullAttack()
+        private int CheckIfTheAttackingEntityDied()
         {
-            this.currentEnergy -= 50;
-            int DicePlayerOne = Dice.TrowDice();
-            MessageBox.Show(" Player one ha lanzado el dado: +" + DicePlayerOne + "\n " + this.name + " ataca con (" + this.attackPoints + " + " + DicePlayerOne + ")", "ATENCIÓN", "Ok", Resources.moreAttack);
-            return this.attackPoints + DicePlayerOne;   
+            if (this.CurrentLife <= 0)
+            {
+                return 1;
+            }
+            return 0;
         }
 
-        public int GetFullDefense(Entity entidadAtacada)
-        {
-            int DicePlayerTwo = Dice.TrowDice();
-            MessageBox.Show(" Player two ha lanzado el dado: +" + DicePlayerTwo + "\n " + entidadAtacada.name + " se defenderá con (" + entidadAtacada.defensePoints + " + " + DicePlayerTwo + ")", "ATENCIÓN", "Ok", Resources.moreDefense);
-            return entidadAtacada.defensePoints + DicePlayerTwo;
-
-        }
-
-
-        public int FinallyResolveTheAttack(Entity entidadAtacada)
+        public int Attack(Entity entityToAttack)
         {
             try
             {
-                int result = GetFullAttack() - GetFullDefense(entidadAtacada);
-                MessageBox.Show("RESULADO FINAL DEL ATAQUE: " + result, "ATENCIÓN", "Ok", Resources.info);
-                if (result < 0)
+                this.currentEnergy -= 50;
+                int fullAttack = this.attackPoints + Dice.TrowDice();
+                MessageBox.Show("La entidad atacante " + this.name + " ataca con: " + fullAttack, "Aviso", "Ok", Resources.moreAttack);
+                int finalResultOfAttack = entityToAttack.ReceiveAttack(fullAttack);//la entidad que recibe el ataque se le pasa la entidad atacada
+                if (finalResultOfAttack != 0)
                 {
-                    this.CurrentLife += result;
-                    if (this.CurrentLife <= 0)
-                    {
-                        return 1;
-                    }
-                    MessageBox.Show("Ganó " + entidadAtacada.name + " con sus puntos de defensa!!", "ATENCIÓN", "Ok", Resources.moreDefense);
-                }
-                else
-                {
-                    entidadAtacada.currentLife -= result;
-                    MessageBox.Show("Ganó " + this.name + " con sus puntos de ataque!!", "ATENCIÓN", "Ok", Resources.moreAttack);
+                    this.CurrentLife -= finalResultOfAttack;
+                    return CheckIfTheAttackingEntityDied();
                 }
                 return 0;
             }
-            catch(Exception ex)
+            catch (Exception e)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine(e.Message);
                 return 2;
-            }    
+            }
+            
+        }
+        public int ReceiveAttack(int fullAttack)
+        {
+            int finalResultOfAttack = 0;
+            if (CompareAttackPointsWithMyDefense(fullAttack))
+            {
+                MessageBox.Show("La entidad que se defiende ("+this.name+") pierde, por lo tanto perderá esto de vida: -"+fullAttack, "Ganó la entidad atacante", "Ok", Resources.moreAttack);
+                currentLife -= fullAttack;
+            }
+            else 
+            {
+                finalResultOfAttack = this.defensePoints - fullAttack;
+                MessageBox.Show("La entidad que ataca ("+this.name+") pierde, por lo tanto perderá esto de vida: (" + this.defensePoints +" - " + fullAttack + ") = "+ finalResultOfAttack, "Ganó la entidad que se defiende", "Ok", Resources.moreDefense);      
+            }
+            //MessageBox.Show("valor final del resultado q se va a restar a la entidad atacante: "+finalResultOfAttack,"info del resultado", "Ok", Resources.info);
+            return finalResultOfAttack;
+        }
+        public bool CompareAttackPointsWithMyDefense(int fullAttack)
+        {
+            int fullDefense = this.defensePoints + Dice.TrowDice();
+            MessageBox.Show("La entidad que se defiende: " + this.name + " se va a defender con: " + fullDefense, "Aviso", "Ok", Resources.moreDefense);
+            return (fullAttack > fullDefense); //devuelve true si los puntos de ataque son mayores a los de la defensa --> se le debe restar a la entidad atacada
         }
         #endregion
 
