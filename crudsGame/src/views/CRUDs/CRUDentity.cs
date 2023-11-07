@@ -31,7 +31,7 @@ namespace crudsGame.src.views
             InitializeComponent();
             LoadMaterial(this);
             LoadCreaturesbByDefault();
-            this.dgvEntities.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; 
+            this.dgvEntities.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             cbDiet.DataSource = entityCtn.GetDietList();
             cbKingdom.DataSource = entityCtn.GetKingdomList();
             clbEnvironments.DataSource = entityCtn.GetEnvironmentList();
@@ -122,8 +122,10 @@ namespace crudsGame.src.views
                 cbDiet.SelectedIndex = GetIndexOfDietComboThatComesFromTheDatagrid();
                 DeselectChecksFromTheListbox();
                 CheckEnvironmentsInListbox(entityCtn.SearchEntityById((int)(dgvEntities.CurrentRow.Cells[0].Value)));
-                txtAttack.Text = dgvEntities.CurrentRow.Cells[5].Value.ToString();
-                txtDefense.Text = dgvEntities.CurrentRow.Cells[6].Value.ToString();
+                tbAttackPoints.Value = (int)(dgvEntities.CurrentRow.Cells[5].Value);
+                lbTbAttack.Text= (dgvEntities.CurrentRow.Cells[5].Value).ToString();
+                tbDefensePoints.Value = (int)(dgvEntities.CurrentRow.Cells[6].Value);
+                lbTbDefense.Text = (dgvEntities.CurrentRow.Cells[6].Value).ToString();
                 txtRange.Text = dgvEntities.CurrentRow.Cells[7].Value.ToString();
                 txtMaxEnergy.Text = dgvEntities.CurrentRow.Cells[8].Value.ToString();
                 txtMaxLife.Text = dgvEntities.CurrentRow.Cells[10].Value.ToString();
@@ -198,19 +200,19 @@ namespace crudsGame.src.views
         {
             try
             {
-                if (CheckMaximumNumberToEnterInDefenseAndAttackPoints() == true)
+                //if (CheckMaximumNumberToEnterInDefenseAndAttackPoints() == true)
+                //{
+                Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), GeneralController.CheckThatTheFieldIsNotNull(txtMaxEnergy), GeneralController.CheckThatTheFieldIsNotNull(txtMaxLife), tbAttackPoints.Value, tbDefensePoints.Value, Convert.ToInt16(txtRange.Text));
+
+                if (entityCtn.CheckIfAnEntityCreatedWithTheSameNameAlreadyExists(entity) == false)
                 {
-                    Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), GeneralController.CheckThatTheFieldIsNotNull(txtMaxEnergy), GeneralController.CheckThatTheFieldIsNotNull(txtMaxLife), GeneralController.CheckThatTheFieldIsNotNull(txtAttack), GeneralController.CheckThatTheFieldIsNotNull(txtDefense), Convert.ToInt16(txtRange.Text));
-                    
-                    if (entityCtn.CheckIfAnEntityCreatedWithTheSameNameAlreadyExists(entity) == false)
-                    {
-                        entityCtn.AddEntity(entity);
-                        MessageBox.Show("Entidad (" + entity.name + ") creada satisfactoriamente!!", "Aviso", "Ok", Resources.check);
-                        LoadCreatureIntoDatagrid(dgvEntities.Rows.Add(), entity);                                                             
-                    }
-                    UpdateEntityId();
-                    CleanFields();
+                    entityCtn.AddEntity(entity);
+                    MessageBox.Show("Entidad (" + entity.name + ") creada satisfactoriamente!!", "Aviso", "Ok", Resources.check);
+                    LoadCreatureIntoDatagrid(dgvEntities.Rows.Add(), entity);
                 }
+                UpdateEntityId();
+                CleanFields();
+                //}
             }
             catch (Exception ex)
             {
@@ -221,41 +223,41 @@ namespace crudsGame.src.views
 
         private void btnUpdatee_Click(object sender, EventArgs e)
         {
-            if (CheckMaximumNumberToEnterInDefenseAndAttackPoints() == true)
+            //if (CheckMaximumNumberToEnterInDefenseAndAttackPoints() == true)
+            //{
+            MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de guardar los cambios??", "ALERTA", "OkCancel", Resources.warning);
+            if (model.MessageBox.MessageBoxDialogResult(messageBox) == true)
             {
-                MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de guardar los cambios??", "ALERTA", "OkCancel", Resources.warning);
-                if (model.MessageBox.MessageBoxDialogResult(messageBox) == true)
+                try
                 {
-                    try
+                    if (dgvEntities.SelectedRows.Count > 0)
                     {
-                        if (dgvEntities.SelectedRows.Count > 0)
-                        {
-                            Entity entity = entityCtn.Update(entityCtn.SearchEntityById((int)dgvEntities.CurrentRow.Cells[0].Value), Convert.ToInt32(txtId.Text), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), GeneralController.CheckThatTheFieldIsNotNull(txtMaxEnergy), GeneralController.CheckThatTheFieldIsNotNull(txtMaxLife), GeneralController.CheckThatTheFieldIsNotNull(txtAttack), GeneralController.CheckThatTheFieldIsNotNull(txtDefense), Convert.ToInt16(txtRange.Text));
-                            LoadCreatureIntoDatagrid(rows, entity);
-                            this.rows = 0;
-                            btnCreatee.Visible = true;
-                            btnDeletee.Visible = true;
-                            dgvEntities.Enabled = true;
-                            MessageBox.Show("Entidad actualizada con éxito!!", "Aviso", "Ok", Resources.update);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!", "Error", "Ok", Resources.error);
-                        }
-                        CleanFields();
-                        UpdateEntityId();
+                        Entity entity = entityCtn.Update(entityCtn.SearchEntityById((int)dgvEntities.CurrentRow.Cells[0].Value), Convert.ToInt32(txtId.Text), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), GeneralController.CheckThatTheFieldIsNotNull(txtMaxEnergy), GeneralController.CheckThatTheFieldIsNotNull(txtMaxLife), tbAttackPoints.Value, tbDefensePoints.Value, Convert.ToInt16(txtRange.Text));
+                        LoadCreatureIntoDatagrid(rows, entity);
+                        this.rows = 0;
+                        btnCreatee.Visible = true;
+                        btnDeletee.Visible = true;
+                        dgvEntities.Enabled = true;
+                        MessageBox.Show("Entidad actualizada con éxito!!", "Aviso", "Ok", Resources.update);
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show(ex.Message + " por esto no se editará la entidad", "Error", "Ok", Resources.error);
-                        btnCreatee.Visible = false;
-                        btnDeletee.Visible = false;
-                        dgvEntities.Enabled = false;
+                        MessageBox.Show("Debe seleccionar una fila de la tabla para editar una entidad!!", "Error", "Ok", Resources.error);
                     }
-
+                    CleanFields();
+                    UpdateEntityId();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + " por esto no se editará la entidad", "Error", "Ok", Resources.error);
+                    btnCreatee.Visible = false;
+                    btnDeletee.Visible = false;
+                    dgvEntities.Enabled = false;
                 }
 
             }
+
+            //}
         }
 
         private void btnDeletee_Click(object sender, EventArgs e)
@@ -282,17 +284,6 @@ namespace crudsGame.src.views
         #endregion
 
 
-        private bool CheckMaximumNumberToEnterInDefenseAndAttackPoints()
-        {
-            if (Convert.ToInt16(txtAttack.Text) > 400 || Convert.ToInt16(txtAttack.Text) > 400)
-            {
-                MessageBox.Show("Los puntos de ataque y defensa de una entidad, deben ser menores a 400", "Error", "Ok", Resources.error);
-                return false;
-            }
-            return true;
-        }
-
-
         private void txtAttack_KeyPress_1(object sender, KeyPressEventArgs e)
         {
             GeneralController.ValidateNumbers(e);
@@ -302,10 +293,22 @@ namespace crudsGame.src.views
         {
             txtName.Text = "";
             txtRange.Text = "";
-            txtAttack.Text = "";
-            txtDefense.Text = "";
             cbKingdom.SelectedIndex = 0;
             cbDiet.SelectedIndex = 0;
+            tbAttackPoints.Value = 1;
+            tbDefensePoints.Value = 1;
+            lbTbAttack.Text = "1";
+            lbTbDefense.Text = "1";
+        }
+
+        private void tbAttackPoints_Scroll(object sender, EventArgs e)
+        {
+            lbTbAttack.Text = tbAttackPoints.Value.ToString();
+        }
+
+        private void tbDefensePoints_Scroll(object sender, EventArgs e)
+        {
+            lbTbDefense.Text = tbDefensePoints.Value.ToString();
         }
     }
 }

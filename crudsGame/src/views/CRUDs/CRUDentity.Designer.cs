@@ -60,10 +60,8 @@
             materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel9 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel10 = new MaterialSkin.Controls.MaterialLabel();
-            txtAttack = new MaterialSkin.Controls.MaterialSingleLineTextField();
             txtName = new MaterialSkin.Controls.MaterialSingleLineTextField();
             txtId = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            txtDefense = new MaterialSkin.Controls.MaterialSingleLineTextField();
             txtRange = new MaterialSkin.Controls.MaterialSingleLineTextField();
             txtMaxEnergy = new MaterialSkin.Controls.MaterialSingleLineTextField();
             txtMaxLife = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -74,8 +72,14 @@
             ttpCreate = new ToolTip(components);
             ttpUpdate = new ToolTip(components);
             ttpDelete = new ToolTip(components);
+            tbDefensePoints = new TrackBar();
+            tbAttackPoints = new TrackBar();
+            lbTbAttack = new MaterialSkin.Controls.MaterialLabel();
+            lbTbDefense = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)dgvEntities).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picCreature).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbDefensePoints).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbAttackPoints).BeginInit();
             SuspendLayout();
             // 
             // cbKingdom
@@ -246,7 +250,7 @@
             clbEnvironments.CheckOnClick = true;
             clbEnvironments.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             clbEnvironments.FormattingEnabled = true;
-            clbEnvironments.Location = new Point(675, 354);
+            clbEnvironments.Location = new Point(775, 351);
             clbEnvironments.Margin = new Padding(4, 5, 4, 5);
             clbEnvironments.Name = "clbEnvironments";
             clbEnvironments.Size = new Size(233, 120);
@@ -338,7 +342,7 @@
             materialLabel6.Depth = 0;
             materialLabel6.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel6.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel6.Location = new Point(525, 354);
+            materialLabel6.Location = new Point(625, 351);
             materialLabel6.Margin = new Padding(7, 0, 7, 0);
             materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel6.Name = "materialLabel6";
@@ -366,7 +370,7 @@
             materialLabel8.Depth = 0;
             materialLabel8.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel8.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel8.Location = new Point(529, 221);
+            materialLabel8.Location = new Point(629, 218);
             materialLabel8.Margin = new Padding(7, 0, 7, 0);
             materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel8.Name = "materialLabel8";
@@ -394,32 +398,13 @@
             materialLabel10.Depth = 0;
             materialLabel10.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
             materialLabel10.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialLabel10.Location = new Point(555, 284);
+            materialLabel10.Location = new Point(655, 281);
             materialLabel10.Margin = new Padding(7, 0, 7, 0);
             materialLabel10.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel10.Name = "materialLabel10";
             materialLabel10.Size = new Size(107, 27);
             materialLabel10.TabIndex = 58;
             materialLabel10.Text = "Max. Life:";
-            // 
-            // txtAttack
-            // 
-            txtAttack.Depth = 0;
-            txtAttack.Hint = "";
-            txtAttack.Location = new Point(199, 350);
-            txtAttack.Margin = new Padding(4, 5, 4, 5);
-            txtAttack.MaxLength = 32767;
-            txtAttack.MouseState = MaterialSkin.MouseState.HOVER;
-            txtAttack.Name = "txtAttack";
-            txtAttack.PasswordChar = '\0';
-            txtAttack.SelectedText = "";
-            txtAttack.SelectionLength = 0;
-            txtAttack.SelectionStart = 0;
-            txtAttack.Size = new Size(294, 32);
-            txtAttack.TabIndex = 61;
-            txtAttack.TabStop = false;
-            txtAttack.UseSystemPasswordChar = false;
-            txtAttack.KeyPress += txtAttack_KeyPress_1;
             // 
             // txtName
             // 
@@ -459,25 +444,6 @@
             txtId.Text = "0";
             txtId.UseSystemPasswordChar = false;
             // 
-            // txtDefense
-            // 
-            txtDefense.Depth = 0;
-            txtDefense.Hint = "";
-            txtDefense.Location = new Point(199, 414);
-            txtDefense.Margin = new Padding(4, 5, 4, 5);
-            txtDefense.MaxLength = 32767;
-            txtDefense.MouseState = MaterialSkin.MouseState.HOVER;
-            txtDefense.Name = "txtDefense";
-            txtDefense.PasswordChar = '\0';
-            txtDefense.SelectedText = "";
-            txtDefense.SelectionLength = 0;
-            txtDefense.SelectionStart = 0;
-            txtDefense.Size = new Size(294, 32);
-            txtDefense.TabIndex = 62;
-            txtDefense.TabStop = false;
-            txtDefense.UseSystemPasswordChar = false;
-            txtDefense.KeyPress += txtAttack_KeyPress_1;
-            // 
             // txtRange
             // 
             txtRange.Depth = 0;
@@ -501,7 +467,7 @@
             // 
             txtMaxEnergy.Depth = 0;
             txtMaxEnergy.Hint = "";
-            txtMaxEnergy.Location = new Point(675, 219);
+            txtMaxEnergy.Location = new Point(775, 216);
             txtMaxEnergy.Margin = new Padding(4, 5, 4, 5);
             txtMaxEnergy.MaxLength = 32767;
             txtMaxEnergy.MouseState = MaterialSkin.MouseState.HOVER;
@@ -520,7 +486,7 @@
             // 
             txtMaxLife.Depth = 0;
             txtMaxLife.Hint = "";
-            txtMaxLife.Location = new Point(672, 280);
+            txtMaxLife.Location = new Point(772, 277);
             txtMaxLife.Margin = new Padding(4, 5, 4, 5);
             txtMaxLife.MaxLength = 32767;
             txtMaxLife.MouseState = MaterialSkin.MouseState.HOVER;
@@ -601,21 +567,73 @@
             materialDivider1.TabIndex = 66;
             materialDivider1.Text = "materialDivider1";
             // 
+            // tbDefensePoints
+            // 
+            tbDefensePoints.Location = new Point(196, 421);
+            tbDefensePoints.Maximum = 399;
+            tbDefensePoints.Minimum = 1;
+            tbDefensePoints.Name = "tbDefensePoints";
+            tbDefensePoints.Size = new Size(294, 69);
+            tbDefensePoints.TabIndex = 70;
+            tbDefensePoints.TickStyle = TickStyle.None;
+            tbDefensePoints.Value = 1;
+            tbDefensePoints.Scroll += tbDefensePoints_Scroll;
+            // 
+            // tbAttackPoints
+            // 
+            tbAttackPoints.Location = new Point(196, 354);
+            tbAttackPoints.Maximum = 399;
+            tbAttackPoints.Minimum = 1;
+            tbAttackPoints.Name = "tbAttackPoints";
+            tbAttackPoints.Size = new Size(294, 69);
+            tbAttackPoints.TabIndex = 71;
+            tbAttackPoints.TickStyle = TickStyle.None;
+            tbAttackPoints.Value = 1;
+            tbAttackPoints.Scroll += tbAttackPoints_Scroll;
+            // 
+            // lbTbAttack
+            // 
+            lbTbAttack.AutoSize = true;
+            lbTbAttack.Depth = 0;
+            lbTbAttack.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lbTbAttack.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            lbTbAttack.Location = new Point(485, 354);
+            lbTbAttack.MouseState = MaterialSkin.MouseState.HOVER;
+            lbTbAttack.Name = "lbTbAttack";
+            lbTbAttack.Size = new Size(24, 27);
+            lbTbAttack.TabIndex = 72;
+            lbTbAttack.Text = "1";
+            // 
+            // lbTbDefense
+            // 
+            lbTbDefense.AutoSize = true;
+            lbTbDefense.Depth = 0;
+            lbTbDefense.Font = new Font("Roboto", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            lbTbDefense.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            lbTbDefense.Location = new Point(485, 421);
+            lbTbDefense.MouseState = MaterialSkin.MouseState.HOVER;
+            lbTbDefense.Name = "lbTbDefense";
+            lbTbDefense.Size = new Size(24, 27);
+            lbTbDefense.TabIndex = 73;
+            lbTbDefense.Text = "1";
+            // 
             // CRUDentity
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1846, 962);
+            Controls.Add(txtRange);
+            Controls.Add(lbTbDefense);
+            Controls.Add(lbTbAttack);
+            Controls.Add(tbAttackPoints);
+            Controls.Add(tbDefensePoints);
             Controls.Add(btnDeletee);
             Controls.Add(btnUpdatee);
             Controls.Add(btnCreatee);
             Controls.Add(materialDivider1);
             Controls.Add(txtMaxLife);
             Controls.Add(txtMaxEnergy);
-            Controls.Add(txtRange);
-            Controls.Add(txtDefense);
-            Controls.Add(txtAttack);
             Controls.Add(txtName);
             Controls.Add(txtId);
             Controls.Add(materialLabel10);
@@ -641,6 +659,8 @@
             Text = "CRUDentity";
             ((System.ComponentModel.ISupportInitialize)dgvEntities).EndInit();
             ((System.ComponentModel.ISupportInitialize)picCreature).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbDefensePoints).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbAttackPoints).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -675,10 +695,8 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel8;
         private MaterialSkin.Controls.MaterialLabel materialLabel9;
         private MaterialSkin.Controls.MaterialLabel materialLabel10;
-        private MaterialSkin.Controls.MaterialSingleLineTextField txtAttack;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtName;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtId;
-        private MaterialSkin.Controls.MaterialSingleLineTextField txtDefense;
         private MaterialSkin.Controls.MaterialSingleLineTextField txtRange;
         private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextField3;
         private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextField1;
@@ -691,5 +709,9 @@
         private ToolTip ttpCreate;
         private ToolTip ttpUpdate;
         private ToolTip ttpDelete;
+        private TrackBar tbDefensePoints;
+        private TrackBar tbAttackPoints;
+        private MaterialSkin.Controls.MaterialLabel lbTbAttack;
+        private MaterialSkin.Controls.MaterialLabel lbTbDefense;
     }
 }
