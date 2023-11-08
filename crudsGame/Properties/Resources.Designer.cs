@@ -83,16 +83,6 @@ namespace crudsGame.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap backMain {
-            get {
-                object obj = ResourceManager.GetObject("backMain", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap carnivore {
             get {
                 object obj = ResourceManager.GetObject("carnivore", resourceCulture);
@@ -173,16 +163,6 @@ namespace crudsGame.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap interactions {
-            get {
-                object obj = ResourceManager.GetObject("interactions", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap ko {
             get {
                 object obj = ResourceManager.GetObject("ko", resourceCulture);
@@ -226,16 +206,6 @@ namespace crudsGame.Properties {
         internal static System.Drawing.Bitmap loseLifee {
             get {
                 object obj = ResourceManager.GetObject("loseLifee", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap mainLogo {
-            get {
-                object obj = ResourceManager.GetObject("mainLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

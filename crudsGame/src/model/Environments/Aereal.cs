@@ -14,7 +14,7 @@ namespace crudsGame.src.model.Environments
         {
             if (terrain is Water || terrain is Land)
             {
-                System.Windows.Forms.MessageBox.Show("se puede mover en aireeee");
+                //System.Windows.Forms.MessageBox.Show("se puede mover en aireeee");
                 return true;
             }
             return false;     

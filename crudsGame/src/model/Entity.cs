@@ -308,7 +308,7 @@ namespace crudsGame.src.model
             try
             {
                 this.currentEnergy -= 50;
-                int fullAttack = this.attackPoints + Dice.TrowDice();
+                int fullAttack = this.attackPoints + Dice.ShowThrowOfTheDice(1);
                 MessageBox.Show("La entidad atacante " + this.name + " ataca con: " + fullAttack, "Aviso", "Ok", Resources.moreAttack);
                 int finalResultOfAttack = entityToAttack.ReceiveAttack(fullAttack);//la entidad que recibe el ataque se le pasa la entidad atacada
                 if (finalResultOfAttack != 0)
@@ -330,20 +330,20 @@ namespace crudsGame.src.model
             int finalResultOfAttack = 0;
             if (CompareAttackPointsWithMyDefense(fullAttack))
             {
-                MessageBox.Show("La entidad que se defiende ("+this.name+") pierde, por lo tanto perderá esto de vida: -"+fullAttack, "Ganó la entidad atacante", "Ok", Resources.moreAttack);
+                MessageBox.Show("Perdió la defensa ("+this.name+ "), por lo tanto perderá esto de vida: -" + fullAttack, "Ganó la entidad atacante", "Ok", Resources.moreAttack);
                 currentLife -= fullAttack;
             }
             else 
             {
                 finalResultOfAttack = this.defensePoints - fullAttack;
-                MessageBox.Show("La entidad que ataca ("+this.name+") pierde, por lo tanto perderá esto de vida: (" + this.defensePoints +" - " + fullAttack + ") = "+ finalResultOfAttack, "Ganó la entidad que se defiende", "Ok", Resources.moreDefense);      
+                MessageBox.Show("Perdió la entidad atacante, por lo tanto perderá esto de vida: (" + this.defensePoints +" - " + fullAttack + ") = "+ finalResultOfAttack, "Ganó la entidad que se defiende", "Ok", Resources.moreDefense);      
             }
             //MessageBox.Show("valor final del resultado q se va a restar a la entidad atacante: "+finalResultOfAttack,"info del resultado", "Ok", Resources.info);
             return finalResultOfAttack;
         }
         public bool CompareAttackPointsWithMyDefense(int fullAttack)
         {
-            int fullDefense = this.defensePoints + Dice.TrowDice();
+            int fullDefense = this.defensePoints + Dice.ShowThrowOfTheDice(2);
             MessageBox.Show("La entidad que se defiende: " + this.name + " se va a defender con: " + fullDefense, "Aviso", "Ok", Resources.moreDefense);
             return (fullAttack > fullDefense); //devuelve true si los puntos de ataque son mayores a los de la defensa --> se le debe restar a la entidad atacada
         }

@@ -59,7 +59,7 @@ namespace crudsGame.src.views
                 frm.ShowDialog();
                 this.Close();
             }
-                
+
         }
     }
 }

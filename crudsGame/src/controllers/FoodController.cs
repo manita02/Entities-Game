@@ -69,7 +69,7 @@ namespace crudsGame.src.controllers
                 }
                 index++;
             }
-            MessageBox.Show("total lista: " + foodList.Count);
+            //MessageBox.Show("total lista: " + foodList.Count);
             return foodList;
         }
 
