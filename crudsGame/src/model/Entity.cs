@@ -368,8 +368,14 @@ namespace crudsGame.src.model
         {
             if (Diet.CanEat(food))
             {
-                food.Interact(this);
-                return true;
+                if (food.Interact(this))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }    
             }
             else
             {

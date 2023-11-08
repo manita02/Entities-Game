@@ -88,17 +88,19 @@ namespace crudsGame.src.model.Foods
         #endregion
 
 
-        public void Interact(Entity entity)
+        public bool Interact(Entity entity)
         {
             if (entity.currentEnergy != entity.maxEnergy)
             {
                 entity.currentEnergy -= 10;
                 entity.currentEnergy += Calories;
                 MessageBox.Show("The creature " + entity.name + " ate " + Name + " and recovered + (" + Calories + ") energy", "ATENCIÓN", "Ok", Resources.check);
+                return true;
             }
             else
             {
                 MessageBox.Show("The creature " + entity.name + " is full, he can't eat more!!", "ALERTA", "Ok", Resources.warning);
+                return false;
             }
         }
 

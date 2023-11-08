@@ -284,13 +284,6 @@ namespace crudsGame.src.views
                 LoadListboxOfEntitiesToAttack();
 
             }
-            /*
-            if (mapCtn.CheckIfAnyEntityDiedAfterTheAttack(((Entity)lbEntitiesOnAterrain.SelectedItem), (Entity)lbEntitiesToAttack.SelectedItem))
-            {
-                LoadListBoxOfEntitiesOnAcurrentTerrain();
-                LoadListboxOfEntitiesToAttack();
-            }
-            */
             LoadProgressbarOfSelectedEntity();
             LoadProgressbarOfEntitiesToAttackPlayerTwo();
         }
@@ -308,6 +301,25 @@ namespace crudsGame.src.views
             ChangeColorOfSelectedHexagonAndTheirBorderingHexagons((Terrain)cbCurrentTerrain.SelectedItem);
         }
 
+        private void CheckIfTheSelectedEntityHasEnergy()
+        {
+            if (((Entity)lbEntitiesOnAterrain.SelectedItem).currentEnergy == 0)
+            {
+                MessageBox.Show("La entidad seleccionada actualmente (" + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ") NO tiene energía, por lo tanto NO podrá realizar ningún tipo de interacción!!", "ATENCIÓN", "Ok", Resources.loseEnergy);
+                btnAttack.Enabled = false;
+                btnEat.Enabled = false;
+                btnUse.Enabled = false;
+                btnMoveInfo.Enabled = false;
+            }
+            else
+            {
+                btnAttack.Enabled = true;
+                btnEat.Enabled = true;
+                btnUse.Enabled = true;
+                btnMoveInfo.Enabled = true;
+            }
+        }
+
         private void lbEntitiesOnAterrain_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnMoveInfo.Text = "MOVER entidad seleccionada (" + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ") a otro terreno";
@@ -321,6 +333,8 @@ namespace crudsGame.src.views
 
             LoadProgressbarOfSelectedEntity();
             LoadListboxOfEntitiesToAttack();
+
+            CheckIfTheSelectedEntityHasEnergy();
         }
 
         private void lbEntitiesToAttack_SelectedIndexChanged(object sender, EventArgs e)

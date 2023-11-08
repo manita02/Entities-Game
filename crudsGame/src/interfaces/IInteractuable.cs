@@ -10,7 +10,7 @@ namespace crudsGame.src.interfaces
 {
     public interface IInteractuable
     {
-        void Interact(Entity entity);
+        bool Interact(Entity entity);
     }
 
 

@@ -195,7 +195,7 @@ namespace crudsGame.src.controllers
                 switch (terrain.TerrainType)
                 {
                     case Water: //si el terreno es agua
-                        foreach (IEnvironment env in EntityRandom.environmentList) //aca se puede encapsular
+                        foreach (IEnvironment env in EntityRandom.environmentList) 
                         {
                             if (AvoidInfiniteLoop != 50)
                             {
@@ -208,7 +208,7 @@ namespace crudsGame.src.controllers
                             }
                             else
                             {
-                                throw new Exception("Algunas de las entidades creadas no podrán colocarse sobre los terrenos aleatorios generados debido a que en su propia lista de ambientes, no coinden con los terrenos que se encontraban libres para ocupar... problema = " + AvoidInfiniteLoop);
+                                throw new Exception("Algunas de las entidades creadas no podrán colocarse sobre los terrenos aleatorios generados debido a que en su propia lista de ambientes, no coinden con los terrenos que se encontraban libres para ocupar...");
                             }
                         }
                         break;
@@ -226,7 +226,7 @@ namespace crudsGame.src.controllers
                             }
                             else
                             {
-                                throw new Exception("Algunas de las entidades creadas no podrán colocarse sobre los terrenos aleatorios generados debido a que en su propia lista de ambientes, no coinden con los terrenos que se encontraban libres para ocupar... problema = " + AvoidInfiniteLoop);
+                                throw new Exception("Algunas de las entidades creadas no podrán colocarse sobre los terrenos aleatorios generados debido a que en su propia lista de ambientes, no coinden con los terrenos que se encontraban libres para ocupar...");
                             }
                         }
                         break;

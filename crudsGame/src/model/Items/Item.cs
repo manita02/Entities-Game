@@ -86,9 +86,10 @@ namespace crudsGame.src.model.Items
         #endregion
 
 
-        public void Interact(Entity entity)
+        public bool Interact(Entity entity)
         {
             ItemStrategy.ApplyItem(entity);
+            return true;
         }
 
         public override string ToString()

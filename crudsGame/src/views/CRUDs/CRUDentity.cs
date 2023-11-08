@@ -200,8 +200,6 @@ namespace crudsGame.src.views
         {
             try
             {
-                //if (CheckMaximumNumberToEnterInDefenseAndAttackPoints() == true)
-                //{
                 Entity entity = entityCtn.CreateEntity(entityCtn.GetEntitiesList().Count(), (IKingdom)(cbKingdom.SelectedItem), txtName.Text, (IDiet)(cbDiet.SelectedItem), GetListOfCheckedEnvironments(), GeneralController.CheckThatTheFieldIsNotNull(txtMaxEnergy), GeneralController.CheckThatTheFieldIsNotNull(txtMaxLife), tbAttackPoints.Value, tbDefensePoints.Value, Convert.ToInt16(txtRange.Text));
 
                 if (entityCtn.CheckIfAnEntityCreatedWithTheSameNameAlreadyExists(entity) == false)
@@ -212,7 +210,6 @@ namespace crudsGame.src.views
                 }
                 UpdateEntityId();
                 CleanFields();
-                //}
             }
             catch (Exception ex)
             {
@@ -223,8 +220,6 @@ namespace crudsGame.src.views
 
         private void btnUpdatee_Click(object sender, EventArgs e)
         {
-            //if (CheckMaximumNumberToEnterInDefenseAndAttackPoints() == true)
-            //{
             MessageBoxDarkMode messageBox = new MessageBoxDarkMode("Esta seguro de guardar los cambios??", "ALERTA", "OkCancel", Resources.warning);
             if (model.MessageBox.MessageBoxDialogResult(messageBox) == true)
             {
@@ -256,8 +251,6 @@ namespace crudsGame.src.views
                 }
 
             }
-
-            //}
         }
 
         private void btnDeletee_Click(object sender, EventArgs e)
