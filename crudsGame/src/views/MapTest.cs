@@ -260,18 +260,10 @@ namespace crudsGame.src.views
 
         private void btnUse_Click(object sender, EventArgs e)
         {
-            try
+            if (((Entity)lbEntitiesOnAterrain.SelectedItem).UseItem(((Item)lbItemsOnAterrain.SelectedItem)))
             {
-                if (((Entity)lbEntitiesOnAterrain.SelectedItem).UseItem(((Item)lbItemsOnAterrain.SelectedItem)) == true)
-                {
-                    mapCtn.RemoveAusedItemFromTheMap((Item)lbItemsOnAterrain.SelectedItem);
-                    LoadListBoxOfItemsOnAcurrentTerrain();
-                    LoadProgressbarOfSelectedEntity();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "ALERTA", "Ok", Resources.warning);
+                mapCtn.RemoveAusedItemFromTheMap((Item)lbItemsOnAterrain.SelectedItem);
+                LoadListBoxOfItemsOnAcurrentTerrain();
                 LoadProgressbarOfSelectedEntity();
             }
         }

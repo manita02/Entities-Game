@@ -12,16 +12,18 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
     internal class LosesEnergy:IStrategyTypeOfItem
     {
         Random random = new Random();
-        public void ApplyItem(Entity entity)
+        public bool ApplyItem(Entity entity)
         {
             try
             {
                 entity.currentEnergy -= random.Next(10, 50) - 5;
                 MessageBox.Show("The " + entity.name + " creature used an item that made him lose energy (-" + entity.currentEnergy, "ATENCIÓN", "Ok", Resources.neg);
+                return true;
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "ALERTA", "Ok", Resources.warning);
+                return false;
             }
             
         }

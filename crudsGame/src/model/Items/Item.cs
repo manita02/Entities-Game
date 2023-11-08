@@ -88,8 +88,11 @@ namespace crudsGame.src.model.Items
 
         public bool Interact(Entity entity)
         {
-            ItemStrategy.ApplyItem(entity);
-            return true;
+            if (ItemStrategy.ApplyItem(entity))
+            {
+                return true;
+            }
+            return false;
         }
 
         public override string ToString()

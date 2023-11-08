@@ -9,6 +9,6 @@ namespace crudsGame.src.interfaces
 {
     public interface IStrategyTypeOfItem
     {
-        public void ApplyItem(Entity entity);
+        public bool ApplyItem(Entity entity);
     }
 }

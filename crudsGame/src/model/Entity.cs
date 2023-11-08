@@ -354,8 +354,14 @@ namespace crudsGame.src.model
         {
             if (Kingdom.CanInteract(item))
             {
-                item.Interact(this);
-                return true;
+                if (item.Interact(this))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }            
             }
             else
             {
