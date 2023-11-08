@@ -71,9 +71,11 @@ namespace crudsGame.src.controllers
             StrategyTypeItems = GetStrategyItemsList();
             KingdomsList = GetKingdomList();
 
+            /*
             Item item1 = new Item(index, "probandoo", new LosesLife(), KingdomCreator.CreateAkingdom(2)); 
             ItemList.Add(item1);
             index++;
+            */
             
             foreach (var name in ItemNames)
             {

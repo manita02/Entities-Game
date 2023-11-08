@@ -117,9 +117,11 @@ namespace crudsGame.src.controllers
             EnvironmentList = GetEnvironmentList();
             KingdomList = GetKingdomList();
 
+            /*
             Entity testEntity = new Entity(index, KingdomList[1], "pruebass", DietList[random.Next(0, DietList.Count)], GenerateRandomListOfEnvironments(random.Next(0,100)), random.Next(300, 500), random.Next(300, 500), 30, 30, random.Next(0, 2));
             EntitiesList.Add(testEntity);
             index++;
+            */
 
             foreach (var name in RandomNames)
             {

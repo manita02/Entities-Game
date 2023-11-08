@@ -327,7 +327,7 @@ namespace crudsGame.src.controllers
         
         #region Set Items in the Map
         /// <summary>
-        /// Busca si un item random ya ha sido agregada en el mapa sobre algun terreno
+        /// Busca si un item random ya ha sido agregado en el mapa sobre algun terreno
         /// </summary>
         public bool SearchIfTheItemHasAlreadyBeenAddedToTheMapInSomeTerrain(Item itemToSearch)
         {
