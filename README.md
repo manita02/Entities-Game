@@ -1,11 +1,8 @@
 
-
-
 <h1 align="center">👺👾Entities Game👽👹</h1>
 <section align="center">
   <img src="https://meups.com.br/wp-content/uploads/2023/08/Industria-dos-Games-900x503.jpg" alt="entities_game">
-  
-   <img src="https://img.shields.io/badge/ESTADO-EN DESARROLLO-green" alt="Estado del Proyecto">
+  <img src="https://img.shields.io/badge/ESTADO-EN DESARROLLO-green" alt="Estado del Proyecto">
 </section>
 
 
@@ -16,7 +13,6 @@
 
 - [Descargar proyecto :inbox_tray:](#white_check_mark-descargar-proyectoinbox_tray)
    
-
 - [Abrir Proyecto :open_file_folder:](#white_check_mark-abrir-proyectoopen_file_folder)
     
 - [Ejecutar el proyecto :rocket:](#white_check_mark-ejecutar-proyectorocket)
@@ -35,7 +31,6 @@ Es una aplicación realizada según el patrón MVC (Modelo, Vista, Controlador) 
 </p>
 
 
-
 ### :white_check_mark: `Programas necesarios`:clipboard:
 - Descargar e Instalar :arrow_down_small: 
   - Aprende a instalar Visual Studio Community :point_right: [10-minute tutorial ⏱️](https://www.youtube.com/watch?v=0Bylp5rPnWg)! 
@@ -46,7 +41,6 @@ Es una aplicación realizada según el patrón MVC (Modelo, Vista, Controlador) 
 
 ### :white_check_mark: `Descargar proyecto`:inbox_tray:
 - [Download](https://github.com/manita02/Entities-Game/archive/refs/heads/main.zip):anger: 
-
 
 
 ### :white_check_mark: `Abrir Proyecto`:open_file_folder:
