@@ -199,21 +199,26 @@ namespace crudsGame.src.views
         #region Load Progress Bars
         private void LoadProgressbarOfSelectedEntity()
         {
-            lbCurrentLife.Text = "🖤Current Life🖤 = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).currentLife;
-            pbCurrentLife.Maximum = ((Entity)lbEntitiesOnAterrain.SelectedItem).maxLife;
-            pbCurrentLife.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).currentLife;
+            if (lbEntitiesOnAterrain.Items.Count != 0)
+            {
+                lbCurrentLife.Text = "🖤Current Life🖤 = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).currentLife;
+                pbCurrentLife.Maximum = ((Entity)lbEntitiesOnAterrain.SelectedItem).maxLife;
+                pbCurrentLife.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).currentLife;
 
 
-            lbCurrentEnergy.Text = "⚡Current Energy⚡ = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).currentEnergy;
-            pbCurrentEnergy.Maximum = ((Entity)lbEntitiesOnAterrain.SelectedItem).maxEnergy;
-            pbCurrentEnergy.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).currentEnergy;
+                lbCurrentEnergy.Text = "⚡Current Energy⚡ = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).currentEnergy;
+                pbCurrentEnergy.Maximum = ((Entity)lbEntitiesOnAterrain.SelectedItem).maxEnergy;
+                pbCurrentEnergy.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).currentEnergy;
 
-            lbAttack.Text = "💣Attack Points💣 = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).attackPoints;
-            pbAttackPoints.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).attackPoints;
+                lbAttack.Text = "💣Attack Points💣 = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).attackPoints;
+                pbAttackPoints.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).attackPoints;
 
-            lbDefense.Text = "🛡️Defense Points🛡️ = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).defensePoints;
-            pbDefensePoints.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).defensePoints;
+                lbDefense.Text = "🛡️Defense Points🛡️ = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).defensePoints;
+                pbDefensePoints.Value = ((Entity)lbEntitiesOnAterrain.SelectedItem).defensePoints;
 
+                CheckIfTheSelectedEntityHasEnergyToMoveAndAttack();
+
+            }
         }
 
         private void LoadProgressbarOfEntitiesToAttackPlayerTwo()
@@ -293,22 +298,19 @@ namespace crudsGame.src.views
             ChangeColorOfSelectedHexagonAndTheirBorderingHexagons((Terrain)cbCurrentTerrain.SelectedItem);
         }
 
-        private void CheckIfTheSelectedEntityHasEnergy()
+        private bool CheckIfTheSelectedEntityHasEnergyToMoveAndAttack()
         {
-            if (((Entity)lbEntitiesOnAterrain.SelectedItem).currentEnergy == 0)
+            if (((Entity)lbEntitiesOnAterrain.SelectedItem).currentEnergy < 50)
             {
-                MessageBox.Show("La entidad seleccionada actualmente (" + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ") NO tiene energía, por lo tanto NO podrá realizar ningún tipo de interacción!!", "ATENCIÓN", "Ok", Resources.loseEnergy);
-                btnAttack.Enabled = false;
-                btnEat.Enabled = false;
-                btnUse.Enabled = false;
                 btnMoveInfo.Enabled = false;
+                btnAttack.Enabled = false;
+                return false;
             }
             else
             {
-                btnAttack.Enabled = true;
-                btnEat.Enabled = true;
-                btnUse.Enabled = true;
                 btnMoveInfo.Enabled = true;
+                btnAttack.Enabled = true;
+                return true;
             }
         }
 
@@ -326,7 +328,10 @@ namespace crudsGame.src.views
             LoadProgressbarOfSelectedEntity();
             LoadListboxOfEntitiesToAttack();
 
-            CheckIfTheSelectedEntityHasEnergy();
+            if (CheckIfTheSelectedEntityHasEnergyToMoveAndAttack() == false)
+            {
+                MessageBox.Show("La entidad seleccionada actualmente (" + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ") NO podrá moverse, NI atacar porque no tiene energía suficiente (debe tener +50)!!", "ATENCIÓN", "Ok", Resources.loseEnergy);
+            }
         }
 
         private void lbEntitiesToAttack_SelectedIndexChanged(object sender, EventArgs e)
@@ -345,6 +350,18 @@ namespace crudsGame.src.views
             ChangeColorOfSelectedHexagonToMove(mapCtn.GetTerrains(mapCtn.GetMap())[index], terrenoAnteriorSeleccionado);
         }
 
+        private void ShowMoveButton(Terrain terrainToMove)
+        {
+            if (lbEntitiesOnAterrain.Items.Count != 0)
+            {
+                btnMove.Visible = true;
+                btnMove.Text = "Mover a " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + " al terreno N°" + terrainToMove.Id;
+            }
+            else
+            {
+                btnMove.Visible = false;
+            }
+        }
 
         private void ChangeColorOfSelectedHexagonToMove(Terrain terrainDondeSeMovera, Terrain terrenoAnteriorSeleccionado)
         {
@@ -359,7 +376,8 @@ namespace crudsGame.src.views
 
             hexagonsList[terrainDondeSeMovera.Id].BorderColor = Color.DarkViolet;//este vendria a ser a donde se va a mover
 
-            btnMove.Text = "Mover a " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + " al terreno N°" + terrainDondeSeMovera.Id;
+            //btnMove.Text = "Mover a " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + " al terreno N°" + terrainDondeSeMovera.Id;
+            ShowMoveButton(terrainDondeSeMovera);
         }
 
 
