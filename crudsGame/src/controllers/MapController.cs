@@ -77,32 +77,6 @@ namespace crudsGame.src.controllers
                     List<ITerrain> terrainTypes = TerrainsTypesList();
                     ITerrain randomTerrain = terrainTypes[random.Next(terrainTypes.Count)];
                     AddTerrain(randomTerrain, map);
-                    /*
-                        if (i % 4 == 0)
-                        {
-                            AddTerrain(new Water(), map);
-                        }
-                        else
-                        {
-                            if (i % 3 == 0)
-                            {
-                                AddTerrain(new Water(), map);
-                            }
-                            else
-                            {
-                                if (i % 2 == 0)
-                                {
-                                    AddTerrain(new Land(), map);
-                                }
-                                else
-                                {
-                                    AddTerrain(new Land(), map);
-                                }
-
-                            }
-
-                        }
-                        */
                 }
                 SetBorderingTerrains(); 
                 SetEntities();
@@ -175,18 +149,15 @@ namespace crudsGame.src.controllers
         {
             int x = 0;
             Random random = new Random();
-            /*
-            MessageBox.Show("ambiente por parametro: " + terrain.TerrainType.ToString());
-            MessageBox.Show("valor de availbale indices: " + availableIndexes.Count);
-            */
             while (x != 1)
             {
                 x = 0;
-                //se elije un indice random de la lista de indices disponibles para agregar de la lista de entidades
+              
+                // Se elije un indice random de la lista de indices disponibles para agregar de la lista de entidades
                 int indexRandom = random.Next(availableIndexes.Count);
                 //MessageBox.Show("index random: " + indexrandmom+ " _cantidad en la newList: "+newList.Count+" cantidad de indices disponibles: "+availableIndexes.Count);
 
-                //aca de la lista de entidades que seria newList se le asigna entre corchetes el index anterior para obtener una entidad random
+                // Aca de la lista de entidades que seria newList se le asigna entre corchetes el index anterior para obtener una entidad random
                 Entity EntityRandom = newList[indexRandom];
                 /*
                 MessageBox.Show("trabajando con: " + randomEntityOne.name);
@@ -194,15 +165,15 @@ namespace crudsGame.src.controllers
 
                 switch (terrain.TerrainType)
                 {
-                    case Water: //si el terreno es agua
+                    case Water: // --> Si el terreno es agua
                         foreach (IEnvironment env in EntityRandom.environmentList) 
                         {
                             if (AvoidInfiniteLoop != 50)
                             {
-                                if (env is Aquatic || env is Aereal) //si en la lista de ambientes de la entidad random obtenida anteriormente tiene a acuatico o aereo
+                                if (env is Aquatic || env is Aereal) // --> Si en la lista de ambientes de la entidad random obtenida anteriormente tiene a acuatico o aereo
                                 {
-                                    x++;//corta el ciclo x = 1
-                                    return EntityRandom; //retorna la entidad para que pueda ser agregada
+                                    x++;// --> Corta el ciclo x = 1 
+                                    return EntityRandom; // --> Retorna la entidad para que pueda ser agregada
                                 }
                                 AvoidInfiniteLoop++;
                             }
@@ -247,7 +218,7 @@ namespace crudsGame.src.controllers
                 {
                     List<int> availableIndexes = Enumerable.Range(0, newList.Count).ToList();
                     int i = 0;
-                    while (i < 2) //dos entidades por terreno
+                    while (i < 2) // --> Dos entidades por terreno
                     {
                         if (availableIndexes.Count > 0)
                         {
@@ -261,7 +232,7 @@ namespace crudsGame.src.controllers
                                 // Elimina el índice de la entidad ya agregada a un terreno
                                 availableIndexes.Remove(newList.IndexOf(randomEntityOne));
 
-                                //eliminar la entidad de la newList
+                                // Eliminar la entidad de la newList
                                 newList.RemoveAt(newList.IndexOf(randomEntityOne));
                                 i++;
                             }
@@ -303,7 +274,7 @@ namespace crudsGame.src.controllers
             {
                 List<int> availableIndexes = Enumerable.Range(0, newListFoods.Count).ToList();
                 int i = 0;
-                while (i < 2) //dos comidas por terreno
+                while (i < 2) // --> Dos comidas por terreno
                 {
                     if (availableIndexes.Count > 0)
                     {
@@ -350,7 +321,7 @@ namespace crudsGame.src.controllers
             {
                 List<int> availableIndexes = Enumerable.Range(0, newListItems.Count).ToList();
                 int i = 0;
-                while (i < 2) //dos items por terreno
+                while (i < 2) // --> Dos items por terreno
                 {
                     if (availableIndexes.Count > 0)
                     {
@@ -394,8 +365,7 @@ namespace crudsGame.src.controllers
                 if (entity.MoveThrough(terrainToMove.TerrainType))
                 {
                     RemoveAnEntityFromAterrain(entity, currentTerrain);
-                    //luego agregarla a el terreno donde se va a mover
-                    AddEntityToTerrainWhereMoved(entity, terrainToMove);
+                    AddEntityToTerrainWhereMoved(entity, terrainToMove); // --> Luego agrega la entidad al terreno donde se va a mover
                     return true;
                 }
             }
@@ -422,11 +392,9 @@ namespace crudsGame.src.controllers
         {
             foreach (Terrain terr in map.TerrainsList)
             {
-                //MessageBox.Show("cantidad en lista antes de borrar: " + terr.EntitiesList.Count + "en terreno "+terr.Id);
                 if (terr.EntitiesList.Contains(entity))
                 {
                     RemoveAnEntityFromAterrain(entity, terr);
-                    //MessageBox.Show("cantidad en lista DESPUES DE de borrar: " + terr.EntitiesList.Count + " la entidad "+entity.name);
                     break;
                 }
             }
@@ -466,7 +434,7 @@ namespace crudsGame.src.controllers
         public bool CheckIfAnyEntityDiedAfterTheAttack(Entity attackingEntity, Entity attackedEntity)
         {
             int resultAtaque = attackingEntity.Attack(attackedEntity);
-                if (resultAtaque == 1)//entidad atacante se muere
+                if (resultAtaque == 1)// --> Entidad atacante se muere
             {
                     MessageBox.Show(attackedEntity.name + " mató a " + attackingEntity.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
                     RemoveAnEntityThatDiedFromTheMap(attackingEntity);
@@ -475,7 +443,7 @@ namespace crudsGame.src.controllers
                 }
                 else
                 {
-                    if (resultAtaque == 2)//entidad atacada se muere
+                    if (resultAtaque == 2)// --> Entidad atacada se muere
                     {
                         MessageBox.Show(attackingEntity.name + " mató a " + attackedEntity.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
                         RemoveAnEntityThatDiedFromTheMap(attackedEntity);

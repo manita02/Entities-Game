@@ -86,17 +86,17 @@ namespace crudsGame.src.views
         {
             foreach (var hexagon in hexagonsList)
             {
-                hexagon.BorderColor = SystemColors.ControlText; // Utiliza el color original del borde
+                hexagon.BorderColor = SystemColors.ControlText; // --> Utiliza el color original del borde
             }
         }
 
         private void ChangeColorOfSelectedHexagonAndTheirBorderingHexagons(Terrain terrain)
         {
             ResetHexagonBorderColor();
-            hexagonsList[terrain.Id].BorderColor = Color.Yellow; // Terreno Actual Seleccionado
+            hexagonsList[terrain.Id].BorderColor = Color.Yellow; // --> Terreno Actual Seleccionado
             for (int i = 0; i < terrain.BorderingTerrainsList.Count(); i++)
             {
-                hexagonsList[terrain.BorderingTerrainsList[i].Id].BorderColor = Color.DarkOrange; // Terrenos limitrofes del seleccionado anteriormente
+                hexagonsList[terrain.BorderingTerrainsList[i].Id].BorderColor = Color.DarkOrange; // --> Terrenos limitrofes del seleccionado anteriormente
             }
         }
 
@@ -121,7 +121,6 @@ namespace crudsGame.src.views
         }
 
 
-
         #region Load Listboxs
 
         private void SelectFirstListboxIndex(ListBox listbox)
@@ -143,30 +142,33 @@ namespace crudsGame.src.views
         private void LoadListboxOfEntitiesToAttack()
         {
             lbEntitiesToAttack.Items.Clear();
-            if (((Entity)lbEntitiesOnAterrain.SelectedItem).attackRange == 1)
+            if (lbEntitiesOnAterrain.Items.Count != 0)
             {
-                /// <summary>
-                /// Recorre los terrenos limitrofes del terreno actual seleccionado y ejecuta el metodo donde le pasa como
-                /// parametro la lista de entidades que tiene cada uno de los terrenos limitrofes
-                /// </summary>
-                foreach (Terrain terr in ((Terrain)cbCurrentTerrain.SelectedItem).BorderingTerrainsList)//terrenos limitrofes del terreno actual
+                if (((Entity)lbEntitiesOnAterrain.SelectedItem).attackRange == 1)
                 {
-                    AddEntitiesToListbox(terr.EntitiesList, lbEntitiesToAttack);
+                    /// <summary>
+                    /// Recorre los terrenos limitrofes del terreno actual seleccionado y ejecuta el metodo donde le pasa como
+                    /// parametro la lista de entidades que tiene cada uno de los terrenos limitrofes
+                    /// </summary>
+                    foreach (Terrain terr in ((Terrain)cbCurrentTerrain.SelectedItem).BorderingTerrainsList)// --> Terrenos limitrofes del terreno actual
+                    {
+                        AddEntitiesToListbox(terr.EntitiesList, lbEntitiesToAttack);
+                    }
+                    /// <summary>
+                    /// Llama a este metodo y le pasa la lista de entidades que tiene el terreno actual
+                    /// </summary>
+                    AddEntitiesToListbox(((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList, lbEntitiesToAttack); // --> Entidades en terreno actual
                 }
-                /// <summary>
-                /// Llama a este metodo y le pasa la lista de entidades que tiene el terreno actual
-                /// </summary>
-                AddEntitiesToListbox(((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList, lbEntitiesToAttack); //entidades en terreno actual
-            }
-            else if (((Entity)lbEntitiesOnAterrain.SelectedItem).attackRange == 0)
-            {
-                /// <summary>
-                /// Llama a este metodo y le pasa la lista de entidades que tiene el terreno actual
-                /// </summary>
-                AddEntitiesToListbox(((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList, lbEntitiesToAttack); //entidades en terreno actual
-            }
-            lbEntitiesToAttack.Items.Remove((Entity)lbEntitiesOnAterrain.SelectedItem);//elimina el seleccionado
-            SelectFirstListboxIndex(lbEntitiesToAttack);
+                else if (((Entity)lbEntitiesOnAterrain.SelectedItem).attackRange == 0)
+                {
+                    /// <summary>
+                    /// Llama a este metodo y le pasa la lista de entidades que tiene el terreno actual
+                    /// </summary>
+                    AddEntitiesToListbox(((Terrain)cbCurrentTerrain.SelectedItem).EntitiesList, lbEntitiesToAttack); // --> Entidades en terreno actual
+                }
+                lbEntitiesToAttack.Items.Remove((Entity)lbEntitiesOnAterrain.SelectedItem);// --> Elimina la entidad actual seleccionada
+                SelectFirstListboxIndex(lbEntitiesToAttack);
+            }     
         }
 
         public void LoadListBoxOfFoodsOnAcurrentTerrain()
@@ -318,7 +320,7 @@ namespace crudsGame.src.views
         {
             btnMoveInfo.Text = "MOVER entidad seleccionada (" + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + ") a otro terreno";
 
-            lbEnvironmentsOfAnEntity.DataSource = ((Entity)lbEntitiesOnAterrain.SelectedItem).environmentList;//funciona
+            lbEnvironmentsOfAnEntity.DataSource = ((Entity)lbEntitiesOnAterrain.SelectedItem).environmentList;
             lbId.Text = "📛Id📛 = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).id;
             lbName.Text = "🐲Name🐲 = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name;
             lbDiet.Text = "🍽️Diet🍽️ = " + ((Entity)lbEntitiesOnAterrain.SelectedItem).diet;
@@ -374,7 +376,7 @@ namespace crudsGame.src.views
                 hexagonsList[terrenoAnteriorSeleccionado.BorderingTerrainsList[i].Id].BorderColor = Color.DarkOrange;
             }
 
-            hexagonsList[terrainDondeSeMovera.Id].BorderColor = Color.DarkViolet;//este vendria a ser a donde se va a mover
+            hexagonsList[terrainDondeSeMovera.Id].BorderColor = Color.DarkViolet;// --> Este vendria a ser a donde se va a mover
 
             //btnMove.Text = "Mover a " + ((Entity)lbEntitiesOnAterrain.SelectedItem).name + " al terreno N°" + terrainDondeSeMovera.Id;
             ShowMoveButton(terrainDondeSeMovera);

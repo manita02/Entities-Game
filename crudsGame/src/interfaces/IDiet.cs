@@ -10,8 +10,6 @@ namespace crudsGame.src.interfaces
     public interface IDiet
     {
         bool CanEat(Food food);
-        string ToString();
-
-        
+        string ToString();   
     }
 }

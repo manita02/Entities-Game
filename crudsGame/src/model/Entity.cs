@@ -293,6 +293,7 @@ namespace crudsGame.src.model
         }
         #endregion
 
+
         #region Attack
         private int CheckIfTheAttackingEntityDied()
         {

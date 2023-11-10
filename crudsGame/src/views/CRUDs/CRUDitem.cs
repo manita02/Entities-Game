@@ -136,8 +136,6 @@ namespace crudsGame.src.views
         #endregion
 
 
-
-
         #region Buttons Interactions
         private void btnCreatee_Click(object sender, EventArgs e)
         {

@@ -32,7 +32,7 @@ namespace crudsGame.src.controllers
 
         int index = 0;
         Random random = new Random();
-        List<string> RandomNames = new List<string> { "Akuma", "M. Bison", "Zangief", "Ryu", "Sagat", "Dhalsim", "Edmon Honda", "Dee Jay", "Birdie", "Thunder Hawk", "Remy", "Makoto", "Urien", "Necalli", "Ibuki", "Decapre", "Ken", "Chun-Li", "Guile", "Blanka", "Vega", "Fei Long", "Cammy", "Rose", "Charlie Nash", "Dan", "Adon", "Guy", "Sakura", "Rolento", "Karin", "Juni", "Cody", "Maki", "Yun", "Sean", "Necro", "Gen", "Meat", "M. Capusoto", "Franklin", "Trevor"};//37
+        List<string> RandomNames = new List<string> { "Akuma", "M. Bison", "Zangief", "Ryu", "Sagat", "Dhalsim", "Edmon Honda", "Dee Jay", "Birdie", "Thunder Hawk", "Remy", "Makoto", "Urien", "Necalli", "Ibuki", "Decapre", "Ken", "Chun-Li", "Guile", "Blanka", "Vega", "Fei Long", "Cammy", "Rose", "Charlie Nash", "Dan", "Adon", "Guy", "Sakura", "Rolento", "Karin", "Juni", "Cody", "Maki", "Yun", "Sean", "Necro", "Gen", "Meat", "Kung Lao", "Baraka", "Raiden"};
         List<Entity> EntitiesList = new List<Entity>();
         List<IDiet> DietList = new List<IDiet>();
         List<IKingdom> KingdomList = new List<IKingdom>();
@@ -117,19 +117,12 @@ namespace crudsGame.src.controllers
             EnvironmentList = GetEnvironmentList();
             KingdomList = GetKingdomList();
 
-            /*
-            Entity testEntity = new Entity(index, KingdomList[1], "pruebass", DietList[random.Next(0, DietList.Count)], GenerateRandomListOfEnvironments(random.Next(0,100)), random.Next(300, 500), random.Next(300, 500), 30, 30, random.Next(0, 2));
-            EntitiesList.Add(testEntity);
-            index++;
-            */
-
             foreach (var name in RandomNames)
             {
                 Entity entity = new Entity(index, KingdomList[random.Next(0, KingdomList.Count)], name, DietList[random.Next(0, DietList.Count)], GenerateRandomListOfEnvironments(random.Next(0, 100)), random.Next(300, 500), random.Next(300, 500), random.Next(100, 400), random.Next(100, 400), random.Next(0, 2));
                 EntitiesList.Add(entity);
                 index++;
             }
-            //System.Windows.Forms.MessageBox.Show("total lista: " + EntitiesList.Count);
             return EntitiesList;
         }
 

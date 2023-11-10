@@ -12,7 +12,6 @@ namespace crudsGame.src.model.Environments
     {
         public bool CanMoveThrough(ITerrain terrain)
         {
-            //System.Windows.Forms.MessageBox.Show("se puede mover en tierra");
             return terrain is Land;
         }
 
