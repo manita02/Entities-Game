@@ -277,11 +277,12 @@ namespace crudsGame.src.views
 
         private void btnAttack_Click(object sender, EventArgs e)
         {
-            if(mapCtn.CheckIfAnyEntityDiedAfterTheAttack(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Entity)lbEntitiesToAttack.SelectedItem)))
+            mapCtn.ResolveAttack(((Entity)lbEntitiesOnAterrain.SelectedItem), ((Entity)lbEntitiesToAttack.SelectedItem));
+
+            if (!((Entity)lbEntitiesOnAterrain.SelectedItem).IsAlive() || !((Entity)lbEntitiesToAttack.SelectedItem).IsAlive())
             {
                 LoadListBoxOfEntitiesOnAcurrentTerrain();
                 LoadListboxOfEntitiesToAttack();
-
             }
             LoadProgressbarOfSelectedEntity();
             LoadProgressbarOfEntitiesToAttackPlayerTwo();

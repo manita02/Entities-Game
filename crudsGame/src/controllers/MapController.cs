@@ -388,7 +388,7 @@ namespace crudsGame.src.controllers
 
 
         #region Remove Objects from the Map
-        public void RemoveAnEntityThatDiedFromTheMap(Entity entity)
+        public void RemoveAnEntityFromTheMap(Entity entity)
         {
             foreach (Terrain terr in map.TerrainsList)
             {
@@ -431,26 +431,24 @@ namespace crudsGame.src.controllers
         /// Chequea si la entidad atacante o la entidad atacada murió despues de realizar el ataque
         /// asi despues borra del mapa alguna de las entidades
         /// </summary>
-        public bool CheckIfAnyEntityDiedAfterTheAttack(Entity attackingEntity, Entity attackedEntity)
+        public void ResolveAttack(Entity attackingEntity, Entity attackedEntity)
         {
-            int resultAtaque = attackingEntity.Attack(attackedEntity);
-                if (resultAtaque == 1)// --> Entidad atacante se muere
+            if (attackingEntity.Attack(attackedEntity)) // --> Entidad atacante GANA 
             {
-                    MessageBox.Show(attackedEntity.name + " mató a " + attackingEntity.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
-                    RemoveAnEntityThatDiedFromTheMap(attackingEntity);
-                    return true;
-
-                }
-                else
+                if (!attackedEntity.IsAlive())
                 {
-                    if (resultAtaque == 2)// --> Entidad atacada se muere
-                    {
-                        MessageBox.Show(attackingEntity.name + " mató a " + attackedEntity.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
-                        RemoveAnEntityThatDiedFromTheMap(attackedEntity);
-                        return true;
-                    }     
+                    MessageBox.Show(attackingEntity.name + " mató a " + attackedEntity.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
+                    RemoveAnEntityFromTheMap(attackedEntity); // --> Entidad atacada se muere
                 }
-                return false;            
+            }
+            else // --> Entidad atacada PIERDE
+            {
+                if (!attackingEntity.IsAlive())
+                {
+                    MessageBox.Show(attackedEntity.name + " mató a " + attackingEntity.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
+                    RemoveAnEntityFromTheMap(attackingEntity); // --> Entidad atacante se muere
+                }     
+            }           
         }
     }
 }

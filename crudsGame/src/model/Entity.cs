@@ -258,7 +258,7 @@ namespace crudsGame.src.model
                 if (value <= 0)
                 {
                     CurrentLife = 0;
-                    throw new Exception("The creature " + Name + " has died"); 
+                    //throw new Exception("The creature " + Name + " has died"); 
                 }
                 else if (value >= MaxLife)
                 {
@@ -295,35 +295,29 @@ namespace crudsGame.src.model
 
 
         #region Attack
-        private int CheckIfTheAttackingEntityDied()
+        public bool IsAlive()
         {
             if (this.CurrentLife <= 0)
             {
-                return 1;
+                return false;
             }
-            return 0;
+            return true;
         }
 
-        public int Attack(Entity entityToAttack)
+        public bool Attack(Entity entityToAttack)
         {
-            try
+            bool result = true;
+            this.currentEnergy -= 50;
+            int fullAttack = this.attackPoints + Dice.ShowThrowOfTheDice(1);
+            MessageBox.Show("La entidad atacante " + this.name + " ataca con: " + fullAttack, "Aviso", "Ok", Resources.moreAttack);
+                
+            int finalResultOfAttack = entityToAttack.ReceiveAttack(fullAttack); // --> La entidad que recibe el ataque se le pasa la entidad atacada
+            if (finalResultOfAttack != 0)
             {
-                this.currentEnergy -= 50;
-                int fullAttack = this.attackPoints + Dice.ShowThrowOfTheDice(1);
-                MessageBox.Show("La entidad atacante " + this.name + " ataca con: " + fullAttack, "Aviso", "Ok", Resources.moreAttack);
-                int finalResultOfAttack = entityToAttack.ReceiveAttack(fullAttack);//la entidad que recibe el ataque se le pasa la entidad atacada
-                if (finalResultOfAttack != 0)
-                {
-                    this.CurrentLife -= finalResultOfAttack;
-                    return CheckIfTheAttackingEntityDied();
-                }
-                return 0;
+                this.CurrentLife -= finalResultOfAttack;
+                result = false; // --> Ataque NO exitoso (pierde la entidad atacante)                 
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return 2;
-            }
+            return result;// --> Ataque exitoso
             
         }
         public int ReceiveAttack(int fullAttack)
@@ -346,7 +340,7 @@ namespace crudsGame.src.model
         {
             int fullDefense = this.defensePoints + Dice.ShowThrowOfTheDice(2);
             MessageBox.Show("La entidad que se defiende: " + this.name + " se va a defender con: " + fullDefense, "Aviso", "Ok", Resources.moreDefense);
-            return (fullAttack > fullDefense); //devuelve true si los puntos de ataque son mayores a los de la defensa --> se le debe restar a la entidad atacada
+            return (fullAttack > fullDefense); // --> Devuelve true si los puntos de ataque son mayores a los de la defensa --> se le debe restar a la entidad atacada
         }
         #endregion
 

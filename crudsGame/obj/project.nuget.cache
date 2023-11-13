@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "HWrrx8eOymcXACguXDxEcHYjNv9JowotjS9TFv/5/xsSpp4nzeHvN8ABFvD3GelZXDG8BRhIyv14QJWj+qTDLA==",
+  "dgSpecHash": "6C4YuKhNw22IicpsmXdXsb48AsExX2eK9n08zae/C9WHabSfEMkyKpQdmZ+XHk9u1PJIvx+asrgIiG/G8qw7fQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\manita02\\Desktop\\ultimo main game\\Entities-Game\\crudsGame\\crudsGame.csproj",
+  "projectFilePath": "C:\\Users\\manit\\Desktop\\mainNuevo - copia\\Entities-Game\\crudsGame\\crudsGame.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\manita02\\.nuget\\packages\\awssdk.core\\3.7.203\\awssdk.core.3.7.203.nupkg.sha512",
-    "C:\\Users\\manita02\\.nuget\\packages\\materialskin.net5\\1.0.2\\materialskin.net5.1.0.2.nupkg.sha512"
+    "C:\\Users\\manit\\.nuget\\packages\\awssdk.core\\3.7.203\\awssdk.core.3.7.203.nupkg.sha512",
+    "C:\\Users\\manit\\.nuget\\packages\\materialskin.net5\\1.0.2\\materialskin.net5.1.0.2.nupkg.sha512"
   ],
   "logs": []
 }
