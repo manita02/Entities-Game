@@ -1,4 +1,5 @@
 ﻿using crudsGame.Properties;
+using crudsGame.src.controllers;
 using crudsGame.src.interfaces;
 using crudsGame.src.views;
 using System;
@@ -18,6 +19,7 @@ namespace crudsGame.src.model.Items.Strategy.Positive
             {
                 entity.currentLife += random.Next(10, 50);
                 entity.currentEnergy -= 50;
+                GeneralController.PlaySoundEffect(Resources.posicion);
                 MessageBox.Show("The " + entity.name + " creature has used a item that increased its life to " + entity.currentLife, "ATENCIÓN", "Ok", Resources.check);
                 return true;
             }

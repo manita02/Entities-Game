@@ -1,4 +1,5 @@
 ﻿using crudsGame.Properties;
+using crudsGame.src.controllers;
 using crudsGame.src.interfaces;
 using crudsGame.src.views;
 using System;
@@ -17,6 +18,7 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
             try
             {
                 entity.currentEnergy -= random.Next(10, 50) - 5;
+                GeneralController.PlaySoundEffect(Resources.posicion);
                 MessageBox.Show("The " + entity.name + " creature used an item that made him lose energy (-" + entity.currentEnergy, "ATENCIÓN", "Ok", Resources.neg);
                 return true;
             }

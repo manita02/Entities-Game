@@ -1,4 +1,5 @@
 ﻿using crudsGame.Properties;
+using crudsGame.src.controllers;
 using crudsGame.src.interfaces;
 using crudsGame.src.views;
 using Microsoft.VisualBasic.ApplicationServices;
@@ -20,6 +21,7 @@ namespace crudsGame.src.model.Items.Strategy.Negatives
             {
                 entity.defensePoints -= random.Next(10, 50);
                 entity.currentEnergy -= 50;
+                GeneralController.PlaySoundEffect(Resources.posicion);
                 MessageBox.Show("The " + entity.name + " creature used an item that made him lose defense points!!", "ATENCIÓN", "Ok", Resources.neg);
                 return true;
             }

@@ -1,4 +1,5 @@
 ﻿using crudsGame.Properties;
+using crudsGame.src.controllers;
 using crudsGame.src.interfaces;
 using crudsGame.src.views;
 using System;
@@ -94,6 +95,7 @@ namespace crudsGame.src.model.Foods
             {
                 entity.currentEnergy -= 10;
                 entity.currentEnergy += Calories;
+                GeneralController.PlaySoundEffect(Resources.comer);
                 MessageBox.Show("The creature " + entity.name + " ate " + Name + " and recovered + (" + Calories + ") energy", "ATENCIÓN", "Ok", Resources.check);
                 return true;
             }

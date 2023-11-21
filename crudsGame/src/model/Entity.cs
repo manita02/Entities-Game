@@ -1,4 +1,5 @@
 ﻿using crudsGame.Properties;
+using crudsGame.src.controllers;
 using crudsGame.src.interfaces;
 using crudsGame.src.model.Foods;
 using crudsGame.src.model.Items;
@@ -309,6 +310,7 @@ namespace crudsGame.src.model
             bool result = true;
             this.currentEnergy -= 50;
             int fullAttack = this.attackPoints + Dice.ShowThrowOfTheDice(1);
+            GeneralController.PlaySoundEffect(Resources.golpe);
             MessageBox.Show("La entidad atacante " + this.name + " ataca con: " + fullAttack, "Aviso", "Ok", Resources.moreAttack);
                 
             int finalResultOfAttack = entityToAttack.ReceiveAttack(fullAttack); // --> La entidad que recibe el ataque se le pasa la entidad atacada
@@ -325,12 +327,14 @@ namespace crudsGame.src.model
             int finalResultOfAttack = 0;
             if (CompareAttackPointsWithMyDefense(fullAttack))
             {
+                GeneralController.PlaySoundEffect(Resources.golpe2);
                 MessageBox.Show("Perdió la defensa ("+this.name+ "), por lo tanto perderá esto de vida: -" + fullAttack, "Ganó la entidad atacante", "Ok", Resources.moreAttack);
                 currentLife -= fullAttack;
             }
             else 
             {
                 finalResultOfAttack = this.defensePoints - fullAttack;
+                GeneralController.PlaySoundEffect(Resources.defensa2);
                 MessageBox.Show("Perdió la entidad atacante, por lo tanto perderá esto de vida: (" + this.defensePoints +" - " + fullAttack + ") = "+ finalResultOfAttack, "Ganó la entidad que se defiende", "Ok", Resources.moreDefense);      
             }
             //MessageBox.Show("valor final del resultado q se va a restar a la entidad atacante: "+finalResultOfAttack,"info del resultado", "Ok", Resources.info);
@@ -339,6 +343,7 @@ namespace crudsGame.src.model
         public bool CompareAttackPointsWithMyDefense(int fullAttack)
         {
             int fullDefense = this.defensePoints + Dice.ShowThrowOfTheDice(2);
+            GeneralController.PlaySoundEffect(Resources.defensa1);
             MessageBox.Show("La entidad que se defiende: " + this.name + " se va a defender con: " + fullDefense, "Aviso", "Ok", Resources.moreDefense);
             return (fullAttack > fullDefense); // --> Devuelve true si los puntos de ataque son mayores a los de la defensa --> se le debe restar a la entidad atacada
         }

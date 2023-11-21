@@ -1,4 +1,5 @@
 ﻿using crudsGame.Properties;
+using crudsGame.src.controllers;
 using crudsGame.src.interfaces;
 using crudsGame.src.model.Kingdoms;
 using crudsGame.src.views;
@@ -20,6 +21,7 @@ namespace crudsGame.src.model.Items.Strategy.Positive
             try
             {
                 entity.currentEnergy -= 50;
+                GeneralController.PlaySoundEffect(Resources.posicion);
                 MessageBox.Show("The " + entity.name + " creature has used a item that increased its attack points!!", "ATENCIÓN", "Ok", Resources.check);
                 entity.attackPoints += random.Next(10, 50);
                 return true;

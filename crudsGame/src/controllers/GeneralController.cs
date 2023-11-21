@@ -7,6 +7,7 @@ using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -43,6 +44,13 @@ namespace crudsGame.src.controllers
                 e.Handled = true;
                 return;
             }
+        }
+
+        public static void PlaySoundEffect(UnmanagedMemoryStream effect)
+        {
+            System.Media.SoundPlayer sound = new System.Media.SoundPlayer();
+            sound.Stream = effect;
+            sound.Play();
         }
 
     }

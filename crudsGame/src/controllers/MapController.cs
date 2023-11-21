@@ -382,6 +382,7 @@ namespace crudsGame.src.controllers
         public void AddEntityToTerrainWhereMoved(Entity entity, Terrain terr)
         {
             terr.EntitiesList.Add(entity);
+            GeneralController.PlaySoundEffect(Resources.move);
             MessageBox.Show("La entidad "+entity.name+" se ha movido al terreno N°"+terr.Id+ " con éxito!!", "ATENCIÓN", "Ok", Resources.check);
         }
         #endregion
@@ -437,6 +438,7 @@ namespace crudsGame.src.controllers
             {
                 if (!attackedEntity.IsAlive())
                 {
+                    GeneralController.PlaySoundEffect(Resources.murio);
                     MessageBox.Show(attackingEntity.name + " mató a " + attackedEntity.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
                     RemoveAnEntityFromTheMap(attackedEntity); // --> Entidad atacada se muere
                 }
@@ -445,6 +447,7 @@ namespace crudsGame.src.controllers
             {
                 if (!attackingEntity.IsAlive())
                 {
+                    GeneralController.PlaySoundEffect(Resources.murio);
                     MessageBox.Show(attackedEntity.name + " mató a " + attackingEntity.name + "!!!", "ATENCIÓN", "Ok", Resources.ko);
                     RemoveAnEntityFromTheMap(attackingEntity); // --> Entidad atacante se muere
                 }     
